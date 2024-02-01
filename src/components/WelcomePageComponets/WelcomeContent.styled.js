@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const WelcomeWrapper = styled.div`
   display: flex;
@@ -28,6 +29,16 @@ export const WelcomeContainer = styled.div`
   }
 `;
 
+export const WelcomeIcon = styled.img`
+  width: 124px;
+  height: 124px;
+
+  @media (min-width: 768px) {
+    width: 162px;
+    height: 162px;
+  }
+`;
+
 export const WelcomeLogo = styled.div`
   display: flex;
   align-items: center;
@@ -38,6 +49,15 @@ export const WelcomeLogo = styled.div`
   @media (min-width: 768px) {
     margin-top: 24px;
     height: 60px;
+  }
+`;
+
+export const WelcomeLogoIcon = styled.svg`
+  width: 40px;
+  height: 40px;
+  @media (min-width: 768px) {
+    width: 48px;
+    height: 48px;
   }
 `;
 
@@ -65,7 +85,7 @@ export const WelcomeDescription = styled.p`
   letter-spacing: -0.28px;
 `;
 
-export const WelcomeRegisterButton = styled.button`
+export const WelcomeRegisterButton = styled(NavLink)`
   width: calc(100% - 40px);
   padding: 14px;
   margin-bottom: 14px;
@@ -92,7 +112,7 @@ export const WelcomeRegisterButton = styled.button`
   }
 `;
 
-export const WelcomeLoginButton = styled.button`
+export const WelcomeLoginButton = styled(NavLink)`
   font-family: "Poppins";
   text-decoration: none;
   color: #161616;
