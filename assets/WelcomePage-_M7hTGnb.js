@@ -1,1 +1,0 @@
-import{j as e,N as r}from"./index-wnqHttf7.js";const s=()=>e.jsxs("div",{children:[e.jsx(r,{to:"/auth/login",children:"login"}),e.jsx(r,{to:"/auth/register",children:"register"})]});export{s as default};
