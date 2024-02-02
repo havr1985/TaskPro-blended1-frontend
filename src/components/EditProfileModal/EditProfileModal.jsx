@@ -33,7 +33,7 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
         <UserAvatarWrapper>
           <UserAvatar
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAV7kqqSzzofyF1tUF2ZAgtjcbf6e5ICU-hQ&usqp=CAU"
-            alt="12312"
+            alt="avatar"
           />
           <UserAvatarButton>+</UserAvatarButton>
         </UserAvatarWrapper>
