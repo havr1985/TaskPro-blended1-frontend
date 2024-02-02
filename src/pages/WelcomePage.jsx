@@ -1,7 +1,11 @@
+import WelcomeContent from "../components/WelcomePageComponets/WelcomeContent";
+
 const WelcomePage = () => {
-    return (
-        <div>Welcome page</div>
-    )
-}
+  return (
+    <>
+      <WelcomeContent />
+    </>
+  );
+};
 
 export default WelcomePage;
