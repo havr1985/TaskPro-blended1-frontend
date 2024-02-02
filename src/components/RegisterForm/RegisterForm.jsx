@@ -1,11 +1,11 @@
-import React from "react";
+// import React from "react";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { Conteiner } from "../../shared/Container/Conteiner";
 import { Link } from "react-router-dom";
 
 export const RegisterForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -51,7 +51,7 @@ export const RegisterForm = () => {
         <input
           id="password"
           name="password"
-          type={showPassword ? 'text' : 'password'}
+          // type={showPassword ? 'text' : 'password'}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
