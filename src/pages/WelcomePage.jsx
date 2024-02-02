@@ -1,12 +1,11 @@
-import { NavLink } from "react-router-dom";
+import WelcomeContent from "../components/WelcomePageComponets/WelcomeContent";
 
 const WelcomePage = () => {
-    return (
-        <div>
-            <NavLink to='/auth/login'>login</NavLink>
-            <NavLink to='/auth/register'>register</NavLink>
-        </div>
-    )
-}
+  return (
+    <>
+      <WelcomeContent />
+    </>
+  );
+};
 
 export default WelcomePage;
