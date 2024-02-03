@@ -21,10 +21,14 @@ export const RegisterForm = () => {
     <Conteiner>
       <form onSubmit={formik.handleSubmit}>
         <div>
-          <Link to="/auth/register" underline="none">Registration</Link>
-          <Link to="/auth/login" underline="none">Log In</Link>
+          <Link to="/auth/register" underline="none">
+            Registration
+          </Link>
+          <Link to="/auth/login" underline="none">
+            Log In
+          </Link>
         </div>
-        
+
         <input
           id="name"
           name="name"
@@ -33,10 +37,7 @@ export const RegisterForm = () => {
           value={formik.values.name}
           onBlur={formik.handleBlur}
           placeholder="Enter your name"
-
         />
-        
-
 
         <input
           id="email"
@@ -47,7 +48,7 @@ export const RegisterForm = () => {
           onBlur={formik.handleBlur}
           placeholder="Enter your email"
         />
-        
+
         <input
           id="password"
           name="password"
@@ -62,5 +63,3 @@ export const RegisterForm = () => {
     </Conteiner>
   );
 };
-
-
