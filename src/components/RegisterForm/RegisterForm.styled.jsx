@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -29,6 +30,17 @@ export const LinkMenu = styled.div`
   display: flex;
 `;
 
+export const RegisterLink = styled(Link)`
+  margin-right: 14px;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  text-decoration: none;
+`;
 
 export const LoginLink = styled(Link)`
   left: 160px;
@@ -42,17 +54,7 @@ export const LoginLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const RegisterLink = styled(Link)`
-  margin-right: 14px;
-  display: inline-block;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 27px;
-  letter-spacing: -0.02em;
-  color: var(--color-white);
-  text-decoration: none;
-`;
+
 
 
 export const InputField = styled.div`
