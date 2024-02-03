@@ -9,7 +9,7 @@ const INITIAL_STATE = {
         id: null,
         username: null,
         email: null,
-        theme: 'Dark',
+        theme: 'dark',
         avatarURL:'',
     },
     register: false,
