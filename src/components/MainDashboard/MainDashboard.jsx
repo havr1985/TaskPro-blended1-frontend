@@ -14,7 +14,7 @@ import {
   Title,
 } from "./MainDashboard.styled";
 
-const MainDashboard = ({ boardName }) => {
+const MainDashboard = () => {
   return (
     <MainDashboardWrap>
       <MainDashboardList>
