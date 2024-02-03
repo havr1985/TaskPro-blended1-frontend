@@ -1,13 +1,20 @@
-import { useModal } from "../../hooks/useModal";
+import { useState } from "react";
 import { AddBoardModal } from "../BoardModal/newBoardModal/newBoardModal";
 
 export const RegisterForm = () => {
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalStateSwapper = () => {
+    setIsModalOpen((prevState) => !prevState);
+  };
+  // console.log(isModalOpen);;
 
   return (
     <>
-      <button onClick={openModal}>Open modal</button>
-      <AddBoardModal isModalOpen={isModalOpen} onCloseModal={closeModal} />
+      <button onClick={modalStateSwapper}>Open modal</button>
+      <AddBoardModal
+        isModalOpen={isModalOpen}
+        modalStateSwapper={modalStateSwapper}
+      />
     </>
   );
 };

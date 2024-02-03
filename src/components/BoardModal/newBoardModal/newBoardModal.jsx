@@ -40,7 +40,7 @@ const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required!"),
 });
 
-export const AddBoardModal = (isModalOpen, closeModal) => {
+export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const [setIcon, setSetIcon] = useState(options[0]);
   const [selectedBg, setSelectedBg] = useState("");
   const initialValues = {
@@ -59,7 +59,7 @@ export const AddBoardModal = (isModalOpen, closeModal) => {
   return (
     <SharedModal
       modalIsOpen={isModalOpen}
-      closeModal={closeModal}
+      closeModal={modalStateSwapper}
       title={"New board"}>
       <Section>
         <Formik
