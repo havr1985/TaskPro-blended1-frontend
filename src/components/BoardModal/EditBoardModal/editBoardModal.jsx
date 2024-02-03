@@ -39,14 +39,24 @@ const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required!"),
 });
 
-export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
-  const [setIcon, setSetIcon] = useState(options[0]);
+export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const [selectedBg, setSelectedBg] = useState("");
+  const [setIcon, setSetIcon] = useState(options[0]);
   const initialValues = {
     title: "",
     icon: setIcon,
-    bg: selectedBg,
+    backgroundURL: selectedBg,
   };
+  // const { name, icon, backgroundURL } = item;
+  //   const [selectedBg, setSelectedBg] = useState(backgroundURL);
+  //   const [setIcon, setSetIcon] = useState(icon);
+
+  //   const initialValues = {
+  //     title: name,
+  //     icon: setIcon,
+  //     backgroundURL: selectedBg,
+  //   }; закоментованим кодом треба буде замінити код зі строчок 43 по 49 оскільки при рендері модалки едіт
+  //  має відображатись модалка з вже відміченими іконками та бекграундом
   const handleBgSelection = (url) => {
     setSelectedBg(url);
   };
@@ -59,7 +69,7 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     <SharedModal
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
-      title={"New board"}>
+      title={"Edit board"}>
       <Section>
         <Formik
           initialValues={initialValues}
@@ -126,7 +136,7 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                   <use href={icons + "#icon-plus"} />
                 </PlusIcon>
               </ButtonPlus>
-              Create
+              Edit
             </AuthFormSubmitButton>
           </ModalForm>
         </Formik>
