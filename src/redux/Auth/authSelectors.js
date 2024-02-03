@@ -16,3 +16,4 @@ export const selectAuthAuthenticated = createSelector(
   selectAuth,
   (auth) => auth.authenticated
 );
+export const selectAuthTheme = createSelector(selectAuth, (auth) => auth.theme);
