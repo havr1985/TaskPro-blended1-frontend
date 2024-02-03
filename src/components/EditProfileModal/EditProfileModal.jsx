@@ -9,18 +9,35 @@ import {
   ModalInput,
   PasswordInputWrapper,
   UserAvatar,
-  UserAvatarButton,
+  UserAvatarInput,
+  UserAvatarLabel,
   UserAvatarWrapper,
 } from "./EditProfileModal.styled";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeAvatarThunk } from "../../redux/Auth/authOperation";
+
 export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
+  const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState("password");
 
   const changePasswordType = () => {
     setPasswordType((prevState) => {
-      if (prevState === "password") return "text";
-      return "password";
+      return prevState === "password" ? "text" : "password";
     });
+  };
+
+  const changeAvatar = (e) => {
+    const newAvatar = e.target.files[0];
+    dispatch(changeAvatarThunk(newAvatar));
+  };
+
+  const onSubmitHandle = (e) => {
+    e.preventDefault();
+    const editDataObj = {};
+    const userEditData = [...e.target.elements].slice(0, 3);
+    const filteredUserData = userEditData.filter(({ value }) => value);
+    filteredUserData.forEach(({ name, value }) => (editDataObj[name] = value));
   };
 
   return (
@@ -28,20 +45,32 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Edit profile"}
+      maxWidth={"400px"}
     >
-      <ModalContentWrapper>
+      <ModalContentWrapper onSubmit={(e) => onSubmitHandle(e)}>
         <UserAvatarWrapper>
           <UserAvatar
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAV7kqqSzzofyF1tUF2ZAgtjcbf6e5ICU-hQ&usqp=CAU"
             alt="avatar"
           />
-          <UserAvatarButton>+</UserAvatarButton>
+
+          <UserAvatarInput
+            onChange={changeAvatar}
+            type="file"
+            id="input__file"
+          />
+          <UserAvatarLabel htmlFor="input__file">+</UserAvatarLabel>
         </UserAvatarWrapper>
+
         <InputsWrapper>
-          <ModalInput placeholder="Fullname" type="text" />
-          <ModalInput placeholder="Email" type="email" />
+          <ModalInput name="username" placeholder="Fullname" type="text" />
+          <ModalInput name="email" placeholder="Email" type="email" />
           <PasswordInputWrapper>
-            <ModalInput placeholder="Password" type={passwordType} />
+            <ModalInput
+              name="password"
+              placeholder="Password"
+              type={passwordType}
+            />
             <EyeIconSvg
               onClick={() => changePasswordType()}
               className=""
