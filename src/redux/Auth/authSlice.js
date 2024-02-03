@@ -1,3 +1,4 @@
+
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
 import { changeAvatarThunk, changeThemeThunk, currentThunk, loginThunk, logoutThunk, registerThunk, userUpdateThunk } from "./authOperation"
 
@@ -58,40 +59,35 @@ const authSlice = createSlice({
                 state.user = action.payload.user
             })
 
+      .addMatcher(
+        isAnyOf(
+          registerThunk.pending,
+          loginThunk.pending,
+          currentThunk.pending,
+          logoutThunk.pending,
+          changeAvatarThunk.pending,
+          changeThemeThunk.pending
+        ),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          registerThunk.rejected,
+          loginThunk.rejected,
+          currentThunk.rejected,
+          logoutThunk.rejected,
+          changeAvatarThunk.rejected,
+          changeThemeThunk.rejected
+        ),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
+      ),
+});
 
 
-
-            .addMatcher(
-                isAnyOf(
-                    registerThunk.pending,
-                    loginThunk.pending,
-                    currentThunk.pending,
-                    logoutThunk.pending,
-                    changeAvatarThunk.pending,
-                    changeThemeThunk.pending,
-                    userUpdateThunk.pending
-                ),
-                state => {
-                    state.isLoading = true;
-                    state.error = null;
-                }
-            )
-            .addMatcher(
-                isAnyOf(
-                    registerThunk.rejected,
-                    loginThunk.rejected,
-                    currentThunk.rejected,
-                    logoutThunk.rejected,
-                    changeAvatarThunk.rejected,
-                    changeThemeThunk.rejected,
-                    userUpdateThunk.rejected
-                ),
-                (state, action) => {
-                    state.isLoading = false;
-                    state.error = action.payload;
-                }
-            )
-}
-);
-    
 export const authReducer = authSlice.reducer;
