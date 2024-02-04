@@ -9,6 +9,13 @@ export const HelpWrapper = styled.div`
 
 	border-radius: 8px;
 	background-color: #1f1f1f;
+
+	@media (max-width: 767px) {
+		width: 197px;
+		height: 238px;
+
+		padding: 14px;
+	}
 `;
 
 export const HelpText = styled.p`
@@ -19,7 +26,14 @@ export const HelpText = styled.p`
 
 	width: 172px;
 
+	margin-bottom: 18px;
+
 	color: #ffffff;
+
+	@media (max-width: 767px) {
+		font-size: 12px;
+		line-height: 16px;
+	}
 
 	.appName {
 		color: #bedbb0;
@@ -46,6 +60,7 @@ export const ButtonNeedHelp = styled.button`
 	color: #ffffff;
 
 	.iconHelp {
-		fill: #ffffff;
+		stroke: #ffffff;
+		margin-right: 8px;
 	}
 `;

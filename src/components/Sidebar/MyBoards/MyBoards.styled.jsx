@@ -5,6 +5,8 @@ export const Heading = styled.p`
 	font-size: 12px;
 	line-height: 18px;
 
+	margin-bottom: 8px;
+
 	color: #ffffff80;
 `;
 export const CreateBoardWrapper = styled.div`
@@ -19,10 +21,15 @@ export const CreateBoardWrapper = styled.div`
 
 	margin-bottom: 40px;
 
+	@media (max-width: 767px) {
+		width: 197px;
+	}
+
 	.createText {
 		font-weight: 500;
 		font-size: 14px;
 		line-height: 21px;
+		letter-spacing: -0.02em;
 
 		width: 76px;
 
@@ -60,17 +67,37 @@ export const BoardList = styled.ul`
 	flex-direction: column;
 	gap: 4px;
 
-	// зробити загальні стилі
-	list-style: none;
-	padding: 0;
-	margin: 0;
+	position: relative;
 `;
 export const BoardItem = styled.li`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 
+	cursor: pointer;
+
 	height: 61px;
+
+	&.active {
+		color: #ffffff;
+	}
+
+	&.active .iconActive {
+		fill: #ffffff;
+	}
+
+	&.active::after {
+		content: "";
+		position: absolute;
+
+		right: -24px;
+
+		height: 61px;
+		width: 4px;
+		border-radius: 4px 0 0 4px;
+
+		background-color: #bedbb0;
+	}
 
 	.iconBoard {
 		stroke: #ffffff80;
@@ -98,4 +125,10 @@ export const ButtonEdit = styled.button`
 	cursor: pointer;
 
 	padding: 0;
+
+	.iconBoard.iconEdit:hover {
+		stroke: #bedbb0;
+		transform: scale(1.1);
+		animation: pulse 1s infinite alternate;
+	}
 `;
