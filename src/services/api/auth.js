@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "task-pro-backend-jm7o.onrender.com/api/",
+  baseURL: "https://task-pro-backend-jm7o.onrender.com/api/",
 });
 
 export const setToken = token => {
-    if (token) {
+    
       return  instance.defaults.headers.common.Authorization = `Bearer ${token}`
-    }
-    instance.defaults.headers.common.Authorization = '';
+    
+    
 };
 
 // instance.interceptors.response.use(

@@ -47,7 +47,7 @@ export const RegisterForm = () => {
         await dispatch(
           registerThunk({
             // Notify.success('You have registered successfully!'),
-            name: values.name,
+            username: values.name,
             email: values.email,
             password: values.password,
           })
