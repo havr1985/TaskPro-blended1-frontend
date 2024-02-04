@@ -1,4 +1,4 @@
-import icons from "../../shared/images/icons.svg";
+import icons from "../../../shared/images/icons.svg";
 import { FilterButton, FilterIcon } from "./Filters.styled";
 
 const Filters = () => {

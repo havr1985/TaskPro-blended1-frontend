@@ -1,13 +1,44 @@
 import styled from "styled-components";
 
-export const CardWrap = styled.div`
+export const CardList = styled.ul`
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* overflow: overlay; */
+  /* flex-grow: 1; */
+  height: 70vh;
+  /* margin-right: -7px; */
+  /* margin-right: -16px; */
+
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-right: -16px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px; /* ширина всей полосы прокрутки */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05); /* цвет зоны отслеживания */
+    border-radius: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #121212; /* цвет бегунка */
+    border-radius: 12px; /* округлось бегунка */
+    border: 8px solid #121212; /* отступ вокруг бегунка */
+  }
+`;
+
+export const CardWrap = styled.li`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 154px;
   padding: 14px 20px;
   margin-bottom: 8px;
-  border: none;
+  border-left: 4px solid red;
   border-radius: 8px;
   background-color: #121212;
   /* cursor: pointer; */
@@ -24,6 +55,11 @@ export const CardTitle = styled.h4`
   font-size: 14px;
   /* letter-spacing: -0.02em; */
   color: #fff;
+`;
+
+export const CardDescriptionWrap = styled.div`
+  height: 35px;
+  overflow: hidden;
 `;
 
 export const CardDescription = styled.p`
@@ -57,7 +93,24 @@ export const CardParams = styled.span`
   color: rgba(255, 255, 255, 0.5);
 `;
 
-export const CardParamsValue = styled.span`
+export const CardPriorityValue = styled.span`
+  font-size: 10px;
+  letter-spacing: -0.02em;
+  color: #fff;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background-color: red;
+    vertical-align: middle;
+  }
+`;
+
+export const CardDeadlineValue = styled.span`
   font-size: 10px;
   letter-spacing: -0.02em;
   color: #fff;
