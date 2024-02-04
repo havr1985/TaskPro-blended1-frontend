@@ -17,10 +17,10 @@ export const ThemeComponent = () => {
   const { theme, setTheme } = useTheme();
 
   const [selectedTheme, setSelectedTheme] = useState("dark");
-  const [isCustomOptionListOpen, setCustomOptionListOpen] = useState(false);
+  const [isThemeListOpen, setIsThemeListOpen] = useState(false);
 
   const toggleCustomOptionList = () => {
-    setCustomOptionListOpen(!isCustomOptionListOpen);
+    setIsThemeListOpen(!isThemeListOpen);
   };
 
   const handleLightThemeClick = () => {
@@ -54,7 +54,7 @@ export const ThemeComponent = () => {
       </TheamBtn>
 
       <CustomSelect theme={theme}>
-        <CustomOptionList open={isCustomOptionListOpen}>
+        <CustomOptionList open={isThemeListOpen}>
           <CustomOption
             onClick={() => handleLightThemeClick()}
             selected={selectedTheme === "light"}
