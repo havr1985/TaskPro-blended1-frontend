@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const ScreensPageWrap = styled.div`
-  /* height: 100%; */
-  height: 500px;
+  flex-grow: 1;
   padding-top: 14px;
+  padding-bottom: 14px;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #1f1f1f;
@@ -14,7 +14,7 @@ export const ScreensPageWrap = styled.div`
     padding-right: 32px;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1440px) {
     padding-top: 14px;
     padding-left: 24px;
     padding-right: 24px;

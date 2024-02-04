@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import HeaderDashboard from "../components/HeaderDashboard/HeaderDashboard";
-import MainDashboard from "../components/MainDashboard/MainDashboard";
+import HeaderDashboard from "../components/dashboard/HeaderDashboard/HeaderDashboard";
+import MainDashboard from "../components/dashboard/MainDashboard/MainDashboard";
 import {
   ScreensPageWrap,
   WelcomeMessageWrap,
