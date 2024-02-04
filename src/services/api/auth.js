@@ -34,9 +34,8 @@ export const setToken = token => {
 // );
 
 export const requestSignup = async values => {
-    const { data } = await instance.post('auth/signup', values);
-    setToken(data.accessToken);
-    return data;
+    const res = await instance.post('auth/signup', values);
+    return res;
 };
 
 export const requestSignin = async values => {
