@@ -14,12 +14,18 @@ import {
   UserAvatarWrapper,
 } from "./EditProfileModal.styled";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { changeAvatarThunk } from "../../redux/Auth/authOperation";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeAvatarThunk,
+  userUpdateThunk,
+} from "../../redux/Auth/authOperation";
+import { selectAuthUserData } from "../../redux/Auth/authSelectors";
 
 export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState("password");
+  const user = useSelector(selectAuthUserData);
+  console.log(user);
 
   const changePasswordType = () => {
     setPasswordType((prevState) => {
@@ -29,7 +35,9 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
 
   const changeAvatar = (e) => {
     const newAvatar = e.target.files[0];
-    dispatch(changeAvatarThunk(newAvatar));
+    const formData = new FormData();
+    formData.append("avatar", newAvatar);
+    dispatch(changeAvatarThunk(formData));
   };
 
   const onSubmitHandle = (e) => {
@@ -38,6 +46,8 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
     const userEditData = [...e.target.elements].slice(0, 3);
     const filteredUserData = userEditData.filter(({ value }) => value);
     filteredUserData.forEach(({ name, value }) => (editDataObj[name] = value));
+    console.log(editDataObj);
+    dispatch(userUpdateThunk(editDataObj));
   };
 
   return (
@@ -48,9 +58,13 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
       maxWidth={"400px"}
     >
       <ModalContentWrapper onSubmit={(e) => onSubmitHandle(e)}>
-        <UserAvatarWrapper>
+        {/* <UserAvatarWrapper>
           <UserAvatar
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAV7kqqSzzofyF1tUF2ZAgtjcbf6e5ICU-hQ&usqp=CAU"
+            src={
+              user.avatarURL
+                ? user.avatarURL
+                : "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
+            }
             alt="avatar"
           />
 
@@ -60,7 +74,7 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
             id="input__file"
           />
           <UserAvatarLabel htmlFor="input__file">+</UserAvatarLabel>
-        </UserAvatarWrapper>
+        </UserAvatarWrapper> */}
 
         <InputsWrapper>
           <ModalInput name="username" placeholder="Fullname" type="text" />
