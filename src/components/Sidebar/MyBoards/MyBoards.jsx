@@ -9,7 +9,7 @@ import {
 	Heading,
 } from "./MyBoards.styled";
 
-export const MyBoards = ({ icon }) => {
+export const MyBoards = ({ icon, boards, selectedItem, choice }) => {
 	return (
 		<div>
 			<Heading>My boards</Heading>
@@ -24,36 +24,34 @@ export const MyBoards = ({ icon }) => {
 			</CreateBoardWrapper>
 
 			<BoardList>
-				<BoardItem>
-					<BoardContainer>
-						<svg className='iconBoard' width='20px' height='20px'>
-							<use href={`${icon}#icon-board-square`}></use>
-						</svg>
-						<p>Project office</p>
-					</BoardContainer>
-
-					<ButtonContainer>
-						<ButtonEdit type='button'>
-							<svg className='iconBoard' width='16px' height='16px'>
-								<use href={`${icon}#icon-pencil`}></use>
+				{boards.map(board => (
+					<BoardItem
+						key={board.id}
+						onClick={() => choice(board)}
+						className={selectedItem.id === board.id ? "active" : ""}>
+						<BoardContainer>
+							<svg className='iconBoard iconActive' width='20px' height='20px'>
+								<use href={`${icon}#${board.icon}`}></use>
 							</svg>
-						</ButtonEdit>
-						<ButtonEdit type='button'>
-							<svg className='iconBoard' width='16px' height='16px'>
-								<use href={`${icon}#icon-trash`}></use>
-							</svg>
-						</ButtonEdit>
-					</ButtonContainer>
-				</BoardItem>
+							<p>{board.name}</p>
+						</BoardContainer>
 
-				<BoardItem>
-					<BoardContainer>
-						<svg className='iconBoard' width='20px' height='20px'>
-							<use href={`${icon}#icon-board-square`}></use>
-						</svg>
-						<p>Neon Light Project</p>
-					</BoardContainer>
-				</BoardItem>
+						{selectedItem.id === board.id && (
+							<ButtonContainer>
+								<ButtonEdit type='button'>
+									<svg className='iconBoard iconEdit' width='16px' height='16px'>
+										<use href={`${icon}#icon-pencil`}></use>
+									</svg>
+								</ButtonEdit>
+								<ButtonEdit type='button'>
+									<svg className='iconBoard iconEdit' width='16px' height='16px'>
+										<use href={`${icon}#icon-trash`}></use>
+									</svg>
+								</ButtonEdit>
+							</ButtonContainer>
+						)}
+					</BoardItem>
+				))}
 			</BoardList>
 		</div>
 	);

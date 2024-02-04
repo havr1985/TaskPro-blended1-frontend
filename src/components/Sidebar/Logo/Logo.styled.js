@@ -6,6 +6,10 @@ export const LogoContainer = styled.div`
 
 	margin-bottom: 60px;
 
+	@media (max-width: 767px) {
+		margin-bottom: 70px;
+	}
+
 	.iconBg {
 		width: 32px;
 		height: 32px;
