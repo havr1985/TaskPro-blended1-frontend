@@ -1,14 +1,16 @@
+
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
-import { changeAvatarThunk, changeThemeThunk, currentThunk, loginThunk, logoutThunk, registerThunk } from "./authOperation"
+import { changeAvatarThunk, changeThemeThunk, currentThunk, loginThunk, logoutThunk, registerThunk, userUpdateThunk } from "./authOperation"
 
 
 const INITIAL_STATE = {
     token: null,
+    refreshToken: null,
     user: {
         id: null,
         username: null,
         email: null,
-        theme: 'Dark',
+        theme: 'dark',
         avatarURL:'',
     },
     register: false,
@@ -26,12 +28,15 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.register = true;
                 state.token = action.payload.accessToken
+                state.refreshToken = action.payload.refreshToken
                 state.user = action.payload.user
+                state.authenticated = true
             })
             .addCase(loginThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.register = true;
                 state.token = action.payload.accessToken;
+                state.refreshToken = action.payload.refreshToken;
                 state.user = action.payload.user;
                 state.authenticated = true;
             })
@@ -50,39 +55,39 @@ const authSlice = createSlice({
             .addCase(changeThemeThunk.fulfilled, (state, action) => {
                 state.user.theme = action.payload;
             })
+            .addCase(userUpdateThunk.fulfilled, (state, action) => {
+                state.user = action.payload.user
+            })
+
+      .addMatcher(
+        isAnyOf(
+          registerThunk.pending,
+          loginThunk.pending,
+          currentThunk.pending,
+          logoutThunk.pending,
+          changeAvatarThunk.pending,
+          changeThemeThunk.pending
+        ),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          registerThunk.rejected,
+          loginThunk.rejected,
+          currentThunk.rejected,
+          logoutThunk.rejected,
+          changeAvatarThunk.rejected,
+          changeThemeThunk.rejected
+        ),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
+      ),
+});
 
 
-
-
-            .addMatcher(
-                isAnyOf(
-                    registerThunk.pending,
-                    loginThunk.pending,
-                    currentThunk.pending,
-                    logoutThunk.pending,
-                    changeAvatarThunk.pending,
-                    changeThemeThunk.pending,
-                ),
-                state => {
-                    state.isLoading = true;
-                    state.error = null;
-                }
-            )
-            .addMatcher(
-                isAnyOf(
-                    registerThunk.rejected,
-                    loginThunk.rejected,
-                    currentThunk.rejected,
-                    logoutThunk.rejected,
-                    changeAvatarThunk.rejected,
-                    changeThemeThunk.rejected,
-                ),
-                (state, action) => {
-                    state.isLoading = false;
-                    state.error = action.payload;
-                }
-            )
-}
-);
-    
 export const authReducer = authSlice.reducer;

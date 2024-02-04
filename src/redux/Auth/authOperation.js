@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { requestAvatar, requestCurrentUser, requestSignin, requestSignout, requestSignup, requestTheme, setToken } from "../../services/api/auth";
+import { requestAvatar, requestCurrentUser, requestSignin, requestSignout, requestSignup, requestTheme, requestUserUpdate, setToken } from "../../services/api/auth";
 
 
 export const registerThunk = createAsyncThunk(
@@ -19,8 +19,8 @@ export const loginThunk = createAsyncThunk(
     'auth/signin',
     async (values, thunkAPI) => {
         try {
-            const response = await requestSignin(values);
-            return response;
+          const response = await requestSignin(values);
+          return response;
         }
         catch (error) {
             return thunkAPI.rejectWithValue(error.message)
@@ -29,29 +29,30 @@ export const loginThunk = createAsyncThunk(
 );
 
 export const currentThunk = createAsyncThunk(
-    'auth/current',
-    async (_, thunkAPI) => {
-        const state = thunkAPI.getState();
-        const token = state.auth.token;
+  'auth/current',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
 
-        try {
-            setToken(token);
-            const authData = await requestCurrentUser();
-            return authData;
-        }
-        catch (error) {
-            return
-        }
-    },
-    {
-        condition: (_, thunkAPI) => {
-            const state = thunkAPI.getState();
-            const token = state.auth.token;
-
-            if (!token) return false;
-            return true
-        },
+    try {
+      setToken(token);
+      const authData = await requestCurrentUser();
+      return authData;
     }
+    catch
+    (error) {
+      return
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      if (!token) return false;
+      return true
+    },
+  }
 );
 
 export const logoutThunk = createAsyncThunk(
@@ -87,6 +88,18 @@ export const changeThemeThunk = createAsyncThunk(
         try {
             const data = await requestTheme(values)
             return data.theme;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error)
+        }
+    }
+);
+export const userUpdateThunk = createAsyncThunk(
+    'auth/users/userUpdate',
+    async (values, thunkAPI) => {
+        try {
+            const data = await requestUserUpdate(values);
+            return data;
         }
         catch (error) {
             return thunkAPI.rejectWithValue(error)
