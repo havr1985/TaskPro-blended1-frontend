@@ -31,7 +31,7 @@ export const CreateBoardWrapper = styled.div`
 		line-height: 21px;
 		letter-spacing: -0.02em;
 
-		width: 76px;
+		width: 84px;
 
 		color: #ffffff;
 	}
@@ -98,7 +98,11 @@ export const BoardItem = styled.li`
 
 		background-color: #bedbb0;
 	}
-
+	@media (max-width: 767px) {
+		&.active::after {
+			right: -14px;
+		}
+	}
 	.iconBoard {
 		stroke: #ffffff80;
 
