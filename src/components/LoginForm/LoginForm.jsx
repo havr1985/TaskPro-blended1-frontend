@@ -67,7 +67,7 @@ const LoginForm = () => {
             value={formik.values.email}
         />
         {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
+          <ErrorText>{formik.errors.email}</ErrorText>
         ) : null}
       </div>
 
