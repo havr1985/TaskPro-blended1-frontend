@@ -1,23 +1,35 @@
 import styled from "styled-components";
 
 export const SidebarContainer = styled.div`
-  width: 260px;
+	width: 260px;
+	height: 100%;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+	position: absolute;
+	top: 0;
+	left: 0;
 
-  padding: 24px;
+	z-index: 1;
+	transition: 0.5s;
 
-  background-color: #121212;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
-  @media (max-width: 767px) {
-    width: 225px;
+	padding: 24px;
 
-    padding: 14px 14px 24px 14px;
-  }
+	background-color: #121212;
 
-  @media (max-width: 1439px) {
-    display: none;
-  }
+	@media (max-width: 1439px) {
+		left: -100%;
+	}
+
+	@media (max-width: 767px) {
+		width: 225px;
+
+		padding: 14px 14px 24px 14px;
+	}
+
+	&.active {
+		left: 0;
+	}
 `;
