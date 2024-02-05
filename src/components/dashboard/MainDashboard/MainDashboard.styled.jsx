@@ -107,7 +107,7 @@ export const IconWrap = styled.div`
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  background-color: var(--primary-heading-color);
+  background-color: var(--add-column-icon-wrap-color);
 `;
 
 export const AddCardIconWrap = styled.div`

@@ -49,6 +49,8 @@ html[data-theme="dark"] {
   --card-title-color: #ffffff;
   --filter-text-and-icon-color: rgba(255, 255, 255, 0.8);
   --background-add-column-btn-color: #121212;
+  --welcome-message-text-color: rgba(255, 255, 255, 0.5);
+  --welcome-message-text-accent-color: #bedbb0;
 
   --modal-backdrop-background-color: rgba(137, 137, 137, 0.2);
   --modal-window-color: #161616;
@@ -73,6 +75,7 @@ html[data-theme="dark"] {
   --theme-switcher-dropdown-text-color: rgba(255, 255, 255, 0.5);
   --tracking-area-color: rgba(255, 255, 255, 0.08);
   --scroll-bar-color: #121212;
+  --add-column-icon-wrap-color: #ffffff;
 
   --primary-heading-color: #ffffff;
   --secondary-heading-color: #ffffff;
@@ -161,6 +164,8 @@ html[data-theme="light"] {
   --card-title-color: #161616;
   --filter-text-and-icon-color: rgba(22, 22, 22, 0.8);
   --background-add-column-btn-color: #ffffff;
+  --welcome-message-text-color: rgba(22, 22, 22, 0.7);
+  --welcome-message-text-accent-color: #bedbb0;
 
   --modal-backdrop-background-color: rgba(137, 137, 137, 0.2);
   --modal-window-color: #fdfdfd;
@@ -184,6 +189,7 @@ html[data-theme="light"] {
   --theme-switcher-dropdown-text-color: #161616;
   --tracking-area-color: #e8e8e8;
   --scroll-bar-color: rgba(22, 22, 22, 0.1);
+  --add-column-icon-wrap-color: #161616;
 
   --primary-heading-color: #161616;
   --secondary-heading-color: #161616;
@@ -273,6 +279,8 @@ html[data-theme="violet"] {
   --card-title-color: #161616;
   --filter-text-and-icon-color: rgba(22, 22, 22, 0.8);
   --background-add-column-btn-color: #ffffff;
+  --welcome-message-text-color: rgba(22, 22, 22, 0.7);
+  --welcome-message-text-accent-color: #5255bc;
 
   --modal-backdrop-background-color: rgba(137, 137, 137, 0.2);
   --modal-window-color: #fdfdfd;
@@ -296,6 +304,7 @@ html[data-theme="violet"] {
   --theme-switcher-dropdown-text-color: #161616;
   --tracking-area-color: #ffffff;
   --scroll-bar-color: #b8bcfd;
+  --add-column-icon-wrap-color: #5255bc;
 
   --primary-heading-color: #161616;
   --secondary-heading-color: #ffffff;
