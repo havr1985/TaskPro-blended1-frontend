@@ -8,7 +8,7 @@ export const LoginWrapper = styled.div`
   height: 100vh;
   width: 100vw;
   background: var(--welcomeBgColor)
-`;
+;`
 export const LoginContainer = styled.div`
 display: flex;
 min-width: 320px;
@@ -45,6 +45,7 @@ export const FormLogin = styled.div`
     @media (min-width: 767px) {
       width: 344px;
     }
+  }
 `
 export const NavContainer = styled.nav`
 display: flex;
