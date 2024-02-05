@@ -18,8 +18,8 @@ export const FormLogin = styled.div`
     @media (min-width: 767px) {
       width: 344px;
     }
+  }`
 
-`
 export const LoginWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -30,8 +30,8 @@ export const LoginWrapper = styled.div`
     180deg,
     rgba(196, 196, 196, 0) 25%,
     #bedbb0 92.19%
-  );
-`;
+  );`
+
 export const LoginContainer = styled.div`
 display: flex;
 min-width: 320px;
@@ -50,12 +50,12 @@ border-radius: 8px;
 @media (min-width: 768px) {
 width: 424px;
 padding: 40px;
-}     
-`
+}`    
+
 export const InputContainer = styled.div`
 position: relative;
-margin-bottom: 10px;
-`
+margin-bottom: 10px;`
+
 
 export const InputBthEye = styled.svg`       
 position: absolute;
@@ -70,8 +70,8 @@ border: none;
  */
 cursor: pointer;
 stroke: rgb(255,255,255);
-stroke-width: 1.3px; 
-`
+stroke-width: 1.3px;` 
+
 export const NavContainer = styled.nav`
 display: flex;
 width: 287px;
@@ -82,8 +82,8 @@ margin-bottom: 40px;
 color: rgba(255, 255, 255, 0.3);
 @media (min-width: 767px) {
       width: 344px;
- }
-`
+ }`
+
 export const StyledNavLink = styled(NavLink)`
 
 color: rgba(255, 255, 255, 0.3);

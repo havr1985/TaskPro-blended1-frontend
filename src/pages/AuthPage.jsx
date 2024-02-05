@@ -8,8 +8,8 @@ const AuthPage = () => {
     return (
     <div>
       <div>
-            {id === 'login' && <LoginForm />}
-            {id === 'register' && <RegisterForm />}    
+          {id === 'login' && <LoginForm />}
+          {id === 'register' && <RegisterForm />}
       </div>
     </div>
   );
