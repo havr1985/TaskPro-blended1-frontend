@@ -46,11 +46,11 @@ const [showPassword, setShowPassword] = useState(false);
       <LoginContainer>
       <NavContainer>
       
-          <StyledNavLink to="/auth/register" exact activeClassName="active">
+          <StyledNavLink to="/auth/register" exact="true" >
             Registration
           </StyledNavLink>
         
-          <StyledNavLink to="/auth/login" activeClassName="active">
+          <StyledNavLink to="/auth/login" >
             Log in
           </StyledNavLink>
       
