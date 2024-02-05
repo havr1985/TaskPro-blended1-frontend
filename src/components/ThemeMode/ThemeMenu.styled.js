@@ -61,8 +61,7 @@ export const TheamBtn = styled.div`
   align-items: center;
   cursor: pointer;
   &:hover {
-    padding: 5px;
-    box-shadow: 0px 6px 7px -5px var(--user-edit-icon-plus-hover-color);
+    color: var(--secondary-button-color);
   }
 `;
 
