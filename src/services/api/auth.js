@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://task-pro-backend-jm7o.onrender.com/api/",
+  baseURL: "http://localhost:3001/api/",
 });
 
 export const setToken = token => {
@@ -72,5 +72,7 @@ export const requestTheme = async values => {
 export const requestUserUpdate = async values => {
     const { data } = await instance.put('auth/users/update', values);
     return data;
-}
+};
+
+export default instance;
 

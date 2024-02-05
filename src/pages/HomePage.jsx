@@ -8,17 +8,17 @@ import ScreensPage from "./ScreensPage";
 const HomePage = () => {
 	const { isModalOpen, openModal, closeModal } = useModal();
 	return (
-		<Conteiner>
-			<HomePageWrapper>
-				<Sidebar isOpen={isModalOpen} />
-				<HeaderAndScreensWrapper>
-					<Header openSideBar={openModal} />
-					<ScreensPage />
-				</HeaderAndScreensWrapper>
-				<Overlay onClick={closeModal} className={isModalOpen === true && "active"}></Overlay>
-			</HomePageWrapper>
-		</Conteiner>
-	);
+    <Conteiner>
+      <HomePageWrapper>
+        <Sidebar isOpen={isModalOpen} />
+        <HeaderAndScreensWrapper>
+          <Header openSideBar={openModal} />
+          <ScreensPage />
+        </HeaderAndScreensWrapper>
+        <Overlay onClick={closeModal} className={isModalOpen === true && "active"}></Overlay>
+      </HomePageWrapper>
+    </Conteiner>
+  );
 };
 
 export default HomePage;
