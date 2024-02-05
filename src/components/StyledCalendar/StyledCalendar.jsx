@@ -173,4 +173,26 @@ export const StyledCalendar = styled(Calendar)`
       color: #9dc888;
     }
   }
+
+  .react-calendar__century-view__decades {
+    width: 197px;
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .react-calendar__century-view__decades__decade {
+    border: none;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: -0.02em;
+    color: #fff;
+    background-color: #1f1f1f;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+      color: #9dc888;
+    }
+  }
 `;
