@@ -8,7 +8,7 @@ import { MyBoards } from "./MyBoards/MyBoards";
 import { NeedHelp } from "./NeedHelp/NeedHelp";
 import { LogOut } from "./LogOut/LogOut";
 
-export const Sidebar = () => {
+export const Sidebar = ({ isOpen }) => {
 	const [selectedItem, setSelectedItem] = useState("");
 
 	const boards = [
@@ -21,7 +21,7 @@ export const Sidebar = () => {
 	};
 
 	return (
-		<SidebarContainer>
+		<SidebarContainer className={isOpen === true && "active"}>
 			<div>
 				<Logo icon={sprite} />
 				<MyBoards icon={sprite} boards={boards} choice={handleClick} selectedItem={selectedItem} />
