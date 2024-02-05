@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CloseModalBtn = styled.button`
   background-color: transparent;
-  color: white;
+  color: var(--modal-close-icon-color);
   border: none;
   position: absolute;
   top: 14px;
@@ -10,10 +10,11 @@ export const CloseModalBtn = styled.button`
   width: 18px;
   height: 18px;
   padding: 0;
+  cursor: pointer;
 `;
 
 export const ModalTitle = styled.h2`
-  color: rgb(255, 255, 255);
+  color: var(--modal-title-color);
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 500;

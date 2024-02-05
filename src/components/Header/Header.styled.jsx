@@ -38,6 +38,7 @@ export const UserContainer = styled.div`
   align-items: center;
   color: var(--primary-heading-color);
   column-gap: 8px;
+  cursor: pointer;
 `;
 
 export const MenuButton = styled.button`
