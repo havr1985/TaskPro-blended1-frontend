@@ -72,11 +72,12 @@ export const ModalInput = styled.input`
   }
 `;
 
-export const UserIcon = styled.div`
+export const UserIcon = styled.svg`
   height: 68px;
   width: 68px;
   border-radius: 8px;
   background-color: var(--sidebar-help-backgound-color);
+  fill: white;
 `;
 
 export const InputsWrapper = styled.div`
