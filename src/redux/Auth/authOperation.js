@@ -7,7 +7,12 @@ export const registerThunk = createAsyncThunk(
     async (values, thunkAPI) => {
         try {
             const authData = await requestSignup(values);
-            return authData
+            if (authData.status === 201) {
+                const { email, password } = values;
+                const data =  await requestSignin({ email, password });
+                return data;
+                
+            }
         }
         catch (error) {
             return thunkAPI.rejectWithValue(error.message)

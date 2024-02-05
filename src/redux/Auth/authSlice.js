@@ -56,7 +56,7 @@ const authSlice = createSlice({
                 state.user.theme = action.payload;
             })
             .addCase(userUpdateThunk.fulfilled, (state, action) => {
-                state.user = action.payload.user
+              state.user = action.payload;
             })
 
       .addMatcher(
