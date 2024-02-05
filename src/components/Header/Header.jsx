@@ -16,7 +16,7 @@ export const Header = ({ openSideBar }) => {
       <MenuButtonContainer>
         <MenuButton type="button" onClick={openSideBar}>
           <MenuIcon className="iconLightning" width="12px" height="16px">
-            <use href={`${sprite}#icon-logo`}></use>
+            <use href={`${sprite}#icon-burger-menu`}></use>
           </MenuIcon>
         </MenuButton>
       </MenuButtonContainer>
