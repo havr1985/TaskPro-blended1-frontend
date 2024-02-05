@@ -6,7 +6,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { loginThunk } from '../../redux/Auth/authOperation';
 import { LoginWrapper, LoginContainer, FormLogin, InputContainer, InputBthEye, NavContainer, StyledNavLink} from './LoginForm.styled';
-
  
 const LoginForm = () => {
 
@@ -16,12 +15,11 @@ const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     validationSchema: Yup.object({
       email: Yup.string()
-
 //         .matches(/^[A-Za-z0-9._%!?+-]+@[a-z]+\.[a-z]{3,}$/
 // ,
 //         'Please, enter correct format email'
@@ -34,13 +32,13 @@ const [showPassword, setShowPassword] = useState(false);
         .required('This field is required'),
     }),
     onSubmit: (values, action) => {
-      dispatch(loginThunk(values))
+      dispatch(loginThunk(values));
       action.resetForm();
-  },
+    },
   });
 
   const togglePasswordVisibility = () => {
-    setShowPassword(prevState => !prevState);
+    setShowPassword((prevState) => !prevState);
   };
 
   return (
