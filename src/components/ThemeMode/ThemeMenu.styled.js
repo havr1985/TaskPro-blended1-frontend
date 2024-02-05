@@ -5,12 +5,12 @@ export const ThemeContainer = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  min-height: 68px;
-  padding-right: 24px;
+  /* min-height: 68px; */
+  /* padding-right: 24px; */
   color: var(--primary-heading-color);
-  background-color: var(--header-background-color);
+  /* background-color: var(--header-background-color); */
 
-  @media (max-width: 767px) {
+  /* @media (max-width: 767px) {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -18,7 +18,7 @@ export const ThemeContainer = styled.div`
   @media (max-width: 1439px) {
     padding-left: 20px;
     padding-right: 32px;
-  }
+  } */
 `;
 
 export const CustomSelect = styled.div`
