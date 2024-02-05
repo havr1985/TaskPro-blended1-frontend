@@ -25,7 +25,7 @@ export const Header = ({ openSideBar }) => {
         <UserContainer>
           <p>User</p>
           <UserIcon className="iconLightning" width="12px" height="16px">
-            <use href={`${sprite}#icon-logo`}></use>
+            <use href={`${sprite}#icon-user`}></use>
           </UserIcon>
         </UserContainer>
       </ThemeAndUserContainer>

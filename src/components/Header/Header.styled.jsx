@@ -57,4 +57,6 @@ export const MenuIcon = styled.svg`
 export const UserIcon = styled.svg`
   width: 32px;
   height: 32px;
+  stroke: var(--primary-icon-stroke-color);
+  fill: transparent;
 `;
