@@ -70,7 +70,7 @@ export const RegisterForm = () => {
             <RegisterLink to="/auth/signup" underline="none">
               Registration
             </RegisterLink>
-            <LoginLink to="/auth/signin" underline="none">
+            <LoginLink to="/auth/login" underline="none">
               Log In
             </LoginLink>
           </LinkMenu>
