@@ -6,4 +6,5 @@ export const ModalBtn = styled.button`
   border-radius: 8px;
   border: none;
   background: #bedbb0;
+  cursor: pointer;
 `;

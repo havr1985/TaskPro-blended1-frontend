@@ -14,7 +14,6 @@ export function SharedModal({
 }) {
   const customStyles = {
     content: {
-      width: "100%",
       top: "50%",
       left: "50%",
       right: "auto",
