@@ -24,14 +24,14 @@ export const MainDashboardWrap = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05); /* цвет зоны отслеживания */
+    background: var(--tracking-area-color); /* цвет зоны отслеживания */
     border-radius: 12px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #121212; /* цвет бегунка */
+    background-color: var(--tracking-area-color); /* цвет бегунка */
     border-radius: 12px; /* округлось бегунка */
-    border: 8px solid #121212; /* отступ вокруг бегунка */
+    border: 8px solid var(--tracking-area-color); /* отступ вокруг бегунка */
   }
 `;
 
@@ -67,8 +67,8 @@ export const AddColumnButton = styled.button`
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: #ffffff;
-  background-color: #121212;
+  color: var(--modal-board-text);
+  background-color: var(--background-add-column-btn-color);
   cursor: pointer;
 
   @media screen and (min-width: 375px) {
@@ -90,8 +90,8 @@ export const AddCardButton = styled.button`
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: #161616;
-  background-color: #bedbb0;
+  color: var(--shared-button-text-color);
+  background-color: var(--primary-button-color);
   cursor: pointer;
 
   @media screen and (min-width: 375px) {
@@ -107,7 +107,7 @@ export const IconWrap = styled.div`
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: var(--add-column-icon-wrap-color);
 `;
 
 export const AddCardIconWrap = styled.div`
@@ -117,19 +117,19 @@ export const AddCardIconWrap = styled.div`
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  background-color: #161616;
+  background-color: var(--shared-black-plus-button);
 `;
 
 export const IconPlus = styled.svg`
   width: 14px;
   height: 14px;
-  stroke: #181818;
+  stroke: var(--add-column-icon-plus-color);
 `;
 
 export const AddCardIconPlus = styled.svg`
   width: 14px;
   height: 14px;
-  stroke: #ffffff;
+  stroke: var(--add-card-icon-plus-color);
 `;
 
 export const DashboardColumnTitle = styled.div`
@@ -145,7 +145,7 @@ export const DashboardColumnTitle = styled.div`
   border: none;
   border-radius: 8px;
 
-  background-color: #121212;
+  background-color: var(--primary-card-background-color);
 
   @media screen and (min-width: 375px) {
     width: 335px;
@@ -157,7 +157,7 @@ export const Title = styled.h3`
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--card-title-color);
 `;
 
 export const IconsWrap = styled.div`
@@ -182,5 +182,5 @@ export const Icon = styled.svg`
   height: 16px;
   fill: none;
   stroke-width: 1.3px;
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: var(--radio-icons-color);
 `;
