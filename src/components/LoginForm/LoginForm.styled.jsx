@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginWrapper = styled.div`
@@ -59,14 +58,7 @@ color: var(--loginform-text-color);
       width: 344px;
  }
 `
-export const StyledNavLink = styled(NavLink)`
 
-color: var(--loginform-text-color);
-&.active {
-    color: var(--user-icon-stroke-color);
-    font-weight: bold;
-  }
-`
 export const InputContainer = styled.div`
 position: relative;
 margin-bottom: 10px;
@@ -87,3 +79,34 @@ cursor: pointer;
 stroke: var(--user-icon-stroke-color);
 stroke-width: 1.3px; 
 `
+export const LoginBtn = styled.button`
+  cursor: pointer;
+  width: 287px;
+  height: 49px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  background: var(--user-icon-plus-fill-color);
+  transition: all 300ms;
+  &:hover {
+    background: var(--secondary-login-button-color);
+    };
+  @media (min-width: 767px) {
+      width: 344px;
+ }  
+`;
+
+export const ErrorNotifickation = styled.div`
+var(--secondary-login-button-color)
+`
+
+export const ErrorText = styled.div`
+position: absolute;
+bottom: -15px;
+right: 0;
+font-size: 11px;
+font-weight: 400;
+font-style: normal;
+letter-spacing: -1%;
+opacity: 0.9;
+color: #fff;`

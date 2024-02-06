@@ -19,7 +19,8 @@
     #bedbb0 92.19%
   );
   --loginform-text-color: rgba(255, 255, 255, 0.3);
-  --loginform-border: rgba(190, 219, 176, 0.4);
+  --loginform-border:rgba(190, 219, 176, 0.4);
+  --secondary-login-button-color: #9dc888
 }
 
 /* dark theme */
