@@ -40,7 +40,7 @@ export const MyBoards = ({
       <BoardList>
         {boards.map((board) => (
           <BoardItem
-            key={board.id}
+            key={board._id}
             onClick={() => choice(board)}
             className={selectedItem._id === board._id ? "active" : ""}
           >
