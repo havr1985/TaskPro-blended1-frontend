@@ -16,8 +16,13 @@ import {
   MainDashboardWrap,
   Title,
 } from "./MainDashboard.styled";
+import { useModal } from "../../../hooks/useModal";
+import { Overlay } from "../../../pages/HomePage.styled";
+import { AddColumnModal } from "../AddColumnModal/AddColumnModal";
 
 const MainDashboard = () => {
+  const { isModalOpen, openModal, closeModal } = useModal();
+
   return (
     <MainDashboardWrap>
       <MainDashboardList>
@@ -52,7 +57,7 @@ const MainDashboard = () => {
           </div>
         </MainDashboardColumn>
       </MainDashboardList>
-      <AddColumnButton>
+      <AddColumnButton  onClick={openModal}>
         <IconWrap>
           <IconPlus>
             <use href={icons + "#icon-plus"} />
@@ -60,6 +65,11 @@ const MainDashboard = () => {
         </IconWrap>
         Add column
       </AddColumnButton>
+      <Overlay
+        onClick={closeModal}
+        className={isModalOpen === true && "active"}
+      ></Overlay>
+      <AddColumnModal modalStateSwapper={closeModal} isModalOpen={isModalOpen} />
     </MainDashboardWrap>
   );
 };
