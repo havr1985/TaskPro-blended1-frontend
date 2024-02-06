@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { requestAddDashboard, requestAllDashboards } from "../../services/api/dashboard";
+import { requestAddDashboard, requestAllDashboards, requestDashboardById, requestDeleteDashboard, requestEditDashboard } from "../../services/api/dashboard";
 
 
 
@@ -21,6 +21,45 @@ export const addDashboardThunk = createAsyncThunk(
     async (values, thunkAPI) => {
         try {
             const data = await requestAddDashboard(values);
+            return data;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error.message)
+        }
+    }
+);
+
+export const getDashboardByIDThunk = createAsyncThunk(
+    'dashboard/getById',
+    async (dashboardId, thunkAPI) => {
+        try {
+            const data = await requestDashboardById(dashboardId);
+            return data;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error.message)
+        }
+    }
+);
+
+export const updateDashboardThunk = createAsyncThunk(
+    'dashboard/updateDashboard',
+    async ({ dashboardId, values }, thunkAPI) => {
+        try {
+            const data = await requestEditDashboard(dashboardId, values);
+            return data
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error.message)
+        }
+    }
+);
+
+export const deleteDashboardThunk = createAsyncThunk(
+    'dashboard/deleteDashboard',
+    async (dashboardId, thunkAPI) => {
+        try {
+            const data = await requestDeleteDashboard(dashboardId);
             return data;
         }
         catch (error) {
