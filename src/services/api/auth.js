@@ -72,5 +72,7 @@ export const requestTheme = async values => {
 export const requestUserUpdate = async values => {
     const { data } = await instance.put('auth/users/update', values);
     return data;
-}
+};
+
+export default instance;
 
