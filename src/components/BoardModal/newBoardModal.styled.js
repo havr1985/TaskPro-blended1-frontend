@@ -9,17 +9,7 @@ export const Section = styled.div`
   align-items: start;
 `;
 
-export const SectionTitle = styled.h2`
-  font-size: 18px;
-  font-family: "Poppins";
-  font-weight: 500;
-  letter-spacing: -0.36px;
-  margin-bottom: 24px;
-  color: rgb (22, 22, 22);
-`;
-
 export const FormWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,27 +23,27 @@ export const FormWrapper = styled.div`
 `;
 
 export const FormTitle = styled.h3`
-  color: rgb(255, 255, 255);
+  color: var(--secondary-heading-color);
   font-size: 14px;
   font-family: "Poppins";
   font-weight: 500;
   letter-spacing: -0.28px;
-
+  align-items: center;
   margin-bottom: 14px;
 `;
 
 export const TitleInput = styled(Field)`
   position: relative;
-  width: 100%;
+  width: 302px;
   height: 49px;
-  padding: 14px 18px;
-
+  padding: 14px 14px;
+  align-items: center;
   font-size: 14px;
   font-family: "Poppins";
   letter-spacing: -0.28px;
 
-  background-color: rgb(31, 31, 31);
-  border: 1px solid rgb(190, 219, 176);
+  background-color: var(--secondary-background-color);
+  border: 1px solid var(--shared-input-border-color);
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   border-radius: 8px;
@@ -63,7 +53,7 @@ export const TitleInput = styled(Field)`
   color: rgb(22, 22, 22);
 
   &::placeholder {
-    color: rgb(255, 255, 255);
+    color: var(--shared-input-placeholder-color);
     font-size: 14px;
     font-family: "Poppins";
     letter-spacing: -0.28px;
@@ -87,7 +77,7 @@ export const IconWrapper = styled.label``;
 
 export const Icon = styled.svg`
   cursor: pointer;
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: var(--radio-label-grey-color);
   fill: transparent;
   transition: all 250ms linear;
 
@@ -151,7 +141,7 @@ export const AuthFormSubmitButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 302px;
   padding: 14px;
   border: none;
   border-radius: 8px;
@@ -202,7 +192,5 @@ export const ErrorSection = styled(ErrorMessage)`
 
 export const ModalForm = styled(Form)`
   margin: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  width: 302px;
 `;

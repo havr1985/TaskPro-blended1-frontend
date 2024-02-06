@@ -23,15 +23,13 @@ import {
 import data from "../background.json";
 
 const options = [
-  "#icon-plus",
-  "#icon-board-lightning",
-  "#icon-board-loading",
-  "#icon-board-puzzle",
   "#icon-board-square",
   "#icon-board-star",
-  "#icon-task-pro-lightning",
-  "#icon-trash",
-  "#icon-arrow-circle-broken-right",
+  "#icon-board-loading",
+  "#icon-board-puzzle",
+  "#icon-board-container",
+  "#icon-board-lightning",
+  "#icon-board-colors",
   "#icon-board-hexagon",
 ];
 
