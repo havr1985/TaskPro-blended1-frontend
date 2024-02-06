@@ -21,6 +21,9 @@ import {
   TitleInput,
 } from "../newBoardModal.styled";
 import data from "../background.json";
+import { useDispatch } from "react-redux";
+
+import { addDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
 
 const options = [
   "#icon-plus",
@@ -40,6 +43,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
+  const dispatch = useDispatch();
   const [setIcon, setSetIcon] = useState(options[0]);
   const [selectedBg, setSelectedBg] = useState("");
   const initialValues = {
@@ -55,18 +59,33 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     setSetIcon(el);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const boardTitle = e.target.elements[0].value;
+
+    const newBoardData = {
+      title: boardTitle,
+      icon: setIcon,
+      backgroundURL: selectedBg,
+    };
+
+    modalStateSwapper();
+    dispatch(addDashboardThunk(newBoardData));
+  };
+
   return (
     <SharedModal
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
-      title={"New board"}>
+      title={"New board"}
+      maxWidth={"350px"}
+    >
       <Section>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          //   onSubmit={handleSubmit}>
         >
-          <ModalForm>
+          <ModalForm onSubmit={(e) => handleSubmit(e)}>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
               <TitleInput
@@ -87,7 +106,8 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                       className={setIcon === el ? "active" : ""}
                       onClick={() => handleIconSelection(el)}
                       width={18}
-                      height={18}>
+                      height={18}
+                    >
                       <use href={icons + el} width={18} height={18} />
                     </Icon>
 
@@ -98,13 +118,14 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
             </FormWrapper>
 
             <FormWrapper>
-              <FormTitle>Backgraunds </FormTitle>
+              <FormTitle>Backgrounds </FormTitle>
               <RadioBtnWrapper>
                 {data.map((el, idx) => (
                   <label key={idx}>
                     <BgcItem
                       onClick={() => handleBgSelection(el.url)}
-                      className={selectedBg === el.url ? "active" : ""}>
+                      className={selectedBg === el.url ? "active" : ""}
+                    >
                       {el.url !== "" && (
                         <CustomRadioBtn
                           url={el.url}
