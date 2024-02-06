@@ -28,7 +28,6 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState("password");
   const { email, username, avatarURL } = useSelector(selectAuthUserData);
-  // console.log(user);
 
   const changePasswordType = () => {
     setPasswordType((prevState) => {
@@ -49,7 +48,6 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
     const userEditData = [...e.target.elements].slice(0, 3);
     const filteredUserData = userEditData.filter(({ value }) => value);
     filteredUserData.forEach(({ name, value }) => (editDataObj[name] = value));
-    console.log(editDataObj);
     dispatch(userUpdateThunk(editDataObj));
     modalStateSwapper();
   };
