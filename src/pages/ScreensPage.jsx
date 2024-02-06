@@ -10,6 +10,7 @@ import {
 
 const ScreensPage = () => {
   const { boardName } = useParams();
+
   return (
     <ScreensPageWrap>
       {boardName === undefined && (
