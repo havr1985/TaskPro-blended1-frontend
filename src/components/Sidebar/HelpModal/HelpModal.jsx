@@ -8,10 +8,10 @@ import {
   Section,
 } from "../../BoardModal/newBoardModal.styled";
 
-import { 
+import {
   EmailInput,
   HelpFormSubmitButton,
-  QuestionTextarea
+  QuestionTextarea,
 } from "./HelpModal.styled";
 
 const validationSchema = Yup.object().shape({
@@ -30,7 +30,8 @@ export const HelpModal = ({ isModalOpen, modalStateSwapper }) => {
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Need help"}
-      maxWidth="335">
+      maxWidth="335px"
+    >
       <Section>
         <Formik
           initialValues={initialValues}
@@ -61,9 +62,7 @@ export const HelpModal = ({ isModalOpen, modalStateSwapper }) => {
               />
             </FormWrapper>
 
-            <HelpFormSubmitButton type="submit">
-              Send
-            </HelpFormSubmitButton>
+            <HelpFormSubmitButton type="submit">Send</HelpFormSubmitButton>
           </ModalForm>
         </Formik>
       </Section>
