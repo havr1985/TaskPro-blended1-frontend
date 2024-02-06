@@ -4,19 +4,18 @@ export const MainDashboardWrap = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 34px;
-  /* width: 375px; */
+
   width: 100%;
   height: 95%;
   overflow-x: auto;
   overflow-y: hidden;
-  /* padding-bottom: 26px; */
 
   @media screen and (min-width: 768px) {
     width: 704px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1132px;
+    width: calc(100vw - 308px);
   }
 
   &::-webkit-scrollbar {
@@ -29,15 +28,15 @@ export const MainDashboardWrap = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--tracking-area-color); /* цвет бегунка */
+    background-color: var(--scroll-bar-color); /* цвет бегунка */
     border-radius: 12px; /* округлось бегунка */
-    border: 8px solid var(--tracking-area-color); /* отступ вокруг бегунка */
+    border: 12px solid var(--scroll-bar-color); /* отступ вокруг бегунка */
   }
 `;
 
 export const MainDashboardList = styled.ul`
   display: flex;
-  gap: 18px;
+  gap: 34px;
   height: 100%;
 `;
 
