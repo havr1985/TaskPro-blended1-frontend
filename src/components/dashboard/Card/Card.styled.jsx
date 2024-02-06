@@ -30,13 +30,14 @@ export const CardList = styled.ul`
 `;
 
 export const CardWrap = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 154px;
   padding: 14px 20px;
   margin-bottom: 8px;
-  border-left: 4px solid red;
+  /* border-left: 4px solid red; */
   border-radius: 8px;
   background-color: var(--primary-card-background-color);
   /* cursor: pointer; */
@@ -44,6 +45,17 @@ export const CardWrap = styled.li`
   @media screen and (min-width: 375px) {
     width: 335px;
     min-width: 335px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 154px;
+    border-radius: 4px 0 0 4px;
+    background-color: red;
   }
 `;
 
