@@ -9,8 +9,15 @@ import {
 } from "./Header.styled";
 import sprite from "../../shared/images/icons.svg";
 import { ThemeComponent } from "../ThemeMode/ThemeMenu";
+import { EditProfileModal } from "../EditProfileModal/EditProfileModal";
+import { useState } from "react";
 
 export const Header = ({ openSideBar }) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const modalStateSwapper = () => {
+    setIsEditModalOpen((prev) => !prev);
+  };
   return (
     <MainHeader>
       <MenuButtonContainer>
@@ -22,13 +29,17 @@ export const Header = ({ openSideBar }) => {
       </MenuButtonContainer>
       <ThemeAndUserContainer>
         <ThemeComponent />
-        <UserContainer>
+        <UserContainer onClick={() => modalStateSwapper()}>
           <p>User</p>
           <UserIcon className="iconLightning" width="12px" height="16px">
             <use href={`${sprite}#icon-user`}></use>
           </UserIcon>
         </UserContainer>
       </ThemeAndUserContainer>
+      <EditProfileModal
+        isModalOpen={isEditModalOpen}
+        modalStateSwapper={modalStateSwapper}
+      />
     </MainHeader>
   );
 };
