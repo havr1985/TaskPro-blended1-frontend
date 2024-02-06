@@ -19,9 +19,9 @@
     #bedbb0 92.19%
   );
   --loginform-text-color: rgba(255, 255, 255, 0.3);
-  --loginform-border:rgba(190, 219, 176, 0.4)
+  --loginform-border:rgba(190, 219, 176, 0.4);
+  --secondary-login-button-color: #9dc888
 }
-
 
 /* dark theme */
 
@@ -46,6 +46,12 @@ html[data-theme="dark"] {
   --board-item-sidebar-background-color: #161616;
   --board-item-sidebar-color: #ffffff;
   --screens-page-tutorial-text-color: rgba(255, 255, 255, 0.5);
+  --card-params-value-text-color: #ffffff;
+  --card-title-color: #ffffff;
+  --filter-text-and-icon-color: rgba(255, 255, 255, 0.8);
+  --background-add-column-btn-color: #121212;
+  --welcome-message-text-color: rgba(255, 255, 255, 0.5);
+  --welcome-message-text-accent-color: #bedbb0;
 
   --modal-backdrop-background-color: rgba(137, 137, 137, 0.2);
   --modal-window-color: #161616;
@@ -68,6 +74,9 @@ html[data-theme="dark"] {
   --theme-switcher-dropdown-border-color: #bedbb0;
   --theme-switcher-dropdown-hover-color: #8ee560;
   --theme-switcher-dropdown-text-color: rgba(255, 255, 255, 0.5);
+  --tracking-area-color: rgba(255, 255, 255, 0.08);
+  --scroll-bar-color: #121212;
+  --add-column-icon-wrap-color: #ffffff;
 
   --primary-heading-color: #ffffff;
   --secondary-heading-color: #ffffff;
@@ -83,6 +92,8 @@ html[data-theme="dark"] {
   --sidebar-icon-stroke-color: #ffffff80;
   --sidebar-icon-edit-stroke-color: #ffffff80;
   --sidebar-icon-active-stroke-color: #fff;
+  --add-column-icon-plus-color: #121212;
+  --add-card-icon-plus-color: #ffffff;
 
   --shared-button-text-color: #161616;
   --shared-input-border-color: rgba(190, 219, 176, 0.4);
@@ -150,6 +161,12 @@ html[data-theme="light"] {
   --board-item-sidebar-background-color: #f6f6f7;
   --board-item-sidebar-color: #b7b7b7;
   --screens-page-tutorial-text-color: rgba(22, 22, 22, 0.7);
+  --card-params-value-text-color: #161616;
+  --card-title-color: #161616;
+  --filter-text-and-icon-color: rgba(22, 22, 22, 0.8);
+  --background-add-column-btn-color: #ffffff;
+  --welcome-message-text-color: rgba(22, 22, 22, 0.7);
+  --welcome-message-text-accent-color: #bedbb0;
 
   --modal-backdrop-background-color: rgba(137, 137, 137, 0.2);
   --modal-window-color: #fdfdfd;
@@ -171,6 +188,9 @@ html[data-theme="light"] {
   --theme-switcher-dropdown-border-color: #bedbb0;
   --theme-switcher-dropdown-hover-color: #8ee560;
   --theme-switcher-dropdown-text-color: #161616;
+  --tracking-area-color: #e8e8e8;
+  --scroll-bar-color: rgba(22, 22, 22, 0.1);
+  --add-column-icon-wrap-color: #161616;
 
   --primary-heading-color: #161616;
   --secondary-heading-color: #161616;
@@ -186,6 +206,8 @@ html[data-theme="light"] {
   --sidebar-icon-stroke-color: #ffffff80;
   --sidebar-icon-edit-stroke-color: #b7b7b7;
   --sidebar-icon-active-stroke-color: #161616;
+  --add-column-icon-plus-color: #ffffff;
+  --add-card-icon-plus-color: #ffffff;
 
   --shared-button-text-color: #161616;
   --shared-input-border-color: rgba(190, 219, 176, 0.4);
@@ -202,7 +224,7 @@ html[data-theme="light"] {
   --radio-label-checked-background-color: #ffffff;
   --radio-label-grey-color: rgba(22, 22, 22, 0.3);
 
-  --radio-icons-color: rgba(22, 22, 22, 0.6);
+  --radio-icons-color: rgba(22, 22, 22, 0.5);
   --radio-icons-checked: #161616;
 
   --user-icon-fill-color: #f6f6f7;
@@ -254,6 +276,12 @@ html[data-theme="violet"] {
   --board-item-sidebar-background-color: #979cea;
   --board-item-sidebar-color: #ffffff;
   --screens-page-tutorial-text-color: rgba(22, 22, 22, 0.7);
+  --card-params-value-text-color: #161616;
+  --card-title-color: #161616;
+  --filter-text-and-icon-color: rgba(22, 22, 22, 0.8);
+  --background-add-column-btn-color: #ffffff;
+  --welcome-message-text-color: rgba(22, 22, 22, 0.7);
+  --welcome-message-text-accent-color: #5255bc;
 
   --modal-backdrop-background-color: rgba(137, 137, 137, 0.2);
   --modal-window-color: #fdfdfd;
@@ -275,6 +303,9 @@ html[data-theme="violet"] {
   --theme-switcher-dropdown-border-color: #ecedfd;
   --theme-switcher-dropdown-hover-color: #2e35fe;
   --theme-switcher-dropdown-text-color: #161616;
+  --tracking-area-color: #ffffff;
+  --scroll-bar-color: #b8bcfd;
+  --add-column-icon-wrap-color: #5255bc;
 
   --primary-heading-color: #161616;
   --secondary-heading-color: #ffffff;
@@ -290,6 +321,8 @@ html[data-theme="violet"] {
   --sidebar-icon-stroke-color: #ffffff80;
   --sidebar-icon-edit-stroke-color: #ffffff80;
   --sidebar-icon-active-stroke-color: #fff;
+  --add-column-icon-plus-color: #ffffff;
+  --add-card-icon-plus-color: #161616;
 
   --shared-button-text-color: #ffffff;
   --shared-input-border-color: rgb(172, 192, 241);
@@ -306,7 +339,7 @@ html[data-theme="violet"] {
   --radio-label-checked-background-color: #ffffff;
   --radio-label-grey-color: rgba(22, 22, 22, 0.3);
 
-  --radio-icons-color: rgba(22, 22, 22, 0.6);
+  --radio-icons-color: rgba(22, 22, 22, 0.5);
   --radio-icons-checked: #161616;
 
   --user-icon-fill-color: #ecedfd;

@@ -6,7 +6,7 @@ export const ScreensPageWrap = styled.div`
   padding-bottom: 14px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #1f1f1f;
+  background-color: var(--secondary-background-color);
 
   @media (min-width: 768px) {
     padding-top: 20px;
@@ -34,7 +34,7 @@ export const WelcomeMessage = styled.p`
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--welcome-message-text-color);
 
   @media (min-width: 768px) {
     width: 486px;
@@ -43,5 +43,5 @@ export const WelcomeMessage = styled.p`
   }
 `;
 export const WelcomeMessageAccent = styled.span`
-  color: #bedbb0;
+  color: var(--welcome-message-text-accent-color);
 `;

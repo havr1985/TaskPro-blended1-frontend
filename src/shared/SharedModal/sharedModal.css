@@ -10,3 +10,20 @@
 .ReactModal__Overlay--before-close {
   opacity: 0;
 }
+.ReactModalContentClassName {
+  background-color: var(--modal-window-color);
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  min-width: 335px;
+  max-height: calc(100vh - 24px);
+  position: absolute;
+  padding: 24px 24px;
+  outline: none;
+  border: "1px solid rgba(190, 219, 176, 0.5)";
+  border-radius: 8px;
+}

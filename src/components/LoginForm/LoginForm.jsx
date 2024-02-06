@@ -1,42 +1,41 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import icons from "../../shared/images/icons.svg";
-import { SharedModalBtn } from "../../shared/SharedModalBtn/SharedModalBtn";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { loginThunk } from '../../redux/Auth/authOperation';
-import { LoginWrapper, LoginContainer, FormLogin, InputContainer, InputBthEye, NavContainer, StyledNavLink} from './LoginForm.styled';
- 
+import { LoginWrapper, LoginContainer, FormLogin, InputContainer, InputBthEye, NavContainer,  LoginBtn, ErrorText} from './LoginForm.styled';
+import { NavLink } from 'react-router-dom';
+  
+const LoginSchema = Yup.object({
+      email: Yup.string().required('This field is required'),
+      password: Yup.string().required('This field is required'),
+})
+  
 const LoginForm = () => {
 
  const dispatch = useDispatch(); 
-
-const [showPassword, setShowPassword] = useState(false);
+ const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validationSchema: Yup.object({
-      email: Yup.string()
-//         .matches(/^[A-Za-z0-9._%!?+-]+@[a-z]+\.[a-z]{3,}$/
-// ,
-//         'Please, enter correct format email'
-//         )
-    
-      .required('This field is required'),
-      password: Yup.string()
-/* .matches(/^(?=.*[0-9])(?=.*[!@#$%^&*.])(?=.*[A-Z]).{8,}$/, 
-'Your password must be 8 characters, and include at least one uppercase letter, and a numbesymbol') */
-        .required('This field is required'),
-    }),
-    onSubmit: (values, action) => {
-      dispatch(loginThunk(values));
-      action.resetForm();
+    validationSchema: LoginSchema,
+    onSubmit: async (values) => { 
+      try {
+        await dispatch(loginThunk({
+          email: values.email,
+          password: values.password,
+        })).unwrap();
+        formik.resetForm();
+      } catch (error) {
+        console.log(error)
+      }
     },
   });
-
+  
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
@@ -46,30 +45,29 @@ const [showPassword, setShowPassword] = useState(false);
       <LoginContainer>
       <NavContainer>
       
-          <StyledNavLink to="/auth/register" exact="true" active="active">
+          <NavLink to="/auth/register" >
             Registration
-          </StyledNavLink>
+          </NavLink>
         
-          <StyledNavLink to="/auth/login" active="active">
+          <NavLink to="/auth/login" style={{ color: '#ffffff', fontWeight: 'bold' }}>
             Log in
-          </StyledNavLink>
-      
-     
+          </NavLink>
     </NavContainer>
 
      <FormLogin onSubmit={formik.handleSubmit}>
       <div>
         <label htmlFor="email"></label>
         <input
-              type="text"
-              placeholder="Enter your email:"
-          id="email"
-          name="email"
-          onChange={formik.handleChange}
-          value={formik.values.username}
+            type="email"
+            placeholder="Enter your email:"
+            id="email"
+            name="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            value={formik.values.email}
         />
         {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
+          <ErrorText>{formik.errors.email}</ErrorText>
         ) : null}
       </div>
 
@@ -77,12 +75,13 @@ const [showPassword, setShowPassword] = useState(false);
         <label htmlFor="password"></label>
          <InputContainer className="password-input-container">
           <input
-                type={showPassword ? 'text' : 'password'}
+              type={showPassword ? 'text' : 'password'}
                 placeholder="Confirm a password:"
-            id="password"
-            name="password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
+              id="password"
+              name="password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              value={formik.values.password}
           />
           <InputBthEye
                 type="button"
@@ -95,16 +94,16 @@ const [showPassword, setShowPassword] = useState(false);
           </InputBthEye>
         </InputContainer>
         {formik.touched.password && formik.errors.password ? (
-          <div>{formik.errors.password}</div>
+          <ErrorText>{formik.errors.password}</ErrorText>
         ) : null}
       </div>
-
-      <SharedModalBtn>Log in Now</SharedModalBtn>
-      </FormLogin>
-        </LoginContainer>
-        </LoginWrapper>
- 
+        </FormLogin>
+        <LoginBtn type="submit" >Log in Now</LoginBtn>
+      </LoginContainer>
+      
+    </LoginWrapper>
   );
 };
 
-export default LoginForm;
+export default LoginForm
+

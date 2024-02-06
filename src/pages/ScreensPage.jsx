@@ -10,9 +10,10 @@ import {
 
 const ScreensPage = () => {
   const { boardName } = useParams();
+
   return (
     <ScreensPageWrap>
-      {boardName === undefined && (
+      {boardName !== undefined && (
         <WelcomeMessageWrap>
           <WelcomeMessage>
             Before starting your project, it is essential{" "}
@@ -23,7 +24,7 @@ const ScreensPage = () => {
           </WelcomeMessage>
         </WelcomeMessageWrap>
       )}
-      {boardName !== undefined && (
+      {boardName === undefined && (
         <>
           <HeaderDashboard boardName={boardName} />
           <MainDashboard boardName={boardName} />
