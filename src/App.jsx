@@ -9,11 +9,6 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { selectAuthIsLoading } from "./redux/Auth/authSelectors";
 
 import ErrorPage from "./pages/ErrorPage";
-import { allDashboardsThunk } from "./redux/Dashboard/dashboardOperation";
-import {
-  selectAllDashboards,
-  selectCurrentDashboard,
-} from "./redux/Dashboard/dashboardsSelectors";
 
 const WelcomePage = lazy(() => import("./pages/WelcomePage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
