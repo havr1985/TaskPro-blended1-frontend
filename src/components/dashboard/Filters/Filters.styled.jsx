@@ -11,7 +11,7 @@ export const FilterButton = styled.button`
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--filter-text-and-icon-color);
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -22,5 +22,5 @@ export const FilterIcon = styled.svg`
   height: 16px;
   fill: none;
   stroke-width: 1.5px;
-  stroke: rgba(255, 255, 255, 0.8);
+  stroke: var(--filter-text-and-icon-color);
 `;

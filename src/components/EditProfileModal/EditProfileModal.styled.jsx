@@ -10,20 +10,29 @@ export const UserAvatarLabel = styled.label`
   cursor: pointer;
   height: 24px;
   width: 24px;
-  background-color: #bedbb0;
+  background-color: var(--user-edit-icon-plus-fill-color);
   border-radius: 8px;
   outline: none;
   border: none;
   color: black;
   position: absolute;
   bottom: -12px;
-  left: 22px;
+  left: 50% -5px;
   padding-top: 3px;
   text-align: center;
+  transition: all 300ms;
+  &:hover {
+    background-color: var(--user-edit-icon-plus-hover-color);
+  }
 `;
 
 export const UserAvatarWrapper = styled.form`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
 `;
 export const UserAvatarInput = styled.input`
   opacity: 0;
@@ -47,19 +56,28 @@ export const ModalContentWrapper = styled.form`
 export const ModalInput = styled.input`
   width: 100%;
   border-radius: 8px;
-  border: 1px solid grey;
+  border: 1px solid;
+  border-color: var(--shared-input-border-color);
   padding-top: 14px;
   padding-bottom: 14px;
   padding-left: 18px;
   background-color: transparent;
   outline: none;
-  color: #fff;
+  color: var(--shared-input-text-color);
   &:focus {
-    border-color: #bedbb0;
+    border-color: var(--shared-input-border-hover-color);
   }
   @media (max-width: 400px) {
     width: 100%;
   }
+`;
+
+export const UserIcon = styled.svg`
+  height: 68px;
+  width: 68px;
+  border-radius: 8px;
+  background-color: var(--sidebar-help-backgound-color);
+  fill: white;
 `;
 
 export const InputsWrapper = styled.div`
@@ -75,7 +93,9 @@ export const EyeIconSvg = styled.svg`
   position: absolute;
   right: 18px;
   top: 14px;
-  fill: white;
+  stroke: white;
+  cursor: pointer;
+  user-select: none;
 `;
 export const PasswordInputWrapper = styled.div`
   width: 100%;

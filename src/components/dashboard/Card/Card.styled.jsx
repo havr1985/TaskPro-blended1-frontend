@@ -6,8 +6,6 @@ export const CardList = styled.ul`
   /* overflow: overlay; */
   /* flex-grow: 1; */
   height: 70vh;
-  /* margin-right: -7px; */
-  /* margin-right: -16px; */
 
   margin-bottom: 20px;
 
@@ -20,32 +18,44 @@ export const CardList = styled.ul`
   }
 
   &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05); /* цвет зоны отслеживания */
+    background: var(--tracking-area-color); /* цвет зоны отслеживания */
     border-radius: 12px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #121212; /* цвет бегунка */
+    background-color: var(--scroll-bar-color); /* цвет бегунка */
     border-radius: 12px; /* округлось бегунка */
-    border: 8px solid #121212; /* отступ вокруг бегунка */
+    border: 8px solid var(--scroll-bar-color); /* отступ вокруг бегунка */
   }
 `;
 
 export const CardWrap = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 154px;
   padding: 14px 20px;
   margin-bottom: 8px;
-  border-left: 4px solid red;
+  /* border-left: 4px solid red; */
   border-radius: 8px;
-  background-color: #121212;
+  background-color: var(--primary-card-background-color);
   /* cursor: pointer; */
 
   @media screen and (min-width: 375px) {
     width: 335px;
     min-width: 335px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 154px;
+    border-radius: 4px 0 0 4px;
+    background-color: red;
   }
 `;
 
@@ -54,7 +64,7 @@ export const CardTitle = styled.h4`
   font-weight: 600;
   font-size: 14px;
   /* letter-spacing: -0.02em; */
-  color: #fff;
+  color: var(--card-title-color);
 `;
 
 export const CardDescriptionWrap = styled.div`
@@ -66,7 +76,7 @@ export const CardDescription = styled.p`
   font-size: 12px;
   line-height: 1.33;
   /* letter-spacing: -0.02em; */
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--screens-page-tutorial-text-color);
 `;
 
 export const CardCommandSection = styled.div`
@@ -82,7 +92,7 @@ export const CardCommandSection = styled.div`
     left: 0;
     width: 290px;
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--modal-filter-form-line);
   }
 `;
 
@@ -90,13 +100,13 @@ export const CardParams = styled.span`
   display: block;
   font-size: 8px;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--screens-page-tutorial-text-color);
 `;
 
 export const CardPriorityValue = styled.span`
   font-size: 10px;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--card-params-value-text-color);
 
   &::before {
     content: "";
@@ -113,7 +123,7 @@ export const CardPriorityValue = styled.span`
 export const CardDeadlineValue = styled.span`
   font-size: 10px;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--card-params-value-text-color);
 `;
 
 export const IconsWrap = styled.ul`
@@ -139,5 +149,5 @@ export const Icon = styled.svg`
   height: 16px;
   fill: none;
   stroke-width: 1.3px;
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: var(--radio-icons-color);
 `;

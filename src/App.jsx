@@ -8,6 +8,7 @@ import { RestictedRoute } from "./components/RestictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { selectAuthIsLoading } from "./redux/Auth/authSelectors";
 
+import { allDashboardsThunk } from "./redux/Dashboard/dashboardOperation";
 
 const WelcomePage = lazy(() => import("./pages/WelcomePage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -20,7 +21,16 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(currentThunk());
+    const getCurrentUser = async () => {
+      try {
+        await dispatch(currentThunk());
+        await dispatch(allDashboardsThunk());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCurrentUser();
   }, [dispatch]);
   return (
     <>
@@ -31,22 +41,30 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route
               index
-                element={<RestictedRoute redirectTo="/home" component={<WelcomePage/> } /> }
+              element={
+                <RestictedRoute
+                  redirectTo="/home"
+                  component={<WelcomePage />}
+                />
+              }
             />
 
             <Route
               path="/home"
               element={<PrivateRoute redirectTo="/" component={<HomePage />} />}
-              />
-              <Route
-                path="home/:boardName"
-                element={<PrivateRoute redirectTo="/" component={<ScreensPage/>}/>}
-              />
+            />
+            <Route
+              path="home/:boardName"
+              element={
+                <PrivateRoute redirectTo="/" component={<ScreensPage />} />
+              }
+            />
             <Route
               path="auth/:id"
-              element={<RestictedRoute redirectTo="/home" component={<AuthPage />} />}
-              />
-                
+              element={
+                <RestictedRoute redirectTo="/home" component={<AuthPage />} />
+              }
+            />
           </Route>
         </Routes>
       )}

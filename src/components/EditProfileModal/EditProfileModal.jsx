@@ -12,6 +12,7 @@ import {
   UserAvatarInput,
   UserAvatarLabel,
   UserAvatarWrapper,
+  UserIcon,
 } from "./EditProfileModal.styled";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,11 +22,12 @@ import {
 } from "../../redux/Auth/authOperation";
 import { selectAuthUserData } from "../../redux/Auth/authSelectors";
 
+import sprite from "../../shared/images/icons.svg";
+
 export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState("password");
-  const user = useSelector(selectAuthUserData);
-  console.log(user);
+  const { email, username, avatarURL } = useSelector(selectAuthUserData);
 
   const changePasswordType = () => {
     setPasswordType((prevState) => {
@@ -46,8 +48,8 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
     const userEditData = [...e.target.elements].slice(0, 3);
     const filteredUserData = userEditData.filter(({ value }) => value);
     filteredUserData.forEach(({ name, value }) => (editDataObj[name] = value));
-    console.log(editDataObj);
     dispatch(userUpdateThunk(editDataObj));
+    modalStateSwapper();
   };
 
   return (
@@ -57,33 +59,51 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
       title={"Edit profile"}
       maxWidth={"400px"}
     >
-      <ModalContentWrapper onSubmit={(e) => onSubmitHandle(e)}>
-        {/* <UserAvatarWrapper>
+      <UserAvatarWrapper>
+        {avatarURL ? (
           <UserAvatar
             src={
-              user.avatarURL
-                ? user.avatarURL
+              avatarURL
+                ? avatarURL
                 : "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
             }
             alt="avatar"
           />
-
-          <UserAvatarInput
-            onChange={changeAvatar}
-            type="file"
-            id="input__file"
-          />
-          <UserAvatarLabel htmlFor="input__file">+</UserAvatarLabel>
-        </UserAvatarWrapper> */}
-
+        ) : (
+          <div>
+            <UserIcon className="iconLightning" width="12px" height="16px">
+              <use href={`${sprite}#icon-user`}></use>
+            </UserIcon>
+          </div>
+        )}
+        <UserAvatarInput onChange={changeAvatar} type="file" id="input__file" />
+        <UserAvatarLabel htmlFor="input__file">+</UserAvatarLabel>
+      </UserAvatarWrapper>
+      <ModalContentWrapper
+        autoComplete="false"
+        onSubmit={(e) => onSubmitHandle(e)}
+      >
         <InputsWrapper>
-          <ModalInput name="username" placeholder="Fullname" type="text" />
-          <ModalInput name="email" placeholder="Email" type="email" />
+          <ModalInput
+            autoComplete="off"
+            name="username"
+            placeholder="Fullname"
+            defaultValue={username ? username : null}
+            type="text"
+          />
+          <ModalInput
+            autoComplete="off"
+            name="email"
+            placeholder="Email"
+            defaultValue={email ? email : null}
+            type="email"
+          />
           <PasswordInputWrapper>
             <ModalInput
               name="password"
               placeholder="Password"
               type={passwordType}
+              autoComplete="off"
             />
             <EyeIconSvg
               onClick={() => changePasswordType()}
