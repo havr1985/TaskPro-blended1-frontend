@@ -16,6 +16,9 @@ export const HelpWrapper = styled.div`
 
 		padding: 14px;
 	}
+	.img-plant {
+		margin-bottom: 14px;
+	}
 `;
 
 export const HelpText = styled.p`
@@ -25,6 +28,7 @@ export const HelpText = styled.p`
 	letter-spacing: -0.02em;
 
 	width: 172px;
+	height: 102px;
 
 	margin-bottom: 18px;
 
@@ -33,6 +37,9 @@ export const HelpText = styled.p`
 	@media (max-width: 767px) {
 		font-size: 12px;
 		line-height: 16px;
+
+		width: 168px;
+		height: 80px;
 	}
 
 	.appName {
