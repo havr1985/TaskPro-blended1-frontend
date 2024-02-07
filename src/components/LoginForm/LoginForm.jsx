@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { loginThunk } from '../../redux/Auth/authOperation';
 import { LoginWrapper, LoginContainer, FormLogin, InputContainer, InputBthEye, NavContainer,  LoginBtn, ErrorText} from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
+import Filters from '../dashboard/Filters/Filters';
   
 const LoginSchema = Yup.object({
       email: Yup.string().required('This field is required'),
@@ -99,8 +100,9 @@ const LoginForm = () => {
       </div>
         </FormLogin>
         <LoginBtn type="submit" >Log in Now</LoginBtn>
+
       </LoginContainer>
-      
+    <Filters></Filters>
     </LoginWrapper>
   );
 };
