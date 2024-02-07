@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const ModalFilter = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: auto;
+  padding: 24px;
+  border: 1px solid var(--filter-text-and-icon-color);
+  box-shadow: 0px 4px 16px var(--color-shadow);
+  border-radius: 8px;
+      background-color: var(--primary-background-color);
+ /*  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;*/
+  ` 
+
 export const StyledColorBtn = styled.span`
   content: "";
   display: block;
@@ -28,8 +42,7 @@ export const StyledColorBtn = styled.span`
 export const StyledColorText = styled.p`
   color: rgba(255,255,255,0.5);
   font-size: 12px;
-  width: 110px;
-  height: 12px; 
+
  
 
   &:checked.blue {
@@ -59,7 +72,7 @@ export const StyledContainerBtn = styled.div`
   align-items: start;
   gap: 8px;
   margin-top: 16px;
-  margin-bottom: 24px
+ 
 `;
 
 export const StyledInputContainer = styled.div`

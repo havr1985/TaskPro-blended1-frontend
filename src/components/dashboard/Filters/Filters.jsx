@@ -5,35 +5,31 @@ import { FilterModal } from "./FilterModal";
 import { FilterButton, FilterIcon } from "./Filters.styled";
 
 const Filters = () => {
-   /*  const dispatch = useDispatch(); */
-    const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-    /* const [selectedFilter, setSelectedFilter] = useState(''); */
+  /*  const dispatch = useDispatch(); */
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
- /*  const handleFilterSelect = () => {
-    onSelectFilter(selectedFilter);
-    onClose();
-  }; */
 
-  const toggleFilterNodalVissbility = () => {
-    setIsFilterModalOpen((prev) => !prev);
+  const openFilterModal = () => {
+    setIsFilterModalOpen(true);
+  }
+  const closeFilterModal = () => {
+    setIsFilterModalOpen(false);
   };
-  return (
-     <FilterButton onClick={() => toggleFilterNodalVissbility()}>
-      <FilterIcon>
-        <use href={icons + "#icon-filter"} />
-      </FilterIcon>
-      Filters
+    return (
+      <FilterButton onClick={() => openFilterModal()}>
+        <FilterIcon>
+          <use href={icons + "#icon-filter"} />
+        </FilterIcon>
+        Filters
         <FilterModal
-          modalIsOpen={isFilterModalOpen}
-          closeModal={toggleFilterNodalVissbility}
-          title={"Filters"}
-          maxWidth={"300px"}
-      > 
+          isOpen={isFilterModalOpen}
+          onClose= {closeFilterModal}
+        />
         
-    </FilterModal>
-    </FilterButton>
+      </FilterButton>
    
-  );
-};
+    );
+  };
+
 
 export default Filters;

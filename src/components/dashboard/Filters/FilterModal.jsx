@@ -1,27 +1,21 @@
 import { useState } from 'react';
-import Modal from "react-modal";
 import { CloseModalBtn } from "../../../shared/SharedModal/SharedModal.styled";
-import "./FilterModal.css";
-import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll, FilterLine, ModalTitle} from "./FilterModal.styled"
 
-Modal.setAppElement("#root"); 
+import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll, FilterLine, ModalTitle, ModalFilter} from "./FilterModal.styled"
 
-
-export const FilterModal = ({ modalIsOpen, onClose }) => {
-  const [selectedOption, setSelectedOption] = useState('');
-
+export const FilterModal = ({ isOpen, onClose }) => {
+ 
+  const [selectedLabel, setSelectedLabel] = useState('');
+ if (!isOpen) return null;
   const handleOptionChange = (event) => {
     const value = event.target.value;
-    setSelectedOption(value);
+    setSelectedLabel(value);
+    onClose()
   };
   return (
-      <Modal
-          className="ReactModalContentClassName"
-          isOpen={modalIsOpen}
-          onRequestClose={onClose}
-          closeTimeoutMS={750}
-      >
-    <CloseModalBtn onClick={onClose}>✕</CloseModalBtn>
+   
+    <ModalFilter>
+      <CloseModalBtn onClick={onClose}>✕</CloseModalBtn>
      
       <ModalTitle>Filters</ModalTitle>
       <FilterLine/>
@@ -37,7 +31,7 @@ export const FilterModal = ({ modalIsOpen, onClose }) => {
                      name="radio"
                      value="gray"
                      className="gray"
-                     checked={selectedOption === "gray"}
+                     checked={selectedLabel === "gray"}
                      onChange={handleOptionChange}
                     />
                       <StyledColorBtn className="gray"></StyledColorBtn>
@@ -51,7 +45,7 @@ export const FilterModal = ({ modalIsOpen, onClose }) => {
                     name="radio"
                     value="blue"
                     className="blue"
-                    checked={selectedOption === "blue"}
+                    checked={selectedLabel === "blue"}
                     onChange={handleOptionChange}
                   />
                   <StyledColorBtn className="blue"></StyledColorBtn>
@@ -65,7 +59,7 @@ export const FilterModal = ({ modalIsOpen, onClose }) => {
                        name="radio"
                        value="pink"
                        className="pink"
-                       checked={selectedOption === "pink"}
+                       checked={selectedLabel === "pink"}
                        onChange={handleOptionChange}
                      />
                       <StyledColorBtn className="pink"></StyledColorBtn>
@@ -80,7 +74,7 @@ export const FilterModal = ({ modalIsOpen, onClose }) => {
                       name="radio"
                       value="green"
                       className="green"
-                      checked={selectedOption === "green"}
+                      checked={selectedLabel === "green"}
                       onChange={handleOptionChange}
                     />
                       <StyledColorBtn className="green"></StyledColorBtn>
@@ -90,6 +84,7 @@ export const FilterModal = ({ modalIsOpen, onClose }) => {
                 </StyledInputContainer>
                 
               </StyledContainerBtn>
-    </Modal>
+    </ModalFilter>
+  
   );
 };
