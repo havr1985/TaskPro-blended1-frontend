@@ -57,3 +57,13 @@ export const UserIcon = styled.svg`
   stroke: var(--primary-icon-stroke-color);
   fill: transparent;
 `;
+export const UserAvatar = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+`;
+export const UsernameText = styled.p`
+  &:hover {
+    color: var(--secondary-button-color);
+  }
+`;
