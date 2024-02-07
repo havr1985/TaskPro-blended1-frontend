@@ -18,6 +18,7 @@ import {
   ErrorText,
   StyledWrapInputAuth,
 } from "./RegisterForm.styled";
+import icons from "../../shared/images/icons.svg";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string()
@@ -67,10 +68,10 @@ export const RegisterForm = () => {
       <FormContainer>
         <form onSubmit={formik.handleSubmit}>
           <LinkMenu>
-            <RegisterLink to="/auth/signup" underline="none">
+            <RegisterLink to="/auth/register" underline="none" style={{ color: '#ffffff', fontWeight: 'bold' }}>
               Registration
             </RegisterLink>
-            <LoginLink to="/auth/signin" underline="none">
+            <LoginLink to="/auth/login" underline="none">
               Log In
             </LoginLink>
           </LinkMenu>
@@ -117,7 +118,7 @@ export const RegisterForm = () => {
                 />
                 <Passwordsvg width="18px" onClick={togglePasswordVisiblity}>
                   {" "}
-                  <use href={"#icon-password-eye"}></use>{" "}
+                  <use href={icons + "#icon-password-eye"}></use>{" "}
                 </Passwordsvg>
                 {formik.touched.password && formik.errors.password ? (
                   <ErrorText>{formik.errors.password}</ErrorText>

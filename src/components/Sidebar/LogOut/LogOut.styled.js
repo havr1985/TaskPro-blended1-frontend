@@ -18,9 +18,15 @@ export const ButtonLogOut = styled.button`
 	font-weight: 500;
 	line-height: 24px;
 	letter-spacing: 0em;
-	color: #ffffff;
+	color: var(--secondary-text-sidebar-color);
 
 	.iconLogOut {
-		stroke: #bedbb0;
+		stroke: var(--logout-button-color);
+		fill: var(--sidebar-icon-fill-color);
+
+		transition: 0.5s;
+	}
+	&:hover .iconLogOut {
+		stroke: var(--logout-hover-button-color);
 	}
 `;
