@@ -150,4 +150,32 @@ export const Icon = styled.svg`
   fill: none;
   stroke-width: 1.3px;
   stroke: var(--radio-icons-color);
+
+  &.bell {
+    cursor: auto;
+    animation-timing-function: ease;
+    animation: MOVE 0.5s infinite;
+    transform-origin: 50% 0;
+
+    @keyframes MOVE {
+      0% {
+        transform: rotateZ(0);
+        stroke: var(--primary-button-color);
+      }
+      25% {
+        transform: rotateZ(-25deg);
+      }
+      50% {
+        transform: rotateZ(25deg);
+        stroke: var(--radio-icons-color);
+      }
+      75% {
+        transform: rotateZ(-25deg);
+      }
+      100% {
+        transform: rotateZ(0);
+        stroke: var(--primary-button-color);
+      }
+    }
+  }
 `;

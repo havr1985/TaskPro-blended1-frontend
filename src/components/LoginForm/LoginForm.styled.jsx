@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
+
 export const LoginWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 100vw;
+  width: 100vw
   background: var(--welcomeBgColor)
 ;`
 export const LoginContainer = styled.div`
@@ -61,8 +62,8 @@ color: var(--loginform-text-color);
 
 export const InputContainer = styled.div`
 position: relative;
-margin-bottom: 10px;
-`
+margin-bottom: 10px;`
+
 
 export const InputBthEye = styled.svg`       
 position: absolute;
@@ -76,6 +77,7 @@ transform: translateY(-50%);
 border: none;
  */
 cursor: pointer;
+
 stroke: var(--user-icon-stroke-color);
 stroke-width: 1.3px; 
 `
