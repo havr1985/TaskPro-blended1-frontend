@@ -122,3 +122,21 @@ border: none;
 export const LabelSchowAll = styled.div`
 display: flex; justify-content: space-between;
 `
+export const FilterLine = styled.div`
+width: 252px; 
+height: 1px; 
+background-color: var(--modal-filter-form-line);
+margin-bottom: 14px;
+`
+export const ModalTitle = styled.h2`
+  color: var(--modal-title-color);
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: -2%;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 14px;
+`;

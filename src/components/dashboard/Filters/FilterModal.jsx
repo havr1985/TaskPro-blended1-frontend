@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Modal from "react-modal";
-import { CloseModalBtn, ModalTitle } from "../../../shared/SharedModal/SharedModal.styled";
+import { CloseModalBtn } from "../../../shared/SharedModal/SharedModal.styled";
 import "./FilterModal.css";
-import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll} from "./FilterModal.styled"
+import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll, FilterLine, ModalTitle} from "./FilterModal.styled"
 
 Modal.setAppElement("#root"); 
 
@@ -24,6 +24,7 @@ export const FilterModal = ({ modalIsOpen, onClose }) => {
     <CloseModalBtn onClick={onClose}>✕</CloseModalBtn>
      
       <ModalTitle>Filters</ModalTitle>
+      <FilterLine/>
       <LabelSchowAll>
       <StyledLabelTitle>Label color</StyledLabelTitle>
       <ShowAllBtn>Show all</ShowAllBtn>
