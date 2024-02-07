@@ -1,145 +1,153 @@
 import styled from "styled-components";
 
 export const Heading = styled.p`
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 18px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
 
-	margin-bottom: 8px;
+  margin-bottom: 8px;
 
-	color: var(--sidebar-icon-edit-stroke-color);
+  color: var(--sidebar-icon-edit-stroke-color);
 `;
 export const CreateBoardWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-	height: 70px;
+  height: 70px;
 
-	border-top: 1px solid var(--line-border-sidebar-color);
-	border-bottom: 1px solid var(--line-border-sidebar-color);
+  border-top: 1px solid var(--line-border-sidebar-color);
+  border-bottom: 1px solid var(--line-border-sidebar-color);
 
-	margin-bottom: 40px;
+  margin-bottom: 40px;
 
-	@media (max-width: 767px) {
-		width: 197px;
-	}
+  @media (max-width: 767px) {
+    width: 197px;
+  }
 
-	.createText {
-		font-weight: 500;
-		font-size: 14px;
-		line-height: 21px;
-		letter-spacing: -0.02em;
+  .createText {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.02em;
 
-		width: 84px;
+    width: 84px;
 
-		color: var(--secondary-text-sidebar-color);
-	}
+    color: var(--secondary-text-sidebar-color);
+  }
 `;
 
 export const ButtonCreateBoard = styled.button`
-	width: 40px;
-	height: 36px;
-	border: transparent;
+  width: 40px;
+  height: 36px;
+  border: transparent;
 
-	cursor: pointer;
+  cursor: pointer;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-	background: var(--sidebar-button-create-background);
-	border-radius: 6px;
+  background: var(--sidebar-button-create-background);
+  border-radius: 6px;
 
-	transition: 0.5s;
+  transition: 0.5s;
 
-	&:hover {
-		background: var(--plus-button-hover-color);
-	}
+  &:hover {
+    background: var(--plus-button-hover-color);
+  }
 
-	.iconCreateBoard {
-		stroke: var(--shared-plus-icon-dark-big);
-	}
+  .iconCreateBoard {
+    stroke: var(--shared-plus-icon-dark-big);
+  }
 `;
 
 export const BoardList = styled.ul`
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 21px;
-	letter-spacing: -0.02em;
-	color: var(--sidebar-icon-stroke-color);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: var(--sidebar-icon-stroke-color);
 
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 
-	position: relative;
+  position: relative;
 `;
 export const BoardItem = styled.li`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-	cursor: pointer;
+  cursor: pointer;
 
-	height: 61px;
+  height: 61px;
 
-	&.active {
-		color: var(--secondary-text-sidebar-color);
-		background-color: var(--secondary-background-color);
-	}
+  &.active {
+    color: var(--secondary-text-sidebar-color);
+    background-color: var(--secondary-background-color);
+  }
 
-	&.active .iconActive {
-		stroke: var(--secondary-text-sidebar-color);
-	}
+  &.active .iconActive {
+    stroke: var(--secondary-text-sidebar-color);
+  }
 
-	&.active::after {
-		content: "";
-		position: absolute;
+  &.active::after {
+    content: "";
+    position: absolute;
 
-		right: -24px;
+    right: -24px;
 
-		height: 61px;
-		width: 4px;
-		border-radius: 4px 0 0 4px;
+    height: 61px;
+    width: 4px;
+    border-radius: 4px 0 0 4px;
 
-		background-color: var(--logout-button-color);
-	}
-	@media (max-width: 767px) {
-		&.active::after {
-			right: -14px;
-		}
-	}
-	.iconBoard {
-		stroke: var(--sidebar-icon-edit-stroke-color);
+    background-color: var(--logout-button-color);
+  }
+  @media (max-width: 767px) {
+    &.active::after {
+      right: -14px;
+    }
+  }
+  .iconBoard {
+    stroke: var(--sidebar-icon-edit-stroke-color);
 
-		margin-right: 8px;
-	}
+    margin-right: 8px;
+  }
 `;
 
 export const BoardContainer = styled.div`
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
+`;
+
+export const BoardTitle = styled.div`
+  color: var(--sidebar-icon-edit-stroke-color);
+`;
+
+export const BoardIcon = styled.svg`
+  fill: transparent;
 `;
 export const ButtonContainer = styled.div`
-	display: flex;
+  display: flex;
 `;
 export const ButtonEdit = styled.button`
-	height: 20px;
-	border: transparent;
-	background: none;
+  height: 20px;
+  border: transparent;
+  background: none;
 
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-	cursor: pointer;
+  cursor: pointer;
 
-	padding: 0;
+  padding: 0;
 
-	.iconBoard.iconEdit:hover {
-		stroke: var(--primary-button-color);
-		transform: scale(1.1);
-		animation: pulse 1s infinite alternate;
-	}
+  .iconBoard.iconEdit:hover {
+    stroke: var(--primary-button-color-sidebar);
+    transform: scale(1.1);
+    animation: pulse 1s infinite alternate;
+  }
 `;

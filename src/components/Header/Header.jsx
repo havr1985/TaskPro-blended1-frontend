@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 
 export const Header = ({ openSideBar }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const { email, username, avatarURL } = useSelector(selectAuthUserData);
+  const { username, avatarURL } = useSelector(selectAuthUserData);
   const modalStateSwapper = () => {
     setIsEditModalOpen((prev) => !prev);
   };

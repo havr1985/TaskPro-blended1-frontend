@@ -3,8 +3,10 @@ import { useModal } from "../../../hooks/useModal";
 import { AddBoardModal } from "../../BoardModal/newBoardModal/newBoardModal";
 import {
   BoardContainer,
+  BoardIcon,
   BoardItem,
   BoardList,
+  BoardTitle,
   ButtonContainer,
   ButtonCreateBoard,
   ButtonEdit,
@@ -47,39 +49,39 @@ export const MyBoards = ({
           >
             <NavLink to={`/home/${board.title}`}>
               <BoardContainer>
-                <svg
+                <BoardIcon
                   className="iconBoard iconActive"
                   width="20px"
                   height="20px"
                 >
                   <use href={`${icon}${board.icon}`}></use>
-                </svg>
-                <p>{board.title}</p>
+                </BoardIcon>
+                <BoardTitle>{board.title}</BoardTitle>
               </BoardContainer>
             </NavLink>
 
             {selectedItem.id === board.id && (
               <ButtonContainer>
                 <ButtonEdit type="button">
-                  <svg
+                  <BoardIcon
                     className="iconBoard iconEdit"
                     width="16px"
                     height="16px"
                   >
                     <use href={`${icon}#icon-pencil`}></use>
-                  </svg>
+                  </BoardIcon>
                 </ButtonEdit>
                 <ButtonEdit
                   onClick={() => deleteBoard(board._id)}
                   type="button"
                 >
-                  <svg
+                  <BoardIcon
                     className="iconBoard iconEdit"
                     width="16px"
                     height="16px"
                   >
                     <use href={`${icon}#icon-trash`}></use>
-                  </svg>
+                  </BoardIcon>
                 </ButtonEdit>
               </ButtonContainer>
             )}

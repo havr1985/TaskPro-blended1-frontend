@@ -20,7 +20,7 @@ const ScreensPage = lazy(() => import("./pages/ScreensPage"));
 function App() {
   const isRefreshing = useSelector(selectAuthIsLoading);
   const currentDashBoard = useSelector(selectCurrentDashboard);
-
+  console.log(isRefreshing);
   const dispatch = useDispatch();
 
   useEffect(() => {
