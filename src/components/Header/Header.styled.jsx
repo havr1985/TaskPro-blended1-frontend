@@ -1,12 +1,11 @@
 import styled from "styled-components";
-// import { ThemeComponent } from "../ThemeMode/ThemeMenu";
 
 export const MainHeader = styled.header`
   height: 60px;
   background-color: var(--header-background-color);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 0 20px;
 
   @media (min-width: 768px) {
@@ -28,9 +27,7 @@ export const ThemeAndUserContainer = styled.div`
   display: flex;
   column-gap: 14px;
   align-items: center;
-  @media (min-width: 1440px) {
-    margin-left: auto;
-  }
+  margin-left: auto;
 `;
 
 export const UserContainer = styled.div`
