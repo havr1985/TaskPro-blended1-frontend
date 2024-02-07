@@ -5,10 +5,11 @@ import { lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currentThunk } from "./redux/Auth/authOperation";
 import { RestictedRoute } from "./components/RestictedRoute";
-import { PrivateRoute } from "./components/PrivateRoute";
+// import { PrivateRoute } from "./components/PrivateRoute";
 import { selectAuthIsLoading } from "./redux/Auth/authSelectors";
 
 import { allDashboardsThunk } from "./redux/Dashboard/dashboardOperation";
+import { selectCurrentDashboard } from "./redux/Dashboard/dashboardsSelectors";
 
 const WelcomePage = lazy(() => import("./pages/WelcomePage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -17,6 +18,7 @@ const ScreensPage = lazy(() => import("./pages/ScreensPage"));
 
 function App() {
   const isRefreshing = useSelector(selectAuthIsLoading);
+  const currentDashBoard = useSelector(selectCurrentDashboard);
 
   const dispatch = useDispatch();
 
@@ -51,14 +53,32 @@ function App() {
 
             <Route
               path="/home"
-              element={<PrivateRoute redirectTo="/" component={<HomePage />} />}
-            />
-            <Route
-              path="home/:boardName"
               element={
-                <PrivateRoute redirectTo="/" component={<ScreensPage />} />
+                // <PrivateRoute redirectTo="/" component={
+                <HomePage />
+                // } />
               }
-            />
+            >
+              {currentDashBoard ? (
+                <Route
+                  path=":boardName"
+                  element={
+                    // <PrivateRoute redirectTo="/" component={
+                    <ScreensPage />
+                    // } />
+                  }
+                />
+              ) : (
+                <Route
+                  index
+                  element={
+                    // <PrivateRoute redirectTo="/" component={
+                    <ScreensPage />
+                    // } />
+                  }
+                />
+              )}
+            </Route>
             <Route
               path="auth/:id"
               element={

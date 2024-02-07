@@ -7,7 +7,7 @@ import {
   HomePageWrapper,
   Overlay,
 } from "./HomePage.styled";
-import ScreensPage from "./ScreensPage";
+import { Outlet } from "react-router-dom";
 
 const HomePage = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -17,7 +17,7 @@ const HomePage = () => {
         <Sidebar isOpen={isModalOpen} />
         <HeaderAndScreensWrapper>
           <Header openSideBar={openModal} />
-          <ScreensPage />
+          <Outlet />
         </HeaderAndScreensWrapper>
         <Overlay
           onClick={closeModal}
