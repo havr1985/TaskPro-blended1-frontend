@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const SidebarContainer = styled.div`
 	width: 260px;
-	
-	
+
 	top: 0;
 	left: 0;
 
@@ -16,7 +15,7 @@ export const SidebarContainer = styled.div`
 
 	padding: 24px;
 
-	background-color: #121212;
+	background-color: var(--primary-background-sidebar-color);
 
 	@media (max-width: 1439.9px) {
 		position: absolute;

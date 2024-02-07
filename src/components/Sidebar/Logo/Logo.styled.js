@@ -14,7 +14,7 @@ export const LogoContainer = styled.div`
 		width: 32px;
 		height: 32px;
 
-		background-color: #1f1f1f;
+		background-color: var(--sidebar-lightning-background-color);
 		border-radius: 8px;
 
 		display: flex;
@@ -25,7 +25,7 @@ export const LogoContainer = styled.div`
 	}
 
 	.iconLightning {
-		fill: #ffffff;
+		fill: var(--sidebar-icon-lightning);
 	}
 
 	.logoText {
@@ -33,6 +33,6 @@ export const LogoContainer = styled.div`
 		font-size: 16px;
 		line-height: 24px;
 
-		color: #ffffff;
+		color: var(--secondary-text-sidebar-color);
 	}
 `;
