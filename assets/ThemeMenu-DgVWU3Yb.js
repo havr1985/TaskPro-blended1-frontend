@@ -1,4 +1,4 @@
-import{u as o,b as g,h as k,r as s,a as v,j as t,i as l}from"./index-bQnKTMix.js";import{i as T}from"./icons-iplVKqot.js";const b=o.div`
+import{u as o,b as d,h as g,r as l,a as k,s as v,j as t,i as c}from"./index-8v7B6dAv.js";import{i as T}from"./icons-iplVKqot.js";const b=o.div`
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -32,7 +32,7 @@ import{u as o,b as g,h as k,r as s,a as v,j as t,i as l}from"./index-bQnKTMix.js
   background-color: var(--header-background-color);
   box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
   z-index: 1;
-`,d=o.li`
+`,a=o.li`
   padding: 5px 10px;
   cursor: pointer;
   color: var(--theme-switcher-dropdown-text-color);
@@ -57,4 +57,4 @@ import{u as o,b as g,h as k,r as s,a as v,j as t,i as l}from"./index-bQnKTMix.js
   margin-left: 4px;
   fill: transparent;
   stroke: var(--primary-icon-stroke-color);
-`,y=()=>{const e=g(k),[r,i]=s.useState(e||"dark");return s.useLayoutEffect(()=>{document.documentElement.setAttribute("data-theme",r)},[r]),{theme:r,setTheme:i}},O=()=>{const e=v(),{theme:r,setTheme:i}=y(),[c,a]=s.useState("dark"),[h,p]=s.useState(!1),n=()=>{p(!h)},m=()=>{i("light"),a("light"),e(l("light")),n()},x=()=>{i("dark"),a("dark"),e(l("dark")),n()},u=()=>{i("violet"),a("violet"),e(l("violet")),n()};return t.jsxs(b,{children:[t.jsxs(C,{onClick:n,children:["Theme",t.jsx(j,{children:t.jsx("use",{href:T+"#icon-chevron-down"})})]}),t.jsx(f,{theme:r,children:t.jsxs(w,{open:h,children:[t.jsx(d,{onClick:()=>m(),selected:c==="light",children:"Light"}),t.jsx(d,{onClick:()=>x(),selected:c==="dark",children:"Dark"}),t.jsx(d,{onClick:()=>u(),selected:c==="violet",children:"Violet"})]})})]})};export{O as T};
+`,y=()=>{const e=d(g),[r,s]=l.useState(e||"dark");return l.useLayoutEffect(()=>{document.documentElement.setAttribute("data-theme",r)},[r]),{theme:r,setTheme:s}},O=()=>{const e=k(),{theme:r,setTheme:s}=y(),n=d(v),[h,p]=l.useState(!1),i=()=>{p(!h)},m=()=>{s("light"),e(c({theme:"light"})),i()},x=()=>{s("dark"),e(c({theme:"dark"})),i()},u=()=>{s("violet"),e(c({theme:"violet"})),i()};return t.jsxs(b,{children:[t.jsxs(C,{onClick:i,children:["Theme",t.jsx(j,{children:t.jsx("use",{href:T+"#icon-chevron-down"})})]}),t.jsx(f,{theme:r,children:t.jsxs(w,{open:h,children:[t.jsx(a,{onClick:()=>m(),selected:n.theme==="light",children:"Light"}),t.jsx(a,{onClick:()=>x(),selected:n.theme==="dark",children:"Dark"}),t.jsx(a,{onClick:()=>u(),selected:n.theme==="violet",children:"Violet"})]})})]})};export{O as T};

@@ -1,4 +1,4 @@
-import{u as r,j as e,m as p}from"./index-bQnKTMix.js";import{i as t}from"./icons-iplVKqot.js";import{S as x,a as h,M as g,F as m,E as u,d as b,P as f,u as j,O as w}from"./HomePage.styled-u_9p_py0.js";import{b as v,c as y,a as k,F as C}from"./index.esm-qTO28jC0.js";const M=r.button`
+import{u as r,j as e,n as p}from"./index-8v7B6dAv.js";import{i as t}from"./icons-iplVKqot.js";import{S as x,a as h,M as g,F as m,E as u,d as b,P as f,u as j,O as w}from"./HomePage.styled-LCxhFe2F.js";import{b as v,c as y,a as k,F as C}from"./index.esm-9974_F4E.js";const M=r.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -442,4 +442,4 @@ import{u as r,j as e,m as p}from"./index-bQnKTMix.js";import{i as t}from"./icons
   }
 `,se=r.span`
   color: var(--welcome-message-text-accent-color);
-`,xe=()=>{const{boardName:o}=p();return e.jsxs(ie,{children:[o!==void 0&&e.jsx(ne,{children:e.jsxs(ae,{children:["Before starting your project, it is essential"," ",e.jsx(se,{children:"to create a board"})," to visualize and track all the necessary tasks and milestones. This board serves as a powerful tool to organize the workflow and ensure effective collaboration among team members."]})}),o===void 0&&e.jsxs(e.Fragment,{children:[e.jsx(D,{boardName:o}),e.jsx(te,{boardName:o})]})]})};export{xe as default};
+`,xe=()=>{const{boardName:o}=p();return e.jsxs(ie,{children:[o===void 0&&e.jsx(ne,{children:e.jsxs(ae,{children:["Before starting your project, it is essential"," ",e.jsx(se,{children:"to create a board"})," to visualize and track all the necessary tasks and milestones. This board serves as a powerful tool to organize the workflow and ensure effective collaboration among team members."]})}),o!==void 0&&e.jsxs(e.Fragment,{children:[e.jsx(D,{boardName:o}),e.jsx(te,{boardName:o})]})]})};export{xe as default};
