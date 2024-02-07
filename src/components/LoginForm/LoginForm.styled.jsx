@@ -6,9 +6,9 @@ export const LoginWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 100vw
-  background: var(--welcomeBgColor)
-;`
+  width: 100vw;
+  background: var(--welcomeBgColor);`
+
 export const LoginContainer = styled.div`
 display: flex;
 min-width: 320px;
@@ -29,7 +29,7 @@ width: 424px;
 padding: 40px;
 }     
 `
-export const FormLogin = styled.div`
+export const FormLogin = styled.form`
   input {
     width: 287px;
     height: 49px;
@@ -99,7 +99,7 @@ export const LoginBtn = styled.button`
 `;
 
 export const ErrorNotifickation = styled.div`
-var(--secondary-login-button-color)
+color: var(--secondary-login-button-color);
 `
 
 export const ErrorText = styled.div`
