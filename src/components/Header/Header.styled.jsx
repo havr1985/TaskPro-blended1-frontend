@@ -5,7 +5,6 @@ export const MainHeader = styled.header`
   background-color: var(--header-background-color);
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   padding: 0 20px;
 
   @media (min-width: 768px) {
