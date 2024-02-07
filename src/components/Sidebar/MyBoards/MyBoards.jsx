@@ -15,6 +15,8 @@ import {
 } from "./MyBoards.styled";
 import { deleteDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { EditBoardModal } from "../../BoardModal/EditBoardModal/editBoardModal";
 
 export const MyBoards = ({
   icon,
@@ -24,6 +26,12 @@ export const MyBoards = ({
   setUserBoards,
 }) => {
   const { isModalOpen, openModal, closeModal } = useModal();
+  const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false);
+
+  const modalStateSwapper = () => {
+    setIsEditBoardModalOpen((prev) => !prev);
+  };
+
   const dispatch = useDispatch();
   const deleteBoard = (id) => {
     dispatch(deleteDashboardThunk(id));
@@ -62,7 +70,7 @@ export const MyBoards = ({
 
             {selectedItem.id === board.id && (
               <ButtonContainer>
-                <ButtonEdit type="button">
+                <ButtonEdit onClick={() => modalStateSwapper()} type="button">
                   <BoardIcon
                     className="iconBoard iconEdit"
                     width="16px"
@@ -92,6 +100,10 @@ export const MyBoards = ({
         setUserBoards={setUserBoards}
         isModalOpen={isModalOpen}
         modalStateSwapper={closeModal}
+      />
+      <EditBoardModal
+        isModalOpen={isEditBoardModalOpen}
+        modalStateSwapper={modalStateSwapper}
       />
     </div>
   );
