@@ -8,7 +8,7 @@ export const HelpWrapper = styled.div`
 	margin-bottom: 24px;
 
 	border-radius: 8px;
-	background-color: #1f1f1f;
+	background-color: var(--secondary-background-color);
 
 	@media (max-width: 767px) {
 		width: 197px;
@@ -28,7 +28,7 @@ export const HelpText = styled.p`
 
 	margin-bottom: 18px;
 
-	color: #ffffff;
+	color: var(--secondary-text-sidebar-color);
 
 	@media (max-width: 767px) {
 		font-size: 12px;
@@ -36,7 +36,7 @@ export const HelpText = styled.p`
 	}
 
 	.appName {
-		color: #bedbb0;
+		color: var(--welcome-message-text-accent-color);
 	}
 `;
 
@@ -57,10 +57,12 @@ export const ButtonNeedHelp = styled.button`
 	font-size: 12px;
 	line-height: 18px;
 	letter-spacing: -0.02em;
-	color: #ffffff;
+	color: var(--secondary-text-sidebar-color);
 
 	.iconHelp {
-		stroke: #ffffff;
+		stroke: var(--secondary-text-sidebar-color);
+		fill: var(--sidebar-icon-fill-color);
+
 		margin-right: 8px;
 	}
 `;

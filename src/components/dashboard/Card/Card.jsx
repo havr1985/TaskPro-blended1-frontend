@@ -34,7 +34,7 @@ const Card = () => {
           <IconsWrap>
             <li>
               <IconButton>
-                <Icon>
+                <Icon className="bell">
                   <use href={icons + "#icon-bell"} />
                 </Icon>
               </IconButton>

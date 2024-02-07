@@ -1,5 +1,5 @@
 import {  useParams } from "react-router-dom";
-import LoginForm from '../components/LoginForm/LoginForm'
+import { LoginForm } from '../components/LoginForm/LoginForm'
 import { RegisterForm } from "../components/RegisterForm/RegisterForm";
 
 
@@ -8,8 +8,8 @@ const AuthPage = () => {
     return (
     <div>
       <div>
-            {id === 'login' && <LoginForm />}
-            {id === 'register' && <RegisterForm />}    
+          {id === 'login' && <LoginForm />}
+          {id === 'register' && <RegisterForm />}
       </div>
     </div>
   );
