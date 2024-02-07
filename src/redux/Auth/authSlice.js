@@ -65,8 +65,6 @@ const authSlice = createSlice({
           loginThunk.pending,
           currentThunk.pending,
           logoutThunk.pending,
-          changeAvatarThunk.pending,
-          changeThemeThunk.pending
         ),
         (state) => {
           state.isLoading = true;
