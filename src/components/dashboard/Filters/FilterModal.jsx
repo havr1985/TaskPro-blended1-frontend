@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from "react-modal";
 import { CloseModalBtn, ModalTitle } from "../../../shared/SharedModal/SharedModal.styled";
 import "./FilterModal.css";
-import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput} from "./FilterModal.styled"
+import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll} from "./FilterModal.styled"
 
 Modal.setAppElement("#root"); 
 
@@ -22,8 +22,12 @@ export const FilterModal = ({ modalIsOpen, onClose }) => {
           closeTimeoutMS={750}
       >
     <CloseModalBtn onClick={onClose}>✕</CloseModalBtn>
-     <ModalTitle>Filters</ModalTitle>
-          <h2>Label color</h2>
+     
+      <ModalTitle>Filters</ModalTitle>
+      <LabelSchowAll>
+      <StyledLabelTitle>Label color</StyledLabelTitle>
+      <ShowAllBtn>Show all</ShowAllBtn>
+      </LabelSchowAll>
             <StyledContainerBtn>
                <StyledInputContainer>   
                   <StyledLabel>
@@ -37,7 +41,7 @@ export const FilterModal = ({ modalIsOpen, onClose }) => {
                     />
                       <StyledColorBtn className="gray"></StyledColorBtn>
                   </StyledLabel>  
-                  <StyledColorText> Without priority </StyledColorText>  
+                  <StyledColorText className="gray"> Without priority </StyledColorText>  
                 </StyledInputContainer>  
                <StyledInputContainer>
                 <StyledLabel>

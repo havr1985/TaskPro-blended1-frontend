@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-/* export const StyledLabelColor = styled.h2`
-  margin: 0;
-  margin-top: 14px;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.5);
-  font-family: "Poppins", sans-serif;
-`; */
-
 export const StyledColorBtn = styled.span`
   content: "";
   display: block;
@@ -19,19 +9,19 @@ export const StyledColorBtn = styled.span`
   background-color: transparent;
 
   &.blue {
-    background-color: #8fa1d0; /* Синій колір */
+    background-color: var(--radio-label-background-color); 
   }
 
   &.pink {
-    background-color: #e09cb5; /* Рожевий колір */
+    background-color: var(--radio-label-pink-color); 
   }
 
   &.green {
-    background-color: #bedbb0; /* Зелений колір */
+    background-color: var(--radio-label-green-color); 
   }
 
   &.gray {
-    background-color: #ffffff4d; /* Сірий колір */
+    background-color: var(--radio-label-gray-color); 
   }
 `;
 
@@ -42,21 +32,25 @@ export const StyledColorText = styled.p`
   height: 12px; 
  
 
- /*  &.blue {
-    background-color: var(); /* Синій колір */
+  &:checked.blue {
+    color: var(--modal-filters-text);
+    font-weight:500;
   }
 
-  &.pink {
-    background-color: #e09cb5; /* Рожевий колір */
+  &:checked.pink {
+      color: var(--modal-filters-text);
+    font-weight:500;
   }
 
-  &.green {
-    background-color: #bedbb0; /* Зелений колір */
+  &:checked.green {
+     color: var(--modal-filters-text);
+    font-weight:500;
   }
 
-  &.gray {
-    background-color: #ffffff4d; /* Сірий колір */
-  } */
+  &:checked.gray {
+       color: var(--modal-filters-text);
+    font-weight:500;
+  }
 `;
 
 export const StyledContainerBtn = styled.div`
@@ -81,9 +75,9 @@ export const StyledLabel = styled.label`
   height: 18px;
   margin: 0;
 
-  input[type="radio"]:checked + ${StyledColorBtn} {
+/*   input[type="radio"]:checked + ${StyledColorBtn} {
     scale: 0.5;
-  }
+  } */
 `;
 
 export const StyledRadioInput = styled.input`
@@ -99,23 +93,32 @@ export const StyledRadioInput = styled.input`
   cursor: pointer;
 
   &:checked.blue {
-    border: 1px solid #8fa1d0; /* Синій колір рамки при виборі */
+    border: 1px solid var(--radio-label-background-color); 
   }
 
   &:checked.pink {
-    border: 1px solid #e09cb5; /* Рожевий колір рамки при виборі */
+    border: 1px solid var(--radio-label-pink-color); 
   }
 
   &:checked.green {
-    border: 1px solid #bedbb0; /* Зелений колір рамки при виборі */
+    border: 1px solid var(--radio-label-green-color); 
   }
 
   &:checked.gray {
-    border: 1px solid #ffffff4d; /* Сірий колір рамки при виборі */
-  }
+    border: 1px solid var(--radio-label-gray-color); 
 `;
 
-export const StyledLabelTitle = styled.h2`
+export const StyledLabelTitle = styled.p`
 font-weight: 500;
-color: var()
+color: var(--modal-board-text)
+`
+export const ShowAllBtn = styled.button`
+background-color: transparent;
+color: var(--screens-page-tutorial-text-color);
+font-size:12px;
+text-decoration: underline;
+border: none;
+`
+export const LabelSchowAll = styled.div`
+display: flex; justify-content: space-between;
 `
