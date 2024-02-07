@@ -5,11 +5,12 @@ import { lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currentThunk } from "./redux/Auth/authOperation";
 import { RestictedRoute } from "./components/RestictedRoute";
-// import { PrivateRoute } from "./components/PrivateRoute";
+import { PrivateRoute } from "./components/PrivateRoute";
 import { selectAuthIsLoading } from "./redux/Auth/authSelectors";
 
 import { allDashboardsThunk } from "./redux/Dashboard/dashboardOperation";
 import { selectCurrentDashboard } from "./redux/Dashboard/dashboardsSelectors";
+import ErrorPage from "./pages/ErrorPage";
 
 const WelcomePage = lazy(() => import("./pages/WelcomePage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -53,28 +54,20 @@ function App() {
 
             <Route
               path="/home"
-              element={
-                // <PrivateRoute redirectTo="/" component={
-                <HomePage />
-                // } />
-              }
+              element={<PrivateRoute redirectTo="/" component={<HomePage />} />}
             >
               {currentDashBoard ? (
                 <Route
                   path=":boardName"
                   element={
-                    // <PrivateRoute redirectTo="/" component={
-                    <ScreensPage />
-                    // } />
+                    <PrivateRoute redirectTo="/" component={<ScreensPage />} />
                   }
                 />
               ) : (
                 <Route
                   index
                   element={
-                    // <PrivateRoute redirectTo="/" component={
-                    <ScreensPage />
-                    // } />
+                    <PrivateRoute redirectTo="/" component={<ScreensPage />} />
                   }
                 />
               )}
@@ -86,6 +79,7 @@ function App() {
               }
             />
           </Route>
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       )}
     </>

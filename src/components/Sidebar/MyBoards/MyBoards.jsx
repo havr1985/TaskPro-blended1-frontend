@@ -12,6 +12,7 @@ import {
   Heading,
 } from "./MyBoards.styled";
 import { deleteDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
+import { NavLink } from "react-router-dom";
 
 export const MyBoards = ({
   icon,
@@ -44,12 +45,18 @@ export const MyBoards = ({
             onClick={() => choice(board)}
             className={selectedItem._id === board._id ? "active" : ""}
           >
-            <BoardContainer>
-              <svg className="iconBoard iconActive" width="20px" height="20px">
-                <use href={`${icon}${board.icon}`}></use>
-              </svg>
-              <p>{board.title}</p>
-            </BoardContainer>
+            <NavLink to={`/home/${board.title}`}>
+              <BoardContainer>
+                <svg
+                  className="iconBoard iconActive"
+                  width="20px"
+                  height="20px"
+                >
+                  <use href={`${icon}${board.icon}`}></use>
+                </svg>
+                <p>{board.title}</p>
+              </BoardContainer>
+            </NavLink>
 
             {selectedItem.id === board.id && (
               <ButtonContainer>
