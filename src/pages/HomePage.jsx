@@ -8,8 +8,20 @@ import {
   Overlay,
 } from "./HomePage.styled";
 import { Outlet } from "react-router-dom";
+import { selectAllDashboards } from "../redux/Dashboard/dashboardsSelectors";
+import { useSelector } from "react-redux";
+
 
 const HomePage = () => {
+  
+  
+  const dashboard = useSelector(selectAllDashboards);
+  console.log(dashboard);
+
+  
+  
+  
+
   const { isModalOpen, openModal, closeModal } = useModal();
   return (
     <Conteiner>
@@ -18,6 +30,7 @@ const HomePage = () => {
         <HeaderAndScreensWrapper>
           <Header openSideBar={openModal} />
           <Outlet />
+          
         </HeaderAndScreensWrapper>
         <Overlay
           onClick={closeModal}

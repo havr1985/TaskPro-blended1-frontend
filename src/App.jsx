@@ -8,9 +8,9 @@ import { RestictedRoute } from "./components/RestictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { selectAuthIsLoading } from "./redux/Auth/authSelectors";
 
+import ErrorPage from "./pages/ErrorPage";
 import { allDashboardsThunk } from "./redux/Dashboard/dashboardOperation";
 import { selectCurrentDashboard } from "./redux/Dashboard/dashboardsSelectors";
-import ErrorPage from "./pages/ErrorPage";
 
 const WelcomePage = lazy(() => import("./pages/WelcomePage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -19,22 +19,21 @@ const ScreensPage = lazy(() => import("./pages/ScreensPage"));
 
 function App() {
   const isRefreshing = useSelector(selectAuthIsLoading);
+
+  
   const currentDashBoard = useSelector(selectCurrentDashboard);
-  console.log(isRefreshing);
+
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getCurrentUser = async () => {
-      try {
-        await dispatch(currentThunk());
-        await dispatch(allDashboardsThunk());
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    dispatch(currentThunk());
+    dispatch(allDashboardsThunk())
+  }, [dispatch])
+  
+  
 
-    getCurrentUser();
-  }, [dispatch]);
+    
   return (
     <>
       {isRefreshing ? (
@@ -56,21 +55,21 @@ function App() {
               path="/home"
               element={<PrivateRoute redirectTo="/" component={<HomePage />} />}
             >
-              {currentDashBoard ? (
+              
                 <Route
                   path=":boardName"
                   element={
                     <PrivateRoute redirectTo="/" component={<ScreensPage />} />
                   }
                 />
-              ) : (
+              
                 <Route
                   index
                   element={
                     <PrivateRoute redirectTo="/" component={<ScreensPage />} />
                   }
                 />
-              )}
+              
             </Route>
             <Route
               path="auth/:id"
