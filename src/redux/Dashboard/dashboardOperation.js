@@ -1,11 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  requestAddColumn,
   requestAddDashboard,
   requestAllDashboards,
   requestDashboardById,
+  requestDeleteColumn,
   requestDeleteDashboard,
   requestEditDashboard,
+  requestUpdateColumn,
 } from "../../services/api/dashboard";
+
 
 export const allDashboardsThunk = createAsyncThunk(
   "dashboard/allDashboards",
@@ -66,3 +70,42 @@ export const deleteDashboardThunk = createAsyncThunk(
     }
   }
 );
+
+export const addColumnThunk = createAsyncThunk(
+  "dashboard/addColumn",
+  async ({ dashboardId, title, owner }, thunkAPI) => {
+    try {
+      const data = await requestAddColumn(dashboardId, title, owner);
+      return data;
+    }
+    catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteColumnThunk = createAsyncThunk(
+  "dashboard/deleteColumn",
+  async (columnId, thunkAPI) => {
+    try {
+      const data = await requestDeleteColumn(columnId);
+      return data;
+    }
+    catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+);
+
+export const updateColumnThunk = createAsyncThunk(
+  "dashboard/updateColumn",
+  async (values, thunkAPI) => {
+    try {
+      const data = await requestUpdateColumn(values);
+      return data;
+    }
+    catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+)
