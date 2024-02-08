@@ -1,4 +1,6 @@
 import icons from "../../../shared/images/icons.svg";
+import { useModal } from "../../../hooks/useModal";
+import FormEditCard from "../../FormAddCard/FormEditCard";
 import {
   CardCommandSection,
   CardDeadlineValue,
@@ -15,55 +17,66 @@ import {
 } from "./Card.styled";
 
 const Card = () => {
+  const {
+    isModalOpen: isEditCardModalOpen,
+    openModal: openEditCardModal,
+    closeModal: closeEditCardModal,
+  } = useModal();
   return (
-    <CardList>
-      <CardWrap>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescriptionWrap>
-          <CardDescription>Description</CardDescription>
-        </CardDescriptionWrap>
-        <CardCommandSection>
-          <div>
-            <CardParams>Priority</CardParams>
-            <CardPriorityValue>Low</CardPriorityValue>
-          </div>
-          <div>
-            <CardParams>Deadline</CardParams>
-            <CardDeadlineValue>12/05/2023</CardDeadlineValue>
-          </div>
-          <IconsWrap>
-            <li>
-              <IconButton>
-                <Icon className="bell">
-                  <use href={icons + "#icon-bell"} />
-                </Icon>
-              </IconButton>
-            </li>
-            <li>
-              <IconButton>
-                <Icon>
-                  <use href={icons + "#icon-arrow-circle-broken-right"} />
-                </Icon>
-              </IconButton>
-            </li>
-            <li>
-              <IconButton>
-                <Icon>
-                  <use href={icons + "#icon-pencil"} />
-                </Icon>
-              </IconButton>
-            </li>
-            <li>
-              <IconButton>
-                <Icon>
-                  <use href={icons + "#icon-trash"} />
-                </Icon>
-              </IconButton>
-            </li>
-          </IconsWrap>
-        </CardCommandSection>
-      </CardWrap>
-    </CardList>
+    <>
+      <CardList>
+        <CardWrap>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescriptionWrap>
+            <CardDescription>Description</CardDescription>
+          </CardDescriptionWrap>
+          <CardCommandSection>
+            <div>
+              <CardParams>Priority</CardParams>
+              <CardPriorityValue>Low</CardPriorityValue>
+            </div>
+            <div>
+              <CardParams>Deadline</CardParams>
+              <CardDeadlineValue>12/05/2023</CardDeadlineValue>
+            </div>
+            <IconsWrap>
+              <li>
+                <IconButton>
+                  <Icon className="bell">
+                    <use href={icons + "#icon-bell"} />
+                  </Icon>
+                </IconButton>
+              </li>
+              <li>
+                <IconButton>
+                  <Icon>
+                    <use href={icons + "#icon-arrow-circle-broken-right"} />
+                  </Icon>
+                </IconButton>
+              </li>
+              <li>
+                <IconButton onClick={openEditCardModal}>
+                  <Icon>
+                    <use href={icons + "#icon-pencil"} />
+                  </Icon>
+                </IconButton>
+              </li>
+              <li>
+                <IconButton>
+                  <Icon>
+                    <use href={icons + "#icon-trash"} />
+                  </Icon>
+                </IconButton>
+              </li>
+            </IconsWrap>
+          </CardCommandSection>
+        </CardWrap>
+      </CardList>
+      <FormEditCard
+        modalStateSwapper={closeEditCardModal}
+        isModalOpen={isEditCardModalOpen}
+      />
+    </>
   );
 };
 
