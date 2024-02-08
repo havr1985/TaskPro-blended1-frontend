@@ -24,3 +24,18 @@ export const requestDeleteDashboard = async (dashboardId) => {
     const { data } = await instance.delete(`dashboard/${dashboardId}`);
     return data;
 };
+
+export const requestAddColumn = async (dashboardId, title, owner) => {
+    const { data } = await instance.post(`column/${dashboardId}`, {title, owner});
+    return data;
+};
+
+export const requestDeleteColumn = async (columnId) => {
+    const { data } = await instance.delete(`column/${columnId}`);
+    return data;
+};
+
+export const requestUpdateColumn = async ({ columnId, title }) => {
+    const { data } = await instance.put(`column/${columnId}`, title);
+    return data;
+}
