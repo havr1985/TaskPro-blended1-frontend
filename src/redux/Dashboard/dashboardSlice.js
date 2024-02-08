@@ -60,7 +60,7 @@ const dashboardSlice = createSlice({
       .addCase(addColumnThunk.fulfilled, (state, action) => {
         state.isLoading = false
         state.error = null
-        state.currentDashboard.column = [...state.currentDashboard.column, action.payload]
+        state.currentDashboard.column.push(action.payload)
       })
       .addCase(deleteColumnThunk.fulfilled, (state, action) => {
         state.isLoading = false;
