@@ -101,7 +101,9 @@ export const LoginForm = () => {
           </div>
           <LoginBtn type="submit">Log in Now</LoginBtn>
         </FormLogin>
+
       </LoginContainer>
+
     </LoginWrapper>
   );
 };
