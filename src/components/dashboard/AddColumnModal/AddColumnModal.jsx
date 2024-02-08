@@ -25,16 +25,15 @@ const validationSchema = Yup.object().shape({
 
 export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
   const currentDashboard = useSelector(selectCurrentDashboard);
-  const dashboardId = currentDashboard._id;
-  const owner = currentDashboard.owner
-  console.log(owner)
+  
+  
   const dispatch = useDispatch()
   const initialValues = {
     title: "",
   };
 
   const handleSubmit = ({ title }, action) => {
-    console.log(dashboardId)
+    const dashboardId = currentDashboard.result._id;
     dispatch(addColumnThunk({ dashboardId, title }));
     action.resetForm()
   }
