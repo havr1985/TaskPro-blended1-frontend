@@ -35,7 +35,7 @@ export const StyledColorBtn = styled.span`
   }
 
   &.gray {
-    background-color: var(--radio-label-gray-color); 
+    background-color: var(--radio-label-grey-color); 
   }
 `;
 
@@ -118,7 +118,7 @@ export const StyledRadioInput = styled.input`
   }
 
   &:checked.gray {
-    border: 1px solid var(--radio-label-gray-color); 
+    border: 1px solid var(--radio-label-grey-color); 
 `;
 
 export const StyledLabelTitle = styled.p`

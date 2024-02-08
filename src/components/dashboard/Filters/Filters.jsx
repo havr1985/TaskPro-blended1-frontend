@@ -12,9 +12,9 @@ const Filters = () => {
   const openFilterModal = () => {
     setIsFilterModalOpen(true);
   }
-  const closeFilterModal = () => {
+/*   const closeFilterModal = () => {
     setIsFilterModalOpen(false);
-  };
+  }; */
     return (
       <FilterButton onClick={() => openFilterModal()}>
         <FilterIcon>
@@ -23,7 +23,9 @@ const Filters = () => {
         Filters
         <FilterModal
           isOpen={isFilterModalOpen}
-          onClose= {closeFilterModal}
+          onClose={() => {
+            setIsFilterModalOpen(false)
+          }}
         />
         
       </FilterButton>
