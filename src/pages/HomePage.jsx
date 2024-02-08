@@ -8,29 +8,27 @@ import {
   Overlay,
 } from "./HomePage.styled";
 import { Outlet } from "react-router-dom";
-import { selectAllDashboards } from "../redux/Dashboard/dashboardsSelectors";
-import { useSelector } from "react-redux";
-
+import { Suspense, useEffect } from "react";
+import { allDashboardsThunk } from "../redux/Dashboard/dashboardOperation";
+import { useDispatch } from "react-redux";
 
 const HomePage = () => {
-  
-  
-  const dashboard = useSelector(selectAllDashboards);
-  console.log(dashboard);
-
-  
-  
-  
-
+  const dispatch = useDispatch();
   const { isModalOpen, openModal, closeModal } = useModal();
+
+  useEffect(() => {
+    dispatch(allDashboardsThunk());
+  }, [dispatch]);
+
   return (
     <Conteiner>
       <HomePageWrapper>
         <Sidebar isOpen={isModalOpen} />
         <HeaderAndScreensWrapper>
           <Header openSideBar={openModal} />
-          <Outlet />
-          
+          <Suspense fallback={<div>Loading</div>}>
+            <Outlet />
+          </Suspense>
         </HeaderAndScreensWrapper>
         <Overlay
           onClick={closeModal}

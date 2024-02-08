@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Heading = styled.p`
 	font-weight: 400;
@@ -67,13 +68,19 @@ export const BoardList = styled.ul`
 	font-size: 14px;
 	line-height: 21px;
 	letter-spacing: -0.02em;
-	color: var(--sidebar-icon-stroke-color);
+	color: var(--sidebar-icon-edit-stroke-color);
 
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
 
 	position: relative;
+
+	margin: 0 -24px;
+
+	@media (max-width: 767px) {
+		margin: 0 -14px;
+	}
 `;
 export const BoardItem = styled.li`
 	display: flex;
@@ -97,7 +104,7 @@ export const BoardItem = styled.li`
 		content: "";
 		position: absolute;
 
-		right: -24px;
+		right: 0px;
 
 		height: 61px;
 		width: 4px;
@@ -105,24 +112,45 @@ export const BoardItem = styled.li`
 
 		background-color: var(--logout-button-color);
 	}
-	@media (max-width: 767px) {
-		&.active::after {
-			right: -14px;
-		}
-	}
+
 	.iconBoard {
 		stroke: var(--sidebar-icon-edit-stroke-color);
 
 		margin-right: 8px;
 	}
 `;
-
+export const Link = styled(NavLink)`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
 export const BoardContainer = styled.div`
 	display: flex;
 	align-items: center;
+	margin-left: 24px;
+
+	@media (max-width: 767px) {
+		margin-left: 14px;
+	}
+`;
+
+export const BoardTitle = styled.div`
+	color: inherit;
+`;
+
+export const BoardIcon = styled.svg`
+	fill: transparent;
 `;
 export const ButtonContainer = styled.div`
 	display: flex;
+
+	margin-right: 24px;
+
+	@media (max-width: 767px) {
+		margin-right: 14px;
+	}
 `;
 export const ButtonEdit = styled.button`
 	height: 20px;
@@ -138,7 +166,7 @@ export const ButtonEdit = styled.button`
 	padding: 0;
 
 	.iconBoard.iconEdit:hover {
-		stroke: var(--primary-button-color);
+		stroke: var(--primary-button-color-sidebar);
 		transform: scale(1.1);
 		animation: pulse 1s infinite alternate;
 	}

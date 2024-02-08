@@ -19,9 +19,27 @@ import {
 import { useModal } from "../../../hooks/useModal";
 import { Overlay } from "../../../pages/HomePage.styled";
 import { AddColumnModal } from "../AddColumnModal/AddColumnModal";
+import { EditColumnModal } from "../EditColumnModal/EditColumnModal";
+import FormAddCard from "../../FormAddCard/FormAddCard";
 
 const MainDashboard = () => {
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const {
+    isModalOpen: isAddColumnModalOpen,
+    openModal: openAddColumnModal,
+    closeModal: closeAddColumnModal,
+  } = useModal();
+
+  const {
+    isModalOpen: isEditColumnModalOpen,
+    openModal: openEditColumnModal,
+    closeModal: closeEditColumnModal,
+  } = useModal();
+
+  const {
+    isModalOpen: isAddCardModalOpen,
+    openModal: openAddCardModal,
+    closeModal: closeAddCardModal,
+  } = useModal();
 
   return (
     <MainDashboardWrap>
@@ -31,7 +49,7 @@ const MainDashboard = () => {
             <DashboardColumnTitle>
               <Title>New column</Title>
               <IconsWrap>
-                <IconButton>
+                <IconButton onClick={openEditColumnModal}>
                   <Icon>
                     <use href={icons + "#icon-pencil"} />
                   </Icon>
@@ -46,7 +64,7 @@ const MainDashboard = () => {
           </div>
           <Card />
           <div>
-            <AddCardButton>
+            <AddCardButton onClick={openAddCardModal}>
               <AddCardIconWrap>
                 <AddCardIconPlus>
                   <use href={icons + "#icon-plus"} />
@@ -57,7 +75,7 @@ const MainDashboard = () => {
           </div>
         </MainDashboardColumn>
       </MainDashboardList>
-      <AddColumnButton  onClick={openModal}>
+      <AddColumnButton onClick={openAddColumnModal}>
         <IconWrap>
           <IconPlus>
             <use href={icons + "#icon-plus"} />
@@ -66,10 +84,26 @@ const MainDashboard = () => {
         Add column
       </AddColumnButton>
       <Overlay
-        onClick={closeModal}
-        className={isModalOpen === true && "active"}
+        onClick={closeAddColumnModal}
+        className={isAddColumnModalOpen === true && "active"}
       ></Overlay>
-      <AddColumnModal modalStateSwapper={closeModal} isModalOpen={isModalOpen} />
+      <AddColumnModal
+        modalStateSwapper={closeAddColumnModal}
+        isModalOpen={isAddColumnModalOpen}
+      />
+      <Overlay
+        onClick={closeEditColumnModal}
+        className={isEditColumnModalOpen === true && "active"}
+      ></Overlay>
+      <EditColumnModal
+        modalStateSwapper={closeEditColumnModal}
+        isModalOpen={isEditColumnModalOpen}
+        title={"To do"}
+      />
+      <FormAddCard
+        modalStateSwapper={closeAddCardModal}
+        isModalOpen={isAddCardModalOpen}
+      />
     </MainDashboardWrap>
   );
 };

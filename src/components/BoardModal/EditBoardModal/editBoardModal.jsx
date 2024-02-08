@@ -67,7 +67,8 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     <SharedModal
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
-      title={"Edit board"}>
+      title={"Edit board"}
+      maxWidth={"350px"}>
       <Section>
         <Formik
           initialValues={initialValues}
