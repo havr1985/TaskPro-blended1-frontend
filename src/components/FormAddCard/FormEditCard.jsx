@@ -20,14 +20,14 @@ import {
   AuthFormSubmitButton,
   Error,
   ErrorText,
-  Container
+  Container,
 } from "./FormAddCard.styled";
-// import Calendar from "../Calendar/Calendar";
-// import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import icons from "../../shared/images/icons.svg";
-// import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
+// import { useEffect } from "react";
+import {  useState } from "react";
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
   description: Yup.string().required("Description is required"),
@@ -35,26 +35,36 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormEditCard() {  //{ cardId }
-  // const dispatch = useDispatch();
+export default function FormEditCard() { //{ cardId } - prop
+  const dispatch = useDispatch();
   const { isModalOpen, openModal, closeModal } = useModal();
-  // const cardData = useSelector((state) => selectCardById(state, cardId));
+//   const cardData = useSelector((state) => getCardById(state, cardId));
 
-  // useEffect(() => {
-  //   setColor(cardData.color);
-  //   setSelectedDate(cardData.deadline);
-  // }, [cardData]);
+  const [initialValues] = useState({ //setInitialValues
+    title: "",
+    description: "",
+    color: "gray",
+    deadline: "",
+  });
+
+//   useEffect(() => {
+//     if (cardData) {
+    //   setInitialValues({
+    //     title: cardData.title || "",
+    //     description: cardData.description || "",
+    //     color: cardData.color || "gray",
+    //     deadline:cardData.deadline ? dayjs(cardData.deadline).format("YYYY-MM-DD") : "",
+    //   });
+//     }
+//   }, [cardData]);
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    // dispatch(
+    dispatch(
     //   updateCard({
-    //     id: cardId,
-    //     title: values.title,
-    //     description: values.description,
-    //     color: values.color,
-    //     deadline: values.deadline,
+    //     ...values,
+        // id: cardId,
     //   })
-    // );
+    );
     setSubmitting(false);
     closeModal();
     resetForm();
@@ -69,38 +79,36 @@ export default function FormEditCard() {  //{ cardId }
         maxWidth={"350px"}
       >
         <Formik
-          initialValues={{
-            // title: cardData.title,
-            // description: cardData.description,
-            // color: cardData.color,
-            // deadline: cardData.deadline,
-          }}
+          initialValues={initialValues }
           validationSchema={validationSchema}
+          enableReinitialize
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, handleSubmit }) => (
-            <StyledForm onSubmit={handleSubmit}>
-             <Container>
-
-              <StyledInput
-                type="text"
-                name="title"
-                onChange={handleChange}
-                value={values.title}
-                placeholder="Title"
+          {({ values, handleChange}) => (
+            <StyledForm>
+              <Container>
+                <StyledInput
+                  type="text"
+                  name="title"
+                  onChange={handleChange}
+                  value={values.title}
+                  placeholder="Title"
                 />
-              <Error name="title" component="div" className="error" />
-                </Container>
-                <Container>
-
-              <StyledTextArea
-                name="description"
-                onChange={handleChange}
-                value={values.description}
-                placeholder="Description"
+                <Error name="title" component="div" className="error" />
+              </Container>
+              <Container>
+                <StyledTextArea
+                  name="description"
+                  onChange={handleChange}
+                  value={values.description}
+                  placeholder="Description"
                 />
-              <ErrorText name="Description" component="div" className="error" />
-                </Container>
+                <ErrorText
+                  name="Description"
+                  component="div"
+                  className="error"
+                />
+              </Container>
 
               <StyledLabelColor>Label color</StyledLabelColor>
               <StyledContainerRadioBtn>
@@ -153,9 +161,8 @@ export default function FormEditCard() {  //{ cardId }
 
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
-                <TextDeadlain>
-                  {dayjs().format("dddd, MMMM DD")}
-                </TextDeadlain>
+                <TextDeadlain>{dayjs().format("dddd, MMMM DD")}</TextDeadlain> 
+                
                 {/* <Calendar
                   parentState={(date) => setFieldValue("deadline", date)}
                   initial={values.deadline}
@@ -168,7 +175,7 @@ export default function FormEditCard() {  //{ cardId }
                     <use href={icons + "#icon-plus"} />
                   </PlusIcon>
                 </ButtonPlus>
-                Add
+                Edit
               </AuthFormSubmitButton>
             </StyledForm>
           )}
