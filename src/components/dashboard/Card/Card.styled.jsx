@@ -151,6 +151,12 @@ export const Icon = styled.svg`
   fill: none;
   stroke-width: 1.3px;
   stroke: var(--radio-icons-color);
+  transition: stroke var(--hover-params), scale var(--hover-params);
+
+  &:hover {
+    stroke: var(--primary-button-color);
+    scale: 1.1;
+  }
 
   &.bell {
     cursor: auto;
