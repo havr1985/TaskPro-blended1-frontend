@@ -34,19 +34,18 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormAddCard() {
+export default function FormAddCard({ isModalOpen, modalStateSwapper }) {
   const dispatch = useDispatch();
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const { closeModal } = useModal();
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    dispatch(
-      // addCard({
-      //   title: values.title,
-      //   description: values.description,
-      //   color: values.color,
-      //   deadline: values.deadline,
-      // })
-    );
+    dispatch();
+    // addCard({
+    //   title: values.title,
+    //   description: values.description,
+    //   color: values.color,
+    //   deadline: values.deadline,
+    // })
     setSubmitting(false);
     resetForm();
     closeModal();
@@ -54,10 +53,10 @@ export default function FormAddCard() {
 
   return (
     <>
-      <button onClick={openModal}>Add New Card</button>
+      {/* <button onClick={openModal}>Add New Card</button> */}
       <SharedModal
         modalIsOpen={isModalOpen}
-        closeModal={closeModal}
+        closeModal={modalStateSwapper}
         title="Add card"
         maxWidth={"350px"}
       >
@@ -90,11 +89,18 @@ export default function FormAddCard() {
                   value={values.description}
                   placeholder="Description"
                 />
-                <ErrorText name="description" component="div" className="error" />
+                <ErrorText
+                  name="description"
+                  component="div"
+                  className="error"
+                />
               </Container>
 
               <StyledLabelColor>Label color</StyledLabelColor>
-              <StyledContainerRadioBtn onChange={handleChange} value={values.color}>
+              <StyledContainerRadioBtn
+                onChange={handleChange}
+                value={values.color}
+              >
                 <StyledLabel>
                   <StyledRadioInput
                     type="radio"
