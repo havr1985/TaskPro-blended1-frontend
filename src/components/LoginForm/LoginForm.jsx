@@ -4,7 +4,7 @@ import icons from "../../shared/images/icons.svg";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { loginThunk } from '../../redux/Auth/authOperation';
-import { LoginWrapper, LoginContainer, FormLogin, InputContainer, InputBthEye, NavContainer,  LoginBtn, ErrorText} from './LoginForm.styled';
+import { LoginWrapper, LoginContainer, FormLogin, InputContainer, InputBthEye, NavContainer,  LoginBtn, ErrorText, Fieldinput} from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
   
 const LoginSchema = Yup.object({
@@ -55,7 +55,7 @@ export const LoginForm = () => {
         </NavContainer>
 
         <FormLogin onSubmit={formik.handleSubmit}>
-          <div>
+          <Fieldinput>
             <label htmlFor="email"></label>
             <input
               type="email"
@@ -69,9 +69,9 @@ export const LoginForm = () => {
             {formik.touched.email && formik.errors.email ? (
               <ErrorText>{formik.errors.email}</ErrorText>
             ) : null}
-          </div>
+          </Fieldinput>
 
-          <div>
+          <Fieldinput>
             <label htmlFor="password"></label>
             <InputContainer className="password-input-container">
               <input
@@ -98,7 +98,7 @@ export const LoginForm = () => {
             {formik.touched.password && formik.errors.password ? (
               <ErrorText>{formik.errors.password}</ErrorText>
             ) : null}
-          </div>
+          </Fieldinput>
           <LoginBtn type="submit">Log in Now</LoginBtn>
         </FormLogin>
       </LoginContainer>

@@ -104,11 +104,15 @@ color: var(--secondary-login-button-color);
 
 export const ErrorText = styled.div`
 position: absolute;
-bottom: -15px;
-right: 0;
-font-size: 11px;
+top: 0px;
+left: 0;
+font-size: 14px;
 font-weight: 400;
 font-style: normal;
 letter-spacing: -1%;
 opacity: 0.9;
-color: #fff;`
+color: red;`
+
+export const Fieldinput = styled.div`
+position: relative;
+`
