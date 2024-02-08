@@ -20,7 +20,7 @@ import {
   AuthFormSubmitButton,
   Error,
   ErrorText,
-  Container
+  Container,
 } from "./FormAddCard.styled";
 // import Calendar from "../Calendar/Calendar";
 // import { useEffect, useState } from "react";
@@ -35,9 +35,10 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormEditCard() {  //{ cardId }
+export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
+  //{ cardId }
   // const dispatch = useDispatch();
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const { closeModal } = useModal();
   // const cardData = useSelector((state) => selectCardById(state, cardId));
 
   // useEffect(() => {
@@ -61,46 +62,50 @@ export default function FormEditCard() {  //{ cardId }
   };
   return (
     <>
-      <button onClick={openModal}>Edit Card</button>
+      {/* <button onClick={openModal}>Edit Card</button> */}
       <SharedModal
         modalIsOpen={isModalOpen}
-        closeModal={closeModal}
+        closeModal={modalStateSwapper}
         title="Edit card"
         maxWidth={"350px"}
       >
         <Formik
-          initialValues={{
-            // title: cardData.title,
-            // description: cardData.description,
-            // color: cardData.color,
-            // deadline: cardData.deadline,
-          }}
+          initialValues={
+            {
+              // title: cardData.title,
+              // description: cardData.description,
+              // color: cardData.color,
+              // deadline: cardData.deadline,
+            }
+          }
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
           {({ values, handleChange, handleSubmit }) => (
             <StyledForm onSubmit={handleSubmit}>
-             <Container>
-
-              <StyledInput
-                type="text"
-                name="title"
-                onChange={handleChange}
-                value={values.title}
-                placeholder="Title"
+              <Container>
+                <StyledInput
+                  type="text"
+                  name="title"
+                  onChange={handleChange}
+                  value={values.title}
+                  placeholder="Title"
                 />
-              <Error name="title" component="div" className="error" />
-                </Container>
-                <Container>
-
-              <StyledTextArea
-                name="description"
-                onChange={handleChange}
-                value={values.description}
-                placeholder="Description"
+                <Error name="title" component="div" className="error" />
+              </Container>
+              <Container>
+                <StyledTextArea
+                  name="description"
+                  onChange={handleChange}
+                  value={values.description}
+                  placeholder="Description"
                 />
-              <ErrorText name="Description" component="div" className="error" />
-                </Container>
+                <ErrorText
+                  name="Description"
+                  component="div"
+                  className="error"
+                />
+              </Container>
 
               <StyledLabelColor>Label color</StyledLabelColor>
               <StyledContainerRadioBtn>
@@ -153,9 +158,7 @@ export default function FormEditCard() {  //{ cardId }
 
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
-                <TextDeadlain>
-                  {dayjs().format("dddd, MMMM DD")}
-                </TextDeadlain>
+                <TextDeadlain>{dayjs().format("dddd, MMMM DD")}</TextDeadlain>
                 {/* <Calendar
                   parentState={(date) => setFieldValue("deadline", date)}
                   initial={values.deadline}
@@ -168,7 +171,7 @@ export default function FormEditCard() {  //{ cardId }
                     <use href={icons + "#icon-plus"} />
                   </PlusIcon>
                 </ButtonPlus>
-                Add
+                Edit
               </AuthFormSubmitButton>
             </StyledForm>
           )}
