@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Heading = styled.p`
 	font-weight: 400;
@@ -75,13 +76,11 @@ export const BoardList = styled.ul`
 
 	position: relative;
 
-	// -----
 	margin: 0 -24px;
 
 	@media (max-width: 767px) {
 		margin: 0 -14px;
 	}
-	//--------
 `;
 export const BoardItem = styled.li`
 	display: flex;
@@ -120,7 +119,13 @@ export const BoardItem = styled.li`
 		margin-right: 8px;
 	}
 `;
-
+export const Link = styled(NavLink)`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
 export const BoardContainer = styled.div`
 	display: flex;
 	align-items: center;
