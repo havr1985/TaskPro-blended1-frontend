@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import TextTruncate from "react-text-truncate";
 
 export const CardList = styled.ul`
   overflow-y: auto;
@@ -60,7 +61,7 @@ export const CardWrap = styled.li`
 `;
 
 export const CardTitle = styled.h4`
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: 600;
   font-size: 14px;
   /* letter-spacing: -0.02em; */
@@ -68,11 +69,11 @@ export const CardTitle = styled.h4`
 `;
 
 export const CardDescriptionWrap = styled.div`
-  height: 35px;
-  overflow: hidden;
+  height: 50px;
+  /* overflow: hidden; */
 `;
 
-export const CardDescription = styled.p`
+export const CardDescription = styled(TextTruncate)`
   font-size: 12px;
   line-height: 1.33;
   /* letter-spacing: -0.02em; */
