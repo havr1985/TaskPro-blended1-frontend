@@ -15,15 +15,29 @@ import {
 import { ButtonPlus } from "../../BoardModal/newBoardModal.styled";
 import { PlusIcon } from "../../BoardModal/newBoardModal.styled";
 import icons from "../../../shared/images/icons.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
+import { addColumnThunk } from "../../../redux/Dashboard/dashboardOperation";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().min("6").required("specify a column name"),
 });
 
 export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
+  const currentDashboard = useSelector(selectCurrentDashboard);
+  const dashboardId = currentDashboard._id;
+  const owner = currentDashboard.owner
+  console.log(owner)
+  const dispatch = useDispatch()
   const initialValues = {
     title: "",
   };
+
+  const handleSubmit = ({ title }, action) => {
+    console.log(dashboardId)
+    dispatch(addColumnThunk({ dashboardId, title }));
+    action.resetForm()
+  }
 
   return (
     <SharedModal
@@ -36,7 +50,7 @@ export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          //   onSubmit={handleSubmit}>
+             onSubmit={handleSubmit}
         >
           <ModalForm>
             <FormWrapper>
