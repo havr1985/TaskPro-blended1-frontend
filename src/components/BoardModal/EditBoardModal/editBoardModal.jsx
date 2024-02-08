@@ -68,8 +68,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Edit board"}
-      maxWidth={"350px"}
-    >
+      maxWidth={"350px"}>
       <Section>
         <Formik
           initialValues={initialValues}
@@ -97,8 +96,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                       className={setIcon === el ? "active" : ""}
                       onClick={() => handleIconSelection(el)}
                       width={18}
-                      height={18}
-                    >
+                      height={18}>
                       <use href={icons + el} width={18} height={18} />
                     </Icon>
 
@@ -115,8 +113,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                   <label key={idx}>
                     <BgcItem
                       onClick={() => handleBgSelection(el.url)}
-                      className={selectedBg === el.url ? "active" : ""}
-                    >
+                      className={selectedBg === el.url ? "active" : ""}>
                       {el.url !== "" && (
                         <CustomRadioBtn
                           url={el.url}
