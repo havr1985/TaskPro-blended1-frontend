@@ -106,17 +106,6 @@ export const LoginForm = () => {
       </LoginContainer>
       <ErrorContainer> 
       <ToastContainer
-   position="top-right"
-   autoClose={8000}
-   hideProgressBar={false}
-   newestOnTop={false}
-   closeOnClick
-   rtl={false}
-   pauseOnFocusLoss
-   draggable
-   pauseOnHover
-   theme="dark"
-   transition: Bounce
         />
         </ErrorContainer>
     </LoginWrapper>
