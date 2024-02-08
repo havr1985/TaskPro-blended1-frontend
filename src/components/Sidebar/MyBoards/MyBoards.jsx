@@ -57,8 +57,8 @@ export const MyBoards = ({ icon, boards, selectedItem, choice, setUserBoards }) 
 									</BoardIcon>
 									<BoardTitle>{board.title}</BoardTitle>
 								</BoardContainer>
-								{console.log(selectedItem._id)}
-								{selectedItem.id === board.id && (
+
+								{selectedItem._id === board._id && (
 									<ButtonContainer>
 										<ButtonEdit onClick={() => modalStateSwapper()} type='button'>
 											<BoardIcon className='iconBoard iconEdit' width='16px' height='16px'>
