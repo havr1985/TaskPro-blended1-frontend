@@ -40,7 +40,7 @@ export const StyledColorBtn = styled.span`
 `;
 
 export const StyledColorText = styled.p`
-  color: rgba(255,255,255,0.5);
+  color: var(--radio-label-grey-color);
   font-size: 12px;
 
  
@@ -61,7 +61,7 @@ export const StyledColorText = styled.p`
   }
 
   &:checked.gray {
-       color: var(--modal-filters-text);
+       color: var(--radio-label-grey-color);
     font-weight:500;
   }
 `;
