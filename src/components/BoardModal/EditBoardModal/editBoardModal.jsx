@@ -21,6 +21,9 @@ import {
   TitleInput,
 } from "../newBoardModal.styled";
 import data from "../background.json";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
+import { updateDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
 
 const options = [
   "#icon-board-square",
@@ -38,12 +41,24 @@ const validationSchema = Yup.object().shape({
 });
 
 export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
-  const [selectedBg, setSelectedBg] = useState("");
-  const [setIcon, setSetIcon] = useState(options[0]);
+  const dispatch = useDispatch();
+
+  const { _id, name, icon, backgroundURL } = useSelector(
+    selectCurrentDashboard
+  );
+  const [selectedBg, setSelectedBg] = useState(backgroundURL);
+  const [setIcon, setSetIcon] = useState(icon);
+
   const initialValues = {
-    title: "",
+    title: name,
     icon: setIcon,
     backgroundURL: selectedBg,
+  };
+  const handleSubmit = (values) => {
+    const { title, icon, backgroundURL } = values;
+    const updatedData = { name: title, icon, backgroundURL };
+    modalStateSwapper();
+    dispatch(updateDashboardThunk({ dashboardId: _id, updatedData }));
   };
   // const { name, icon, backgroundURL } = item;
   //   const [selectedBg, setSelectedBg] = useState(backgroundURL);
@@ -75,14 +90,14 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
           validationSchema={validationSchema}
           //   onSubmit={handleSubmit}>
         >
-          <ModalForm>
+          <ModalForm onSubmit={handleSubmit}>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
               <TitleInput
                 type="text"
                 id="title"
                 name="title"
-                placeholder="Title"
+                // placeholder="Title"
                 autoComplete="off"
               />
             </FormWrapper>
