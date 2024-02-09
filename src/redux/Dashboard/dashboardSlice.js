@@ -7,6 +7,7 @@ import {
   deleteCardThunk,
   deleteColumnThunk,
   deleteDashboardThunk,
+  
   getDashboardByIDThunk,
   updateCardThunk,
   updateColumnThunk,
@@ -87,10 +88,13 @@ const dashboardSlice = createSlice({
         const idx = state.currentDashboard.column.findIndex(
           item => item._id === action.payload.owner
         )
-        state.currentDashboard.column[idx].cards = [
-          ...state.currentDashboard.column[idx].cards,
-          action.payload
-        ];
+        if (!state.currentDashboard.column[idx].card) {
+          state.currentDashboard.column[idx].card = [];
+        }
+      
+        state.currentDashboard.column[idx].card = [
+          ...state.currentDashboard.column[idx].card,
+        action.payload];
       })
       .addCase(deleteCardThunk.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -114,6 +118,7 @@ const dashboardSlice = createSlice({
           title, description, priority, deadline,
         };
       })
+      
 
       .addMatcher(
         isAnyOf(
@@ -126,6 +131,7 @@ const dashboardSlice = createSlice({
           deleteColumnThunk.pending,
           addCardThunk.pending,
           deleteCardThunk.pending,
+          
         ),
         (state) => {
           state.isLoading = true;
@@ -145,6 +151,7 @@ const dashboardSlice = createSlice({
           addCardThunk.rejected,
           deleteCardThunk.rejected,
           updateCardThunk.rejected,
+          
         ),
         (state, action) => {
           state.isLoading = false;

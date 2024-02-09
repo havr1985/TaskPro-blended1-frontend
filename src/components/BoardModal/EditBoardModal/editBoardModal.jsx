@@ -62,6 +62,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const handleIconSelection = (el) => {
     setSetIcon(el);
   };
+  
 
   return (
     <SharedModal
