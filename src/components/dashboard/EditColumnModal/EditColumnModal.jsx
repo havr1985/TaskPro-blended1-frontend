@@ -28,7 +28,6 @@ export const EditColumnModal = ({ isModalOpen, modalStateSwapper, title, columnI
   const initialValues = {
     title: title || "",
   };
-
   // Need some fixes request is not sent
   const handleSubmit = ({ title }, action) => {
     dispatch(updateColumnThunk({ columnId, title }));

@@ -61,6 +61,9 @@ const MainDashboard = () => {
     }
   }, [columns, dispatch, state?.id]);
 
+  const current = useSelector(selectCurrentDashboard)
+  console.log(current)
+
   // Need some fixes request is not sent
   const onDeleteColumn = (id) => {
     
@@ -95,7 +98,7 @@ const MainDashboard = () => {
                 </div>
                 <Card />
                 <div>
-                  <AddCardButton onClick={openAddCardModal}>
+                  <AddCardButton onClick={() => { openAddCardModal(); setSelectedId(id) }}>
                     <AddCardIconWrap>
                       <AddCardIconPlus>
                         <use href={icons + "#icon-plus"} />
@@ -138,6 +141,7 @@ const MainDashboard = () => {
       <FormAddCard
         modalStateSwapper={closeAddCardModal}
         isModalOpen={isAddCardModalOpen}
+        columnId={selectedId}
       />
     </MainDashboardWrap>
   );

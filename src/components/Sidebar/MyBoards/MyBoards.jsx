@@ -48,7 +48,6 @@ export const MyBoards = ({
           </svg>
         </ButtonCreateBoard>
       </CreateBoardWrapper>
-
       {boards.length !== 0 && (
         <BoardList>
           {boards.map((board) => (
@@ -66,7 +65,6 @@ export const MyBoards = ({
                   </BoardIcon>
                   <BoardTitle>{board.title}</BoardTitle>
                 </BoardContainer>
-                {console.log(selectedItem._id)}
                 {selectedItem.id === board.id && (
                   <ButtonContainer>
                     <ButtonEdit
@@ -96,7 +94,6 @@ export const MyBoards = ({
           ))}
         </BoardList>
       )}
-
       <AddBoardModal
         setUserBoards={setUserBoards}
         isModalOpen={isModalOpen}
