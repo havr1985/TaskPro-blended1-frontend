@@ -3,47 +3,33 @@ import { CloseModalBtn } from "../../../shared/SharedModal/SharedModal.styled";
 
 import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll, FilterLine, ModalTitle, ModalFilter, Overlay} from "./FilterModal.styled"
 
-export const FilterModal = ({ isOpen, onClose }) => {
 
-  const Label = {
-    ALL: 'ALL',
+export const FilterModal = ({ isOpen, onClose, onShowAll }) => {
+
+/*   const Label = {
+    ALL: 'all',
     HIGHT: 'green',
     LOW: 'blue',
-    WITHOUT: 'gray'
-  };
+    WITHOUT: 'gray',
+    MEDIUM: 'pink'
+  }; */
  
-  const [selectedLabel, setSelectedLabel] = useState(Label.ALL);
+  const [selectedLabel, setSelectedLabel] = useState(null);
 
   if (!isOpen) return null;
 
   const handleAllShow = () => {
-const value = 'ALL';
-    setSelectedLabel(value);
+    setSelectedLabel(null); 
+    onClose();
+    onShowAll();
   }
   
   const handleLabelChange = (event) => {
    
     const value = event.target.value;
-    console.log(value)
     setSelectedLabel(value);
     
-/*     switch (selectedLabel) {
-        case Label.ALL:
-       
-          break;
-        case Status.LOADING:
-          // Дії для стану LOADING
-          break;
-        case Status.SUCCESS:
-          // Дії для стану SUCCESS
-          break;
-        case Status.ERROR:
-          // Дії для стану ERROR
-          break;
-        default:
-          // Дії для інших станів
-          break;
-      } */
+
    };
   
     return (
