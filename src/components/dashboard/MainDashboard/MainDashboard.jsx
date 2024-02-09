@@ -21,6 +21,14 @@ import { Overlay } from "../../../pages/HomePage.styled";
 import { AddColumnModal } from "../AddColumnModal/AddColumnModal";
 import { EditColumnModal } from "../EditColumnModal/EditColumnModal";
 import FormAddCard from "../../FormAddCard/FormAddCard";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  deleteColumnThunk,
+  getDashboardByIDThunk,
+} from "../../../redux/Dashboard/dashboardOperation";
 
 const MainDashboard = () => {
   const {
@@ -41,39 +49,63 @@ const MainDashboard = () => {
     closeModal: closeAddCardModal,
   } = useModal();
 
+  const { column: columns } = useSelector(selectCurrentDashboard);
+  console.log(columns);
+  const { state } = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (columns === undefined) {
+      dispatch(getDashboardByIDThunk(state.id));
+    }
+  }, [columns, dispatch, state?.id]);
+
+  // Need some fixes request is not sent
+  const onDeleteColumn = (id) => {
+    dispatch(deleteColumnThunk(id));
+  };
+
   return (
     <MainDashboardWrap>
       <MainDashboardList>
-        <MainDashboardColumn>
-          <div>
-            <DashboardColumnTitle>
-              <Title>New column</Title>
-              <IconsWrap>
-                <IconButton onClick={openEditColumnModal}>
-                  <Icon>
-                    <use href={icons + "#icon-pencil"} />
-                  </Icon>
-                </IconButton>
-                <IconButton>
-                  <Icon>
-                    <use href={icons + "#icon-trash"} />
-                  </Icon>
-                </IconButton>
-              </IconsWrap>
-            </DashboardColumnTitle>
-          </div>
-          <Card />
-          <div>
-            <AddCardButton onClick={openAddCardModal}>
-              <AddCardIconWrap>
-                <AddCardIconPlus>
-                  <use href={icons + "#icon-plus"} />
-                </AddCardIconPlus>
-              </AddCardIconWrap>
-              Add Card
-            </AddCardButton>
-          </div>
-        </MainDashboardColumn>
+        {columns === undefined ? (
+          <></>
+        ) : (
+          columns.map(({ _id: id, title }) => {
+            return (
+              <MainDashboardColumn key={id}>
+                <div>
+                  <DashboardColumnTitle>
+                    <Title>{title}</Title>
+                    <IconsWrap>
+                      <IconButton onClick={openEditColumnModal}>
+                        <Icon>
+                          <use href={icons + "#icon-pencil"} />
+                        </Icon>
+                      </IconButton>
+                      <IconButton onClick={() => onDeleteColumn(id)}>
+                        <Icon>
+                          <use href={icons + "#icon-trash"} />
+                        </Icon>
+                      </IconButton>
+                    </IconsWrap>
+                  </DashboardColumnTitle>
+                </div>
+                <Card />
+                <div>
+                  <AddCardButton onClick={openAddCardModal}>
+                    <AddCardIconWrap>
+                      <AddCardIconPlus>
+                        <use href={icons + "#icon-plus"} />
+                      </AddCardIconPlus>
+                    </AddCardIconWrap>
+                    Add Card
+                  </AddCardButton>
+                </div>
+              </MainDashboardColumn>
+            );
+          })
+        )}
       </MainDashboardList>
       <AddColumnButton onClick={openAddColumnModal}>
         <IconWrap>
