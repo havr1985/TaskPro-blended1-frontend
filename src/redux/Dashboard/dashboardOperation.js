@@ -13,7 +13,6 @@ import {
   requestUpdateColumn,
 } from "../../services/api/dashboard";
 
-
 export const allDashboardsThunk = createAsyncThunk(
   "dashboard/allDashboards",
   async (_, thunkAPI) => {
@@ -80,8 +79,7 @@ export const addColumnThunk = createAsyncThunk(
     try {
       const data = await requestAddColumn(dashboardId, title, owner);
       return data;
-    }
-    catch (error) {
+    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -93,9 +91,8 @@ export const deleteColumnThunk = createAsyncThunk(
     try {
       const data = await requestDeleteColumn(columnId);
       return data;
-    }
-    catch (error) {
-      return thunkAPI.rejectWithValue(error)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -106,8 +103,7 @@ export const updateColumnThunk = createAsyncThunk(
     try {
       const data = await requestUpdateColumn(columnId, title);
       return data;
-    }
-    catch (error) {
+    } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -137,12 +133,10 @@ export const deleteCardThunk = createAsyncThunk(
   async (cardId, thunkAPI) => {
     try {
       const data = await requestDeleteCard(cardId);
-      return data
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
-    catch (error) {
-      return thunkAPI.rejectWithValue(error.message)
-    }
-
   }
 );
 
@@ -152,9 +146,8 @@ export const updateCardThunk = createAsyncThunk(
     try {
       const data = await requestUpdateCard(values);
       return data;
-    }
-    catch (error) {
-      return thunkAPI.rejectWithValue(error)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
