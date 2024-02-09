@@ -1,6 +1,7 @@
 import icons from "../../../shared/images/icons.svg";
 import { useModal } from "../../../hooks/useModal";
 import FormEditCard from "../../FormAddCard/FormEditCard";
+
 import {
   CardCommandSection,
   CardDeadlineValue,
@@ -28,7 +29,12 @@ const Card = () => {
         <CardWrap>
           <CardTitle>Card Title</CardTitle>
           <CardDescriptionWrap>
-            <CardDescription>Description</CardDescription>
+            <CardDescription
+              line={2}
+              element="span"
+              truncateText="…"
+              text="Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            />
           </CardDescriptionWrap>
           <CardCommandSection>
             <div>

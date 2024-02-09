@@ -76,6 +76,11 @@ export default function FormAddCard({ isModalOpen, modalStateSwapper }) {
     closeModal();
   };
 
+  const formatWeekday = (_, date) => {
+    const shortDayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+    return shortDayNames[date.getDay()];
+  };
+
   return (
     <>
       {/* <button onClick={openModal}>Add New Card</button> */}
@@ -200,7 +205,7 @@ export default function FormAddCard({ isModalOpen, modalStateSwapper }) {
           style={customStyles}
           closeTimeoutMS={750}
         >
-          <StyledCalendar />
+          <StyledCalendar formatShortWeekday={formatWeekday} />
         </Modal>
       </SharedModal>
     </>
