@@ -4,16 +4,18 @@ import icons from "../../shared/images/icons.svg";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { loginThunk } from '../../redux/Auth/authOperation';
-import { LoginWrapper, LoginContainer, FormLogin, InputContainer, InputBthEye, NavContainer,  LoginBtn, ErrorText} from './LoginForm.styled';
+import { LoginWrapper, LoginContainer,  InputContainer, InputBthEye, NavContainer,  LoginBtn, ErrorText,  LoginInput, ErrorContainer} from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
-  
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 const LoginSchema = Yup.object({
       email: Yup.string().required('This field is required'),
       password: Yup.string().required('This field is required'),
 })
   
 export const LoginForm = () => {
-
+  
  const dispatch = useDispatch(); 
  const [showPassword, setShowPassword] = useState(false);
 
@@ -31,7 +33,7 @@ export const LoginForm = () => {
         })).unwrap();
         formik.resetForm();
       } catch (error) {
-        console.log(error)
+        toast.error("Invalid email or password. Please verify your login details and try again",{position:"top-right"});
       }
     },
   });
@@ -54,10 +56,10 @@ export const LoginForm = () => {
           </NavLink>
         </NavContainer>
 
-        <FormLogin onSubmit={formik.handleSubmit}>
-          <div>
+        <form onSubmit={formik.handleSubmit}>
+          <InputContainer>
             <label htmlFor="email"></label>
-            <input
+            <LoginInput
               type="email"
               placeholder="Enter your email:"
               id="email"
@@ -69,12 +71,11 @@ export const LoginForm = () => {
             {formik.touched.email && formik.errors.email ? (
               <ErrorText>{formik.errors.email}</ErrorText>
             ) : null}
-          </div>
+          </InputContainer>
 
-          <div>
+          <InputContainer>
             <label htmlFor="password"></label>
-            <InputContainer className="password-input-container">
-              <input
+             <LoginInput
                 type={showPassword ? "text" : "password"}
                 placeholder="Confirm a password:"
                 id="password"
@@ -94,16 +95,19 @@ export const LoginForm = () => {
               >
                 <use href={icons + "#icon-password-eye"} />
               </InputBthEye>
-            </InputContainer>
+          
             {formik.touched.password && formik.errors.password ? (
               <ErrorText>{formik.errors.password}</ErrorText>
             ) : null}
-          </div>
+          </InputContainer>
           <LoginBtn type="submit">Log in Now</LoginBtn>
-        </FormLogin>
+        </form>
 
       </LoginContainer>
-
+      <ErrorContainer> 
+      <ToastContainer
+        />
+        </ErrorContainer>
     </LoginWrapper>
   );
 };
