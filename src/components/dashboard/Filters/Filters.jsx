@@ -3,31 +3,40 @@ import { useState } from "react";
 import icons from "../../../shared/images/icons.svg";
 import { FilterModal } from "./FilterModal";
 import { FilterButton, FilterIcon } from "./Filters.styled";
+/* import DashboardAllShow from './DashboardAllShow'; */
 
 const Filters = () => {
   /*  const dispatch = useDispatch(); */
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
+  function showAllColumn() {
+ 
+}
 
-  const openFilterModal = () => {
-    setIsFilterModalOpen(true);
+/*   const openFilterModal = () => {
+     setIsFilterModalOpen(true);
   }
   const closeFilterModal = () => {
     setIsFilterModalOpen(false);
+  }; */
+
+    const toggleModalVisibility = () => {
+    setIsFilterModalOpen((prevState) => !prevState);
   };
-    return (
-      <FilterButton onClick={() => openFilterModal()}>
+  return (
+      <>
+      <FilterButton onClick={() => toggleModalVisibility()}>
         <FilterIcon>
           <use href={icons + "#icon-filter"} />
         </FilterIcon>
-        Filters
-        <FilterModal
-          isOpen={isFilterModalOpen}
-          onClose={closeFilterModal}
-        />
-        
+        Filters 
       </FilterButton>
-   
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={toggleModalVisibility}
+        onShowAll={showAllColumn}
+        />
+   </>
     );
   };
 

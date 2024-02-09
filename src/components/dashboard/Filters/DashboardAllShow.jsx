@@ -1,26 +1,20 @@
 import icons from "../../../shared/images/icons.svg";
 import Card from "../Card/Card";
 import {
-  AddCardButton,
-  AddCardIconPlus,
-  AddCardIconWrap,
-  AddColumnButton,
-  DashboardColumnTitle,
+ DashboardColumnTitle,
   Icon,
   IconButton,
-  IconPlus,
-  IconWrap,
   IconsWrap,
   MainDashboardColumn,
   MainDashboardList,
   MainDashboardWrap,
   Title,
-} from "./MainDashboard.styled";
+} from "../MainDashboard/MainDashboard.styled";
 import { useModal } from "../../../hooks/useModal";
 import { Overlay } from "../../../pages/HomePage.styled";
-import { AddColumnModal } from "../AddColumnModal/AddColumnModal";
+
 import { EditColumnModal } from "../EditColumnModal/EditColumnModal";
-import FormAddCard from "../../FormAddCard/FormAddCard";
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
 import { useLocation } from "react-router-dom";
@@ -30,12 +24,12 @@ import {
   getDashboardByIDThunk,
 } from "../../../redux/Dashboard/dashboardOperation";
 
-const MainDashboard = () => {
-  const {
+const DashboardAllShow = () => {
+/*   const {
     isModalOpen: isAddColumnModalOpen,
     openModal: openAddColumnModal,
     closeModal: closeAddColumnModal,
-  } = useModal();
+  } = useModal(); */
 
   const {
     isModalOpen: isEditColumnModalOpen,
@@ -43,14 +37,14 @@ const MainDashboard = () => {
     closeModal: closeEditColumnModal,
   } = useModal();
 
-  const {
+/*   const {
     isModalOpen: isAddCardModalOpen,
     openModal: openAddCardModal,
     closeModal: closeAddCardModal,
-  } = useModal();
+  } = useModal(); */
 
-  const { column: columns } = useSelector(selectCurrentDashboard);
-  const { state } = useLocation();
+    const { column: columns } = useSelector(selectCurrentDashboard);
+    const { state } = useLocation();
   const dispatch = useDispatch();
 
   const [selectedId, setSelectedId] = useState(null)
@@ -60,9 +54,6 @@ const MainDashboard = () => {
       dispatch(getDashboardByIDThunk(state.id));
     }
   }, [columns, dispatch, state?.id]);
-
-  const current = useSelector(selectCurrentDashboard)
-  console.log(current)
 
   // Need some fixes request is not sent
   const onDeleteColumn = (id) => {
@@ -97,8 +88,8 @@ const MainDashboard = () => {
                   </DashboardColumnTitle>
                 </div>
                 <Card />
-                <div>
-                  <AddCardButton onClick={() => { openAddCardModal(); setSelectedId(id) }}>
+              {/*   <div>
+                  <AddCardButton onClick={openAddCardModal}>
                     <AddCardIconWrap>
                       <AddCardIconPlus>
                         <use href={icons + "#icon-plus"} />
@@ -106,28 +97,28 @@ const MainDashboard = () => {
                     </AddCardIconWrap>
                     Add Card
                   </AddCardButton>
-                </div>
+                </div> */}
               </MainDashboardColumn>
             );
           })
         )}
       </MainDashboardList>
-      <AddColumnButton onClick={openAddColumnModal}>
+     {/*  <AddColumnButton onClick={openAddColumnModal}>
         <IconWrap>
           <IconPlus>
             <use href={icons + "#icon-plus"} />
           </IconPlus>
         </IconWrap>
         Add column
-      </AddColumnButton>
-      <Overlay
+      </AddColumnButton> */}
+    {/*   <Overlay
         onClick={closeAddColumnModal}
         className={isAddColumnModalOpen === true && "active"}
       ></Overlay>
       <AddColumnModal
         modalStateSwapper={closeAddColumnModal}
         isModalOpen={isAddColumnModalOpen}
-      />
+      /> */}
       <Overlay
         onClick={closeEditColumnModal}
         className={isEditColumnModalOpen === true && "active"}
@@ -138,13 +129,12 @@ const MainDashboard = () => {
         columnId={selectedId}
     
       />
-      <FormAddCard
+   {/*    <FormAddCard
         modalStateSwapper={closeAddCardModal}
         isModalOpen={isAddCardModalOpen}
-        columnId={selectedId}
-      />
+      /> */}
     </MainDashboardWrap>
   );
 };
 
-export default MainDashboard;
+export default DashboardAllShow;

@@ -29,6 +29,7 @@ import {
 } from "./FormAddCard.styled";
 // import Calendar from "../Calendar/Calendar";
 import dayjs from "dayjs";
+import { addCardThunk } from "../../redux/Dashboard/dashboardOperation";
 
 Modal.setAppElement("#root");
 
@@ -39,9 +40,10 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormAddCard({ isModalOpen, modalStateSwapper }) {
+export default function FormAddCard({ isModalOpen, modalStateSwapper, columnId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+  
 
   const {
     isModalOpen: isCalendarModalOpen,
@@ -64,13 +66,16 @@ export default function FormAddCard({ isModalOpen, modalStateSwapper }) {
   };
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    dispatch();
-    // addCard({
-    //   title: values.title,
-    //   description: values.description,
-    //   color: values.color,
-    //   deadline: values.deadline,
-    // })
+    
+    const addCard = {
+      columnId,
+      title: values.title,
+      description: values.description,
+      color: values.color,
+      deadline: values.deadline,
+    }
+    
+    dispatch(addCardThunk(addCard));
     setSubmitting(false);
     resetForm();
     closeModal();

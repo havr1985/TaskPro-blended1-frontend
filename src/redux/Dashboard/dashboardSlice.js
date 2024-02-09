@@ -82,7 +82,11 @@ const dashboardSlice = createSlice({
 				state.isLoading = false;
 				state.error = null;
 				const idx = state.currentDashboard.column.findIndex(item => item._id === action.payload.owner);
-				state.currentDashboard.column[idx].cards = [...state.currentDashboard.column[idx].cards, action.payload];
+				if (!state.currentDashboard.column[idx].card) {
+					state.currentDashboard.column[idx].card = [];
+				}
+
+				state.currentDashboard.column[idx].card = [...state.currentDashboard.column[idx].card, action.payload];
 			})
 			.addCase(deleteCardThunk.fulfilled, (state, action) => {
 				state.isLoading = false;

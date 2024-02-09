@@ -46,12 +46,12 @@ export const requestAddCard = async ({ columID, title, description, color, deadl
 };
 
 export const requestDeleteCard = async cardId => {
-	const { data } = await instance.delete(`card/${cardId}`);
+	const { data } = await instance.delete(`cards/${cardId}`);
 	return data;
 };
 
 export const requestUpdateCard = async ({ cardId, title, description, color, deadline }) => {
-	const { data } = await instance.put(`card/${cardId}`, { title, description, color, deadline });
+	const { data } = await instance.put(`cards/${cardId}`, { title, description, color, deadline });
 	return data;
 };
 
