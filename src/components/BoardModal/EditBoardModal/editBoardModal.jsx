@@ -43,22 +43,31 @@ const validationSchema = Yup.object().shape({
 export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
 
-  const { _id, name, icon, backgroundURL } = useSelector(
-    selectCurrentDashboard
-  );
-  const [selectedBg, setSelectedBg] = useState(backgroundURL);
-  const [setIcon, setSetIcon] = useState(icon);
+  const dates = useSelector(selectCurrentDashboard);
+  const {
+    dashboardId: _id,
+    title: titleDates,
+    icon: iconDates,
+    backgroundURL: backgroundURLDates,
+  } = dates;
+  const [selectedBg, setSelectedBg] = useState(backgroundURLDates);
+  const [setIcon, setSetIcon] = useState(iconDates);
 
   const initialValues = {
-    title: name,
-    icon: setIcon,
-    backgroundURL: selectedBg,
+    title: titleDates,
+    icon: iconDates,
+    backgroundURL: backgroundURLDates,
   };
-  const handleSubmit = (values) => {
-    const { title, icon, backgroundURL } = values;
-    const updatedData = { name: title, icon, backgroundURL };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newBoardTitle = e.target.elements[0].value;
+    const updatedData = {
+      title: newBoardTitle,
+      icon: setIcon,
+      backgroundURL: selectedBg,
+    };
     modalStateSwapper();
-    dispatch(updateDashboardThunk({ dashboardId: _id, updatedData }));
+    dispatch(updateDashboardThunk({ _id, updatedData }));
   };
   // const { name, icon, backgroundURL } = item;
   //   const [selectedBg, setSelectedBg] = useState(backgroundURL);
@@ -90,7 +99,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
           validationSchema={validationSchema}
           //   onSubmit={handleSubmit}>
         >
-          <ModalForm onSubmit={handleSubmit}>
+          <ModalForm onSubmit={(e) => handleSubmit(e)}>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
               <TitleInput
