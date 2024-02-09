@@ -99,9 +99,9 @@ export const deleteColumnThunk = createAsyncThunk(
 
 export const updateColumnThunk = createAsyncThunk(
   "dashboard/updateColumn",
-  async (values, thunkAPI) => {
+  async ({columnId, title}, thunkAPI) => {
     try {
-      const data = await requestUpdateColumn(values);
+      const data = await requestUpdateColumn(columnId, title);
       return data;
     }
     catch (error) {

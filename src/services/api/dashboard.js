@@ -35,7 +35,7 @@ export const requestDeleteColumn = async (columnId) => {
     return data;
 };
 
-export const requestUpdateColumn = async ({ columnId, title }) => {
-    const { data } = await instance.put(`column/${columnId}`, title);
+export const requestUpdateColumn = async ( columnId, title ) => {
+    const { data } = await instance.put(`column/${columnId}`, {title});
     return data;
 }

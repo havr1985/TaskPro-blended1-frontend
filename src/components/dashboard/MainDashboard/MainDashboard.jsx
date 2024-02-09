@@ -24,7 +24,7 @@ import FormAddCard from "../../FormAddCard/FormAddCard";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   deleteColumnThunk,
   getDashboardByIDThunk,
@@ -50,9 +50,10 @@ const MainDashboard = () => {
   } = useModal();
 
   const { column: columns } = useSelector(selectCurrentDashboard);
-  console.log(columns);
   const { state } = useLocation();
   const dispatch = useDispatch();
+
+  const [selectedId, setSelectedId] = useState(null)
 
   useEffect(() => {
     if (columns === undefined) {
@@ -62,6 +63,7 @@ const MainDashboard = () => {
 
   // Need some fixes request is not sent
   const onDeleteColumn = (id) => {
+    
     dispatch(deleteColumnThunk(id));
   };
 
@@ -78,7 +80,7 @@ const MainDashboard = () => {
                   <DashboardColumnTitle>
                     <Title>{title}</Title>
                     <IconsWrap>
-                      <IconButton onClick={openEditColumnModal}>
+                      <IconButton onClick={() => {openEditColumnModal(); setSelectedId(id)} }>
                         <Icon>
                           <use href={icons + "#icon-pencil"} />
                         </Icon>
@@ -130,7 +132,8 @@ const MainDashboard = () => {
       <EditColumnModal
         modalStateSwapper={closeEditColumnModal}
         isModalOpen={isEditColumnModalOpen}
-        title={"To do"}
+        columnId={selectedId}
+    
       />
       <FormAddCard
         modalStateSwapper={closeAddCardModal}
