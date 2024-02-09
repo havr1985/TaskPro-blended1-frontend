@@ -1,9 +1,12 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
+  addColumnThunk,
   addDashboardThunk,
   allDashboardsThunk,
+  deleteColumnThunk,
   deleteDashboardThunk,
   getDashboardByIDThunk,
+  updateColumnThunk,
   updateDashboardThunk,
 } from "./dashboardOperation";
 
@@ -54,6 +57,27 @@ const dashboardSlice = createSlice({
           (item) => item._id !== action.payload._id
         );
       })
+      .addCase(addColumnThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentDashboard.column.push(action.payload);
+      })
+      .addCase(deleteColumnThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentDashboard.column = state.currentDashboard.column.filter(
+          (item) => item._id !== action.payload._id
+        );
+      })
+      .addCase(updateColumnThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const { _id, title } = action.payload;
+        const columnIdx = state.currentDashboard.column.findIndex(
+          (item) => item._id === _id
+        );
+        state.currentDashboard.column[columnIdx].title = title;
+      })
 
       .addMatcher(
         isAnyOf(
@@ -61,7 +85,9 @@ const dashboardSlice = createSlice({
           addDashboardThunk.pending,
           getDashboardByIDThunk.pending,
           updateDashboardThunk.pending,
-          deleteDashboardThunk.pending
+          deleteDashboardThunk.pending,
+          addColumnThunk.pending,
+          deleteColumnThunk.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -74,7 +100,10 @@ const dashboardSlice = createSlice({
           addDashboardThunk.rejected,
           getDashboardByIDThunk.rejected,
           updateDashboardThunk.rejected,
-          deleteDashboardThunk.rejected
+          deleteDashboardThunk.rejected,
+          addColumnThunk.rejected,
+          deleteColumnThunk.rejected,
+          updateDashboardThunk.rejected
         ),
         (state, action) => {
           state.isLoading = false;
