@@ -58,9 +58,9 @@ const dashboardSlice = createSlice({
         );
       })
       .addCase(addColumnThunk.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.error = null
-        state.currentDashboard.column.push(action.payload)
+        state.isLoading = false;
+        state.error = null;
+        state.currentDashboard.column.push(action.payload);
       })
       .addCase(deleteColumnThunk.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -74,8 +74,8 @@ const dashboardSlice = createSlice({
         state.error = null;
         const { _id, title } = action.payload;
         const columnIdx = state.currentDashboard.column.findIndex(
-          item => item._id === _id
-        )
+          (item) => item._id === _id
+        );
         state.currentDashboard.column[columnIdx].title = title;
       })
 
@@ -103,7 +103,7 @@ const dashboardSlice = createSlice({
           deleteDashboardThunk.rejected,
           addColumnThunk.rejected,
           deleteColumnThunk.rejected,
-          updateDashboardThunk.rejected,
+          updateDashboardThunk.rejected
         ),
         (state, action) => {
           state.isLoading = false;

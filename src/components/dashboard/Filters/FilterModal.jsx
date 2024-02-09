@@ -12,6 +12,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
     setSelectedLabel(value);
     onClose()
   };
+  
   return (
    
     <ModalFilter>

@@ -40,7 +40,7 @@ export const StyledCalendar = styled(Calendar)`
     background: none;
     color: #ffffff;
     border: none;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--hover-params);
   }
 
   .react-calendar__navigation button:enabled:hover,
@@ -109,7 +109,7 @@ export const StyledCalendar = styled(Calendar)`
     letter-spacing: -0.02em;
     color: #ffffff;
     cursor: pointer;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--hover-params);
 
     &:hover {
       color: #9dc888;
@@ -144,7 +144,7 @@ export const StyledCalendar = styled(Calendar)`
     letter-spacing: -0.02em;
     color: #fff;
     background-color: #1f1f1f;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--hover-params);
 
     &:hover,
     &:focus {
@@ -166,7 +166,7 @@ export const StyledCalendar = styled(Calendar)`
     letter-spacing: -0.02em;
     color: #fff;
     background-color: #1f1f1f;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--hover-params);
 
     &:hover,
     &:focus {
@@ -188,7 +188,7 @@ export const StyledCalendar = styled(Calendar)`
     letter-spacing: -0.02em;
     color: #fff;
     background-color: #1f1f1f;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--hover-params);
 
     &:hover,
     &:focus {
