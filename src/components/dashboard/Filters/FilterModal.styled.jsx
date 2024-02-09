@@ -2,17 +2,28 @@ import styled from "styled-components";
 
 export const ModalFilter = styled.div`
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 60px;
+  right: 24px;
   height: auto;
   padding: 24px;
-  border: 1px solid var(--filter-text-and-icon-color);
+  border: 1px solid var(--shared-input-border-color);
   box-shadow: 0px 4px 16px var(--color-shadow);
   border-radius: 8px;
-      background-color: var(--primary-background-color);
- /*  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;*/
+  background-color: var(--primary-background-color);
+  z-index: 1000;
+  ;
   ` 
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 999; 
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1)
+`;
+  
 
 export const StyledColorBtn = styled.span`
   content: "";
@@ -84,15 +95,21 @@ export const StyledLabel = styled.label`
   position: relative;
   display: flex;
   flex-direction:row;
-  
+  gap: 8px;
   height: 18px;
   margin: 0;
 
-/*   input[type="radio"]:checked + ${StyledColorBtn} {
+   input[type="radio"]:checked + ${StyledColorBtn} {
     scale: 0.5;
-  } */
-`;
+  };  
 
+/*   input[type="radio"].green:checked + .green-label .color-text {
+    scale: 0.5,
+    color: red,
+  font-weight: bold,}
+} */
+
+`
 export const StyledRadioInput = styled.input`
   position: absolute;
   appearance: none;
