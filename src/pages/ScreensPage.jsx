@@ -10,6 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import { selectAllDashboards } from "../redux/Dashboard/dashboardsSelectors";
 import { useEffect, useRef, useState } from "react";
+import { Loader } from "../shared/Loader/loader";
 
 const ScreensPage = () => {
   const [loading, setLoading] = useState(false);
@@ -47,7 +48,7 @@ const ScreensPage = () => {
   return (
     <ScreensPageWrap>
       {loading ? (
-        <div>Loading...</div>
+        <div><Loader/></div>
       ) : (
         (boardName === undefined && (
           <WelcomeMessageWrap>
