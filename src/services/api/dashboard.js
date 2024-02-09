@@ -40,17 +40,19 @@ export const requestUpdateColumn = async (columnId, title) => {
     return data;
 };
 
-export const requestAddCard = async({ columID, title, description, color, deadline }) =>{
-    const { data } = await instance.post(`card/${columID}`, {title, description, color, deadline });
+export const requestAddCard = async (columnId, title, description, color, deadline) => {
+    console.log(description);
+    const { data } = await instance.post(`cards/${columnId}`, {title, description, color, deadline });
     return data;
 };
 
 export const requestDeleteCard = async (cardId) => {
-    const { data } = await instance.delete(`card/${cardId}`)
+    const { data } = await instance.delete(`cards/${cardId}`)
     return data;
 };
 
 export const requestUpdateCard = async ({ cardId, title, description, color, deadline }) => {
-    const { data } = await instance.put(`card/${cardId}`, { title, description, color, deadline })
+    
+    const { data } = await instance.put(`cards/${cardId}`, { title, description, color, deadline })
     return data;
-}
+}; 
