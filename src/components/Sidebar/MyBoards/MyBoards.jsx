@@ -55,15 +55,13 @@ export const MyBoards = ({
             <BoardItem
               key={board._id}
               onClick={() => choice(board)}
-              className={selectedItem._id === board._id ? "active" : ""}
-            >
+              className={selectedItem._id === board._id ? "active" : ""}>
               <Link to={`/home/${board.title}`}>
                 <BoardContainer>
                   <BoardIcon
                     className="iconBoard iconActive"
                     width="20px"
-                    height="20px"
-                  >
+                    height="20px">
                     <use href={`${icon}${board.icon}`}></use>
                   </BoardIcon>
                   <BoardTitle>{board.title}</BoardTitle>
@@ -73,25 +71,21 @@ export const MyBoards = ({
                   <ButtonContainer>
                     <ButtonEdit
                       onClick={() => modalStateSwapper()}
-                      type="button"
-                    >
+                      type="button">
                       <BoardIcon
                         className="iconBoard iconEdit"
                         width="16px"
-                        height="16px"
-                      >
+                        height="16px">
                         <use href={`${icon}#icon-pencil`}></use>
                       </BoardIcon>
                     </ButtonEdit>
                     <ButtonEdit
                       onClick={() => deleteBoard(board._id)}
-                      type="button"
-                    >
+                      type="button">
                       <BoardIcon
                         className="iconBoard iconEdit"
                         width="16px"
-                        height="16px"
-                      >
+                        height="16px">
                         <use href={`${icon}#icon-trash`}></use>
                       </BoardIcon>
                     </ButtonEdit>
@@ -108,10 +102,13 @@ export const MyBoards = ({
         isModalOpen={isModalOpen}
         modalStateSwapper={closeModal}
       />
-      <EditBoardModal
-        isModalOpen={isEditBoardModalOpen}
-        modalStateSwapper={modalStateSwapper}
-      />
+
+      {isEditBoardModalOpen && (
+        <EditBoardModal
+          isModalOpen={isEditBoardModalOpen}
+          modalStateSwapper={modalStateSwapper}
+        />
+      )}
     </div>
   );
 };

@@ -42,14 +42,16 @@ const validationSchema = Yup.object().shape({
 
 export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
-
+  //
   const dates = useSelector(selectCurrentDashboard);
+  console.log(dates.result);
   const {
-    dashboardId: _id,
+    _id,
     title: titleDates,
     icon: iconDates,
     backgroundURL: backgroundURLDates,
-  } = dates;
+  } = dates.result;
+
   const [selectedBg, setSelectedBg] = useState(backgroundURLDates);
   const [setIcon, setSetIcon] = useState(iconDates);
 
@@ -66,9 +68,11 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
       icon: setIcon,
       backgroundURL: selectedBg,
     };
+    console.log(_id);
     modalStateSwapper();
     dispatch(updateDashboardThunk({ _id, updatedData }));
   };
+
   // const { name, icon, backgroundURL } = item;
   //   const [selectedBg, setSelectedBg] = useState(backgroundURL);
   //   const [setIcon, setSetIcon] = useState(icon);
@@ -77,8 +81,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   //     title: name,
   //     icon: setIcon,
   //     backgroundURL: selectedBg,
-  //   }; закоментованим кодом треба буде замінити код зі строчок 43 по 49 оскільки при рендері модалки едіт
-  //  має відображатись модалка з вже відміченими іконками та бекграундом
+  //   };
   const handleBgSelection = (url) => {
     setSelectedBg(url);
   };

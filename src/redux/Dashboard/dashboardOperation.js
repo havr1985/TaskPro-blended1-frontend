@@ -10,7 +10,6 @@ import {
   requestUpdateColumn,
 } from "../../services/api/dashboard";
 
-
 export const allDashboardsThunk = createAsyncThunk(
   "dashboard/allDashboards",
   async (_, thunkAPI) => {
@@ -77,8 +76,7 @@ export const addColumnThunk = createAsyncThunk(
     try {
       const data = await requestAddColumn(dashboardId, title, owner);
       return data;
-    }
-    catch (error) {
+    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -90,22 +88,20 @@ export const deleteColumnThunk = createAsyncThunk(
     try {
       const data = await requestDeleteColumn(columnId);
       return data;
-    }
-    catch (error) {
-      return thunkAPI.rejectWithValue(error)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 export const updateColumnThunk = createAsyncThunk(
   "dashboard/updateColumn",
-  async ({columnId, title}, thunkAPI) => {
+  async ({ columnId, title }, thunkAPI) => {
     try {
       const data = await requestUpdateColumn(columnId, title);
       return data;
-    }
-    catch (error) {
+    } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
-)
+);

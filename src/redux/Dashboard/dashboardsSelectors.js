@@ -4,4 +4,4 @@ export const selectCurrentDashboard = (state) =>
   state.dashboards.currentDashboard;
 
 export const selectUpdateDashboardDate = (state) =>
-  state.dashboards.dataUpdatedContact;
+  state.dashboards.dataUpdatedDashboard;
