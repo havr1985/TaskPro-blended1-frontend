@@ -92,10 +92,16 @@ export const AddCardButton = styled.button`
   color: var(--shared-button-text-color);
   background-color: var(--primary-button-color);
   cursor: pointer;
+  transition: background-color var(--hover-params);
 
   @media screen and (min-width: 375px) {
     width: 335px;
     min-width: 335px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-button-color);
   }
 `;
 
@@ -182,4 +188,10 @@ export const Icon = styled.svg`
   fill: none;
   stroke-width: 1.3px;
   stroke: var(--radio-icons-color);
+  transition: stroke var(--hover-params), scale var(--hover-params);
+
+  &:hover {
+    stroke: var(--primary-button-color);
+    scale: 1.1;
+  }
 `;

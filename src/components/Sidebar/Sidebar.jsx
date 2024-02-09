@@ -6,47 +6,54 @@ import { MyBoards } from "./MyBoards/MyBoards";
 import { NeedHelp } from "./NeedHelp/NeedHelp";
 import { LogOut } from "./LogOut/LogOut";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllDashboards } from "../../redux/Dashboard/dashboardsSelectors";
+import {
+  selectAllDashboards,
+  selectCurrentDashboard,
+} from "../../redux/Dashboard/dashboardsSelectors";
 import { getDashboardByIDThunk } from "../../redux/Dashboard/dashboardOperation";
 
 export const Sidebar = ({ isOpen }) => {
-	const [selectedItem, setSelectedItem] = useState("");
-	const boards = useSelector(selectAllDashboards);
-	const [userBoards, setUserBoards] = useState([]);
+  const [selectedItem, setSelectedItem] = useState("");
+  const boards = useSelector(selectAllDashboards);
+  const { result } = useSelector(selectCurrentDashboard);
+  const [userBoards, setUserBoards] = useState([]);
+  const dispatch = useDispatch();
 
-	const dispatch = useDispatch();
+  useEffect(() => {
+    setUserBoards(boards);
+  }, [boards]);
 
-	useEffect(() => {
-		setUserBoards(boards);
-	}, [boards]);
+  useEffect(() => {
+    setSelectedItem(result ?? "");
+  }, [result]);
 
-	//   const boards = [
-	//     { id: 1, name: "Project office", icon: "icon-board-square" },
-	//     { id: 2, name: "Project ", icon: "icon-board-colors" },
-	//   ];
+  //   const boards = [
+  //     { id: 1, name: "Project office", icon: "icon-board-square" },
+  //     { id: 2, name: "Project ", icon: "icon-board-colors" },
+  //   ];
 
-	const handleClick = item => {
-		setSelectedItem(item);
-		dispatch(getDashboardByIDThunk(item._id));
-	};
+  const handleClick = (item) => {
+    // setSelectedItem(item);
+    dispatch(getDashboardByIDThunk(item._id));
+  };
 
-	return (
-		<SidebarContainer className={isOpen === true && "active"}>
-			<div>
-				<Logo icon={sprite} />
-				<MyBoards
-					icon={sprite}
-					boards={userBoards}
-					choice={handleClick}
-					selectedItem={selectedItem}
-					//   setUserBoards={setUserBoards}
-				/>
-			</div>
+  return (
+    <SidebarContainer className={isOpen === true && "active"}>
+      <div>
+        <Logo icon={sprite} />
+        <MyBoards
+          icon={sprite}
+          boards={userBoards}
+          choice={handleClick}
+          selectedItem={selectedItem}
+          //   setUserBoards={setUserBoards}
+        />
+      </div>
 
-			<div>
-				<NeedHelp icon={sprite} />
-				<LogOut icon={sprite} />
-			</div>
-		</SidebarContainer>
-	);
+      <div>
+        <NeedHelp icon={sprite} />
+        <LogOut icon={sprite} />
+      </div>
+    </SidebarContainer>
+  );
 };

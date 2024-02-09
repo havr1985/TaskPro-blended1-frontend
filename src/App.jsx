@@ -8,6 +8,8 @@ import { RestictedRoute } from "./components/RestictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { selectAuthIsLoading } from "./redux/Auth/authSelectors";
 
+import { ToastContainer } from "react-toastify";
+
 import ErrorPage from "./pages/ErrorPage";
 
 const WelcomePage = lazy(() => import("./pages/WelcomePage"));
@@ -45,8 +47,9 @@ function App() {
 
             <Route
               path="/home"
-              element={<PrivateRoute redirectTo="/" component={<HomePage />} />}
-            >
+              element={
+                <PrivateRoute redirectTo="/" component={<HomePage />} />
+              }>
               <Route
                 path=":boardName"
                 element={
@@ -71,6 +74,18 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

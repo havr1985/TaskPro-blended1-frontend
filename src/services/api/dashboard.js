@@ -25,6 +25,36 @@ export const requestDeleteDashboard = async dashboardId => {
 	return data;
 };
 
+export const requestAddColumn = async (dashboardId, title, owner) => {
+	const { data } = await instance.post(`column/${dashboardId}`, { title, owner });
+	return data;
+};
+
+export const requestDeleteColumn = async columnId => {
+	const { data } = await instance.delete(`column/${columnId}`);
+	return data;
+};
+
+export const requestUpdateColumn = async (columnId, title) => {
+	const { data } = await instance.put(`column/${columnId}`, { title });
+	return data;
+};
+
+export const requestAddCard = async ({ columID, title, description, color, deadline }) => {
+	const { data } = await instance.post(`card/${columID}`, { title, description, color, deadline });
+	return data;
+};
+
+export const requestDeleteCard = async cardId => {
+	const { data } = await instance.delete(`card/${cardId}`);
+	return data;
+};
+
+export const requestUpdateCard = async ({ cardId, title, description, color, deadline }) => {
+	const { data } = await instance.put(`card/${cardId}`, { title, description, color, deadline });
+	return data;
+};
+
 export const requestUserNeedHelp = async info => {
 	const { data } = await instance.post("dashboard/help", info);
 	return data;

@@ -1,7 +1,10 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import { SharedModal } from "../../shared/SharedModal/SharedModal";
+import { StyledCalendar } from "../StyledCalendar/StyledCalendar";
+import icons from "../../shared/images/icons.svg";
 
 import {
   StyledForm,
@@ -21,12 +24,15 @@ import {
   Error,
   ErrorText,
   Container,
+  IconChevron,
 } from "./FormAddCard.styled";
 // import Calendar from "../Calendar/Calendar";
 // import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import icons from "../../shared/images/icons.svg";
+
 // import { useDispatch, useSelector } from "react-redux";
+
+Modal.setAppElement("#root");
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
@@ -39,6 +45,27 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
   //{ cardId }
   // const dispatch = useDispatch();
   const { closeModal } = useModal();
+
+  const {
+    isModalOpen: isCalendarModalOpen,
+    openModal: openCalendarModal,
+    closeModal: closeCalendarModal,
+  } = useModal();
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgb(21, 21, 21, 0.75)",
+    },
+    content: {
+      width: "233px",
+      height: "254px",
+      margin: "auto",
+      padding: 0,
+      border: "none",
+      borderRadius: "8px",
+    },
+  };
+
   // const cardData = useSelector((state) => selectCardById(state, cardId));
 
   // useEffect(() => {
@@ -60,6 +87,12 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
     closeModal();
     resetForm();
   };
+
+  const formatWeekday = (_, date) => {
+    const shortDayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+    return shortDayNames[date.getDay()];
+  };
+
   return (
     <>
       {/* <button onClick={openModal}>Edit Card</button> */}
@@ -158,11 +191,12 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
 
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
-                <TextDeadlain>{dayjs().format("dddd, MMMM DD")}</TextDeadlain>
-                {/* <Calendar
-                  parentState={(date) => setFieldValue("deadline", date)}
-                  initial={values.deadline}
-                /> */}
+                <TextDeadlain onClick={openCalendarModal}>
+                  {dayjs(values.deadline).format("dddd, MMMM DD")}
+                </TextDeadlain>
+                <IconChevron>
+                  <use href={icons + "#icon-chevron-down"} />
+                </IconChevron>
               </StyledDeadlineWrapper>
 
               <AuthFormSubmitButton type="submit">
@@ -176,6 +210,14 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
             </StyledForm>
           )}
         </Formik>
+        <Modal
+          isOpen={isCalendarModalOpen}
+          onRequestClose={closeCalendarModal}
+          style={customStyles}
+          closeTimeoutMS={750}
+        >
+          <StyledCalendar formatShortWeekday={formatWeekday} />
+        </Modal>
       </SharedModal>
     </>
   );

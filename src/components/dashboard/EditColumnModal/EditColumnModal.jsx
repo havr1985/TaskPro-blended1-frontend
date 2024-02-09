@@ -15,14 +15,24 @@ import {
 import { ButtonPlus } from "../../BoardModal/newBoardModal.styled";
 import { PlusIcon } from "../../BoardModal/newBoardModal.styled";
 import icons from "../../../shared/images/icons.svg";
+import { updateColumnThunk } from "../../../redux/Dashboard/dashboardOperation";
+import { useDispatch } from "react-redux";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().min("6").required("specify a column name"),
 });
 
-export const EditColumnModal = ({ isModalOpen, modalStateSwapper, title }) => {
+export const EditColumnModal = ({ isModalOpen, modalStateSwapper, title, columnId }) => {
+ 
+  const dispatch = useDispatch()
   const initialValues = {
     title: title || "",
+  };
+
+  // Need some fixes request is not sent
+  const handleSubmit = ({ title }, action) => {
+    dispatch(updateColumnThunk({ columnId, title }));
+    action.resetForm();
   };
 
   return (
@@ -36,6 +46,7 @@ export const EditColumnModal = ({ isModalOpen, modalStateSwapper, title }) => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
+          onSubmit={handleSubmit}
         >
           <ModalForm>
             <FormWrapper>
@@ -49,14 +60,13 @@ export const EditColumnModal = ({ isModalOpen, modalStateSwapper, title }) => {
               />
             </FormWrapper>
 
-            <EditColumnFormSubmitButton 
-              type="submit">
-                <ButtonPlus>
-                  <PlusIcon>
-                    <use href={icons + "#icon-plus"} />
-                  </PlusIcon>
-                </ButtonPlus>
-                Add
+            <EditColumnFormSubmitButton type="submit">
+              <ButtonPlus>
+                <PlusIcon>
+                  <use href={icons + "#icon-plus"} />
+                </PlusIcon>
+              </ButtonPlus>
+              Add
             </EditColumnFormSubmitButton>
           </ModalForm>
         </Formik>

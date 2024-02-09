@@ -24,6 +24,8 @@ import data from "../background.json";
 import { useDispatch } from "react-redux";
 
 import { addDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const options = [
   "#icon-board-square",
@@ -43,24 +45,19 @@ const validationSchema = Yup.object().shape({
 export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
   const [setIcon, setSetIcon] = useState(options[0]);
-  const [selectedBg, setSelectedBg] = useState("");
+  const [selectedBg, setSelectedBg] = useState(data[0].url);
   const initialValues = {
     title: "",
     icon: setIcon,
     bg: selectedBg,
   };
-  const handleBgSelection = (url) => {
-    setSelectedBg(url);
-  };
-
-  const handleIconSelection = (el) => {
-    setSetIcon(el);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const boardTitle = e.target.elements[0].value;
-
+    if (!boardTitle) {
+      toast.error("Title is required!");
+      return;
+    }
     const newBoardData = {
       title: boardTitle,
       icon: setIcon,
@@ -70,19 +67,38 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     modalStateSwapper();
     dispatch(addDashboardThunk(newBoardData));
   };
+  const handleBgSelection = (url) => {
+    setSelectedBg(url);
+  };
+
+  const handleIconSelection = (el) => {
+    setSetIcon(el);
+  };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const boardTitle = e.target.elements[0].value;
+
+  //   const newBoardData = {
+  //     title: boardTitle,
+  //     icon: setIcon,
+  //     backgroundURL: selectedBg,
+  //   };
+
+  //   modalStateSwapper();
+  //   dispatch(addDashboardThunk(newBoardData));
+  // };
 
   return (
     <SharedModal
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"New board"}
-      maxWidth={"350px"}
-    >
+      maxWidth={"350px"}>
       <Section>
         <Formik
           initialValues={initialValues}
-          validationSchema={validationSchema}
-        >
+          validationSchema={validationSchema}>
           <ModalForm onSubmit={(e) => handleSubmit(e)}>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
@@ -104,8 +120,7 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                       className={setIcon === el ? "active" : ""}
                       onClick={() => handleIconSelection(el)}
                       width={18}
-                      height={18}
-                    >
+                      height={18}>
                       <use href={icons + el} width={18} height={18} />
                     </Icon>
 
@@ -122,8 +137,7 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                   <label key={idx}>
                     <BgcItem
                       onClick={() => handleBgSelection(el.url)}
-                      className={selectedBg === el.url ? "active" : ""}
-                    >
+                      className={selectedBg === el.url ? "active" : ""}>
                       {el.url !== "" && (
                         <CustomRadioBtn
                           url={el.url}

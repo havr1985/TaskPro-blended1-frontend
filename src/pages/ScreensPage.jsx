@@ -33,9 +33,12 @@ const ScreensPage = () => {
     }
     if (allDashboards.length > 0 && !boardName) {
       setLoading(true);
-      const lastDashboardName = allDashboards[allDashboards.length - 1].title;
-      setCurrentPageName(lastDashboardName);
-      navigate(`/home/${lastDashboardName}`, { replace: true });
+      const lastDashboard = allDashboards[allDashboards.length - 1];
+      setCurrentPageName(lastDashboard.title);
+      navigate(`/home/${lastDashboard.title}`, {
+        replace: true,
+        state: { id: lastDashboard._id },
+      });
       setLoading(false);
     }
     didMount.current = false;
@@ -60,7 +63,7 @@ const ScreensPage = () => {
         (boardName !== undefined && (
           <>
             <HeaderDashboard boardName={boardName} />
-            <MainDashboard boardName={boardName} />
+            <MainDashboard />
           </>
         ))
       )}
