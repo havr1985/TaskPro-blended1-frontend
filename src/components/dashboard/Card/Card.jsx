@@ -78,7 +78,7 @@ const Card = ({ card }) => {
   return (
     <>
       <CardList>
-        {card.length !== 0 &&
+        {card &&
           card.map(({ _id: id, title, description, color, deadline }) => (
             <CardWrap key={id} $prioritycolor={priorityColor(color)}>
               <CardTitle>{title}</CardTitle>
