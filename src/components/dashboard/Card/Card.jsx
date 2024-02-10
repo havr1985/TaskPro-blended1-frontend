@@ -18,6 +18,7 @@ import {
 } from "./Card.styled";
 import { useDispatch } from "react-redux";
 import { deleteCardThunk } from "../../../redux/Dashboard/dashboardOperation";
+import { useState } from "react";
 
 const deadlineDate = (deadline) => {
   const date = new Date(deadline);
@@ -64,6 +65,7 @@ const priorityValue = (color) => {
 };
 
 const Card = ({ card }) => {
+  const [cardId, setCardId] = useState(null);
   const dispatch = useDispatch();
   const {
     isModalOpen: isEditCardModalOpen,
@@ -119,7 +121,12 @@ const Card = ({ card }) => {
                     </IconButton>
                   </li>
                   <li>
-                    <IconButton onClick={openEditCardModal}>
+                    <IconButton
+                      onClick={() => {
+                        openEditCardModal();
+                        setCardId(id);
+                      }}
+                    >
                       <Icon>
                         <use href={icons + "#icon-pencil"} />
                       </Icon>
@@ -140,6 +147,7 @@ const Card = ({ card }) => {
       <FormEditCard
         modalStateSwapper={closeEditCardModal}
         isModalOpen={isEditCardModalOpen}
+        cardId={cardId}
       />
     </>
   );
