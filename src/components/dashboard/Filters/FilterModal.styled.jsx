@@ -11,6 +11,9 @@ export const ModalFilter = styled.div`
   border-radius: 8px;
   background-color: var(--primary-background-color);
   z-index: 1000;
+  transition: var(--hover-params);
+  cursor: pointer;
+
   ;
   ` 
 export const Overlay = styled.div`
@@ -21,7 +24,6 @@ export const Overlay = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); 
   z-index: 999; 
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1)
 `;
   
 

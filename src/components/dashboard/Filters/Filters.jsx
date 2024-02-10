@@ -3,15 +3,18 @@ import { useState } from "react";
 import icons from "../../../shared/images/icons.svg";
 import { FilterModal } from "./FilterModal";
 import { FilterButton, FilterIcon } from "./Filters.styled";
-/* import DashboardAllShow from './DashboardAllShow'; */
+/* import MainDashboard from "../MainDashboard/MainDashboard"; */
+import ScreensPage from "../../../pages/ScreensPage";
 
 const Filters = () => {
-  /*  const dispatch = useDispatch(); */
+
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
-  function showAllColumn() {
- 
-}
+  const [showAll, setShowAll] = useState(false);
+
+  const handleShowAll = () => {
+    setShowAll(true);
+  };
 
 /*   const openFilterModal = () => {
      setIsFilterModalOpen(true);
@@ -23,8 +26,10 @@ const Filters = () => {
     const toggleModalVisibility = () => {
     setIsFilterModalOpen((prevState) => !prevState);
   };
+ /*  if (showAll) return <ScreensPage/> */
+
   return (
-      <>
+    <>
       <FilterButton onClick={() => toggleModalVisibility()}>
         <FilterIcon>
           <use href={icons + "#icon-filter"} />
@@ -34,7 +39,7 @@ const Filters = () => {
       <FilterModal
         isOpen={isFilterModalOpen}
         onClose={toggleModalVisibility}
-        onShowAll={showAllColumn}
+        onShowAll={handleShowAll}
         />
    </>
     );
