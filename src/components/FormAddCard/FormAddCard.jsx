@@ -27,9 +27,8 @@ import {
   AuthFormSubmitButton,
   IconChevron,
 } from "./FormAddCard.styled";
-// import Calendar from "../Calendar/Calendar";
-import dayjs from "dayjs";
 import { addCardThunk } from "../../redux/Dashboard/dashboardOperation";
+import { useState } from "react";
 
 Modal.setAppElement("#root");
 
@@ -40,10 +39,14 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormAddCard({ isModalOpen, modalStateSwapper, columnId }) {
+export default function FormAddCard({
+  isModalOpen,
+  modalStateSwapper,
+  columnId,
+}) {
+  const [dateFromCalendar, setDateFromCalendar] = useState(new Date());
+
   const dispatch = useDispatch();
-  const { closeModal } = useModal();
-  
 
   const {
     isModalOpen: isCalendarModalOpen,
@@ -66,24 +69,34 @@ export default function FormAddCard({ isModalOpen, modalStateSwapper, columnId }
   };
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    
     const addCard = {
       columnId,
       title: values.title,
       description: values.description,
       color: values.color,
-      deadline: values.deadline,
-    }
-    
+      deadline: dateFromCalendar,
+    };
+
     dispatch(addCardThunk(addCard));
     setSubmitting(false);
     resetForm();
-    closeModal();
+    modalStateSwapper();
   };
 
   const formatWeekday = (_, date) => {
     const shortDayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
     return shortDayNames[date.getDay()];
+  };
+
+  const deadlineDate = (dateFromCalendar) => {
+    const date = new Date(dateFromCalendar);
+
+    const day = date.getDate();
+
+    const monthName = date.toLocaleString("en", { month: "long" });
+    const dayOfWeek = date.toLocaleString("en", { weekday: "long" });
+
+    return `${dayOfWeek}, ${monthName} ${day}`;
   };
 
   return (
@@ -184,10 +197,8 @@ export default function FormAddCard({ isModalOpen, modalStateSwapper, columnId }
               </StyledContainerRadioBtn>
 
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
-              <StyledDeadlineWrapper>
-                <TextDeadlain onClick={openCalendarModal}>
-                  {dayjs(values.deadline).format("dddd, MMMM DD")}
-                </TextDeadlain>
+              <StyledDeadlineWrapper onClick={openCalendarModal}>
+                <TextDeadlain>{deadlineDate(dateFromCalendar)}</TextDeadlain>
                 <IconChevron>
                   <use href={icons + "#icon-chevron-down"} />
                 </IconChevron>
@@ -210,7 +221,11 @@ export default function FormAddCard({ isModalOpen, modalStateSwapper, columnId }
           style={customStyles}
           closeTimeoutMS={750}
         >
-          <StyledCalendar formatShortWeekday={formatWeekday} />
+          <StyledCalendar
+            formatShortWeekday={formatWeekday}
+            value={dateFromCalendar}
+            onChange={setDateFromCalendar}
+          />
         </Modal>
       </SharedModal>
     </>

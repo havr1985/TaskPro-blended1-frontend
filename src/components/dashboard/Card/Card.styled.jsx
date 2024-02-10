@@ -56,7 +56,7 @@ export const CardWrap = styled.li`
     width: 4px;
     height: 154px;
     border-radius: 4px 0 0 4px;
-    background-color: red;
+    background-color: ${(props) => props.$prioritycolor};
   }
 `;
 
@@ -70,7 +70,7 @@ export const CardTitle = styled.h4`
 
 export const CardDescriptionWrap = styled.div`
   height: 50px;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 export const CardDescription = styled(TextTruncate)`
@@ -116,7 +116,7 @@ export const CardPriorityValue = styled.span`
     height: 12px;
     border-radius: 50%;
     margin-right: 5px;
-    background-color: red;
+    background-color: ${(props) => props.$prioritycolor};
     vertical-align: middle;
   }
 `;

@@ -99,8 +99,7 @@ export const AddCardButton = styled.button`
     min-width: 335px;
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: var(--secondary-button-color);
   }
 `;
