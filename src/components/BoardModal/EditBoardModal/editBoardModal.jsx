@@ -69,7 +69,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
       backgroundURL: selectedBg,
     };
     modalStateSwapper();
-    dispatch(updateDashboardThunk( updatedData ));
+    dispatch(updateDashboardThunk(updatedData));
   };
 
   // const { name, icon, backgroundURL } = item;
@@ -88,7 +88,6 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const handleIconSelection = (el) => {
     setSetIcon(el);
   };
-  
 
   return (
     <SharedModal
