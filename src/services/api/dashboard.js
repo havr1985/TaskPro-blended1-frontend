@@ -15,9 +15,9 @@ export const requestDashboardById = async dashboardId => {
 	return data;
 };
 
-export const requestEditDashboard = async (dashboardId, values) => {
-	const { data } = await instance.put(`dashboard/${dashboardId}`, values);
-	return data;
+export const requestEditDashboard = async (_id, title, icon, backgroundURL) => {
+	const { data } = await instance.put(`dashboard/${_id}`, { title, icon, backgroundURL });
+  return data;
 };
 
 export const requestDeleteDashboard = async dashboardId => {
