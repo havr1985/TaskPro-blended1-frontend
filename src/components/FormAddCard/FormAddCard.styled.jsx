@@ -51,7 +51,7 @@ export const StyledRadioInput = styled(Field)`
   }
 
   &:checked.gray {
-    border: 1px solid #ffffff4d; /* Сірий колір рамки при виборі */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Сірий колір рамки при виборі */
   }
 `;
 
