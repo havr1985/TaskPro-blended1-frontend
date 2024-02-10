@@ -9,6 +9,7 @@ import {
 	requestDeleteColumn,
 	requestDeleteDashboard,
 	requestEditDashboard,
+	requestUserNeedHelp,
 	requestUpdateCard,
 	requestUpdateColumn,
 } from "../../services/api/dashboard";
@@ -151,4 +152,3 @@ export const updateCardThunk = createAsyncThunk(
 		}
 	}
 );
-

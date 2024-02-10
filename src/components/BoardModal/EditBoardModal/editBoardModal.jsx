@@ -44,7 +44,6 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
   //
   const dates = useSelector(selectCurrentDashboard);
-  console.log(dates.result);
   const {
     _id,
     title: titleDates,
@@ -64,13 +63,13 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     e.preventDefault();
     const newBoardTitle = e.target.elements[0].value;
     const updatedData = {
+      _id,
       title: newBoardTitle,
       icon: setIcon,
       backgroundURL: selectedBg,
     };
-    console.log(_id);
     modalStateSwapper();
-    dispatch(updateDashboardThunk({ _id, updatedData }));
+    dispatch(updateDashboardThunk( updatedData ));
   };
 
   // const { name, icon, backgroundURL } = item;

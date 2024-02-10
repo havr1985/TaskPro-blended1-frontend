@@ -5,10 +5,12 @@ export const requestAllDashboards = async () => {
 	return data;
 };
 
+
 export const requestAddDashboard = async (values) => {
 	const { data } = await instance.post("dashboard", values);
 	return data;
 };
+
 
 export const requestDashboardById = async (dashboardId) => {
 	const { data } = await instance.get(`dashboard/${dashboardId}`);
@@ -35,6 +37,7 @@ export const requestAddColumn = async (dashboardId, title, owner) => {
 };
 
 export const requestDeleteColumn = async (columnId) => {
+
 	const { data } = await instance.delete(`column/${columnId}`);
 	return data;
 };
@@ -43,7 +46,6 @@ export const requestUpdateColumn = async (columnId, title) => {
 	const { data } = await instance.put(`column/${columnId}`, { title });
 	return data;
 };
-
 
 export const requestAddCard = async (columnId, title, description, color, deadline) => {
 	const { data } = await instance.post(`cards/${columnId}`, { title, description, color, deadline });
@@ -56,7 +58,7 @@ export const requestDeleteCard = async (cardId) => {
 };
 
 export const requestUpdateCard = async ({ cardId, title, description, color, deadline }) => {
-
 	const { data } = await instance.put(`cards/${cardId}`, { title, description, color, deadline })
 	return data;
 }; 
+
