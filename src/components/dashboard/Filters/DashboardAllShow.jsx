@@ -1,26 +1,20 @@
 import icons from "../../../shared/images/icons.svg";
 import Card from "../Card/Card";
 import {
-  AddCardButton,
-  AddCardIconPlus,
-  AddCardIconWrap,
-  AddColumnButton,
-  DashboardColumnTitle,
+ DashboardColumnTitle,
   Icon,
   IconButton,
-  IconPlus,
-  IconWrap,
   IconsWrap,
   MainDashboardColumn,
   MainDashboardList,
   MainDashboardWrap,
   Title,
-} from "./MainDashboard.styled";
+} from "../MainDashboard/MainDashboard.styled";
 import { useModal } from "../../../hooks/useModal";
 import { Overlay } from "../../../pages/HomePage.styled";
-import { AddColumnModal } from "../AddColumnModal/AddColumnModal";
+
 import { EditColumnModal } from "../EditColumnModal/EditColumnModal";
-import FormAddCard from "../../FormAddCard/FormAddCard";
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
 import { useLocation } from "react-router-dom";
@@ -30,12 +24,12 @@ import {
   getDashboardByIDThunk,
 } from "../../../redux/Dashboard/dashboardOperation";
 
-const MainDashboard = () => {
-  const {
+const DashboardAllShow = () => {
+/*   const {
     isModalOpen: isAddColumnModalOpen,
     openModal: openAddColumnModal,
     closeModal: closeAddColumnModal,
-  } = useModal();
+  } = useModal(); */
 
   const {
     isModalOpen: isEditColumnModalOpen,
@@ -43,17 +37,17 @@ const MainDashboard = () => {
     closeModal: closeEditColumnModal,
   } = useModal();
 
-  const {
+/*   const {
     isModalOpen: isAddCardModalOpen,
     openModal: openAddCardModal,
     closeModal: closeAddCardModal,
-  } = useModal();
+  } = useModal(); */
 
-  const { column: columns } = useSelector(selectCurrentDashboard);
-  const { state } = useLocation();
+    const { column: columns } = useSelector(selectCurrentDashboard);
+    const { state } = useLocation();
   const dispatch = useDispatch();
 
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState(null)
 
   useEffect(() => {
     if (columns === undefined) {
@@ -61,10 +55,9 @@ const MainDashboard = () => {
     }
   }, [columns, dispatch, state?.id]);
 
-  // const current = useSelector(selectCurrentDashboard);
-  // console.log(current);
-
+  // Need some fixes request is not sent
   const onDeleteColumn = (id) => {
+    
     dispatch(deleteColumnThunk(id));
   };
 
@@ -74,19 +67,14 @@ const MainDashboard = () => {
         {columns === undefined ? (
           <></>
         ) : (
-          columns.map(({ _id: id, title, card }) => {
+          columns.map(({ _id: id, title }) => {
             return (
               <MainDashboardColumn key={id}>
                 <div>
                   <DashboardColumnTitle>
                     <Title>{title}</Title>
                     <IconsWrap>
-                      <IconButton
-                        onClick={() => {
-                          openEditColumnModal();
-                          setSelectedId(id);
-                        }}
-                      >
+                      <IconButton onClick={() => {openEditColumnModal(); setSelectedId(id)} }>
                         <Icon>
                           <use href={icons + "#icon-pencil"} />
                         </Icon>
@@ -99,14 +87,9 @@ const MainDashboard = () => {
                     </IconsWrap>
                   </DashboardColumnTitle>
                 </div>
-                <Card card={card} />
-                <div>
-                  <AddCardButton
-                    onClick={() => {
-                      openAddCardModal();
-                      setSelectedId(id);
-                    }}
-                  >
+                <Card />
+              {/*   <div>
+                  <AddCardButton onClick={openAddCardModal}>
                     <AddCardIconWrap>
                       <AddCardIconPlus>
                         <use href={icons + "#icon-plus"} />
@@ -114,28 +97,28 @@ const MainDashboard = () => {
                     </AddCardIconWrap>
                     Add Card
                   </AddCardButton>
-                </div>
+                </div> */}
               </MainDashboardColumn>
             );
           })
         )}
       </MainDashboardList>
-      <AddColumnButton onClick={openAddColumnModal}>
+     {/*  <AddColumnButton onClick={openAddColumnModal}>
         <IconWrap>
           <IconPlus>
             <use href={icons + "#icon-plus"} />
           </IconPlus>
         </IconWrap>
         Add column
-      </AddColumnButton>
-      <Overlay
+      </AddColumnButton> */}
+    {/*   <Overlay
         onClick={closeAddColumnModal}
         className={isAddColumnModalOpen === true && "active"}
       ></Overlay>
       <AddColumnModal
         modalStateSwapper={closeAddColumnModal}
         isModalOpen={isAddColumnModalOpen}
-      />
+      /> */}
       <Overlay
         onClick={closeEditColumnModal}
         className={isEditColumnModalOpen === true && "active"}
@@ -144,14 +127,14 @@ const MainDashboard = () => {
         modalStateSwapper={closeEditColumnModal}
         isModalOpen={isEditColumnModalOpen}
         columnId={selectedId}
+    
       />
-      <FormAddCard
+   {/*    <FormAddCard
         modalStateSwapper={closeAddCardModal}
         isModalOpen={isAddCardModalOpen}
-        columnId={selectedId}
-      />
+      /> */}
     </MainDashboardWrap>
   );
 };
 
-export default MainDashboard;
+export default DashboardAllShow;

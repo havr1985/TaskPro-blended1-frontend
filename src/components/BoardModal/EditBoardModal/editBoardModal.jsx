@@ -21,6 +21,9 @@ import {
   TitleInput,
 } from "../newBoardModal.styled";
 import data from "../background.json";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
+import { updateDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
 
 const options = [
   "#icon-board-square",
@@ -38,13 +41,38 @@ const validationSchema = Yup.object().shape({
 });
 
 export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
-  const [selectedBg, setSelectedBg] = useState("");
-  const [setIcon, setSetIcon] = useState(options[0]);
+  const dispatch = useDispatch();
+  //
+  const dates = useSelector(selectCurrentDashboard);
+  const {
+    _id,
+    title: titleDates,
+    icon: iconDates,
+    backgroundURL: backgroundURLDates,
+  } = dates.result;
+
+  const [selectedBg, setSelectedBg] = useState(backgroundURLDates);
+  const [setIcon, setSetIcon] = useState(iconDates);
+
   const initialValues = {
-    title: "",
-    icon: setIcon,
-    backgroundURL: selectedBg,
+    title: titleDates,
+    icon: iconDates,
+    backgroundURL: backgroundURLDates,
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newBoardTitle = e.target.elements[0].value;
+    const updatedData = {
+      dashboardId: _id,
+      title: newBoardTitle,
+      icon: setIcon,
+      backgroundURL: selectedBg,
+    };
+    modalStateSwapper();
+    console.log(updatedData)
+    dispatch(updateDashboardThunk( updatedData ));
+  };
+
   // const { name, icon, backgroundURL } = item;
   //   const [selectedBg, setSelectedBg] = useState(backgroundURL);
   //   const [setIcon, setSetIcon] = useState(icon);
@@ -53,8 +81,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   //     title: name,
   //     icon: setIcon,
   //     backgroundURL: selectedBg,
-  //   }; закоментованим кодом треба буде замінити код зі строчок 43 по 49 оскільки при рендері модалки едіт
-  //  має відображатись модалка з вже відміченими іконками та бекграундом
+  //   };
   const handleBgSelection = (url) => {
     setSelectedBg(url);
   };
@@ -62,28 +89,28 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const handleIconSelection = (el) => {
     setSetIcon(el);
   };
+  
 
   return (
     <SharedModal
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Edit board"}
-      maxWidth={"350px"}
-    >
+      maxWidth={"350px"}>
       <Section>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           //   onSubmit={handleSubmit}>
         >
-          <ModalForm>
+          <ModalForm onSubmit={(e) => handleSubmit(e)}>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
               <TitleInput
                 type="text"
                 id="title"
                 name="title"
-                placeholder="Title"
+                // placeholder="Title"
                 autoComplete="off"
               />
             </FormWrapper>
@@ -97,8 +124,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                       className={setIcon === el ? "active" : ""}
                       onClick={() => handleIconSelection(el)}
                       width={18}
-                      height={18}
-                    >
+                      height={18}>
                       <use href={icons + el} width={18} height={18} />
                     </Icon>
 
@@ -115,8 +141,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                   <label key={idx}>
                     <BgcItem
                       onClick={() => handleBgSelection(el.url)}
-                      className={selectedBg === el.url ? "active" : ""}
-                    >
+                      className={selectedBg === el.url ? "active" : ""}>
                       {el.url !== "" && (
                         <CustomRadioBtn
                           url={el.url}

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Field,ErrorMessage } from "formik";
+import { Field, ErrorMessage } from "formik";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -22,7 +22,7 @@ export const StyledTextArea = styled.textarea`
   box-shadow: none;
   cursor: pointer;
   &:focus {
-    border-color: #BEDBB0;
+    border-color: #bedbb0;
   }
 `;
 
@@ -51,14 +51,17 @@ export const StyledRadioInput = styled(Field)`
   }
 
   &:checked.gray {
-    border: 1px solid #ffffff4d; /* Сірий колір рамки при виборі */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Сірий колір рамки при виборі */
   }
 `;
 
 export const StyledDeadlineWrapper = styled.div`
-  margin-bottom: 40px;
   display: flex;
+  gap: 4px;
+  width: 200px;
+  margin-bottom: 40px;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const StyledDeadlineTitle = styled.p`
@@ -69,8 +72,6 @@ export const StyledDeadlineTitle = styled.p`
   font-size: 12px;
   font-weight: 400;
   font-family: "Poppins", sans-serif;
-  
-
 `;
 
 export const StyledLabelColor = styled.h2`
@@ -141,17 +142,17 @@ export const StyledInput = styled.input`
   cursor: pointer;
 
   &:focus {
-    border-color: #BEDBB0;
+    border-color: #bedbb0;
   }
 `;
 
 export const TextDeadlain = styled.p`
-    font-family: "Poppins", sans-serif;
-font-weight: 500;
-font-size: 14px;
-letter-spacing: -0.02em;
-color: #bedbb0;
-`
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: #bedbb0;
+`;
 
 export const ButtonPlus = styled.div`
   display: flex;
@@ -225,4 +226,11 @@ export const ErrorText = styled(ErrorMessage)`
   font-family: Poppins;
   font-weight: 500;
   letter-spacing: -0.36px;
+`;
+
+export const IconChevron = styled.svg`
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #bedbb0;
 `;

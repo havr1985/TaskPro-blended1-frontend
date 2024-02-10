@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import TextTruncate from "react-text-truncate";
 
 export const CardList = styled.ul`
   overflow-y: auto;
@@ -55,12 +56,12 @@ export const CardWrap = styled.li`
     width: 4px;
     height: 154px;
     border-radius: 4px 0 0 4px;
-    background-color: red;
+    background-color: ${(props) => props.$prioritycolor};
   }
 `;
 
 export const CardTitle = styled.h4`
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: 600;
   font-size: 14px;
   /* letter-spacing: -0.02em; */
@@ -68,11 +69,11 @@ export const CardTitle = styled.h4`
 `;
 
 export const CardDescriptionWrap = styled.div`
-  height: 35px;
+  height: 50px;
   overflow: hidden;
 `;
 
-export const CardDescription = styled.p`
+export const CardDescription = styled(TextTruncate)`
   font-size: 12px;
   line-height: 1.33;
   /* letter-spacing: -0.02em; */
@@ -115,7 +116,7 @@ export const CardPriorityValue = styled.span`
     height: 12px;
     border-radius: 50%;
     margin-right: 5px;
-    background-color: red;
+    background-color: ${(props) => props.$prioritycolor};
     vertical-align: middle;
   }
 `;
@@ -150,6 +151,12 @@ export const Icon = styled.svg`
   fill: none;
   stroke-width: 1.3px;
   stroke: var(--radio-icons-color);
+  transition: stroke var(--hover-params), scale var(--hover-params);
+
+  &:hover {
+    stroke: var(--primary-button-color);
+    scale: 1.1;
+  }
 
   &.bell {
     cursor: auto;

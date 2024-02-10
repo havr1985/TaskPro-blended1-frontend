@@ -57,8 +57,7 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Edit profile"}
-      maxWidth={"400px"}
-    >
+      maxWidth={"400px"}>
       <UserAvatarWrapper>
         {avatarURL ? (
           <UserAvatar
@@ -81,8 +80,7 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
       </UserAvatarWrapper>
       <ModalContentWrapper
         autoComplete="false"
-        onSubmit={(e) => onSubmitHandle(e)}
-      >
+        onSubmit={(e) => onSubmitHandle(e)}>
         <InputsWrapper>
           <ModalInput
             autoComplete="off"
@@ -109,8 +107,7 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
               onClick={() => changePasswordType()}
               className=""
               width="22px"
-              height="22px"
-            >
+              height="22px">
               <use href={icons + "#icon-password-eye"}></use>
             </EyeIconSvg>
           </PasswordInputWrapper>

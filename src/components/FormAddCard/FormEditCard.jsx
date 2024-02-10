@@ -1,7 +1,10 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import { SharedModal } from "../../shared/SharedModal/SharedModal";
+import { StyledCalendar } from "../StyledCalendar/StyledCalendar";
+import icons from "../../shared/images/icons.svg";
 
 import {
   StyledForm,
@@ -20,13 +23,14 @@ import {
   AuthFormSubmitButton,
   Error,
   ErrorText,
-  Container
+  Container,
+  IconChevron,
 } from "./FormAddCard.styled";
-// import Calendar from "../Calendar/Calendar";
-// import { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import icons from "../../shared/images/icons.svg";
-// import { useDispatch, useSelector } from "react-redux";
+import { updateCardThunk } from "../../redux/Dashboard/dashboardOperation";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+Modal.setAppElement("#root");
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
@@ -35,72 +39,110 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormEditCard() {  //{ cardId }
-  // const dispatch = useDispatch();
-  const { isModalOpen, openModal, closeModal } = useModal();
-  // const cardData = useSelector((state) => selectCardById(state, cardId));
+export default function FormEditCard({
+  isModalOpen,
+  modalStateSwapper,
+  cardId,
+}) {
+  const [dateFromCalendar, setDateFromCalendar] = useState(new Date());
 
-  // useEffect(() => {
-  //   setColor(cardData.color);
-  //   setSelectedDate(cardData.deadline);
-  // }, [cardData]);
+  const dispatch = useDispatch();
+
+  const {
+    isModalOpen: isCalendarModalOpen,
+    openModal: openCalendarModal,
+    closeModal: closeCalendarModal,
+  } = useModal();
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgb(21, 21, 21, 0.75)",
+    },
+    content: {
+      width: "233px",
+      height: "254px",
+      margin: "auto",
+      padding: 0,
+      border: "none",
+      borderRadius: "8px",
+    },
+  };
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    // dispatch(
-    //   updateCard({
-    //     id: cardId,
-    //     title: values.title,
-    //     description: values.description,
-    //     color: values.color,
-    //     deadline: values.deadline,
-    //   })
-    // );
+    const updateCard = {
+      cardId,
+      title: values.title,
+      description: values.description,
+      color: values.color,
+      deadline: dateFromCalendar,
+    };
+
+    dispatch(updateCardThunk(updateCard));
     setSubmitting(false);
-    closeModal();
     resetForm();
+    modalStateSwapper();
   };
+
+  const formatWeekday = (_, date) => {
+    const shortDayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+    return shortDayNames[date.getDay()];
+  };
+
+  const deadlineDate = (dateFromCalendar) => {
+    const date = new Date(dateFromCalendar);
+
+    const day = date.getDate();
+
+    const monthName = date.toLocaleString("en", { month: "long" });
+    const dayOfWeek = date.toLocaleString("en", { weekday: "long" });
+
+    return `${dayOfWeek}, ${monthName} ${day}`;
+  };
+
   return (
     <>
-      <button onClick={openModal}>Edit Card</button>
+      {/* <button onClick={openModal}>Edit Card</button> */}
       <SharedModal
         modalIsOpen={isModalOpen}
-        closeModal={closeModal}
+        closeModal={modalStateSwapper}
         title="Edit card"
         maxWidth={"350px"}
       >
         <Formik
           initialValues={{
-            // title: cardData.title,
-            // description: cardData.description,
-            // color: cardData.color,
-            // deadline: cardData.deadline,
+            title: "",
+            description: "",
+            color: "gray",
+            deadline: new Date(),
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
           {({ values, handleChange, handleSubmit }) => (
             <StyledForm onSubmit={handleSubmit}>
-             <Container>
-
-              <StyledInput
-                type="text"
-                name="title"
-                onChange={handleChange}
-                value={values.title}
-                placeholder="Title"
+              <Container>
+                <StyledInput
+                  type="text"
+                  name="title"
+                  onChange={handleChange}
+                  value={values.title}
+                  placeholder="Title"
                 />
-              <Error name="title" component="div" className="error" />
-                </Container>
-                <Container>
-
-              <StyledTextArea
-                name="description"
-                onChange={handleChange}
-                value={values.description}
-                placeholder="Description"
+                <Error name="title" component="div" className="error" />
+              </Container>
+              <Container>
+                <StyledTextArea
+                  name="description"
+                  onChange={handleChange}
+                  value={values.description}
+                  placeholder="Description"
                 />
-              <ErrorText name="Description" component="div" className="error" />
-                </Container>
+                <ErrorText
+                  name="Description"
+                  component="div"
+                  className="error"
+                />
+              </Container>
 
               <StyledLabelColor>Label color</StyledLabelColor>
               <StyledContainerRadioBtn>
@@ -153,13 +195,12 @@ export default function FormEditCard() {  //{ cardId }
 
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
-                <TextDeadlain>
-                  {dayjs().format("dddd, MMMM DD")}
+                <TextDeadlain onClick={openCalendarModal}>
+                  {deadlineDate(dateFromCalendar)}
                 </TextDeadlain>
-                {/* <Calendar
-                  parentState={(date) => setFieldValue("deadline", date)}
-                  initial={values.deadline}
-                /> */}
+                <IconChevron>
+                  <use href={icons + "#icon-chevron-down"} />
+                </IconChevron>
               </StyledDeadlineWrapper>
 
               <AuthFormSubmitButton type="submit">
@@ -168,11 +209,23 @@ export default function FormEditCard() {  //{ cardId }
                     <use href={icons + "#icon-plus"} />
                   </PlusIcon>
                 </ButtonPlus>
-                Add
+                Edit
               </AuthFormSubmitButton>
             </StyledForm>
           )}
         </Formik>
+        <Modal
+          isOpen={isCalendarModalOpen}
+          onRequestClose={closeCalendarModal}
+          style={customStyles}
+          closeTimeoutMS={750}
+        >
+          <StyledCalendar
+            formatShortWeekday={formatWeekday}
+            value={dateFromCalendar}
+            onChange={setDateFromCalendar}
+          />
+        </Modal>
       </SharedModal>
     </>
   );

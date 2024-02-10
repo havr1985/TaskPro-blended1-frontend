@@ -1,8 +1,11 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
+import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import { SharedModal } from "../../shared/SharedModal/SharedModal";
+import { StyledCalendar } from "../StyledCalendar/StyledCalendar";
+import icons from "../../shared/images/icons.svg";
 
 import {
   StyledForm,
@@ -22,10 +25,12 @@ import {
   Error,
   ErrorText,
   AuthFormSubmitButton,
+  IconChevron,
 } from "./FormAddCard.styled";
-// import Calendar from "../Calendar/Calendar";
-import dayjs from "dayjs";
-import icons from "../../shared/images/icons.svg";
+import { addCardThunk } from "../../redux/Dashboard/dashboardOperation";
+import { useState } from "react";
+
+Modal.setAppElement("#root");
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
@@ -34,30 +39,72 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormAddCard() {
+export default function FormAddCard({
+  isModalOpen,
+  modalStateSwapper,
+  columnId,
+}) {
+  const [dateFromCalendar, setDateFromCalendar] = useState(new Date());
+
   const dispatch = useDispatch();
-  const { isModalOpen, openModal, closeModal } = useModal();
+
+  const {
+    isModalOpen: isCalendarModalOpen,
+    openModal: openCalendarModal,
+    closeModal: closeCalendarModal,
+  } = useModal();
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgb(21, 21, 21, 0.75)",
+    },
+    content: {
+      width: "233px",
+      height: "254px",
+      margin: "auto",
+      padding: 0,
+      border: "none",
+      borderRadius: "8px",
+    },
+  };
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    dispatch(
-      // addCard({
-      //   title: values.title,
-      //   description: values.description,
-      //   color: values.color,
-      //   deadline: values.deadline,
-      // })
-    );
+    const addCard = {
+      columnId,
+      title: values.title,
+      description: values.description,
+      color: values.color,
+      deadline: dateFromCalendar,
+    };
+
+    dispatch(addCardThunk(addCard));
     setSubmitting(false);
     resetForm();
-    closeModal();
+    modalStateSwapper();
+  };
+
+  const formatWeekday = (_, date) => {
+    const shortDayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+    return shortDayNames[date.getDay()];
+  };
+
+  const deadlineDate = (dateFromCalendar) => {
+    const date = new Date(dateFromCalendar);
+
+    const day = date.getDate();
+
+    const monthName = date.toLocaleString("en", { month: "long" });
+    const dayOfWeek = date.toLocaleString("en", { weekday: "long" });
+
+    return `${dayOfWeek}, ${monthName} ${day}`;
   };
 
   return (
     <>
-      <button onClick={openModal}>Add New Card</button>
+      {/* <button onClick={openModal}>Add New Card</button> */}
       <SharedModal
         modalIsOpen={isModalOpen}
-        closeModal={closeModal}
+        closeModal={modalStateSwapper}
         title="Add card"
         maxWidth={"350px"}
       >
@@ -90,11 +137,18 @@ export default function FormAddCard() {
                   value={values.description}
                   placeholder="Description"
                 />
-                <ErrorText name="description" component="div" className="error" />
+                <ErrorText
+                  name="description"
+                  component="div"
+                  className="error"
+                />
               </Container>
 
               <StyledLabelColor>Label color</StyledLabelColor>
-              <StyledContainerRadioBtn onChange={handleChange} value={values.color}>
+              <StyledContainerRadioBtn
+                onChange={handleChange}
+                value={values.color}
+              >
                 <StyledLabel>
                   <StyledRadioInput
                     type="radio"
@@ -143,14 +197,11 @@ export default function FormAddCard() {
               </StyledContainerRadioBtn>
 
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
-              <StyledDeadlineWrapper>
-                <TextDeadlain>
-                  {dayjs(values.deadline).format("dddd, MMMM DD")}
-                </TextDeadlain>
-                {/* <Calendar
-                  onDateChange={(date) => setFieldValue("deadline", date)}
-                  selectedDate={values.deadline}
-                /> */}
+              <StyledDeadlineWrapper onClick={openCalendarModal}>
+                <TextDeadlain>{deadlineDate(dateFromCalendar)}</TextDeadlain>
+                <IconChevron>
+                  <use href={icons + "#icon-chevron-down"} />
+                </IconChevron>
               </StyledDeadlineWrapper>
 
               <AuthFormSubmitButton type="submit">
@@ -164,6 +215,18 @@ export default function FormAddCard() {
             </StyledForm>
           )}
         </Formik>
+        <Modal
+          isOpen={isCalendarModalOpen}
+          onRequestClose={closeCalendarModal}
+          style={customStyles}
+          closeTimeoutMS={750}
+        >
+          <StyledCalendar
+            formatShortWeekday={formatWeekday}
+            value={dateFromCalendar}
+            onChange={setDateFromCalendar}
+          />
+        </Modal>
       </SharedModal>
     </>
   );
