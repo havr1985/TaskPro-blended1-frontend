@@ -1,4 +1,4 @@
-import{u as o,b as d,h as g,r as l,a as k,s as v,j as t,i as c}from"./index-vxcfzsDt.js";import{i as T}from"./icons-iplVKqot.js";const b=o.div`
+import{u as o,b as h,s as p,r as l,a as k,j as t,m as c}from"./index-MtbUvCMT.js";import{i as v}from"./icons-iplVKqot.js";const b=o.div`
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -17,9 +17,9 @@ import{u as o,b as d,h as g,r as l,a as k,s as v,j as t,i as c}from"./index-vxcf
     padding-left: 20px;
     padding-right: 32px;
   } */
-`,f=o.div`
+`,T=o.div`
   position: relative;
-`,w=o.ul`
+`,f=o.ul`
   position: absolute;
   display: ${e=>e.open?"block":"none"};
   top: 20px;
@@ -44,17 +44,17 @@ import{u as o,b as d,h as g,r as l,a as k,s as v,j as t,i as c}from"./index-vxcf
   ${e=>e.selected&&`
   color: var(--primary-button-color);
     `}
-`,C=o.div`
+`,w=o.div`
   display: flex;
   align-items: center;
   cursor: pointer;
   &:hover {
     color: var(--secondary-button-color);
   }
-`,j=o.svg`
+`,C=o.svg`
   width: 16px;
   height: 16px;
   margin-left: 4px;
   fill: transparent;
   stroke: var(--primary-icon-stroke-color);
-`,y=()=>{const e=d(g),[r,s]=l.useState(e||"dark");return l.useLayoutEffect(()=>{document.documentElement.setAttribute("data-theme",r)},[r]),{theme:r,setTheme:s}},O=()=>{const e=k(),{theme:r,setTheme:s}=y(),n=d(v),[h,p]=l.useState(!1),i=()=>{p(!h)},m=()=>{s("light"),e(c({theme:"light"})),i()},x=()=>{s("dark"),e(c({theme:"dark"})),i()},u=()=>{s("violet"),e(c({theme:"violet"})),i()};return t.jsxs(b,{children:[t.jsxs(C,{onClick:i,children:["Theme",t.jsx(j,{children:t.jsx("use",{href:T+"#icon-chevron-down"})})]}),t.jsx(f,{theme:r,children:t.jsxs(w,{open:h,children:[t.jsx(a,{onClick:()=>m(),selected:n.theme==="light",children:"Light"}),t.jsx(a,{onClick:()=>x(),selected:n.theme==="dark",children:"Dark"}),t.jsx(a,{onClick:()=>u(),selected:n.theme==="violet",children:"Violet"})]})})]})};export{O as T};
+`,j=()=>{const e=h(p),[r,n]=l.useState(e.theme||"dark");return l.useLayoutEffect(()=>{document.documentElement.setAttribute("data-theme",r)},[r]),{theme:r,setTheme:n}},D=()=>{const e=k(),{theme:r,setTheme:n}=j(),s=h(p),[d,m]=l.useState(!1),i=()=>{m(!d)},x=()=>{n("light"),e(c({theme:"light"})),i()},u=()=>{n("dark"),e(c({theme:"dark"})),i()},g=()=>{n("violet"),e(c({theme:"violet"})),i()};return t.jsxs(b,{children:[t.jsxs(w,{onClick:i,children:["Theme",t.jsx(C,{children:t.jsx("use",{href:v+"#icon-chevron-down"})})]}),t.jsx(T,{theme:r,children:t.jsxs(f,{open:d,children:[t.jsx(a,{onClick:()=>x(),selected:s.theme==="light",children:"Light"}),t.jsx(a,{onClick:()=>u(),selected:s.theme==="dark",children:"Dark"}),t.jsx(a,{onClick:()=>g(),selected:s.theme==="violet",children:"Violet"})]})})]})};export{D as T};
