@@ -10,7 +10,7 @@ import {
 	getDashboardByIDThunk,
 	updateCardThunk,
 	updateColumnThunk,
-	// sendNeedHelpThunk,
+	sendNeedHelpThunk,
 	updateDashboardThunk,
 } from "./dashboardOperation";
 
@@ -57,10 +57,10 @@ const dashboardSlice = createSlice({
 				state.error = null;
 				state.dashboards = state.dashboards.filter(item => item._id !== action.payload._id);
 			})
-			// .addCase(sendNeedHelpThunk.fulfilled, (state, action) => {
-			// 	state.isLoading = false;
-			// 	state.error = null;
-			// })
+			.addCase(sendNeedHelpThunk.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.error = null;
+			})
 			.addCase(addColumnThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
@@ -118,7 +118,8 @@ const dashboardSlice = createSlice({
 					addColumnThunk.pending,
 					deleteColumnThunk.pending,
 					addCardThunk.pending,
-					deleteCardThunk.pending
+					deleteCardThunk.pending,
+					sendNeedHelpThunk.pending
 				),
 				state => {
 					state.isLoading = true;
@@ -137,7 +138,8 @@ const dashboardSlice = createSlice({
 					updateDashboardThunk.rejected,
 					addCardThunk.rejected,
 					deleteCardThunk.rejected,
-					updateCardThunk.rejected
+					updateCardThunk.rejected,
+					sendNeedHelpThunk.rejected
 				),
 				(state, action) => {
 					state.isLoading = false;

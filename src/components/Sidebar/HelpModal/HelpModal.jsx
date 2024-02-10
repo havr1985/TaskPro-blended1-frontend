@@ -1,12 +1,14 @@
-
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { SharedModal } from "../../../shared/SharedModal/SharedModal";
 import { EmailInput, HelpFormSubmitButton, ModalForm, QuestionTextarea, ErrorText } from "./HelpModal.styled";
 import { FormWrapper } from "../../BoardModal/newBoardModal.styled";
-// import { sendNeedHelpThunk } from "../../../redux/Dashboard/dashboardOperation";
+import { sendNeedHelpThunk } from "../../../redux/Dashboard/dashboardOperation";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const needHelpSchema = Yup.object().shape({
 	email: Yup.string().email("Invalid email").required("Email is required"),
@@ -14,7 +16,7 @@ const needHelpSchema = Yup.object().shape({
 });
 
 export const HelpModal = ({ isModalOpen, modalStateSwapper }) => {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const formik = useFormik({
 		initialValues: {
@@ -22,20 +24,24 @@ export const HelpModal = ({ isModalOpen, modalStateSwapper }) => {
 			comment: "",
 		},
 		validationSchema: needHelpSchema,
-		// onSubmit: async values => {
-		// 	try {
-		// 		await dispatch(
-		// 			sendNeedHelpThunk({
-		// 				email: values.email,
-		// 				comment: values.comment,
-		// 			})
-		// 		).unwrap();
-		// 		modalStateSwapper();
-		// 		formik.resetForm();
-		// 	} catch (error) {
-		// 		console.log(error)
-		// 	}
-		// },
+		onSubmit: async values => {
+			try {
+				const sendMail = await dispatch(
+					sendNeedHelpThunk({
+						email: values.email,
+						comment: values.comment,
+					})
+				).unwrap();
+
+				if (sendMail) {
+					toast.success("Your message was successfully sent");
+				}
+				modalStateSwapper();
+				formik.resetForm();
+			} catch (error) {
+				console.log(error);
+			}
+		},
 	});
 
 	return (
