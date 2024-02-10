@@ -54,7 +54,7 @@ export const requestDeleteCard = async cardId => {
 	return data;
 };
 
-export const requestUpdateCard = async ({ cardId, title, description, color, deadline }) => {
+export const requestUpdateCard = async ( cardId, title, description, color, deadline ) => {
 	const { data } = await instance.put(`cards/${cardId}`, { title, description, color, deadline });
 	return data;
 };

@@ -114,9 +114,15 @@ export const deleteCardThunk = createAsyncThunk("dashboard/deleteCard", async (c
 	}
 });
 
-export const updateCardThunk = createAsyncThunk("dashboard/updateCard", async (values, thunkAPI) => {
+export const updateCardThunk = createAsyncThunk("dashboard/updateCard", async ({cardId, title, description, color, deadline}, thunkAPI) => {
 	try {
-		const data = await requestUpdateCard(values);
+		const data = await requestUpdateCard(
+      cardId,
+      title,
+      description,
+      color,
+      deadline
+    );
 		return data;
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error);
