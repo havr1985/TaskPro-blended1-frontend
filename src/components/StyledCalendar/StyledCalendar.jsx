@@ -53,19 +53,19 @@ export const StyledCalendar = styled(Calendar)`
   }
 
   .react-calendar__navigation__arrow.react-calendar__navigation__prev-button {
-    /* border: none; */
+    border: none;
     width: 36px;
     cursor: pointer;
   }
 
   .react-calendar__navigation__label {
-    /* border: none; */
+    border: none;
     width: 158px;
     cursor: pointer;
   }
 
   .react-calendar__navigation__arrow.react-calendar__navigation__next-button {
-    /* border: none; */
+    border: none;
     width: 36px;
     cursor: pointer;
   }
