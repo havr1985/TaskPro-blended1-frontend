@@ -53,7 +53,7 @@ const MainDashboard = () => {
   const { state } = useLocation();
   const dispatch = useDispatch();
 
-  const [selectedId, setSelectedId] = useState(null)
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     if (columns === undefined) {
@@ -61,12 +61,10 @@ const MainDashboard = () => {
     }
   }, [columns, dispatch, state?.id]);
 
-  const current = useSelector(selectCurrentDashboard)
-  console.log(current)
+  // const current = useSelector(selectCurrentDashboard);
+  // console.log(current);
 
-  // Need some fixes request is not sent
   const onDeleteColumn = (id) => {
-    
     dispatch(deleteColumnThunk(id));
   };
 
@@ -76,14 +74,19 @@ const MainDashboard = () => {
         {columns === undefined ? (
           <></>
         ) : (
-          columns.map(({ _id: id, title }) => {
+          columns.map(({ _id: id, title, card }) => {
             return (
               <MainDashboardColumn key={id}>
                 <div>
                   <DashboardColumnTitle>
                     <Title>{title}</Title>
                     <IconsWrap>
-                      <IconButton onClick={() => {openEditColumnModal(); setSelectedId(id)} }>
+                      <IconButton
+                        onClick={() => {
+                          openEditColumnModal();
+                          setSelectedId(id);
+                        }}
+                      >
                         <Icon>
                           <use href={icons + "#icon-pencil"} />
                         </Icon>
@@ -96,9 +99,14 @@ const MainDashboard = () => {
                     </IconsWrap>
                   </DashboardColumnTitle>
                 </div>
-                <Card />
+                <Card card={card} />
                 <div>
-                  <AddCardButton onClick={() => { openAddCardModal(); setSelectedId(id) }}>
+                  <AddCardButton
+                    onClick={() => {
+                      openAddCardModal();
+                      setSelectedId(id);
+                    }}
+                  >
                     <AddCardIconWrap>
                       <AddCardIconPlus>
                         <use href={icons + "#icon-plus"} />
@@ -136,7 +144,6 @@ const MainDashboard = () => {
         modalStateSwapper={closeEditColumnModal}
         isModalOpen={isEditColumnModalOpen}
         columnId={selectedId}
-    
       />
       <FormAddCard
         modalStateSwapper={closeAddCardModal}

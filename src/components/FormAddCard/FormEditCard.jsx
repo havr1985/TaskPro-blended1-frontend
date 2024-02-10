@@ -26,11 +26,9 @@ import {
   Container,
   IconChevron,
 } from "./FormAddCard.styled";
-// import Calendar from "../Calendar/Calendar";
-// import { useEffect, useState } from "react";
-import dayjs from "dayjs";
-
-// import { useDispatch, useSelector } from "react-redux";
+import { updateCardThunk } from "../../redux/Dashboard/dashboardOperation";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 Modal.setAppElement("#root");
 
@@ -41,10 +39,14 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
-  //{ cardId }
-  // const dispatch = useDispatch();
-  const { closeModal } = useModal();
+export default function FormEditCard({
+  isModalOpen,
+  modalStateSwapper,
+  cardId,
+}) {
+  const [dateFromCalendar, setDateFromCalendar] = useState(new Date());
+
+  const dispatch = useDispatch();
 
   const {
     isModalOpen: isCalendarModalOpen,
@@ -66,31 +68,35 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
     },
   };
 
-  // const cardData = useSelector((state) => selectCardById(state, cardId));
-
-  // useEffect(() => {
-  //   setColor(cardData.color);
-  //   setSelectedDate(cardData.deadline);
-  // }, [cardData]);
-
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    // dispatch(
-    //   updateCard({
-    //     id: cardId,
-    //     title: values.title,
-    //     description: values.description,
-    //     color: values.color,
-    //     deadline: values.deadline,
-    //   })
-    // );
+    const updateCard = {
+      cardId,
+      title: values.title,
+      description: values.description,
+      color: values.color,
+      deadline: dateFromCalendar,
+    };
+
+    dispatch(updateCardThunk(updateCard));
     setSubmitting(false);
-    closeModal();
     resetForm();
+    modalStateSwapper();
   };
 
   const formatWeekday = (_, date) => {
     const shortDayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
     return shortDayNames[date.getDay()];
+  };
+
+  const deadlineDate = (dateFromCalendar) => {
+    const date = new Date(dateFromCalendar);
+
+    const day = date.getDate();
+
+    const monthName = date.toLocaleString("en", { month: "long" });
+    const dayOfWeek = date.toLocaleString("en", { weekday: "long" });
+
+    return `${dayOfWeek}, ${monthName} ${day}`;
   };
 
   return (
@@ -103,14 +109,12 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
         maxWidth={"350px"}
       >
         <Formik
-          initialValues={
-            {
-              // title: cardData.title,
-              // description: cardData.description,
-              // color: cardData.color,
-              // deadline: cardData.deadline,
-            }
-          }
+          initialValues={{
+            title: "",
+            description: "",
+            color: "gray",
+            deadline: new Date(),
+          }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
@@ -192,7 +196,7 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
                 <TextDeadlain onClick={openCalendarModal}>
-                  {dayjs(values.deadline).format("dddd, MMMM DD")}
+                  {deadlineDate(dateFromCalendar)}
                 </TextDeadlain>
                 <IconChevron>
                   <use href={icons + "#icon-chevron-down"} />
@@ -216,7 +220,11 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
           style={customStyles}
           closeTimeoutMS={750}
         >
-          <StyledCalendar formatShortWeekday={formatWeekday} />
+          <StyledCalendar
+            formatShortWeekday={formatWeekday}
+            value={dateFromCalendar}
+            onChange={setDateFromCalendar}
+          />
         </Modal>
       </SharedModal>
     </>
