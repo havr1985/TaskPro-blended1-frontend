@@ -57,7 +57,7 @@ export const TitleInput = styled.input`
   outline: none;
   border-radius: 8px;
   opacity: 0.4;
-  transition: all 250ms ease;
+  transition: var(--hover-params);
 
   &::placeholder {
     font-size: 14px;
@@ -86,7 +86,7 @@ export const Icon = styled.svg`
   cursor: pointer;
   stroke: var(--radio-icons-color);
   fill: transparent;
-  transition: all 250ms linear;
+  transition: var(--hover-params);
 
   &.active {
     scale: 1.3;
@@ -119,7 +119,7 @@ export const CustomRadioBtn = styled.div`
   background-size: cover;
 
   cursor: pointer;
-  transition: all 250ms linear;
+  transition: var(--hover-params);
 
   &.active {
     scale: 1.1;
@@ -137,7 +137,7 @@ export const BgcItem = styled.div`
   background-color: var(--radio-icons-color);
 
   cursor: pointer;
-  transition: all 250ms linear;
+  transition: var(--hover-params);
 
   &.active {
     scale: 1.1;
@@ -161,7 +161,7 @@ export const AuthFormSubmitButton = styled.button`
   color: rgb(22, 22, 22);
   background-color: var(--plus-button-color);
 
-  transition: all 250ms linear;
+  transition: var(--hover-params);
   cursor: pointer;
 
   &:hover {
