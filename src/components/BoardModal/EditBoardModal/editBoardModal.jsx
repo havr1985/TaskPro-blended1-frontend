@@ -63,12 +63,13 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     e.preventDefault();
     const newBoardTitle = e.target.elements[0].value;
     const updatedData = {
-      _id,
+      dashboardId: _id,
       title: newBoardTitle,
       icon: setIcon,
       backgroundURL: selectedBg,
     };
     modalStateSwapper();
+    console.log(updatedData)
     dispatch(updateDashboardThunk( updatedData ));
   };
 

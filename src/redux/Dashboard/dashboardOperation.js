@@ -43,9 +43,9 @@ export const getDashboardByIDThunk = createAsyncThunk("dashboard/getById", async
 
 export const updateDashboardThunk = createAsyncThunk(
 	"dashboard/updateDashboard",
-	async ({ dashboardId, values }, thunkAPI) => {
+	async ({ dashboardId, title, icon, backgroundURL }, thunkAPI) => {
 		try {
-			const data = await requestEditDashboard(dashboardId, values);
+			const data = await requestEditDashboard(dashboardId, title, icon, backgroundURL);
 			return data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message);
