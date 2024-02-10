@@ -39,7 +39,11 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
+export default function FormEditCard({
+  isModalOpen,
+  modalStateSwapper,
+  cardId,
+}) {
   const [dateFromCalendar, setDateFromCalendar] = useState(new Date());
 
   const dispatch = useDispatch();
@@ -66,6 +70,7 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const updateCard = {
+      cardId,
       title: values.title,
       description: values.description,
       color: values.color,

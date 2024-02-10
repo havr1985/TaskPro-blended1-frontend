@@ -91,7 +91,15 @@ const dashboardSlice = createSlice({
 			.addCase(deleteCardThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
-				state.currentDashboard.column[action.payload.owner].filter(item => item._id !== action.payload._id);
+				// // state.currentDashboard.column[action.payload.owner] = state.currentDashboard.column[action.payload.owner].filter(item => item._id !== action.payload._id);
+				// console.log(state.currentDashboard.column);
+				// console.log(action.payload);
+
+				const { owner, _id } = action.payload;
+				const columnIdx = state.currentDashboard.column.findIndex(item => item._id === owner);
+				if (columnIdx !== -1) {
+					state.currentDashboard.column[columnIdx].card = state.currentDashboard.column[columnIdx].card.filter(item => item._id !== _id);
+				}
 			})
 			.addCase(updateCardThunk.fulfilled, (state, action) => {
 				state.isLoading = false;

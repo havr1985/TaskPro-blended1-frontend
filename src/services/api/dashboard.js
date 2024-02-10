@@ -58,7 +58,9 @@ export const requestUpdateCard = async ({ cardId, title, description, color, dea
 	const { data } = await instance.put(`cards/${cardId}`, { title, description, color, deadline });
 	return data;
 };
+
 export const requestUserNeedHelp = async info => {
 	const { data } = await instance.post("dashboard/help", info);
 	return data;
 };
+
