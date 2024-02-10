@@ -1,36 +1,26 @@
-import { useState } from 'react';
 import { CloseModalBtn } from "../../../shared/SharedModal/SharedModal.styled";
-
+import { useSearchParams } from "react-router-dom";
 import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll, FilterLine, ModalTitle, ModalFilter, Overlay} from "./FilterModal.styled"
 
 
-export const FilterModal = ({ isOpen, onClose, onShowAll }) => {
+export const FilterModal = ({ isOpen, onClose, }) => {
 
-/*   const Label = {
-    ALL: 'all',
-    HIGHT: 'green',
-    LOW: 'blue',
-    WITHOUT: 'gray',
-    MEDIUM: 'pink'
-  }; */
- 
-  const [selectedLabel, setSelectedLabel] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const radio = searchParams.get("radio");
 
-  if (!isOpen) return null;
-
-  const handleAllShow = () => {
-    setSelectedLabel(null); 
+ /*  const [selectedLabel, setSelectedLabel] = useState('all'); */
+   if (!isOpen) return null
+ /* const handleAllShow = () => {
+    setSelectedLabel('all'); 
     onClose();
-    onShowAll();
-  }
+    onFilterChange('all')
+  } */
   
   const handleLabelChange = (event) => {
-   
     const value = event.target.value;
-    setSelectedLabel(value);
-    
-
-   };
+    console.log(value)
+    setSearchParams(value);
+   }; 
   
     return (
       <Overlay>
@@ -41,7 +31,7 @@ export const FilterModal = ({ isOpen, onClose, onShowAll }) => {
           <FilterLine />
           <LabelSchowAll>
             <StyledLabelTitle>Label color</StyledLabelTitle>
-            <ShowAllBtn onClick={handleAllShow}>Show all</ShowAllBtn>
+            <ShowAllBtn onChange={() => setSearchParams("all")}>Show all</ShowAllBtn>
           </LabelSchowAll>
           <StyledContainerBtn>
             <StyledInputContainer>
@@ -51,7 +41,7 @@ export const FilterModal = ({ isOpen, onClose, onShowAll }) => {
                   name="radio"
                   value="gray"
                   className="gray"
-                  checked={selectedLabel === "gray"}
+                 /*  checked={selectedLabel === "gray"} */
                   onChange={handleLabelChange}
                 />
                 <StyledColorBtn className="gray"></StyledColorBtn>
@@ -66,7 +56,7 @@ export const FilterModal = ({ isOpen, onClose, onShowAll }) => {
                   name="radio"
                   value="blue"
                   className="blue"
-                  checked={selectedLabel === "blue"}
+                  /* checked={selectedLabel === "blue"} */
                   onChange={handleLabelChange}
                 />
                 <StyledColorBtn className="blue"></StyledColorBtn>
@@ -81,7 +71,7 @@ export const FilterModal = ({ isOpen, onClose, onShowAll }) => {
                   name="radio"
                   value="pink"
                   className="pink"
-                  checked={selectedLabel === "pink"}
+                  /* checked={selectedLabel === "pink"} */
                   onChange={handleLabelChange}
                 />
                 <StyledColorBtn className="pink"></StyledColorBtn>
@@ -97,7 +87,7 @@ export const FilterModal = ({ isOpen, onClose, onShowAll }) => {
                   name="radio"
                   value="green"
                   className="green"
-                  checked={selectedLabel === "green"}
+                  /* checked={selectedLabel === "green"} */
                   onChange={handleLabelChange}
                 />
                 <StyledColorBtn className="green"></StyledColorBtn>

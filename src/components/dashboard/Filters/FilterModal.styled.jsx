@@ -12,9 +12,6 @@ export const ModalFilter = styled.div`
   background-color: var(--primary-background-color);
   z-index: 1000;
   transition: var(--hover-params);
-  cursor: pointer;
-
-  ;
   ` 
 export const Overlay = styled.div`
   position: fixed;
@@ -34,6 +31,7 @@ export const StyledColorBtn = styled.span`
   height: 14px;
   border-radius: 50%;
   background-color: transparent;
+  cursor: pointer;
 
   &.blue {
     background-color: var(--radio-label-background-color); 
@@ -56,27 +54,22 @@ export const StyledColorText = styled.p`
   color: var(--radio-label-grey-color);
   font-size: 12px;
 
- 
-
-  &:checked.blue {
+  &:hover {
     color: var(--modal-filters-text);
     font-weight:500;
-  }
+  };
 
-  &:checked.pink {
-      color: var(--modal-filters-text);
+ 
+  &:focus {
+    color: var(--modal-filters-text);
     font-weight:500;
-  }
+  };
 
-  &:checked.green {
-     color: var(--modal-filters-text);
+  &:active {
+    color: var(--modal-filters-text);
     font-weight:500;
-  }
+  };
 
-  &:checked.gray {
-       color: var(--radio-label-grey-color);
-    font-weight:500;
-  }
 `;
 
 export const StyledContainerBtn = styled.div`
@@ -100,16 +93,11 @@ export const StyledLabel = styled.label`
   gap: 8px;
   height: 18px;
   margin: 0;
+  transition: var(--hover-params);
 
    input[type="radio"]:checked + ${StyledColorBtn} {
     scale: 0.5;
   };  
-
-/*   input[type="radio"].green:checked + .green-label .color-text {
-    scale: 0.5,
-    color: red,
-  font-weight: bold,}
-} */
 
 `
 export const StyledRadioInput = styled.input`
@@ -123,6 +111,7 @@ export const StyledRadioInput = styled.input`
   width: 14px;
   height: 14px;
   cursor: pointer;
+  transition: var(--hover-params);
 
   &:checked.blue {
     border: 1px solid var(--radio-label-background-color); 
@@ -150,6 +139,22 @@ color: var(--screens-page-tutorial-text-color);
 font-size:12px;
 text-decoration: underline;
 border: none;
+cursor: pointer;
+transition: var(--hover-params);
+  &:hover {
+    color: var(--modal-filters-text);
+    font-weight:500;
+  };
+ 
+  &:focus {
+    color: var(--modal-filters-text);
+    font-weight:500;
+  };
+
+  &:active {
+    color: var(--modal-filters-text);
+    font-weight:500;
+  };
 `
 export const LabelSchowAll = styled.div`
 display: flex; justify-content: space-between;
