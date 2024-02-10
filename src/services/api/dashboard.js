@@ -64,3 +64,8 @@ export const requestUserNeedHelp = async info => {
 	return data;
 };
 
+export const requestUpdateCardStatus = async ( cardId, columnId ) => {
+	const { data } = await instance.put(`cards/${cardId}/updateStatus`, { columnId });
+	return data;
+};
+
