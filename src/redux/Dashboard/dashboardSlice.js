@@ -57,7 +57,7 @@ const dashboardSlice = createSlice({
 				state.error = null;
 				state.dashboards = state.dashboards.filter(item => item._id !== action.payload._id);
 			})
-			.addCase(sendNeedHelpThunk.fulfilled, (state, action) => {
+			.addCase(sendNeedHelpThunk.fulfilled, (state) => {
 				state.isLoading = false;
 				state.error = null;
 			})
@@ -91,10 +91,6 @@ const dashboardSlice = createSlice({
 			.addCase(deleteCardThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
-				// // state.currentDashboard.column[action.payload.owner] = state.currentDashboard.column[action.payload.owner].filter(item => item._id !== action.payload._id);
-				// console.log(state.currentDashboard.column);
-				// console.log(action.payload);
-
 				const { owner, _id } = action.payload;
 				const columnIdx = state.currentDashboard.column.findIndex(item => item._id === owner);
 				if (columnIdx !== -1) {
@@ -105,10 +101,10 @@ const dashboardSlice = createSlice({
 				state.isLoading = false;
 				state.error = null;
 				const { _id, title, description, priority, deadline, owner } = action.payload;
-				const idxCol = state.currentDashboard.column.findIndex(item => item._id === owner);
-				const idxCard = state.currentDashboard.column[idxCol].cards.findIndex(item => item._id === _id);
-				state.currentDashboard.column[idxCol].cards[idxCard] = {
-					...state.currentDashboard.column[idxCol].cards[idxCard],
+				const idxCol = state.currentDashboard.column.findIndex((item) => item._id === owner);
+				const idxCard = state.currentDashboard.column[idxCol].card.findIndex((item) => item._id === _id);
+				state.currentDashboard.column[idxCol].card[idxCard] = {
+					...state.currentDashboard.column[idxCol].card[idxCard],
 					title,
 					description,
 					priority,
