@@ -98,8 +98,30 @@ const Card = ({ card }) => {
   const [cardDescription, setCardDescription] = useState(null);
   const [cardColor, setCardColor] = useState(null);
   const [cardDeadline, setCardDeadline] = useState(null);
+  const [cardOwner, setCardOwner] = useState(null);
+  const [modalPosition, setModalPosition] = useState({ x: null, y: null });
 
   const dispatch = useDispatch();
+
+  const handleOpenModal = (event) => {
+    const x = event.clientX;
+    const y = event.clientY;
+    setModalPosition({ x, y });
+  };
+
+  // useEffect(() => {
+  //   const handleKeyDown = (event) => {
+  //     if (event.key === "Escape") {
+  //       toggleModalVisibility();
+  //     }
+  //   };
+
+  //   document.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
+
   const {
     isModalOpen: isEditCardModalOpen,
     openModal: openEditCardModal,
@@ -183,22 +205,21 @@ const Card = ({ card }) => {
                         </IconButton>
                       </li>
                     )}
-
                     <li>
-                      <IconButton onClick={() => toggleModalVisibility()}>
+                      <IconButton
+                        onClick={() => {
+                          toggleModalVisibility();
+                          setCardId(id);
+                          setCardOwner(owner);
+                          handleOpenModal(event);
+                        }}
+                      >
                         <Icon>
                           <use
                             href={icons + "#icon-arrow-circle-broken-right"}
                           />
                         </Icon>
                       </IconButton>
-                      <ChangeStatusModal
-                        isOpen={isFilterModalOpen}
-                        onClose={toggleModalVisibility}
-                        onSelectStatus={changeCardStatus}
-                        cardId={id}
-                        owner={owner}
-                      />
                     </li>
                     <li>
                       <IconButton
@@ -228,7 +249,17 @@ const Card = ({ card }) => {
               </CardWrap>
             )
           )}
+        <ChangeStatusModal
+          isOpen={isFilterModalOpen}
+          onClose={toggleModalVisibility}
+          onSelectStatus={changeCardStatus}
+          cardId={cardId}
+          owner={cardOwner}
+          x={modalPosition.x}
+          y={modalPosition.y}
+        />
       </CardList>
+
       <FormEditCard
         modalStateSwapper={closeEditCardModal}
         isModalOpen={isEditCardModalOpen}
