@@ -64,8 +64,8 @@ export const requestUserNeedHelp = async info => {
 	return data;
 };
 
-export const requestUpdateCardStatus = async ( cardId, columnId ) => {
-	const { data } = await instance.put(`cards/${cardId}/updateStatus`, { columnId });
+export const requestUpdateCardStatus = async (cardId, columnId, owner) => {
+	const { data } = await instance.patch(`cards/${cardId}/${owner}`, { columnId });
 	return data;
 };
 

@@ -129,11 +129,12 @@ export const updateCardThunk = createAsyncThunk("dashboard/updateCard", async ({
 	}
 });
 
-export const updateCardStatus = createAsyncThunk("dashboard/updateCardStatus", async ({ cardId, columnId }, thunkAPI) => {
+export const updateCardStatus = createAsyncThunk("dashboard/updateCardStatus", async ({ cardId, columnId, owner }, thunkAPI) => {
 	try {
 		const data = await requestUpdateCardStatus(
 			cardId,
-			columnId
+			columnId,
+			owner,
 		);
 		return data;
 	} catch (error) {
