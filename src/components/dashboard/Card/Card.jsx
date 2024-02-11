@@ -115,7 +115,6 @@ const Card = ({ card }) => {
       cardId: cardId,
       owner: owner,
     };
-    }
     dispatch(updateCardStatus(data));
   };
 
@@ -158,6 +157,7 @@ const Card = ({ card }) => {
                         </IconButton>
                       </li>
                     )}
+
                     <li>
                       <IconButton onClick={() => toggleModalVisibility()}>
                         <Icon>
@@ -198,6 +198,7 @@ const Card = ({ card }) => {
               </CardWrap>
             )
           )}
+
       </CardList>
       <FormEditCard
         modalStateSwapper={closeEditCardModal}
