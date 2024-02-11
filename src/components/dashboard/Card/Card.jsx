@@ -23,6 +23,7 @@ import {
 } from "../../../redux/Dashboard/dashboardOperation";
 import { useState } from "react";
 import { ChangeStatusModal } from "../ChangeStatusModal/ChangeStatusModal";
+import { useSearchParams } from "react-router-dom";
 
 const formatDeadlineDate = (deadline) => {
   const date = new Date(deadline);
@@ -121,12 +122,33 @@ const Card = ({ card }) => {
     };
     dispatch(updateCardStatus(data));
   };
+  const [searchParams] = useSearchParams();
+  const priority = searchParams.get("priority");
+
+  const visibleCardsSwitch = () => {
+    switch (priority) {
+      case "low":
+        return card.filter((card) => card.color === "blue");
+      case "medium":
+        return card.filter((card) => card.color === "pink");
+      case "high":
+        return card.filter((card) => card.color === "green");
+      case "without":
+        return card.filter((card) => card.color === "gray");
+      case "all":
+        return card;
+      default:
+        return card;
+    }
+  };
+
+  const visibleCards = visibleCardsSwitch();
 
   return (
     <>
       <CardList>
-        {card &&
-          card.map(
+        {visibleCards &&
+          visibleCards.map(
             ({ _id: id, title, description, color, deadline, owner }) => (
               <CardWrap key={id} $prioritycolor={priorityColor(color)}>
                 <CardTitle>{title}</CardTitle>
