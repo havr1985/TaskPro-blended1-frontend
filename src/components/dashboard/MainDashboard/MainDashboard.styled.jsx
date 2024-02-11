@@ -148,8 +148,8 @@ export const DashboardColumnTitle = styled.div`
   margin-bottom: 14px;
   border: none;
   border-radius: 8px;
-
   background-color: var(--primary-card-background-color);
+  overflow: hidden;
 
   @media screen and (min-width: 375px) {
     width: 335px;
@@ -179,6 +179,7 @@ export const IconButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+  /* z-index: 1000; */
 `;
 
 export const Icon = styled.svg`

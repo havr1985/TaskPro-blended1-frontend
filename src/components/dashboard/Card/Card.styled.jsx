@@ -4,10 +4,8 @@ import TextTruncate from "react-text-truncate";
 export const CardList = styled.ul`
   overflow-y: auto;
   overflow-x: hidden;
-  /* overflow: overlay; */
-  /* flex-grow: 1; */
-  height: 70vh;
 
+  height: 70vh;
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {

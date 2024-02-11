@@ -2,9 +2,6 @@ import styled from "styled-components";
 import { Icon } from "../Card/Card.styled";
 
 export const ModalFilter = styled.div`
-  position: absolute;
-  top: -110px;
-  right: 25px;
   height: auto;
   padding: 15px;
   border: 1px solid var(--shared-input-border-color);
