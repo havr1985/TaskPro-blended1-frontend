@@ -28,7 +28,8 @@ import {
 } from "./FormAddCard.styled";
 import { updateCardThunk } from "../../redux/Dashboard/dashboardOperation";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAllCards } from "../../redux/Dashboard/dashboardsSelectors";
 
 Modal.setAppElement("#root");
 
@@ -68,6 +69,10 @@ export default function FormEditCard({
     },
   };
 
+  const allCards = useSelector(selectAllCards);
+
+  const myCard = allCards.find(({ _id }) => _id === cardId);
+
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const updateCard = {
       cardId,
@@ -88,8 +93,8 @@ export default function FormEditCard({
     return shortDayNames[date.getDay()];
   };
 
-  const deadlineDate = (dateFromCalendar) => {
-    const date = new Date(dateFromCalendar);
+  const deadlineDate = (deadlineDate) => {
+    const date = new Date(deadlineDate);
 
     const day = date.getDate();
 
@@ -101,7 +106,6 @@ export default function FormEditCard({
 
   return (
     <>
-      {/* <button onClick={openModal}>Edit Card</button> */}
       <SharedModal
         modalIsOpen={isModalOpen}
         closeModal={modalStateSwapper}
@@ -110,10 +114,14 @@ export default function FormEditCard({
       >
         <Formik
           initialValues={{
-            title: "",
-            description: "",
-            color: "gray",
-            deadline: new Date(),
+            title: `${myCard && myCard.title ? myCard.title : ""}`,
+            description: `${
+              myCard && myCard.description ? myCard.description : ""
+            }`,
+            color: `${myCard && myCard.color ? myCard.color : "gray"}`,
+            deadline: `${
+              myCard && myCard.deadline ? myCard.deadline : new Date()
+            }`,
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -196,7 +204,15 @@ export default function FormEditCard({
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
                 <TextDeadlain onClick={openCalendarModal}>
-                  {deadlineDate(dateFromCalendar)}
+                  {myCard && myCard.deadline
+                    ? deadlineDate(myCard.deadline)
+                    : deadlineDate(dateFromCalendar)}
+
+                  {/* {myCard && myCard.deadline
+                    ? dateFromCalendar
+                      ? deadlineDate(dateFromCalendar)
+                      : deadlineDate(myCard.deadline)
+                    : null} */}
                 </TextDeadlain>
                 <IconChevron>
                   <use href={icons + "#icon-chevron-down"} />
@@ -224,6 +240,8 @@ export default function FormEditCard({
             formatShortWeekday={formatWeekday}
             value={dateFromCalendar}
             onChange={setDateFromCalendar}
+            onClickDay={closeCalendarModal}
+            minDate={new Date()}
           />
         </Modal>
       </SharedModal>

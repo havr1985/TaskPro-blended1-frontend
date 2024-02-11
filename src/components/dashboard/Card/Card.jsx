@@ -17,11 +17,14 @@ import {
   IconsWrap,
 } from "./Card.styled";
 import { useDispatch } from "react-redux";
-import { deleteCardThunk, updateCardStatus } from "../../../redux/Dashboard/dashboardOperation";
+import {
+  deleteCardThunk,
+  updateCardStatus,
+} from "../../../redux/Dashboard/dashboardOperation";
 import { useState } from "react";
 import { ChangeStatusModal } from "../ChangeStatusModal/ChangeStatusModal";
 
-const deadlineDate = (deadline) => {
+const formatDeadlineDate = (deadline) => {
   const date = new Date(deadline);
 
   const day = date.getDate();
@@ -33,6 +36,28 @@ const deadlineDate = (deadline) => {
   }${month}/${year}`;
 
   return formattedDate;
+};
+
+const compareDate = (deadline) => {
+  const deadlineDate = new Date(deadline);
+  const currentDate = new Date();
+
+  const deadlineDay = deadlineDate.getDate();
+  const deadlineMonth = deadlineDate.getMonth();
+  const deadlineYear = deadlineDate.getFullYear();
+
+  const currentDay = currentDate.getDate();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  if (
+    deadlineDay <= currentDay &&
+    deadlineMonth <= currentMonth &&
+    deadlineYear <= currentYear
+  ) {
+    return true;
+  }
+  return;
 };
 
 const priorityColor = (color) => {
@@ -91,8 +116,7 @@ const Card = ({ card }) => {
       owner: owner,
     }
     dispatch(updateCardStatus(data));
-  }
-  
+  };
 
   return (
     <>
@@ -119,19 +143,21 @@ const Card = ({ card }) => {
                 <div>
                   <CardParams>Deadline</CardParams>
                   <CardDeadlineValue>
-                    {deadlineDate(deadline)}
+                    {formatDeadlineDate(deadline)}
                   </CardDeadlineValue>
                 </div>
                 <IconsWrap>
-                  {/* <li>
-                    <IconButton>
-                      <Icon className="bell">
-                        <use href={icons + "#icon-bell"} />
-                      </Icon>
-                    </IconButton>
-                  </li> */}
+                  {compareDate(deadline) && (
+                    <li>
+                      <IconButton>
+                        <Icon className="bell">
+                          <use href={icons + "#icon-bell"} />
+                        </Icon>
+                      </IconButton>
+                    </li>
+                  )}
                   <li>
-                    <IconButton  onClick={() => toggleModalVisibility()}>
+                    <IconButton onClick={() => toggleModalVisibility()}>
                       <Icon>
                         <use href={icons + "#icon-arrow-circle-broken-right"} />
                       </Icon>
