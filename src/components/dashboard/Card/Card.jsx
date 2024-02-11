@@ -20,7 +20,8 @@ import { useDispatch } from "react-redux";
 import { deleteCardThunk, updateCardStatus } from "../../../redux/Dashboard/dashboardOperation";
 import { useState } from "react";
 import { ChangeStatusModal } from "../ChangeStatusModal/ChangeStatusModal";
-
+/* import { useSearchParams } from 'react-router-dom';
+ */
 
 const deadlineDate = (deadline) => {
   const date = new Date(deadline);
@@ -94,6 +95,52 @@ const Card = ({ card }) => {
     dispatch(updateCardStatus(data));
   }
   
+/*   console.log(card)
+  const [params] = useSearchParams();
+  const label = params.get('label');
+  console.log(label);
+ */
+ 
+/*    function filterCardsByLabel( label) {
+   
+    let filterCard = card;
+    switch (label) {
+    case 'ShowLow':
+      filterCard =  card => {
+        card.filter(item => item.color === "blue")
+      }
+      break;
+    
+    case 'SchowMedium':
+      filterCard =  card => {
+        card.filter(item => item.color === "pink")
+      }
+      break;
+      
+    case 'SchowHigh':
+      filterCard = card => {
+        card.filter(item => item.color === "green")
+      }
+      break;
+    
+    case 'SchowWithout':
+      filterCard = card => {
+        card.filter(item => item.color === "gray")
+      }
+      break;
+    
+    case 'SchowAll':
+      filterCard = card
+      break;
+      
+    default:
+      filterCard = card;
+    
+      return filterCard;
+        }
+  }
+  
+  filterCardsByLabel()  */
   return (
     <>
       <CardList>

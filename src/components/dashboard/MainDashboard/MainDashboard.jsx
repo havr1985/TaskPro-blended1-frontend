@@ -25,7 +25,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
- import { useSearchParams } from 'react-router-dom';import {
+import { useSearchParams } from 'react-router-dom';
+
+import {
   deleteColumnThunk,
   getDashboardByIDThunk,
 } from "../../../redux/Dashboard/dashboardOperation";
@@ -61,62 +63,57 @@ const MainDashboard = () => {
     }
   }, [columns, dispatch, state?.id]);
 
+
   // const current = useSelector(selectCurrentDashboard);
   // console.log(current);
 
   const onDeleteColumn = (id) => { 
     dispatch(deleteColumnThunk(id));
   };
+ 
   const [params] = useSearchParams();
   const label = params.get('label');
   console.log(label);
- 
 
-
-  async function filterCardsByLabel(label, cardsPromise) {
-    try {
-    const card = await cardsPromise;
-    let filterCard = card;
+   
+    function filterCardsByLabel( label ) {
+  
     switch (label) {
     case 'ShowLow':
-      filterCard =  card => {
-        card.filter(item => item.color === "blue")
+        columns => {
+        columns.filter(column => column.color === "blue")
       }
       break;
     
     case 'SchowMedium':
-      filterCard =  card => {
-        card.filter(item => item.color === "pink")
+       columns => {
+        columns.filter(column => column.color === "pink")
       }
       break;
       
     case 'SchowHigh':
-      filterCard = card => {
-        card.filter(item => item.color === "green")
+       columns => {
+        columns.filter(column => column.color === "green")
       }
       break;
     
     case 'SchowWithout':
-      filterCard = card => {
-        card.filter(item => item.color === "gray")
-      }
-      break;
+      return (columns => {
+        columns.filter(column => column.color === "gray")
+      })
+      
     
     case 'SchowAll':
-      filterCard = card
-      break;
+        return columns;
       
     default:
-      filterCard = card;
-    }
-      return filterCard;
-        } catch (error) {
-    console.error('Error filtering cards:', error);
-    throw error;
+        return columns;
+    
+        }
   }
-  }
+  filterCardsByLabel()  
   
-  filterCardsByLabel() 
+  console.log(columns)
 
   return (
     <MainDashboardWrap>
