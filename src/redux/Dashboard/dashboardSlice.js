@@ -12,6 +12,7 @@ import {
 	updateColumnThunk,
 	sendNeedHelpThunk,
 	updateDashboardThunk,
+	updateCardStatus,
 } from "./dashboardOperation";
 
 const INITIAL_STATE = {
@@ -27,6 +28,7 @@ const dashboardSlice = createSlice({
 	extraReducers: builder =>
 		builder
 			.addCase(allDashboardsThunk.fulfilled, (state, action) => {
+				state.error = null;
 				state.dashboards = action.payload;
 				state.isLoading = false;
 			})
@@ -55,7 +57,15 @@ const dashboardSlice = createSlice({
 			.addCase(deleteDashboardThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
-				state.dashboards = state.dashboards.filter(item => item._id !== action.payload._id);
+				state.dashboards = state.dashboards.filter(item => item._id !== action.payload._id) 
+				// if (!state.dashboards.length) {
+				// 	state.currentDashboard = {}
+				// 	console.log(state.currentDashboard)
+				// } else {
+				// 	state.currentDashboard = { ...state.dashboards[0] }
+				// 	console.log(state.currentDashboard)
+				// }
+				
 			})
 			.addCase(sendNeedHelpThunk.fulfilled, (state) => {
 				state.isLoading = false;
@@ -64,12 +74,13 @@ const dashboardSlice = createSlice({
 			.addCase(addColumnThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
-				state.currentDashboard.column.push(action.payload);
+				state.currentDashboard.column = [...state.currentDashboard.column, action.payload];
 			})
 			.addCase(deleteColumnThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
 				state.currentDashboard.column = state.currentDashboard.column.filter(item => item._id !== action.payload._id);
+				console.log(state.currentDashboard.column);
 			})
 			.addCase(updateColumnThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
@@ -100,16 +111,40 @@ const dashboardSlice = createSlice({
 			.addCase(updateCardThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
-				const { _id, title, description, priority, deadline, owner } = action.payload;
+				const { _id, title, description, color, deadline, owner } = action.payload;
 				const idxCol = state.currentDashboard.column.findIndex((item) => item._id === owner);
 				const idxCard = state.currentDashboard.column[idxCol].card.findIndex((item) => item._id === _id);
 				state.currentDashboard.column[idxCol].card[idxCard] = {
 					...state.currentDashboard.column[idxCol].card[idxCard],
 					title,
 					description,
-					priority,
+					color,
 					deadline,
 				};
+			})
+			.addCase(updateCardStatus.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.error = null;
+				const { oldOwner } = action.payload;
+				
+				const currentColumnIdx = state.currentDashboard.column.findIndex(item => item._id === oldOwner)
+				
+				state.currentDashboard.column[currentColumnIdx].card =
+           state.currentDashboard.column[currentColumnIdx].card.filter(
+             ({ _id: obj }) => obj !== action.payload.result._id
+           );
+				
+				
+				const newColumnIdx = state.currentDashboard.column.findIndex(item => item._id === action.payload.result.owner)
+
+				if (!state.currentDashboard.column[newColumnIdx].card) {
+					state.currentDashboard.column[newColumnIdx].card =[]
+				}
+		
+          state.currentDashboard.column[newColumnIdx].card = [...
+            state.currentDashboard.column[newColumnIdx].card,
+            action.payload.result,
+          ];
 			})
 
 			.addMatcher(
@@ -143,7 +178,8 @@ const dashboardSlice = createSlice({
 					addCardThunk.rejected,
 					deleteCardThunk.rejected,
 					updateCardThunk.rejected,
-					sendNeedHelpThunk.rejected
+					sendNeedHelpThunk.rejected,
+					updateCardStatus.rejected,
 				),
 				(state, action) => {
 					state.isLoading = false;

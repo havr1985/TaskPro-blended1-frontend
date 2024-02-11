@@ -4,14 +4,14 @@ import { ShowAllBtn, ModalFilter} from "./ChangeStatusModal.styled"
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
 import { useSelector } from "react-redux";
 
-export const ChangeStatusModal = ({ isOpen, onClose, onSelectStatus, cardId }) => {
-    const { column: columns } = useSelector(selectCurrentDashboard);
+export const ChangeStatusModal = ({ isOpen, onClose, onSelectStatus, cardId, owner }) => {
+  const { column: columns } = useSelector(selectCurrentDashboard);
 
   if (!isOpen) return null;
 
   const handleStatus = (columnId) => {
     onClose();
-    onSelectStatus(columnId, cardId);
+    onSelectStatus(columnId, cardId, owner);
   }
   
     return (

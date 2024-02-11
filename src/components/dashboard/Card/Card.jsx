@@ -108,12 +108,14 @@ const Card = ({ card }) => {
     setIsFilterModalOpen((prevState) => !prevState);
   };
 
-  const changeCardStatus = (columnId, cardId) => {
+  const changeCardStatus = (columnId, cardId, owner) => {
     console.log(columnId, cardId);
     const data = {
       columnId: columnId,
       cardId: cardId,
+      owner: owner,
     };
+    }
     dispatch(updateCardStatus(data));
   };
 
@@ -121,76 +123,81 @@ const Card = ({ card }) => {
     <>
       <CardList>
         {card &&
-          card.map(({ _id: id, title, description, color, deadline }) => (
-            <CardWrap key={id} $prioritycolor={priorityColor(color)}>
-              <CardTitle>{title}</CardTitle>
-              <CardDescriptionWrap>
-                <CardDescription
-                  line={2}
-                  element="span"
-                  truncateText="…"
-                  text={description}
-                />
-              </CardDescriptionWrap>
-              <CardCommandSection>
-                <div>
-                  <CardParams>Priority</CardParams>
-                  <CardPriorityValue $prioritycolor={priorityColor(color)}>
-                    {priorityValue(color)}
-                  </CardPriorityValue>
-                </div>
-                <div>
-                  <CardParams>Deadline</CardParams>
-                  <CardDeadlineValue>
-                    {formatDeadlineDate(deadline)}
-                  </CardDeadlineValue>
-                </div>
-                <IconsWrap>
-                  {compareDate(deadline) && (
+          card.map(
+            ({ _id: id, title, description, color, deadline, owner }) => (
+              <CardWrap key={id} $prioritycolor={priorityColor(color)}>
+                <CardTitle>{title}</CardTitle>
+                <CardDescriptionWrap>
+                  <CardDescription
+                    line={2}
+                    element="span"
+                    truncateText="…"
+                    text={description}
+                  />
+                </CardDescriptionWrap>
+                <CardCommandSection>
+                  <div>
+                    <CardParams>Priority</CardParams>
+                    <CardPriorityValue $prioritycolor={priorityColor(color)}>
+                      {priorityValue(color)}
+                    </CardPriorityValue>
+                  </div>
+                  <div>
+                    <CardParams>Deadline</CardParams>
+                    <CardDeadlineValue>
+                      {formatDeadlineDate(deadline)}
+                    </CardDeadlineValue>
+                  </div>
+                  <IconsWrap>
+                    {compareDate(deadline) && (
+                      <li>
+                        <IconButton>
+                          <Icon className="bell">
+                            <use href={icons + "#icon-bell"} />
+                          </Icon>
+                        </IconButton>
+                      </li>
+                    )}
                     <li>
-                      <IconButton>
-                        <Icon className="bell">
-                          <use href={icons + "#icon-bell"} />
+                      <IconButton onClick={() => toggleModalVisibility()}>
+                        <Icon>
+                          <use
+                            href={icons + "#icon-arrow-circle-broken-right"}
+                          />
+                        </Icon>
+                      </IconButton>
+                      <ChangeStatusModal
+                        isOpen={isFilterModalOpen}
+                        onClose={toggleModalVisibility}
+                        onSelectStatus={changeCardStatus}
+                        cardId={id}
+                        owner={owner}
+                      />
+                    </li>
+                    <li>
+                      <IconButton
+                        onClick={() => {
+                          openEditCardModal();
+                          setCardId(id);
+                        }}
+                      >
+                        <Icon>
+                          <use href={icons + "#icon-pencil"} />
                         </Icon>
                       </IconButton>
                     </li>
-                  )}
-                  <li>
-                    <IconButton onClick={() => toggleModalVisibility()}>
-                      <Icon>
-                        <use href={icons + "#icon-arrow-circle-broken-right"} />
-                      </Icon>
-                    </IconButton>
-                    <ChangeStatusModal
-                      isOpen={isFilterModalOpen}
-                      onClose={toggleModalVisibility}
-                      onSelectStatus={changeCardStatus}
-                      cardId={id}
-                    />
-                  </li>
-                  <li>
-                    <IconButton
-                      onClick={() => {
-                        openEditCardModal();
-                        setCardId(id);
-                      }}
-                    >
-                      <Icon>
-                        <use href={icons + "#icon-pencil"} />
-                      </Icon>
-                    </IconButton>
-                  </li>
-                  <li>
-                    <IconButton onClick={() => onDeleteCard(id)}>
-                      <Icon>
-                        <use href={icons + "#icon-trash"} />
-                      </Icon>
-                    </IconButton>
-                  </li>
-                </IconsWrap>
-              </CardCommandSection>
-            </CardWrap>
-          ))}
+                    <li>
+                      <IconButton onClick={() => onDeleteCard(id)}>
+                        <Icon>
+                          <use href={icons + "#icon-trash"} />
+                        </Icon>
+                      </IconButton>
+                    </li>
+                  </IconsWrap>
+                </CardCommandSection>
+              </CardWrap>
+            )
+          )}
       </CardList>
       <FormEditCard
         modalStateSwapper={closeEditCardModal}
