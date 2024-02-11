@@ -6,6 +6,7 @@ import {
 	requestAllDashboards,
 	requestDashboardById,
 	requestDeleteCard,
+	requestUpdateCardStatus,
 	requestDeleteColumn,
 	requestDeleteDashboard,
 	requestEditDashboard,
@@ -121,6 +122,18 @@ export const updateCardThunk = createAsyncThunk("dashboard/updateCard", async ({
 			description,
 			color,
 			deadline
+		);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
+	}
+});
+
+export const updateCardStatus = createAsyncThunk("dashboard/updateCardStatus", async ({ cardId, columnId }, thunkAPI) => {
+	try {
+		const data = await requestUpdateCardStatus(
+			cardId,
+			columnId
 		);
 		return data;
 	} catch (error) {

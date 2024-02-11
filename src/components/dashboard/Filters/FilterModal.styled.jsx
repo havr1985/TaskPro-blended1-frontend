@@ -98,8 +98,8 @@ export const StyledLabel = styled.label`
    input[type="radio"]:checked + ${StyledColorBtn} {
     scale: 0.5;
   };  
-
 `
+
 export const StyledRadioInput = styled.input`
   position: absolute;
   appearance: none;
@@ -127,6 +127,7 @@ export const StyledRadioInput = styled.input`
 
   &:checked.gray {
     border: 1px solid var(--radio-label-grey-color); 
+  }
 `;
 
 export const StyledLabelTitle = styled.p`

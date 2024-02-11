@@ -17,8 +17,9 @@ import {
   IconsWrap,
 } from "./Card.styled";
 import { useDispatch } from "react-redux";
-import { deleteCardThunk } from "../../../redux/Dashboard/dashboardOperation";
+import { deleteCardThunk, updateCardStatus } from "../../../redux/Dashboard/dashboardOperation";
 import { useState } from "react";
+import { ChangeStatusModal } from "../ChangeStatusModal/ChangeStatusModal";
 
 
 const deadlineDate = (deadline) => {
@@ -66,6 +67,7 @@ const priorityValue = (color) => {
 };
 
 const Card = ({ card }) => {
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [cardId, setCardId] = useState(null);
   const dispatch = useDispatch();
   const {
@@ -78,7 +80,19 @@ const Card = ({ card }) => {
     dispatch(deleteCardThunk(id));
   };
 
-  
+
+  const toggleModalVisibility = () => {
+    setIsFilterModalOpen((prevState) => !prevState);
+  };
+
+  const changeCardStatus = (columnId, cardId) => {
+    console.log(columnId, cardId);
+    const data = {
+      columnId: columnId,
+      cardId: cardId,
+    }
+    dispatch(updateCardStatus(data));
+  }
   
   return (
     <>
@@ -117,11 +131,17 @@ const Card = ({ card }) => {
                     </IconButton>
                   </li> */}
                   <li>
-                    <IconButton>
+                    <IconButton  onClick={() => toggleModalVisibility()}>
                       <Icon>
                         <use href={icons + "#icon-arrow-circle-broken-right"} />
                       </Icon>
                     </IconButton>
+                    <ChangeStatusModal
+                      isOpen={isFilterModalOpen}
+                      onClose={toggleModalVisibility}
+                      onSelectStatus={changeCardStatus}
+                      cardId={id}
+                    />
                   </li>
                   <li>
                     <IconButton
