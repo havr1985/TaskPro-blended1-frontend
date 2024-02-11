@@ -10,6 +10,8 @@ export const ChangeStatusModal = ({
   onSelectStatus,
   cardId,
   owner,
+  x,
+  y,
 }) => {
   const { column: columns } = useSelector(selectCurrentDashboard);
 
@@ -21,7 +23,7 @@ export const ChangeStatusModal = ({
   };
 
   return (
-    <ModalFilter>
+    <ModalFilter style={{ position: "absolute", left: x - 175, top: y - 120 }}>
       {columns === undefined ? (
         <></>
       ) : (
