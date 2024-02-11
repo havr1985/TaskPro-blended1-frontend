@@ -81,7 +81,9 @@ export default function FormAddCard({
     setSubmitting(false);
     resetForm();
     modalStateSwapper();
-    setDateFromCalendar(new Date());
+    setTimeout(() => {
+      setDateFromCalendar(new Date());
+    }, 1000);
   };
 
   const formatWeekday = (_, date) => {
