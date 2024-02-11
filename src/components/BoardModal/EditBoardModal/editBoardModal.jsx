@@ -24,7 +24,8 @@ import data from "../background.json";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
 import { updateDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const options = [
   "#icon-board-square",
   "#icon-board-star",
@@ -42,7 +43,7 @@ const validationSchema = Yup.object().shape({
 
 export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
-  //
+
   const dates = useSelector(selectCurrentDashboard);
   const {
     _id,
@@ -50,7 +51,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     icon: iconDates,
     backgroundURL: backgroundURLDates,
   } = dates.result;
-
+  console.log(titleDates);
   const [selectedBg, setSelectedBg] = useState(backgroundURLDates);
   const [setIcon, setSetIcon] = useState(iconDates);
 
@@ -62,6 +63,11 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newBoardTitle = e.target.elements[0].value;
+    const boardTitle = e.target.elements[0].value;
+    if (!boardTitle) {
+      toast.error("Title is required!");
+      return;
+    }
     const updatedData = {
       dashboardId: _id,
       title: newBoardTitle,
@@ -71,18 +77,8 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     modalStateSwapper();
 
     dispatch(updateDashboardThunk(updatedData));
-
   };
 
-  // const { name, icon, backgroundURL } = item;
-  //   const [selectedBg, setSelectedBg] = useState(backgroundURL);
-  //   const [setIcon, setSetIcon] = useState(icon);
-
-  //   const initialValues = {
-  //     title: name,
-  //     icon: setIcon,
-  //     backgroundURL: selectedBg,
-  //   };
   const handleBgSelection = (url) => {
     setSelectedBg(url);
   };
@@ -107,10 +103,12 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
             <FormWrapper>
               <ErrorSection name="title" component="div" />
               <TitleInput
+                onChange={(e) => e.target.elements[0].value(e)}
                 type="text"
                 id="title"
+                defaultValue={titleDates}
                 name="title"
-                // placeholder="Title"
+                placeholder="Title"
                 autoComplete="off"
               />
             </FormWrapper>
