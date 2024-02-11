@@ -76,7 +76,7 @@ const MainDashboard = () => {
   console.log(label);
 
    
-    function filterCardsByLabel( label ) {
+   /*  function filterCardsByLabel( label ) {
   
     switch (label) {
     case 'ShowLow':
@@ -111,9 +111,7 @@ const MainDashboard = () => {
     
         }
   }
-  filterCardsByLabel()  
-  
-  console.log(columns)
+  filterCardsByLabel()   */
 
   return (
     <MainDashboardWrap>
