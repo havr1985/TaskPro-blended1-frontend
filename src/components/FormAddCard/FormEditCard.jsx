@@ -43,8 +43,12 @@ export default function FormEditCard({
   isModalOpen,
   modalStateSwapper,
   cardId,
+  cardTitle,
+  cardColor,
+  cardDescription,
+  cardDeadline,
 }) {
-  const [dateFromCalendar, setDateFromCalendar] = useState(new Date());
+  const [dateFromCalendar, setDateFromCalendar] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -68,10 +72,6 @@ export default function FormEditCard({
     },
   };
 
-  // const allCards = useSelector(selectAllCards);
-
-  // const myCard = allCards.find(({ _id }) => _id === cardId);
-
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const updateCard = {
       cardId,
@@ -85,6 +85,10 @@ export default function FormEditCard({
     setSubmitting(false);
     resetForm();
     modalStateSwapper();
+    setTimeout;
+    setTimeout(() => {
+      setDateFromCalendar(null);
+    }, 1000);
   };
 
   const formatWeekday = (_, date) => {
@@ -112,10 +116,10 @@ export default function FormEditCard({
       >
         <Formik
           initialValues={{
-            title: "",
-            description: "",
-            color: "",
-            deadline: "",
+            title: `${cardTitle}`,
+            description: `${cardDescription}`,
+            color: `${cardColor}`,
+            deadline: `${cardDeadline}`,
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -198,7 +202,9 @@ export default function FormEditCard({
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
                 <TextDeadlain onClick={openCalendarModal}>
-                  {deadlineDate(dateFromCalendar)}
+                  {dateFromCalendar === null
+                    ? deadlineDate(cardDeadline)
+                    : deadlineDate(dateFromCalendar)}
                 </TextDeadlain>
                 <IconChevron>
                   <use href={icons + "#icon-chevron-down"} />

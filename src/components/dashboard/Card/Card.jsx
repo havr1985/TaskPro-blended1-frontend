@@ -93,6 +93,11 @@ const priorityValue = (color) => {
 const Card = ({ card }) => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [cardId, setCardId] = useState(null);
+  const [cardTitle, setTitle] = useState(null);
+  const [cardDescription, setCardDescription] = useState(null);
+  const [cardColor, setCardColor] = useState(null);
+  const [cardDeadline, setCardDeadline] = useState(null);
+
   const dispatch = useDispatch();
   const {
     isModalOpen: isEditCardModalOpen,
@@ -109,7 +114,6 @@ const Card = ({ card }) => {
   };
 
   const changeCardStatus = (columnId, cardId, owner) => {
-    console.log(columnId, cardId);
     const data = {
       columnId: columnId,
       cardId: cardId,
@@ -179,6 +183,10 @@ const Card = ({ card }) => {
                         onClick={() => {
                           openEditCardModal();
                           setCardId(id);
+                          setTitle(title);
+                          setCardColor(color);
+                          setCardDescription(description);
+                          setCardDeadline(deadline);
                         }}
                       >
                         <Icon>
@@ -198,12 +206,15 @@ const Card = ({ card }) => {
               </CardWrap>
             )
           )}
-
       </CardList>
       <FormEditCard
         modalStateSwapper={closeEditCardModal}
         isModalOpen={isEditCardModalOpen}
         cardId={cardId}
+        cardTitle={cardTitle}
+        cardColor={cardColor}
+        cardDescription={cardDescription}
+        cardDeadline={cardDeadline}
       />
     </>
   );
