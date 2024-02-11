@@ -83,11 +83,12 @@ const Card = ({ card }) => {
     setIsFilterModalOpen((prevState) => !prevState);
   };
 
-  const changeCardStatus = (columnId, cardId) => {
+  const changeCardStatus = (columnId, cardId, owner) => {
     console.log(columnId, cardId);
     const data = {
       columnId: columnId,
       cardId: cardId,
+      owner: owner,
     }
     dispatch(updateCardStatus(data));
   }
@@ -97,7 +98,7 @@ const Card = ({ card }) => {
     <>
       <CardList>
         {card &&
-          card.map(({ _id: id, title, description, color, deadline }) => (
+          card.map(({ _id: id, title, description, color, deadline, owner }) => (
             <CardWrap key={id} $prioritycolor={priorityColor(color)}>
               <CardTitle>{title}</CardTitle>
               <CardDescriptionWrap>
@@ -140,6 +141,7 @@ const Card = ({ card }) => {
                       onClose={toggleModalVisibility}
                       onSelectStatus={changeCardStatus}
                       cardId={id}
+                      owner={owner}
                     />
                   </li>
                   <li>
