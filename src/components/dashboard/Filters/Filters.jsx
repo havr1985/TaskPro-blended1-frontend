@@ -9,21 +9,21 @@ const Filters = () => {
 
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
-/*   const openFilterModal = () => {
+  const openFilterModal = () => {
      setIsFilterModalOpen(true);
   }
   const closeFilterModal = () => {
     setIsFilterModalOpen(false);
-  }; */
-
-    const toggleModalVisibility = () => {
-    setIsFilterModalOpen((prevState) => !prevState);
   };
+
+/*     const toggleModalVisibility = () => {
+    setIsFilterModalOpen((prevState) => !prevState);
+  }; */
  /*  if (showAll) return <ScreensPage/> */
 
   return (
     <>
-      <FilterButton onClick={() => toggleModalVisibility()}>
+      <FilterButton onClick={() => openFilterModal()}>
         <FilterIcon>
           <use href={icons + "#icon-filter"} />
         </FilterIcon>
@@ -31,7 +31,7 @@ const Filters = () => {
       </FilterButton>
       <FilterModal
         isOpen={isFilterModalOpen}
-        onClose={toggleModalVisibility}
+        onClose={closeFilterModal}
         />
    </>
     );

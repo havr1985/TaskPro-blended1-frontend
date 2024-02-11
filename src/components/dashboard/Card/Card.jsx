@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { deleteCardThunk } from "../../../redux/Dashboard/dashboardOperation";
 import { useState } from "react";
 
+
 const deadlineDate = (deadline) => {
   const date = new Date(deadline);
 
@@ -77,6 +78,8 @@ const Card = ({ card }) => {
     dispatch(deleteCardThunk(id));
   };
 
+  
+  
   return (
     <>
       <CardList>

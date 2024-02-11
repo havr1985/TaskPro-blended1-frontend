@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
+ import { useSearchParams } from 'react-router-dom';import {
   deleteColumnThunk,
   getDashboardByIDThunk,
 } from "../../../redux/Dashboard/dashboardOperation";
@@ -64,9 +64,59 @@ const MainDashboard = () => {
   // const current = useSelector(selectCurrentDashboard);
   // console.log(current);
 
-  const onDeleteColumn = (id) => {
+  const onDeleteColumn = (id) => { 
     dispatch(deleteColumnThunk(id));
   };
+  const [params] = useSearchParams();
+  const label = params.get('label');
+  console.log(label);
+ 
+
+
+  async function filterCardsByLabel(label, cardsPromise) {
+    try {
+    const card = await cardsPromise;
+    let filterCard = card;
+    switch (label) {
+    case 'ShowLow':
+      filterCard =  card => {
+        card.filter(item => item.color === "blue")
+      }
+      break;
+    
+    case 'SchowMedium':
+      filterCard =  card => {
+        card.filter(item => item.color === "pink")
+      }
+      break;
+      
+    case 'SchowHigh':
+      filterCard = card => {
+        card.filter(item => item.color === "green")
+      }
+      break;
+    
+    case 'SchowWithout':
+      filterCard = card => {
+        card.filter(item => item.color === "gray")
+      }
+      break;
+    
+    case 'SchowAll':
+      filterCard = card
+      break;
+      
+    default:
+      filterCard = card;
+    }
+      return filterCard;
+        } catch (error) {
+    console.error('Error filtering cards:', error);
+    throw error;
+  }
+  }
+  
+  filterCardsByLabel() 
 
   return (
     <MainDashboardWrap>

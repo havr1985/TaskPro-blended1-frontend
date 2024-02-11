@@ -1,29 +1,27 @@
-import { CloseModalBtn } from "../../../shared/SharedModal/SharedModal.styled";
 import { useSearchParams } from "react-router-dom";
-import {StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll, FilterLine, ModalTitle, ModalFilter, Overlay} from "./FilterModal.styled"
+import { CloseModalBtn } from "../../../shared/SharedModal/SharedModal.styled";
+import { StyledColorBtn, StyledColorText, StyledContainerBtn, StyledInputContainer, StyledLabel, StyledRadioInput, StyledLabelTitle, ShowAllBtn, LabelSchowAll, FilterLine, ModalTitle, ModalFilter, Overlay } from "./FilterModal.styled";
 
 
 export const FilterModal = ({ isOpen, onClose, }) => {
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const radio = searchParams.get("radio");
+  const [, setSearchParams] = useSearchParams();
 
- /*  const [selectedLabel, setSelectedLabel] = useState('all'); */
    if (!isOpen) return null
- /* const handleAllShow = () => {
-    setSelectedLabel('all'); 
-    onClose();
-    onFilterChange('all')
-  } */
   
   const handleLabelChange = (event) => {
     const value = event.target.value;
     console.log(value)
-    setSearchParams(value);
+    setSearchParams({ label: value });
    }; 
   
+  const handleShowAll = () => {
+    const all = "all";
+    console.log(all)
+    setSearchParams({ label: all })
+  }
     return (
-      <Overlay>
+      <Overlay onClick={onClose}>
         <ModalFilter>
           <CloseModalBtn onClick={onClose}>✕</CloseModalBtn>
      
@@ -31,7 +29,7 @@ export const FilterModal = ({ isOpen, onClose, }) => {
           <FilterLine />
           <LabelSchowAll>
             <StyledLabelTitle>Label color</StyledLabelTitle>
-            <ShowAllBtn onChange={() => setSearchParams("all")}>Show all</ShowAllBtn>
+            <ShowAllBtn onClick={handleShowAll}>Show all</ShowAllBtn>
           </LabelSchowAll>
           <StyledContainerBtn>
             <StyledInputContainer>
@@ -39,7 +37,7 @@ export const FilterModal = ({ isOpen, onClose, }) => {
                 <StyledRadioInput
                   type="radio"
                   name="radio"
-                  value="gray"
+                  value="ShowWithout"
                   className="gray"
                  /*  checked={selectedLabel === "gray"} */
                   onChange={handleLabelChange}
@@ -54,7 +52,7 @@ export const FilterModal = ({ isOpen, onClose, }) => {
                 <StyledRadioInput
                   type="radio"
                   name="radio"
-                  value="blue"
+                  value="ShowLow"
                   className="blue"
                   /* checked={selectedLabel === "blue"} */
                   onChange={handleLabelChange}
@@ -69,7 +67,7 @@ export const FilterModal = ({ isOpen, onClose, }) => {
                 <StyledRadioInput
                   type="radio"
                   name="radio"
-                  value="pink"
+                  value="ShowMedium"
                   className="pink"
                   /* checked={selectedLabel === "pink"} */
                   onChange={handleLabelChange}
@@ -85,7 +83,7 @@ export const FilterModal = ({ isOpen, onClose, }) => {
                 <StyledRadioInput
                   type="radio"
                   name="radio"
-                  value="green"
+                  value="ShowHigh"
                   className="green"
                   /* checked={selectedLabel === "green"} */
                   onChange={handleLabelChange}
