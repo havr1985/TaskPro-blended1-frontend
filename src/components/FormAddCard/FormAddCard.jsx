@@ -81,6 +81,7 @@ export default function FormAddCard({
     setSubmitting(false);
     resetForm();
     modalStateSwapper();
+    setDateFromCalendar(new Date());
   };
 
   const formatWeekday = (_, date) => {
@@ -101,7 +102,6 @@ export default function FormAddCard({
 
   return (
     <>
-      {/* <button onClick={openModal}>Add New Card</button> */}
       <SharedModal
         modalIsOpen={isModalOpen}
         closeModal={modalStateSwapper}
@@ -223,8 +223,11 @@ export default function FormAddCard({
         >
           <StyledCalendar
             formatShortWeekday={formatWeekday}
-            value={dateFromCalendar}
+            selectedDate={new Date()}
+            // value={new Date()}
             onChange={setDateFromCalendar}
+            onClickDay={closeCalendarModal}
+            minDate={new Date()}
           />
         </Modal>
       </SharedModal>

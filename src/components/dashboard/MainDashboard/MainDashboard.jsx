@@ -61,9 +61,6 @@ const MainDashboard = () => {
     }
   }, [columns, dispatch, state?.id]);
 
-  // const current = useSelector(selectCurrentDashboard);
-  // console.log(current);
-
   const onDeleteColumn = (id) => {
     dispatch(deleteColumnThunk(id));
   };
