@@ -6,18 +6,25 @@ import { FilterButton, FilterIcon } from "./Filters.styled";
 const Filters = () => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
-  const toggleModalVisibility = () => {
-    setIsFilterModalOpen((prevState) => !prevState);
+    const openFilterModal = () => {
+     setIsFilterModalOpen(true);
+  }
+  const closeFilterModal = () => {
+    setIsFilterModalOpen(false);
   };
+
+/*   const toggleModalVisibility = () => {
+    setIsFilterModalOpen((prevState) => !prevState);
+  }; */
   return (
     <>
-      <FilterButton onClick={() => toggleModalVisibility()}>
+      <FilterButton onClick={() => openFilterModal()}>
         <FilterIcon>
           <use href={icons + "#icon-filter"} />
         </FilterIcon>
         Filters
       </FilterButton>
-      <FilterModal isOpen={isFilterModalOpen} onClose={toggleModalVisibility} />
+      <FilterModal isOpen={isFilterModalOpen} onClose={closeFilterModal} />
     </>
   );
 };
