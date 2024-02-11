@@ -14,8 +14,8 @@ export const StyledTextArea = styled.textarea`
   height: 154px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  background: #1f1f1f;
-  color: #ffffff;
+  background: var(--primary-card-background-color);
+  color: var(--card-title-color);
   font-size: 14px;
   font-weight: 400;
   outline: none;
@@ -132,8 +132,8 @@ export const StyledInput = styled.input`
   border-radius: 6px;
   height: 49px;
   border: 1px solid #ccc;
-  background: #202020;
-  color: white;
+  background: var(--primary-card-background-color);
+  color: var(--card-title-color);
   margin-bottom: 14px;
   font-size: 14px;
   font-weight: 400;
