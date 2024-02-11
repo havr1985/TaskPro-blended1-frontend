@@ -27,7 +27,7 @@ import {
   IconChevron,
 } from "./FormAddCard.styled";
 import { updateCardThunk } from "../../redux/Dashboard/dashboardOperation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllCards } from "../../redux/Dashboard/dashboardsSelectors";
 
@@ -95,7 +95,6 @@ export default function FormEditCard({
 
   const deadlineDate = (deadlineDate) => {
     const date = new Date(deadlineDate);
-
     const day = date.getDate();
 
     const monthName = date.toLocaleString("en", { month: "long" });
@@ -207,12 +206,6 @@ export default function FormEditCard({
                   {myCard && myCard.deadline
                     ? deadlineDate(myCard.deadline)
                     : deadlineDate(dateFromCalendar)}
-
-                  {/* {myCard && myCard.deadline
-                    ? dateFromCalendar
-                      ? deadlineDate(dateFromCalendar)
-                      : deadlineDate(myCard.deadline)
-                    : null} */}
                 </TextDeadlain>
                 <IconChevron>
                   <use href={icons + "#icon-chevron-down"} />
