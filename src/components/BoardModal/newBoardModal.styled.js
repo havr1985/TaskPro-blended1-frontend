@@ -92,6 +92,10 @@ export const Icon = styled.svg`
     scale: 1.3;
     transform: rotate(360deg);
   }
+  &:hover {
+    scale: 1.3;
+    transform: rotate(360deg);
+  }
 `;
 
 export const DefaultRadioBtn = styled(Field)`
