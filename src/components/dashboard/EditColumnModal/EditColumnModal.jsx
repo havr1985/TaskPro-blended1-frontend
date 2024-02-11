@@ -22,9 +22,13 @@ const validationSchema = Yup.object().shape({
   title: Yup.string().min("6").required("specify a column name"),
 });
 
-export const EditColumnModal = ({ isModalOpen, modalStateSwapper, title, columnId }) => {
- 
-  const dispatch = useDispatch()
+export const EditColumnModal = ({
+  isModalOpen,
+  modalStateSwapper,
+  title,
+  columnId,
+}) => {
+  const dispatch = useDispatch();
   const initialValues = {
     title: title || "",
   };
@@ -32,6 +36,7 @@ export const EditColumnModal = ({ isModalOpen, modalStateSwapper, title, columnI
   const handleSubmit = ({ title }, action) => {
     dispatch(updateColumnThunk({ columnId, title }));
     action.resetForm();
+    modalStateSwapper();
   };
 
   return (
@@ -39,14 +44,12 @@ export const EditColumnModal = ({ isModalOpen, modalStateSwapper, title, columnI
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Edit column"}
-      maxWidth="335px"
-    >
+      maxWidth="335px">
       <Section>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
+          onSubmit={handleSubmit}>
           <ModalForm>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
