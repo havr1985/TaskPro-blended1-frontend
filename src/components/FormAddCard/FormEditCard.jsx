@@ -27,9 +27,8 @@ import {
   IconChevron,
 } from "./FormAddCard.styled";
 import { updateCardThunk } from "../../redux/Dashboard/dashboardOperation";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectAllCards } from "../../redux/Dashboard/dashboardsSelectors";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 Modal.setAppElement("#root");
 
@@ -69,9 +68,9 @@ export default function FormEditCard({
     },
   };
 
-  const allCards = useSelector(selectAllCards);
+  // const allCards = useSelector(selectAllCards);
 
-  const myCard = allCards.find(({ _id }) => _id === cardId);
+  // const myCard = allCards.find(({ _id }) => _id === cardId);
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const updateCard = {
@@ -113,14 +112,10 @@ export default function FormEditCard({
       >
         <Formik
           initialValues={{
-            title: `${myCard && myCard.title ? myCard.title : ""}`,
-            description: `${
-              myCard && myCard.description ? myCard.description : ""
-            }`,
-            color: `${myCard && myCard.color ? myCard.color : "gray"}`,
-            deadline: `${
-              myCard && myCard.deadline ? myCard.deadline : new Date()
-            }`,
+            title: "",
+            description: "",
+            color: "",
+            deadline: "",
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -203,9 +198,7 @@ export default function FormEditCard({
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
                 <TextDeadlain onClick={openCalendarModal}>
-                  {myCard && myCard.deadline
-                    ? deadlineDate(myCard.deadline)
-                    : deadlineDate(dateFromCalendar)}
+                  {deadlineDate(dateFromCalendar)}
                 </TextDeadlain>
                 <IconChevron>
                   <use href={icons + "#icon-chevron-down"} />
