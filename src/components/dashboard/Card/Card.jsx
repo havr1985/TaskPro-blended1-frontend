@@ -17,9 +17,14 @@ import {
   IconsWrap,
 } from "./Card.styled";
 import { useDispatch } from "react-redux";
-import { deleteCardThunk } from "../../../redux/Dashboard/dashboardOperation";
+import {
+  deleteCardThunk,
+  updateCardStatus,
+} from "../../../redux/Dashboard/dashboardOperation";
+import { useState } from "react";
+import { ChangeStatusModal } from "../ChangeStatusModal/ChangeStatusModal";
 
-const deadlineDate = (deadline) => {
+const formatDeadlineDate = (deadline) => {
   const date = new Date(deadline);
 
   const day = date.getDate();
@@ -31,6 +36,28 @@ const deadlineDate = (deadline) => {
   }${month}/${year}`;
 
   return formattedDate;
+};
+
+const compareDate = (deadline) => {
+  const deadlineDate = new Date(deadline);
+  const currentDate = new Date();
+
+  const deadlineDay = deadlineDate.getDate();
+  const deadlineMonth = deadlineDate.getMonth();
+  const deadlineYear = deadlineDate.getFullYear();
+
+  const currentDay = currentDate.getDate();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  if (
+    deadlineDay <= currentDay &&
+    deadlineMonth <= currentMonth &&
+    deadlineYear <= currentYear
+  ) {
+    return true;
+  }
+  return;
 };
 
 const priorityColor = (color) => {
@@ -64,6 +91,8 @@ const priorityValue = (color) => {
 };
 
 const Card = ({ card }) => {
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [cardId, setCardId] = useState(null);
   const dispatch = useDispatch();
   const {
     isModalOpen: isEditCardModalOpen,
@@ -75,71 +104,106 @@ const Card = ({ card }) => {
     dispatch(deleteCardThunk(id));
   };
 
+  const toggleModalVisibility = () => {
+    setIsFilterModalOpen((prevState) => !prevState);
+  };
+
+  const changeCardStatus = (columnId, cardId, owner) => {
+    console.log(columnId, cardId);
+    const data = {
+      columnId: columnId,
+      cardId: cardId,
+      owner: owner,
+    };
+    dispatch(updateCardStatus(data));
+  };
+
   return (
     <>
       <CardList>
         {card &&
-          card.map(({ _id: id, title, description, color, deadline }) => (
-            <CardWrap key={id} $prioritycolor={priorityColor(color)}>
-              <CardTitle>{title}</CardTitle>
-              <CardDescriptionWrap>
-                <CardDescription
-                  line={2}
-                  element="span"
-                  truncateText="…"
-                  text={description}
-                />
-              </CardDescriptionWrap>
-              <CardCommandSection>
-                <div>
-                  <CardParams>Priority</CardParams>
-                  <CardPriorityValue $prioritycolor={priorityColor(color)}>
-                    {priorityValue(color)}
-                  </CardPriorityValue>
-                </div>
-                <div>
-                  <CardParams>Deadline</CardParams>
-                  <CardDeadlineValue>
-                    {deadlineDate(deadline)}
-                  </CardDeadlineValue>
-                </div>
-                <IconsWrap>
-                  {/* <li>
-                    <IconButton>
-                      <Icon className="bell">
-                        <use href={icons + "#icon-bell"} />
-                      </Icon>
-                    </IconButton>
-                  </li> */}
-                  <li>
-                    <IconButton>
-                      <Icon>
-                        <use href={icons + "#icon-arrow-circle-broken-right"} />
-                      </Icon>
-                    </IconButton>
-                  </li>
-                  <li>
-                    <IconButton onClick={openEditCardModal}>
-                      <Icon>
-                        <use href={icons + "#icon-pencil"} />
-                      </Icon>
-                    </IconButton>
-                  </li>
-                  <li>
-                    <IconButton onClick={() => onDeleteCard(id)}>
-                      <Icon>
-                        <use href={icons + "#icon-trash"} />
-                      </Icon>
-                    </IconButton>
-                  </li>
-                </IconsWrap>
-              </CardCommandSection>
-            </CardWrap>
-          ))}
+          card.map(
+            ({ _id: id, title, description, color, deadline, owner }) => (
+              <CardWrap key={id} $prioritycolor={priorityColor(color)}>
+                <CardTitle>{title}</CardTitle>
+                <CardDescriptionWrap>
+                  <CardDescription
+                    line={2}
+                    element="span"
+                    truncateText="…"
+                    text={description}
+                  />
+                </CardDescriptionWrap>
+                <CardCommandSection>
+                  <div>
+                    <CardParams>Priority</CardParams>
+                    <CardPriorityValue $prioritycolor={priorityColor(color)}>
+                      {priorityValue(color)}
+                    </CardPriorityValue>
+                  </div>
+                  <div>
+                    <CardParams>Deadline</CardParams>
+                    <CardDeadlineValue>
+                      {formatDeadlineDate(deadline)}
+                    </CardDeadlineValue>
+                  </div>
+                  <IconsWrap>
+                    {compareDate(deadline) && (
+                      <li>
+                        <IconButton>
+                          <Icon className="bell">
+                            <use href={icons + "#icon-bell"} />
+                          </Icon>
+                        </IconButton>
+                      </li>
+                    )}
+
+                    <li>
+                      <IconButton onClick={() => toggleModalVisibility()}>
+                        <Icon>
+                          <use
+                            href={icons + "#icon-arrow-circle-broken-right"}
+                          />
+                        </Icon>
+                      </IconButton>
+                      <ChangeStatusModal
+                        isOpen={isFilterModalOpen}
+                        onClose={toggleModalVisibility}
+                        onSelectStatus={changeCardStatus}
+                        cardId={id}
+                        owner={owner}
+                      />
+                    </li>
+                    <li>
+                      <IconButton
+                        onClick={() => {
+                          openEditCardModal();
+                          setCardId(id);
+                        }}
+                      >
+                        <Icon>
+                          <use href={icons + "#icon-pencil"} />
+                        </Icon>
+                      </IconButton>
+                    </li>
+                    <li>
+                      <IconButton onClick={() => onDeleteCard(id)}>
+                        <Icon>
+                          <use href={icons + "#icon-trash"} />
+                        </Icon>
+                      </IconButton>
+                    </li>
+                  </IconsWrap>
+                </CardCommandSection>
+              </CardWrap>
+            )
+          )}
+
       </CardList>
       <FormEditCard
         modalStateSwapper={closeEditCardModal}
         isModalOpen={isEditCardModalOpen}
+        cardId={cardId}
       />
     </>
   );

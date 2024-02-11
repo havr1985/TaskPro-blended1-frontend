@@ -39,7 +39,11 @@ const validationSchema = Yup.object().shape({
   deadline: Yup.date().required("Deadline is required"),
 });
 
-export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
+export default function FormEditCard({
+  isModalOpen,
+  modalStateSwapper,
+  cardId,
+}) {
   const [dateFromCalendar, setDateFromCalendar] = useState(new Date());
 
   const dispatch = useDispatch();
@@ -64,8 +68,13 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
     },
   };
 
+  // const allCards = useSelector(selectAllCards);
+
+  // const myCard = allCards.find(({ _id }) => _id === cardId);
+
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const updateCard = {
+      cardId,
       title: values.title,
       description: values.description,
       color: values.color,
@@ -83,9 +92,8 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
     return shortDayNames[date.getDay()];
   };
 
-  const deadlineDate = (dateFromCalendar) => {
-    const date = new Date(dateFromCalendar);
-
+  const deadlineDate = (deadlineDate) => {
+    const date = new Date(deadlineDate);
     const day = date.getDate();
 
     const monthName = date.toLocaleString("en", { month: "long" });
@@ -96,7 +104,6 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
 
   return (
     <>
-      {/* <button onClick={openModal}>Edit Card</button> */}
       <SharedModal
         modalIsOpen={isModalOpen}
         closeModal={modalStateSwapper}
@@ -107,8 +114,8 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
           initialValues={{
             title: "",
             description: "",
-            color: "gray",
-            deadline: new Date(),
+            color: "",
+            deadline: "",
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -219,6 +226,8 @@ export default function FormEditCard({ isModalOpen, modalStateSwapper }) {
             formatShortWeekday={formatWeekday}
             value={dateFromCalendar}
             onChange={setDateFromCalendar}
+            onClickDay={closeCalendarModal}
+            minDate={new Date()}
           />
         </Modal>
       </SharedModal>

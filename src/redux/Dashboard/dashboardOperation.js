@@ -6,54 +6,47 @@ import {
 	requestAllDashboards,
 	requestDashboardById,
 	requestDeleteCard,
+	requestUpdateCardStatus,
 	requestDeleteColumn,
 	requestDeleteDashboard,
 	requestEditDashboard,
 	requestUpdateCard,
 	requestUpdateColumn,
+	requestUserNeedHelp,
 } from "../../services/api/dashboard";
 
-export const allDashboardsThunk = createAsyncThunk(
-	"dashboard/allDashboards",
-	async (_, thunkAPI) => {
-		try {
-			const dashboards = await requestAllDashboards();
-			return dashboards;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error.message);
-		}
+export const allDashboardsThunk = createAsyncThunk("dashboard/allDashboards", async (_, thunkAPI) => {
+	try {
+		const dashboards = await requestAllDashboards();
+		return dashboards;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error.message);
 	}
-);
+});
 
-export const addDashboardThunk = createAsyncThunk(
-	"dashboard/addDashboard",
-	async (values, thunkAPI) => {
-		try {
-			const data = await requestAddDashboard(values);
-			return data;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error.message);
-		}
+export const addDashboardThunk = createAsyncThunk("dashboard/addDashboard", async (values, thunkAPI) => {
+	try {
+		const data = await requestAddDashboard(values);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error.message);
 	}
-);
+});
 
-export const getDashboardByIDThunk = createAsyncThunk(
-	"dashboard/getById",
-	async (dashboardId, thunkAPI) => {
-		try {
-			const data = await requestDashboardById(dashboardId);
-			return data;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error.message);
-		}
+export const getDashboardByIDThunk = createAsyncThunk("dashboard/getById", async (dashboardId, thunkAPI) => {
+	try {
+		const data = await requestDashboardById(dashboardId);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error.message);
 	}
-);
+});
 
 export const updateDashboardThunk = createAsyncThunk(
 	"dashboard/updateDashboard",
-	async ({ dashboardId, values }, thunkAPI) => {
+	async ({ dashboardId, title, icon, backgroundURL }, thunkAPI) => {
 		try {
-			const data = await requestEditDashboard(dashboardId, values);
+			const data = await requestEditDashboard(dashboardId, title, icon, backgroundURL);
 			return data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message);
@@ -61,17 +54,14 @@ export const updateDashboardThunk = createAsyncThunk(
 	}
 );
 
-export const deleteDashboardThunk = createAsyncThunk(
-	"dashboard/deleteDashboard",
-	async (dashboardId, thunkAPI) => {
-		try {
-			const data = await requestDeleteDashboard(dashboardId);
-			return data;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error.message);
-		}
+export const deleteDashboardThunk = createAsyncThunk("dashboard/deleteDashboard", async (dashboardId, thunkAPI) => {
+	try {
+		const data = await requestDeleteDashboard(dashboardId);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error.message);
 	}
-);
+});
 
 export const addColumnThunk = createAsyncThunk(
 	"dashboard/addColumn",
@@ -85,42 +75,29 @@ export const addColumnThunk = createAsyncThunk(
 	}
 );
 
-export const deleteColumnThunk = createAsyncThunk(
-	"dashboard/deleteColumn",
-	async (columnId, thunkAPI) => {
-		try {
-			const data = await requestDeleteColumn(columnId);
-			return data;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error);
-		}
+export const deleteColumnThunk = createAsyncThunk("dashboard/deleteColumn", async (columnId, thunkAPI) => {
+	try {
+		const data = await requestDeleteColumn(columnId);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
 	}
-);
+});
 
-export const updateColumnThunk = createAsyncThunk(
-	"dashboard/updateColumn",
-	async ({ columnId, title }, thunkAPI) => {
-		try {
-			const data = await requestUpdateColumn(columnId, title);
-			return data;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error);
-		}
+export const updateColumnThunk = createAsyncThunk("dashboard/updateColumn", async ({ columnId, title }, thunkAPI) => {
+	try {
+		const data = await requestUpdateColumn(columnId, title);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
 	}
-);
+});
 
 export const addCardThunk = createAsyncThunk(
 	"dashboard/addCard",
 	async ({ columnId, title, description, color, deadline }, thunkAPI) => {
-		console.log(columnId)
 		try {
-			const data = await requestAddCard(
-				columnId,
-				title,
-				description,
-				color,
-				deadline,
-			);
+			const data = await requestAddCard(columnId, title, description, color, deadline);
 			return data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message);
@@ -128,26 +105,48 @@ export const addCardThunk = createAsyncThunk(
 	}
 );
 
-export const deleteCardThunk = createAsyncThunk(
-	"dashboard/deleteCard",
-	async (cardId, thunkAPI) => {
-		try {
-			const data = await requestDeleteCard(cardId);
-			return data;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error.message);
-		}
+export const deleteCardThunk = createAsyncThunk("dashboard/deleteCard", async (cardId, thunkAPI) => {
+	try {
+		const data = await requestDeleteCard(cardId);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error.message);
 	}
-);
+});
 
-export const updateCardThunk = createAsyncThunk(
-	"dashboard/updateCard",
-	async (values, thunkAPI) => {
-		try {
-			const data = await requestUpdateCard(values);
-			return data;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error);
-		}
+export const updateCardThunk = createAsyncThunk("dashboard/updateCard", async ({ cardId, title, description, color, deadline }, thunkAPI) => {
+	try {
+		const data = await requestUpdateCard(
+			cardId,
+			title,
+			description,
+			color,
+			deadline
+		);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
 	}
-);
+});
+
+export const updateCardStatus = createAsyncThunk("dashboard/updateCardStatus", async ({ cardId, columnId, owner }, thunkAPI) => {
+	try {
+		const data = await requestUpdateCardStatus(
+			cardId,
+			columnId,
+			owner,
+		);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
+	}
+});
+
+export const sendNeedHelpThunk = createAsyncThunk("dashboard/help", async (info, thunkAPI) => {
+	try {
+		const data = await requestUserNeedHelp(info);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error.message);
+	}
+});
