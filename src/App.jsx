@@ -16,8 +16,10 @@ const WelcomePage = lazy(() => import("./pages/WelcomePage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const AuthPage = lazy(() => import("./pages/AuthPage"));
 const ScreensPage = lazy(() => import("./pages/ScreensPage"));
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
+  const authKey = ''; //TODO need set OAuth 2.0 Client IDs
   const isRefreshing = useSelector(selectAuthIsLoading);
 
   // const allDashboards = useSelector(selectAllDashboards);
@@ -30,6 +32,7 @@ function App() {
 
   return (
     <>
+    <GoogleOAuthProvider clientId={authKey}>
       {isRefreshing ? (
         <div>Loadind...</div>
       ) : (
@@ -86,6 +89,7 @@ function App() {
         pauseOnHover
         theme="light"
       />
+      </GoogleOAuthProvider>;
     </>
   );
 }

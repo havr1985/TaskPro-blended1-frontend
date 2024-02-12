@@ -130,7 +130,8 @@ export const StyledSpan = styled.span`
     background-color: #bedbb0; 
   }
   &.gray {
-    background-color: #ffffff4d; 
+    background-color: #ffffff4d;
+  }
 `;
 
 export const StyledColorText = styled.p`

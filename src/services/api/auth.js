@@ -40,6 +40,12 @@ export const requestSignin = async values => {
 	return data;
 };
 
+export const requestSigninByGoogle = async values => {
+	const { data } = await instance.post("auth/signinbygoogle", values);
+	setToken(data.accessToken);
+	return data;
+};
+
 export const requestCurrentUser = async () => {
 	const { data } = await instance.get("auth/current");
 	return data;
