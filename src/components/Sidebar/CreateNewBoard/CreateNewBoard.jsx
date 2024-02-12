@@ -1,4 +1,9 @@
-import { ButtonCreateBoard, CreateBoardWrapper, Heading } from "./CreateNewBoard.styled";
+import selectImage from "../../../hooks/useImageSize";
+import {
+	ButtonCreateBoard,
+	CreateBoardWrapper,
+	Heading,
+} from "./CreateNewBoard.styled";
 
 export const CreateNewBoard = ({ openModal, icon }) => {
 	return (
@@ -6,7 +11,12 @@ export const CreateNewBoard = ({ openModal, icon }) => {
 			<Heading>My boards</Heading>
 			<CreateBoardWrapper>
 				<p className='createText'>Create a new board</p>
-				<ButtonCreateBoard onClick={() => openModal()} type='submit'>
+				<ButtonCreateBoard
+					onClick={() => {
+						openModal();
+						selectImage(window.screen);
+					}}
+					type='submit'>
 					<svg className='iconCreateBoard' width='20px' height='20px'>
 						<use href={`${icon}#icon-plus`}></use>
 					</svg>
