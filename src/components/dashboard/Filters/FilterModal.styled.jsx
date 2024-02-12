@@ -45,6 +45,7 @@ export const FilterLine = styled.div`
 export const LabelSchowAll = styled.div`
   display: flex;
   justify-content: space-between;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 export const StyledLabelTitle = styled.p`
   font-weight: 500;
@@ -81,67 +82,46 @@ export const StyledInputContainer = styled.div`
   width: 120px;
   gap: 8px;
 `;
-
-export const StyledRadioInput = styled.input`
-  position: absolute;
-  appearance: none;
-  z-index: 5;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  margin: 0;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
-
+export const StyledSpan = styled.span`
   content: "";
   display: block;
-
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
   background-color: transparent;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+   scale: 0.5 
+  }
+
+  &:focus {
+    scale: 0.5 
+  }
+  &:active {
+    scale: 0.5 
+  }
 
   &.blue {
-    background-color: var(--radio-label-background-color);
+    background-color: #8fa1d0; 
   }
 
   &.pink {
-    background-color: var(--radio-label-pink-color);
+    background-color: #e09cb5; 
   }
 
   &.green {
-    background-color: var(--radio-label-green-color);
+    background-color: #bedbb0; 
   }
 
   &.gray {
-    background-color: var(--radio-label-grey-color);
-  }
-
-  &:checked.blue {
-    border: 1px solid var(--card-title-color);
-    background-color: var(--radio-label-grey-color);
-    scale: 1.2;
-  }
-
-  &:checked.pink {
-    border: 1px solid var(--card-title-color);
-    background-color: var(--radio-label-grey-color);
-    scale: 1.2;
-  }
-
-  &:checked.green {
-    border: 1px solid var(--card-title-color);
-    scale: 1.2;
-  }
-
-  &:checked.gray {
-    border: 1px solid var(--card-title-color);
-    scale: 1.2;
-  }
+    background-color: #ffffff4d;
 `;
+
 export const StyledColorText = styled.p`
   color: var(--screens-page-tutorial-text-color);
   font-size: 12px;
-  margin-left: 24px;
+  margin-left: 8px;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
@@ -157,8 +137,39 @@ export const StyledColorText = styled.p`
   &:active {
     color: var(--modal-filters-text);
     font-weight: 500;
+  } 
+`;
+
+export const StyledRadioInput = styled.input`
+  position: absolute;
+  appearance: none;
+ /*  z-index: 5; */
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  margin: 0;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:checked.blue {
+    border: 1px solid #8fa1d0; 
+  }
+
+  &:checked.pink {
+    border: 1px solid #e09cb5; 
+  }
+
+  &:checked.green {
+    border: 1px solid #bedbb0; 
+  }
+
+  &:checked.gray {
+    border: 1px solid rgba(255, 255, 255, 0.3); 
   }
 `;
+
 export const StyledLabel = styled.label`
   position: relative;
   display: flex;
@@ -170,23 +181,21 @@ export const StyledLabel = styled.label`
   transition: var(--hover-params);
 
   &:focus {
-    color: var(--modal-filters-text);
-    scale: 1.1;
-  }
+   scale: 1.1;
+  };
 
   &:hover {
-    color: var(--modal-filters-text);
     scale: 1.1;
-  }
+  };
 
-  &:active {
-    color: var(--modal-filters-text);
-    font-weight: 500;
+   &:active {
     scale: 1.1;
-  }
+  }; 
 
-  input[type="radio"]:checked + ${StyledColorText} {
-    color: var(--modal-board-text);
-    font-weight: 500;
-  }
-`;
+  input[type="radio"]:checked + ${StyledSpan} {
+    scale: 0.5
+  } + ${StyledColorText} {
+    color: var(--modal-filters-text)
+  } 
+  };
+`
