@@ -6,6 +6,7 @@ import {
 	requestAllDashboards,
 	requestDashboardById,
 	requestDeleteCard,
+	requestUpdateCardStatus,
 	requestDeleteColumn,
 	requestDeleteDashboard,
 	requestEditDashboard,
@@ -43,9 +44,9 @@ export const getDashboardByIDThunk = createAsyncThunk("dashboard/getById", async
 
 export const updateDashboardThunk = createAsyncThunk(
 	"dashboard/updateDashboard",
-	async ({ dashboardId, values }, thunkAPI) => {
+	async ({ dashboardId, title, icon, backgroundURL }, thunkAPI) => {
 		try {
-			const data = await requestEditDashboard(dashboardId, values);
+			const data = await requestEditDashboard(dashboardId, title, icon, backgroundURL);
 			return data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message);
@@ -95,7 +96,6 @@ export const updateColumnThunk = createAsyncThunk("dashboard/updateColumn", asyn
 export const addCardThunk = createAsyncThunk(
 	"dashboard/addCard",
 	async ({ columnId, title, description, color, deadline }, thunkAPI) => {
-		console.log(columnId);
 		try {
 			const data = await requestAddCard(columnId, title, description, color, deadline);
 			return data;
@@ -114,9 +114,28 @@ export const deleteCardThunk = createAsyncThunk("dashboard/deleteCard", async (c
 	}
 });
 
-export const updateCardThunk = createAsyncThunk("dashboard/updateCard", async (values, thunkAPI) => {
+export const updateCardThunk = createAsyncThunk("dashboard/updateCard", async ({ cardId, title, description, color, deadline }, thunkAPI) => {
 	try {
-		const data = await requestUpdateCard(values);
+		const data = await requestUpdateCard(
+			cardId,
+			title,
+			description,
+			color,
+			deadline
+		);
+		return data;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
+	}
+});
+
+export const updateCardStatus = createAsyncThunk("dashboard/updateCardStatus", async ({ cardId, columnId, owner }, thunkAPI) => {
+	try {
+		const data = await requestUpdateCardStatus(
+			cardId,
+			columnId,
+			owner,
+		);
 		return data;
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error);

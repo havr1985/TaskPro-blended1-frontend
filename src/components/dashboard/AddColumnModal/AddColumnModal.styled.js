@@ -19,7 +19,7 @@ export const TitleInput = styled(Field)`
   border-radius: 8px;
 
   opacity: 0.4;
-  transition: all 250ms ease;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   color: rgb(255, 255, 255);
 
   &::placeholder {
@@ -51,7 +51,7 @@ export const AddColumnFormSubmitButton = styled.button`
   color: rgb(22, 22, 22);
   background-color: rgb(190, 219, 176);
 
-  transition: all 250ms linear;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 
   &:hover {

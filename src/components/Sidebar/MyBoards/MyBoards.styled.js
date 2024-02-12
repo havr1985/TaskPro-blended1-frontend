@@ -6,6 +6,7 @@ export const BoardList = styled.ul`
 	font-size: 14px;
 	line-height: 21px;
 	letter-spacing: -0.02em;
+	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 	color: var(--sidebar-icon-edit-stroke-color);
 
 	display: flex;
@@ -49,12 +50,14 @@ export const BoardItem = styled.li`
 		height: 61px;
 		width: 4px;
 		border-radius: 4px 0 0 4px;
-
+		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 		background-color: var(--logout-button-color);
 	}
 
 	.iconBoard {
 		stroke: var(--sidebar-icon-edit-stroke-color);
+		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+		margin-right: 8px;
 	}
 `;
 export const Link = styled(NavLink)`
@@ -167,6 +170,7 @@ export const ButtonEdit = styled.button`
 
 	.iconBoard.iconEdit:hover {
 		stroke: var(--primary-button-color-sidebar);
+		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 		transform: scale(1.1);
 		animation: pulse 1s infinite alternate;
 	}

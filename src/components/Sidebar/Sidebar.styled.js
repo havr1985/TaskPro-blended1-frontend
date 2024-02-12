@@ -15,7 +15,7 @@ export const SidebarContainer = styled.div`
 	justify-content: space-between;
 
 	padding: 24px;
-
+	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 	background-color: var(--primary-background-sidebar-color);
 
 	@media screen and (max-width: 1439.9px) {

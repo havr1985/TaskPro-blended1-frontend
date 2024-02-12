@@ -15,9 +15,9 @@ export const requestDashboardById = async dashboardId => {
 	return data;
 };
 
-export const requestEditDashboard = async (dashboardId, values) => {
+export const requestEditDashboard = async (dashboardId, title, icon, backgroundURL) => {
 	console.log(dashboardId);
-	const { data } = await instance.put(`dashboard/${dashboardId}`, values);
+	const { data } = await instance.put(`dashboard/${dashboardId}`, {title, icon, backgroundURL});
 	return data;
 };
 
@@ -54,11 +54,18 @@ export const requestDeleteCard = async cardId => {
 	return data;
 };
 
-export const requestUpdateCard = async ({ cardId, title, description, color, deadline }) => {
+export const requestUpdateCard = async ( cardId, title, description, color, deadline ) => {
 	const { data } = await instance.put(`cards/${cardId}`, { title, description, color, deadline });
 	return data;
 };
+
 export const requestUserNeedHelp = async info => {
 	const { data } = await instance.post("dashboard/help", info);
 	return data;
 };
+
+export const requestUpdateCardStatus = async (cardId, columnId, owner) => {
+	const { data } = await instance.patch(`cards/${cardId}/${owner}`, { columnId });
+	return data;
+};
+
