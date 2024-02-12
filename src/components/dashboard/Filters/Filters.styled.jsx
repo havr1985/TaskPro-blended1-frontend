@@ -14,7 +14,8 @@ export const FilterButton = styled.button`
   color: var(--filter-text-and-icon-color);
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
-  background-color: transparent;
+  border-radius: 4px;
+  background-color: var(--primary-background-color);
   cursor: pointer;
 `;
 

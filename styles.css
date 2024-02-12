@@ -51,6 +51,7 @@ html[data-theme="dark"] {
   --card-params-value-text-color: #ffffff;
   --card-title-color: #ffffff;
   --filter-text-and-icon-color: rgba(255, 255, 255, 0.8);
+  --filter-radio-gray-color: rgba(255,255,255,0.3);
   --background-add-column-btn-color: #121212;
   --welcome-message-text-color: rgba(255, 255, 255, 0.5);
   --welcome-message-text-accent-color: #bedbb0;
@@ -170,6 +171,7 @@ html[data-theme="light"] {
   --card-params-value-text-color: #161616;
   --card-title-color: #161616;
   --filter-text-and-icon-color: rgba(22, 22, 22, 0.8);
+  --filter-radio-gray-color: rgba(22, 22, 22, 0.3);
   --background-add-column-btn-color: #ffffff;
   --welcome-message-text-color: rgba(22, 22, 22, 0.7);
   --welcome-message-text-accent-color: #bedbb0;
@@ -289,6 +291,7 @@ html[data-theme="violet"] {
   --card-params-value-text-color: #161616;
   --card-title-color: #161616;
   --filter-text-and-icon-color: rgba(22, 22, 22, 0.8);
+  --filter-radio-gray-color: rgba(22, 22, 22, 0.3);
   --background-add-column-btn-color: #ffffff;
   --welcome-message-text-color: rgba(22, 22, 22, 0.7);
   --welcome-message-text-accent-color: #5255bc;
