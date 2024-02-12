@@ -26,6 +26,7 @@ import { useDispatch } from "react-redux";
 import { addDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const options = [
   "#icon-board-square",
@@ -51,6 +52,8 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     icon: setIcon,
     bg: selectedBg,
   };
+
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const boardTitle = e.target.elements[0].value;
@@ -66,6 +69,7 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
 
     modalStateSwapper();
     dispatch(addDashboardThunk(newBoardData));
+    navigate(`/home/${newBoardData.title}`);
   };
   const handleBgSelection = (url) => {
     setSelectedBg(url);
@@ -94,11 +98,13 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"New board"}
-      maxWidth={"350px"}>
+      maxWidth={"350px"}
+    >
       <Section>
         <Formik
           initialValues={initialValues}
-          validationSchema={validationSchema}>
+          validationSchema={validationSchema}
+        >
           <ModalForm onSubmit={(e) => handleSubmit(e)}>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
@@ -120,7 +126,8 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                       className={setIcon === el ? "active" : ""}
                       onClick={() => handleIconSelection(el)}
                       width={18}
-                      height={18}>
+                      height={18}
+                    >
                       <use href={icons + el} width={18} height={18} />
                     </Icon>
 
@@ -137,7 +144,8 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                   <label key={idx}>
                     <BgcItem
                       onClick={() => handleBgSelection(el.url)}
-                      className={selectedBg === el.url ? "active" : ""}>
+                      className={selectedBg === el.url ? "active" : ""}
+                    >
                       {el.url !== "" && (
                         <CustomRadioBtn
                           url={el.url}
