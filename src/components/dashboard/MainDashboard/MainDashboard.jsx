@@ -59,7 +59,7 @@ const MainDashboard = () => {
     if (columns === undefined) {
       if (state) dispatch(getDashboardByIDThunk(state.id));
     }
-  }, [columns, dispatch, state?.id]);
+  }, [columns, dispatch, state?.id, state]);
 
   const onDeleteColumn = (id) => {
     dispatch(deleteColumnThunk(id));

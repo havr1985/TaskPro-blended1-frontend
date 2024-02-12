@@ -8,7 +8,10 @@ import {
   WelcomeMessageAccent,
 } from "./ScreensPage.styled";
 import { useSelector } from "react-redux";
-import { selectAllDashboards } from "../redux/Dashboard/dashboardsSelectors";
+import {
+  selectAllDashboards,
+  selectBackgroundUrl,
+} from "../redux/Dashboard/dashboardsSelectors";
 import { useEffect, useRef, useState } from "react";
 import { Loader } from "../shared/Loader/loader";
 
@@ -20,6 +23,7 @@ const ScreensPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const allDashboards = useSelector(selectAllDashboards);
+  const currentBg = useSelector(selectBackgroundUrl);
 
   useEffect(() => {
     setCurrentPageName(boardName);
@@ -46,7 +50,7 @@ const ScreensPage = () => {
   }, [allDashboards, navigate, boardName, currentPageName]);
 
   return (
-    <ScreensPageWrap>
+    <ScreensPageWrap $bcgurl={currentBg}>
       {loading ? (
         <div>
           <Loader />
