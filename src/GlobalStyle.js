@@ -20,7 +20,6 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: all 11250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   
 }
