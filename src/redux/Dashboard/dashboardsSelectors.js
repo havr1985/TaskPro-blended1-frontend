@@ -7,3 +7,5 @@ export const selectCurrentDashboard = (state) =>
 
 export const selectUpdateDashboardDate = (state) =>
 	state.dashboards.dataUpdatedDashboard;
+
+export const selectBackgroundUrl = (state) => state.dashboards.currentDashboard.result ? state.dashboards.currentDashboard.result.backgroundURL : null;
