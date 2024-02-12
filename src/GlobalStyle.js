@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
-import 'modern-normalize';
-import PoppinRegular from './shared/fonts/Poppins-Regular.ttf';
-import PoppinMedium from './shared/fonts/Poppins-Medium.ttf';
-import PoppinSemiBold from './shared/fonts/Poppins-SemiBold.ttf';
+import "modern-normalize";
+import PoppinRegular from "./shared/fonts/Poppins-Regular.ttf";
+import PoppinMedium from "./shared/fonts/Poppins-Medium.ttf";
+import PoppinSemiBold from "./shared/fonts/Poppins-SemiBold.ttf";
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -20,6 +20,7 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: all 11250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   
 }
@@ -61,4 +62,4 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}`
+}`;

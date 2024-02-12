@@ -16,6 +16,7 @@ export const StyledTextArea = styled.textarea`
   border: 1px solid #ccc;
   background: var(--primary-card-background-color);
   color: var(--card-title-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 14px;
   font-weight: 400;
   outline: none;
@@ -36,6 +37,7 @@ export const StyledRadioInput = styled(Field)`
   margin: 0;
   width: 14px;
   height: 14px;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 
   &:checked.blue {
@@ -97,6 +99,7 @@ export const StyledSpan = styled.span`
   height: 14px;
   border-radius: 50%;
   background-color: transparent;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.blue {
     background-color: #8fa1d0; /* Синій колір */
@@ -134,6 +137,7 @@ export const StyledInput = styled.input`
   border: 1px solid #ccc;
   background: var(--primary-card-background-color);
   color: var(--card-title-color);
+  transition: var(--hover-paramas);
   margin-bottom: 14px;
   font-size: 14px;
   font-weight: 400;
@@ -191,7 +195,7 @@ export const AuthFormSubmitButton = styled.button`
   color: #161616;
   background-color: rgb(190, 219, 176);
 
-  transition: all 250ms linear;
+  transition: all 450ms linear;
   cursor: pointer;
 
   &:hover {
