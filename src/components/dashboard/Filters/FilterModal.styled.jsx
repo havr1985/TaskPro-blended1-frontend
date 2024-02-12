@@ -167,7 +167,7 @@ export const StyledLabel = styled.label`
   &:focus {
     color: var(--modal-filters-text);
     scale: 1.1;
-  }
+  };
 
   &:hover {
   color: var(--modal-filters-text);
