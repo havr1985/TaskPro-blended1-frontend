@@ -64,8 +64,15 @@ const MainDashboard = () => {
   // const current = useSelector(selectCurrentDashboard);
   // console.log(current);
 
-  const onDeleteColumn = (id) => {
-    dispatch(deleteColumnThunk(id));
+  const MainDashboard = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { board } = useParams();
+    const { allColumns } = useColumns();
+  
+    const handleOpenModal = () => {
+      setIsModalOpen(true);
+    };
+
   };
 
   return (
@@ -153,5 +160,23 @@ const MainDashboard = () => {
     </MainDashboardWrap>
   );
 };
+
+  return (
+    <BoardContainer>
+      <Columns board={board}>
+        <BtnAddColumn type="button" onClick={handleOpenModal}>
+          <StyledIconAdd>
+            <SvagAddColumn name="plus" />
+          </StyledIconAdd>
+          <span>Add {allColumns.length ? 'another' : null} column</span>
+        </BtnAddColumn>
+      </Columns>
+      <AddColumnModal
+        board={board}
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+      />
+    </BoardContainer>
+  );
 
 export default MainDashboard;
