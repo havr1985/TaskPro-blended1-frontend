@@ -2,9 +2,11 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/Auth/authOperation";
-import { ToastContainer, toast } from 'react-toastify';
 import * as Yup from "yup";
-import { ErrorContainer } from "../LoginForm/LoginForm.styled";
+import { ToastContainer, toast } from "react-toastify";
+import { ErrorContainer} from '../LoginForm/LoginForm.styled';
+
+// import { Link } from "react-router-dom";
 
 import {
   Container,
@@ -28,9 +30,14 @@ const RegisterSchema = Yup.object().shape({
     .required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
+    .trim()
     .min(8, "Password must be at least 8 characters")
     .max(64, "Password must be at most 64 characters")
-    .required("Password is required"),
+    .required("Password is required")
+    .matches(
+      /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]+$/,
+      "Password must contain at least one letter and at least one number"
+    ),
 });
 
 export const RegisterForm = () => {
@@ -48,16 +55,17 @@ export const RegisterForm = () => {
       try {
         await dispatch(
           registerThunk({
-            // Notify.success('You have registered successfully!'),
             username: values.name,
             email: values.email,
             password: values.password,
           })
         ).unwrap();
+        toast.success("You have registered successfully!");
         formik.resetForm();
       } catch (error) {
-        
-      toast.error("The user with this email already exists",{position:"top-right"});
+        toast.error(
+          "Oops, it's looks like something went wrong... Please, try again!"
+        );
       }
     },
   });
@@ -70,7 +78,11 @@ export const RegisterForm = () => {
       <FormContainer>
         <form onSubmit={formik.handleSubmit}>
           <LinkMenu>
-            <RegisterLink to="/auth/register" underline="none" style={{ color: '#ffffff', fontWeight: 'bold' }}>
+            <RegisterLink
+              to="/auth/register"
+              underline="none"
+              style={{ color: "#ffffff", fontWeight: "bold" }}
+            >
               Registration
             </RegisterLink>
             <LoginLink to="/auth/login" underline="none">
@@ -131,11 +143,11 @@ export const RegisterForm = () => {
 
           <RegisterBtn type="submit">Register Now</RegisterBtn>
         </form>
-      </FormContainer>
-       <ErrorContainer> 
+        <ErrorContainer> 
       <ToastContainer
         />
         </ErrorContainer>
+      </FormContainer>
     </Container>
   );
 };
