@@ -79,9 +79,40 @@ export const ShowAllBtn = styled.button`
 export const StyledInputContainer = styled.div`
   margin-top: 16px;
   display: flex;
-  width: 120px;
+  width: 130px;
   gap: 8px;
 `;
+
+export const StyledRadioInput = styled.input`
+  position: absolute;
+  appearance: none;
+ /*  z-index: 5; */
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  margin: 0;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:checked.blue {
+  border: 1px solid #8fa1d0; 
+  };
+
+  &:checked.pink {
+    border: 1px solid #e09cb5; 
+  };
+
+  &:checked.green {
+    border: 1px solid #bedbb0;
+  };
+
+  &:checked.gray {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  };
+`
+  
 export const StyledSpan = styled.span`
   content: "";
   display: block;
@@ -105,17 +136,14 @@ export const StyledSpan = styled.span`
   &.blue {
     background-color: #8fa1d0; 
   }
-
   &.pink {
     background-color: #e09cb5; 
   }
-
   &.green {
     background-color: #bedbb0; 
   }
-
   &.gray {
-    background-color: #ffffff4d;
+    background-color: #ffffff4d; 
 `;
 
 export const StyledColorText = styled.p`
@@ -134,40 +162,10 @@ export const StyledColorText = styled.p`
     font-weight: 500;
   }
 
-  &:active {
+   &:active {
     color: var(--modal-filters-text);
     font-weight: 500;
   } 
-`;
-
-export const StyledRadioInput = styled.input`
-  position: absolute;
-  appearance: none;
- /*  z-index: 5; */
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  margin: 0;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:checked.blue {
-    border: 1px solid #8fa1d0; 
-  }
-
-  &:checked.pink {
-    border: 1px solid #e09cb5; 
-  }
-
-  &:checked.green {
-    border: 1px solid #bedbb0; 
-  }
-
-  &:checked.gray {
-    border: 1px solid rgba(255, 255, 255, 0.3); 
-  }
 `;
 
 export const StyledLabel = styled.label`
@@ -181,21 +179,23 @@ export const StyledLabel = styled.label`
   transition: var(--hover-params);
 
   &:focus {
-   scale: 1.1;
+    color: var(--modal-filters-text);
+    scale: 1.1;
   };
 
   &:hover {
-    scale: 1.1;
+  color: var(--modal-filters-text);
+  scale: 1.1;
   };
-
-   &:active {
-    scale: 1.1;
+  
+  &:active {
+  scale: 1.1} + ${StyledColorText} {color: var(--modal-filters-text);
+  font-weight: 500;
   }; 
 
   input[type="radio"]:checked + ${StyledSpan} {
-    scale: 0.5
-  } + ${StyledColorText} {
-    color: var(--modal-filters-text)
-  } 
+  scale: 0.5} + ${StyledColorText} {color: var(--modal-filters-text);
+  font-weight: 500;
   };
-`
+`;
+

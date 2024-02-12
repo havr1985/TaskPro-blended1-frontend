@@ -1,6 +1,7 @@
 import { CloseModalBtn } from "../../../shared/SharedModal/SharedModal.styled";
 
 import {
+  StyledSpan,
   StyledColorText,
   StyledInputContainer,
   StyledLabel,
@@ -12,7 +13,6 @@ import {
   ModalTitle,
   ModalFilter,
   Overlay,
-  StyledSpan
 } from "./FilterModal.styled";
 import { useSearchParams } from "react-router-dom";
 
@@ -54,7 +54,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 checked={selectedPriority === "gray"}
                 onChange={handleLabelChange}
               />
-              <StyledSpan className="gray"></StyledSpan>
+               <StyledSpan className="gray"></StyledSpan>
               <StyledColorText>
                 Without priority
               </StyledColorText>
@@ -84,7 +84,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 checked={selectedPriority === "pink"}
                 onChange={handleLabelChange}
               />
-              <StyledSpan className="pink"></StyledSpan>
+               <StyledSpan className="pink"></StyledSpan>
               <StyledColorText> Medium </StyledColorText>
             </StyledLabel>
           </StyledInputContainer>
@@ -98,7 +98,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 checked={selectedPriority === "green"}
                 onChange={handleLabelChange}
               />
-              <StyledSpan className="green"></StyledSpan>
+             <StyledSpan className="green"></StyledSpan>
               <StyledColorText> High </StyledColorText>
             </StyledLabel>
           </StyledInputContainer>
