@@ -1,4 +1,4 @@
-import{u as e,N as i,j as t}from"./index-9bmQuCQ1.js";import{i as o}from"./icons-iplVKqot.js";import{T as n}from"./ThemeMenu-cQYxl1gN.js";const r="/TaskPro-blended1-frontend/assets/boy-zfFl38_I.png",p=e.div`
+import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons-iplVKqot.js";import{T as n}from"./ThemeMenu-zX3_f0Cf.js";const r="/TaskPro-blended1-frontend/assets/boy-zfFl38_I.png",p=e.div`
   display: flex;
   justify-content: center;
   align-items: center;
