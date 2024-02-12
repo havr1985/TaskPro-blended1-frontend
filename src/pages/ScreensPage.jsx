@@ -29,18 +29,25 @@ const ScreensPage = () => {
   }, [location.pathname, boardName]); // Reacting to changes in navigation
 
   useEffect(() => {
-    if (didMount.current !== true && boardName !== currentPageName) {
-      return;
-    }
+    // if (didMount.current !== true && boardName !== currentPageName) {
+    //   return;
+    // }
+    const lastDashboard = allDashboards[allDashboards.length - 1];
     if (allDashboards.length > 0 && !boardName) {
       setLoading(true);
-      const lastDashboard = allDashboards[allDashboards.length - 1];
       setCurrentPageName(lastDashboard.title);
       navigate(`/home/${lastDashboard.title}`, {
         replace: true,
         state: { id: lastDashboard._id },
       });
       setLoading(false);
+      return;
+    }
+    if (allDashboards.length > 0) {
+      // navigate(`/home/${lastDashboard}`, {
+      //   replace: true,
+      //   state: { id: lastDashboard._id },
+      // });
     }
     didMount.current = false;
   }, [allDashboards, navigate, boardName, currentPageName]);
@@ -48,7 +55,9 @@ const ScreensPage = () => {
   return (
     <ScreensPageWrap>
       {loading ? (
-        <div><Loader/></div>
+        <div>
+          <Loader />
+        </div>
       ) : (
         (boardName === undefined && (
           <WelcomeMessageWrap>
