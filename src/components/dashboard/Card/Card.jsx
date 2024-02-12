@@ -23,6 +23,7 @@ import {
 } from "../../../redux/Dashboard/dashboardOperation";
 import { useState } from "react";
 import { ChangeStatusModal } from "../ChangeStatusModal/ChangeStatusModal";
+import { useSearchParams } from "react-router-dom";
 
 const formatDeadlineDate = (deadline) => {
   const date = new Date(deadline);
@@ -97,8 +98,30 @@ const Card = ({ card }) => {
   const [cardDescription, setCardDescription] = useState(null);
   const [cardColor, setCardColor] = useState(null);
   const [cardDeadline, setCardDeadline] = useState(null);
+  const [cardOwner, setCardOwner] = useState(null);
+  const [modalPosition, setModalPosition] = useState({ x: null, y: null });
 
   const dispatch = useDispatch();
+
+  const handleOpenModal = (event) => {
+    const x = event.clientX;
+    const y = event.clientY;
+    setModalPosition({ x, y });
+  };
+
+  // useEffect(() => {
+  //   const handleKeyDown = (event) => {
+  //     if (event.key === "Escape") {
+  //       toggleModalVisibility();
+  //     }
+  //   };
+
+  //   document.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
+
   const {
     isModalOpen: isEditCardModalOpen,
     openModal: openEditCardModal,
@@ -121,12 +144,33 @@ const Card = ({ card }) => {
     };
     dispatch(updateCardStatus(data));
   };
+  const [searchParams] = useSearchParams();
+  const priority = searchParams.get("priority");
+
+  const visibleCardsSwitch = () => {
+    switch (priority) {
+      case "low":
+        return card.filter((card) => card.color === "blue");
+      case "medium":
+        return card.filter((card) => card.color === "pink");
+      case "high":
+        return card.filter((card) => card.color === "green");
+      case "without":
+        return card.filter((card) => card.color === "gray");
+      case "all":
+        return card;
+      default:
+        return card;
+    }
+  };
+
+  const visibleCards = visibleCardsSwitch();
 
   return (
     <>
       <CardList>
-        {card &&
-          card.map(
+        {visibleCards &&
+          visibleCards.map(
             ({ _id: id, title, description, color, deadline, owner }) => (
               <CardWrap key={id} $prioritycolor={priorityColor(color)}>
                 <CardTitle>{title}</CardTitle>
@@ -161,22 +205,21 @@ const Card = ({ card }) => {
                         </IconButton>
                       </li>
                     )}
-
                     <li>
-                      <IconButton onClick={() => toggleModalVisibility()}>
+                      <IconButton
+                        onClick={() => {
+                          toggleModalVisibility();
+                          setCardId(id);
+                          setCardOwner(owner);
+                          handleOpenModal(event);
+                        }}
+                      >
                         <Icon>
                           <use
                             href={icons + "#icon-arrow-circle-broken-right"}
                           />
                         </Icon>
                       </IconButton>
-                      <ChangeStatusModal
-                        isOpen={isFilterModalOpen}
-                        onClose={toggleModalVisibility}
-                        onSelectStatus={changeCardStatus}
-                        cardId={id}
-                        owner={owner}
-                      />
                     </li>
                     <li>
                       <IconButton
@@ -206,7 +249,17 @@ const Card = ({ card }) => {
               </CardWrap>
             )
           )}
+        <ChangeStatusModal
+          isOpen={isFilterModalOpen}
+          onClose={toggleModalVisibility}
+          onSelectStatus={changeCardStatus}
+          cardId={cardId}
+          owner={cardOwner}
+          x={modalPosition.x}
+          y={modalPosition.y}
+        />
       </CardList>
+
       <FormEditCard
         modalStateSwapper={closeEditCardModal}
         isModalOpen={isEditCardModalOpen}

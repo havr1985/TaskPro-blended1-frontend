@@ -66,6 +66,7 @@ export const AddColumnButton = styled.button`
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   color: var(--modal-board-text);
   background-color: var(--background-add-column-btn-color);
   cursor: pointer;
@@ -92,7 +93,7 @@ export const AddCardButton = styled.button`
   color: var(--shared-button-text-color);
   background-color: var(--primary-button-color);
   cursor: pointer;
-  transition: background-color var(--hover-params);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 375px) {
     width: 335px;
@@ -112,6 +113,7 @@ export const IconWrap = styled.div`
   height: 28px;
   border-radius: 6px;
   background-color: var(--add-column-icon-wrap-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const AddCardIconWrap = styled.div`
@@ -122,18 +124,21 @@ export const AddCardIconWrap = styled.div`
   height: 28px;
   border-radius: 6px;
   background-color: var(--shared-black-plus-button);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const IconPlus = styled.svg`
   width: 14px;
   height: 14px;
   stroke: var(--add-column-icon-plus-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const AddCardIconPlus = styled.svg`
   width: 14px;
   height: 14px;
   stroke: var(--add-card-icon-plus-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const DashboardColumnTitle = styled.div`
@@ -148,8 +153,9 @@ export const DashboardColumnTitle = styled.div`
   margin-bottom: 14px;
   border: none;
   border-radius: 8px;
-
   background-color: var(--primary-card-background-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 
   @media screen and (min-width: 375px) {
     width: 335px;
@@ -162,6 +168,7 @@ export const Title = styled.h3`
   font-size: 14px;
   letter-spacing: -0.02em;
   color: var(--card-title-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const IconsWrap = styled.div`
@@ -178,7 +185,9 @@ export const IconButton = styled.button`
   padding: 0;
   border: none;
   background-color: transparent;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  /* z-index: 1000; */
 `;
 
 export const Icon = styled.svg`

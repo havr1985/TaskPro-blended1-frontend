@@ -56,7 +56,6 @@ const dashboardSlice = createSlice({
           backgroundURL,
         };
         state.currentTitle = title;
-        console.log(state.currentTitle);
         state.currentBg = backgroundURL;
       })
       .addCase(deleteDashboardThunk.fulfilled, (state, action) => {

@@ -2,9 +2,6 @@ import styled from "styled-components";
 import { Icon } from "../Card/Card.styled";
 
 export const ModalFilter = styled.div`
-  position: absolute;
-  top: -110px;
-  right: 25px;
   height: auto;
   padding: 15px;
   border: 1px solid var(--shared-input-border-color);
@@ -13,6 +10,7 @@ export const ModalFilter = styled.div`
   background-color: var(--primary-background-color);
   z-index: 1000;
   min-width: 160px;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const ShowAllBtn = styled.button`
@@ -23,7 +21,7 @@ export const ShowAllBtn = styled.button`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  transition: color var(--hover-params), stroke var(--hover-params);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     color: var(--primary-button-color);

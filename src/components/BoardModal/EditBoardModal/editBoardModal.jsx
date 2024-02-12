@@ -51,6 +51,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     icon: iconDates,
     backgroundURL: backgroundURLDates,
   } = dates.result;
+  console.log(titleDates);
   const [selectedBg, setSelectedBg] = useState(backgroundURLDates);
   const [setIcon, setSetIcon] = useState(iconDates);
 
@@ -61,6 +62,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newBoardTitle = e.target.elements[0].value;
     const boardTitle = e.target.elements[0].value;
     if (!boardTitle) {
       toast.error("Title is required!");
@@ -68,7 +70,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     }
     const updatedData = {
       dashboardId: _id,
-      title: boardTitle,
+      title: newBoardTitle,
       icon: setIcon,
       backgroundURL: selectedBg,
     };
@@ -101,7 +103,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
             <FormWrapper>
               <ErrorSection name="title" component="div" />
               <TitleInput
-                // onChange={(e) => e.target.elements[0].value(e)}
+                onChange={(e) => e.target.elements[0].value(e)}
                 type="text"
                 id="title"
                 defaultValue={titleDates}

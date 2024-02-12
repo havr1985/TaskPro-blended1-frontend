@@ -4,10 +4,8 @@ import TextTruncate from "react-text-truncate";
 export const CardList = styled.ul`
   overflow-y: auto;
   overflow-x: hidden;
-  /* overflow: overlay; */
-  /* flex-grow: 1; */
-  height: 70vh;
 
+  height: 70vh;
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -41,6 +39,7 @@ export const CardWrap = styled.li`
   /* border-left: 4px solid red; */
   border-radius: 8px;
   background-color: var(--primary-card-background-color);
+  transition: var(--hover-paramas);
   /* cursor: pointer; */
 
   @media screen and (min-width: 375px) {
@@ -78,6 +77,7 @@ export const CardDescription = styled(TextTruncate)`
   line-height: 1.33;
   /* letter-spacing: -0.02em; */
   color: var(--screens-page-tutorial-text-color);
+  transition: var(--hover-paramas);
 `;
 
 export const CardCommandSection = styled.div`
@@ -94,6 +94,7 @@ export const CardCommandSection = styled.div`
     width: 290px;
     height: 1px;
     background-color: var(--modal-filter-form-line);
+    transition: var(--hover-paramas);
   }
 `;
 
@@ -102,12 +103,14 @@ export const CardParams = styled.span`
   font-size: 8px;
   letter-spacing: -0.02em;
   color: var(--screens-page-tutorial-text-color);
+  transition: var(--hover-paramas);
 `;
 
 export const CardPriorityValue = styled.span`
   font-size: 10px;
   letter-spacing: -0.02em;
   color: var(--card-params-value-text-color);
+  transition: var(--hover-paramas);
 
   &::before {
     content: "";
@@ -125,6 +128,7 @@ export const CardDeadlineValue = styled.span`
   font-size: 10px;
   letter-spacing: -0.02em;
   color: var(--card-params-value-text-color);
+  transition: var(--hover-paramas);
 `;
 
 export const IconsWrap = styled.ul`
@@ -151,7 +155,7 @@ export const Icon = styled.svg`
   fill: none;
   stroke-width: 1.3px;
   stroke: var(--radio-icons-color);
-  transition: stroke var(--hover-params), scale var(--hover-params);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     stroke: var(--primary-button-color);
