@@ -7,10 +7,11 @@ import {
   WelcomeMessage,
   WelcomeMessageAccent,
 } from "./ScreensPage.styled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectAllDashboards } from "../redux/Dashboard/dashboardsSelectors";
 import { useEffect, useRef, useState } from "react";
 import { Loader } from "../shared/Loader/loader";
+import { getDashboardByIDThunk } from "../redux/Dashboard/dashboardOperation";
 
 const ScreensPage = () => {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,8 @@ const ScreensPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const allDashboards = useSelector(selectAllDashboards);
+  const dispatch = useDispatch();
+  const [boards, setBoards] = useState(allDashboards);
 
   useEffect(() => {
     setCurrentPageName(boardName);
@@ -29,8 +32,14 @@ const ScreensPage = () => {
   }, [location.pathname, boardName]); // Reacting to changes in navigation
 
   useEffect(() => {
+    setBoards(allDashboards);
     if (didMount.current !== true && boardName !== currentPageName) {
       return;
+    }
+    if (boards.length !== allDashboards.length) {
+      dispatch(
+        getDashboardByIDThunk(allDashboards[allDashboards.length - 1]._id)
+      );
     }
     if (allDashboards.length > 0 && !boardName) {
       setLoading(true);
@@ -43,7 +52,14 @@ const ScreensPage = () => {
       setLoading(false);
     }
     didMount.current = false;
-  }, [allDashboards, navigate, boardName, currentPageName]);
+  }, [
+    allDashboards,
+    navigate,
+    boardName,
+    currentPageName,
+    boards.length,
+    dispatch,
+  ]);
 
   return (
     <ScreensPageWrap>
