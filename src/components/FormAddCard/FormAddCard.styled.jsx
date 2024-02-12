@@ -67,7 +67,7 @@ export const StyledDeadlineWrapper = styled.div`
 `;
 
 export const StyledDeadlineTitle = styled.p`
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--datepicker-dayname-color);
   margin: 0;
   margin-top: 14px;
   margin-bottom: 4px;
@@ -76,7 +76,7 @@ export const StyledDeadlineTitle = styled.p`
   font-family: "Poppins", sans-serif;
 `;
 
-export const StyledLabelColor = styled.h2`
+export const StyledLabelColor = styled.p`
   margin: 0;
   margin-top: 14px;
   font-size: 12px;
