@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/Auth/authOperation";
 import { ToastContainer, toast } from 'react-toastify';
 import * as Yup from "yup";
-import { toast } from "react-toastify";
-
+ErrorContainer
 // import { Link } from "react-router-dom";
 
 import {
@@ -22,6 +21,7 @@ import {
   StyledWrapInputAuth,
 } from "./RegisterForm.styled";
 import icons from "../../shared/images/icons.svg";
+import { ErrorContainer } from "../LoginForm/LoginForm.styled";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string()
@@ -63,11 +63,9 @@ export const RegisterForm = () => {
         toast.success("You have registered successfully!");
         formik.resetForm();
       } catch (error) {
-
         toast.error(
           "Oops, it's looks like something went wrong... Please, try again!"
         );
-
       }
     },
   });
