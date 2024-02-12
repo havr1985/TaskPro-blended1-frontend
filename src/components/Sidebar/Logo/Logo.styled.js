@@ -1,38 +1,41 @@
 import styled from "styled-components";
 
 export const LogoContainer = styled.div`
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 
-	margin-bottom: 60px;
+  margin-bottom: 60px;
 
-	@media (max-width: 767px) {
-		margin-bottom: 70px;
-	}
+  @media (max-width: 767px) {
+    margin-bottom: 70px;
+  }
 
-	.iconBg {
-		width: 32px;
-		height: 32px;
+  .iconBg {
+    width: 32px;
+    height: 32px;
 
-		background-color: var(--sidebar-lightning-background-color);
-		border-radius: 8px;
+    background-color: var(--sidebar-lightning-background-color);
+    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
 
-		display: flex;
-		align-items: center;
-		justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-		margin-right: 8px;
-	}
+    margin-right: 8px;
+  }
 
-	.iconLightning {
-		fill: var(--sidebar-icon-lightning);
-	}
+  .iconLightning {
+    fill: var(--sidebar-icon-lightning);
+    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-	.logoText {
-		font-weight: 600;
-		font-size: 16px;
-		line-height: 24px;
+  .logoText {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
 
-		color: var(--secondary-text-sidebar-color);
-	}
+    color: var(--secondary-text-sidebar-color);
+    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 `;

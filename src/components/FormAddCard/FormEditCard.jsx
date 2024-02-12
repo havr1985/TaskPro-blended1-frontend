@@ -43,8 +43,12 @@ export default function FormEditCard({
   isModalOpen,
   modalStateSwapper,
   cardId,
+  cardTitle,
+  cardColor,
+  cardDescription,
+  cardDeadline,
 }) {
-  const [dateFromCalendar, setDateFromCalendar] = useState(new Date());
+  const [dateFromCalendar, setDateFromCalendar] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -81,6 +85,10 @@ export default function FormEditCard({
     setSubmitting(false);
     resetForm();
     modalStateSwapper();
+    setTimeout;
+    setTimeout(() => {
+      setDateFromCalendar(null);
+    }, 1000);
   };
 
   const formatWeekday = (_, date) => {
@@ -88,9 +96,8 @@ export default function FormEditCard({
     return shortDayNames[date.getDay()];
   };
 
-  const deadlineDate = (dateFromCalendar) => {
-    const date = new Date(dateFromCalendar);
-
+  const deadlineDate = (deadlineDate) => {
+    const date = new Date(deadlineDate);
     const day = date.getDate();
 
     const monthName = date.toLocaleString("en", { month: "long" });
@@ -101,7 +108,6 @@ export default function FormEditCard({
 
   return (
     <>
-      {/* <button onClick={openModal}>Edit Card</button> */}
       <SharedModal
         modalIsOpen={isModalOpen}
         closeModal={modalStateSwapper}
@@ -110,10 +116,10 @@ export default function FormEditCard({
       >
         <Formik
           initialValues={{
-            title: "",
-            description: "",
-            color: "gray",
-            deadline: new Date(),
+            title: `${cardTitle}`,
+            description: `${cardDescription}`,
+            color: `${cardColor}`,
+            deadline: `${cardDeadline}`,
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -196,7 +202,9 @@ export default function FormEditCard({
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
               <StyledDeadlineWrapper>
                 <TextDeadlain onClick={openCalendarModal}>
-                  {deadlineDate(dateFromCalendar)}
+                  {dateFromCalendar === null
+                    ? deadlineDate(cardDeadline)
+                    : deadlineDate(dateFromCalendar)}
                 </TextDeadlain>
                 <IconChevron>
                   <use href={icons + "#icon-chevron-down"} />
@@ -224,6 +232,8 @@ export default function FormEditCard({
             formatShortWeekday={formatWeekday}
             value={dateFromCalendar}
             onChange={setDateFromCalendar}
+            onClickDay={closeCalendarModal}
+            minDate={new Date()}
           />
         </Modal>
       </SharedModal>

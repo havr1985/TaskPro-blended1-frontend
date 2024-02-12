@@ -22,4 +22,5 @@ export const DashboardName = styled.h2`
   font-size: 18px;
   letter-spacing: -0.02em;
   color: var(--card-title-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;

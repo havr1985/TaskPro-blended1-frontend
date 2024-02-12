@@ -8,10 +8,7 @@ import {
   Section,
 } from "../../BoardModal/newBoardModal.styled";
 
-import {
-  TitleInput,
-  AddColumnFormSubmitButton,
-} from "./AddColumnModal.styled";
+import { TitleInput, AddColumnFormSubmitButton } from "./AddColumnModal.styled";
 import { ButtonPlus } from "../../BoardModal/newBoardModal.styled";
 import { PlusIcon } from "../../BoardModal/newBoardModal.styled";
 import icons from "../../../shared/images/icons.svg";
@@ -25,9 +22,8 @@ const validationSchema = Yup.object().shape({
 
 export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
   const currentDashboard = useSelector(selectCurrentDashboard);
-  
-  
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
   const initialValues = {
     title: "",
   };
@@ -35,22 +31,21 @@ export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
   const handleSubmit = ({ title }, action) => {
     const dashboardId = currentDashboard.result._id;
     dispatch(addColumnThunk({ dashboardId, title }));
-    action.resetForm()
-  }
+    action.resetForm();
+    modalStateSwapper();
+  };
 
   return (
     <SharedModal
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Add column"}
-      maxWidth="335px"
-    >
+      maxWidth="335px">
       <Section>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-             onSubmit={handleSubmit}
-        >
+          onSubmit={handleSubmit}>
           <ModalForm>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
@@ -63,14 +58,13 @@ export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
               />
             </FormWrapper>
 
-            <AddColumnFormSubmitButton 
-              type="submit">
-                <ButtonPlus>
-                  <PlusIcon>
-                    <use href={icons + "#icon-plus"} />
-                  </PlusIcon>
-                </ButtonPlus>
-                Add
+            <AddColumnFormSubmitButton type="submit">
+              <ButtonPlus>
+                <PlusIcon>
+                  <use href={icons + "#icon-plus"} />
+                </PlusIcon>
+              </ButtonPlus>
+              Add
             </AddColumnFormSubmitButton>
           </ModalForm>
         </Formik>

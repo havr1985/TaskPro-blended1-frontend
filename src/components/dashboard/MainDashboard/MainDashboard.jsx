@@ -57,12 +57,9 @@ const MainDashboard = () => {
 
   useEffect(() => {
     if (columns === undefined) {
-      dispatch(getDashboardByIDThunk(state.id));
+      if (state) dispatch(getDashboardByIDThunk(state.id));
     }
   }, [columns, dispatch, state?.id]);
-
-  // const current = useSelector(selectCurrentDashboard);
-  // console.log(current);
 
   const onDeleteColumn = (id) => {
     dispatch(deleteColumnThunk(id));

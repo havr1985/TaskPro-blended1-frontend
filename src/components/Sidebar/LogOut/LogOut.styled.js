@@ -19,12 +19,10 @@ export const ButtonLogOut = styled.button`
 	line-height: 24px;
 	letter-spacing: 0em;
 	color: var(--secondary-text-sidebar-color);
-
+	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 	.iconLogOut {
 		stroke: var(--logout-button-color);
 		fill: var(--sidebar-icon-fill-color);
-
-		transition: 0.5s;
 	}
 	&:hover .iconLogOut {
 		stroke: var(--logout-hover-button-color);

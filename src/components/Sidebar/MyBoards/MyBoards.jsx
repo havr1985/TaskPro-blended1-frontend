@@ -1,86 +1,118 @@
 import { useDispatch } from "react-redux";
-import { useModal } from "../../../hooks/useModal";
 import { AddBoardModal } from "../../BoardModal/newBoardModal/newBoardModal";
 import {
-	BoardContainer,
-	BoardIcon,
-	BoardItem,
-	BoardList,
-	BoardTitle,
-	ButtonContainer,
-	ButtonCreateBoard,
-	ButtonEdit,
-	CreateBoardWrapper,
-	Heading,
-	Link,
+  BoardContainer,
+  BoardIcon,
+  BoardItem,
+  BoardList,
+  BoardTitle,
+  ButtonContainer,
+  ButtonEdit,
+  Link,
+  TitleWrapper,
+  Tooltip,
 } from "./MyBoards.styled";
-import { deleteDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
+import {
+  deleteDashboardThunk,
+  getDashboardByIDThunk,
+} from "../../../redux/Dashboard/dashboardOperation";
 import { useState } from "react";
 import { EditBoardModal } from "../../BoardModal/EditBoardModal/editBoardModal";
 
-export const MyBoards = ({ icon, boards, selectedItem, choice, setUserBoards }) => {
-	const { isModalOpen, openModal, closeModal } = useModal();
-	const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false);
+export const MyBoards = ({
+  icon,
+  boards,
+  selectedItem,
+  choice,
+  setUserBoards,
+  isModalOpen,
+  closeModal,
+}) => {
+  const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false);
 
-	const modalStateSwapper = () => {
-		setIsEditBoardModalOpen(prev => !prev);
-	};
+  const modalStateSwapper = () => {
+    setIsEditBoardModalOpen((prev) => !prev);
+  };
 
-	const dispatch = useDispatch();
-	const deleteBoard = id => {
-		dispatch(deleteDashboardThunk(id));
-	};
+  const findPrevBoard = (id) => {
+    let result = "";
+    let resultId = "";
+    boards.forEach((board, index) => {
+      if (board._id === id) {
+        const board = boards[index - 1] ? boards[index - 1] : boards[index + 1];
+        if (board) {
+          result = `/home/${board.title}`;
+          resultId = board._id;
+        } else {
+          result = "/home";
+        }
+      }
+    });
+    return { path: result, id: resultId };
+  };
+
+  const dispatch = useDispatch();
+
+  const deleteBoard = (id) => {
+    if (id) dispatch(getDashboardByIDThunk(findPrevBoard(id).id));
+    dispatch(deleteDashboardThunk(id));
+  };
 
   return (
-    <div>
-      <Heading>My boards</Heading>
-      <CreateBoardWrapper>
-        <p className="createText">Create a new board</p>
-        <ButtonCreateBoard onClick={() => openModal()} type="submit">
-          <svg className="iconCreateBoard" width="20px" height="20px">
-            <use href={`${icon}#icon-plus`}></use>
-          </svg>
-        </ButtonCreateBoard>
-      </CreateBoardWrapper>
+    <>
       {boards.length !== 0 && (
         <BoardList>
           {boards.map((board) => (
             <BoardItem
               key={board._id}
               onClick={() => choice(board)}
-              className={selectedItem._id === board._id ? "active" : ""}>
+              className={selectedItem._id === board._id ? "active" : ""}
+            >
               <Link to={`/home/${board.title}`}>
                 <BoardContainer>
                   <BoardIcon
                     className="iconBoard iconActive"
-                    width="20px"
-                    height="20px">
+                    width="18px"
+                    height="18px"
+                  >
                     <use href={`${icon}${board.icon}`}></use>
                   </BoardIcon>
-                  <BoardTitle>{board.title}</BoardTitle>
+                  <Tooltip
+                    className={board.title.length > 20 && "tooltip"}
+                    data-tooltip={`${board.title}`}
+                  >
+                    <TitleWrapper>
+                      <BoardTitle>{board.title}</BoardTitle>
+                    </TitleWrapper>
+                  </Tooltip>
                 </BoardContainer>
-                {selectedItem.id === board.id && (
+                {selectedItem._id === board._id && (
                   <ButtonContainer>
                     <ButtonEdit
                       onClick={() => modalStateSwapper()}
-                      type="button">
+                      type="button"
+                    >
                       <BoardIcon
                         className="iconBoard iconEdit"
                         width="16px"
-                        height="16px">
+                        height="16px"
+                      >
                         <use href={`${icon}#icon-pencil`}></use>
                       </BoardIcon>
                     </ButtonEdit>
-                    <ButtonEdit
+                    <Link
+                      to={findPrevBoard(board._id).path}
                       onClick={() => deleteBoard(board._id)}
-                      type="button">
+                      type="button"
+                    >
                       <BoardIcon
                         className="iconBoard iconEdit"
                         width="16px"
-                        height="16px">
+                        height="16px"
+                      >
                         <use href={`${icon}#icon-trash`}></use>
                       </BoardIcon>
-                    </ButtonEdit>
+                    </Link>
                   </ButtonContainer>
                 )}
               </Link>
@@ -100,6 +132,6 @@ export const MyBoards = ({ icon, boards, selectedItem, choice, setUserBoards }) 
           modalStateSwapper={modalStateSwapper}
         />
       )}
-    </div>
+    </>
   );
 };

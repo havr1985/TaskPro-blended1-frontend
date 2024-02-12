@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
-import 'modern-normalize';
-import PoppinRegular from './shared/fonts/Poppins-Regular.ttf';
-import PoppinMedium from './shared/fonts/Poppins-Medium.ttf';
-import PoppinSemiBold from './shared/fonts/Poppins-SemiBold.ttf';
+import "modern-normalize";
+import PoppinRegular from "./shared/fonts/Poppins-Regular.ttf";
+import PoppinMedium from "./shared/fonts/Poppins-Medium.ttf";
+import PoppinSemiBold from "./shared/fonts/Poppins-SemiBold.ttf";
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -61,4 +61,4 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}`
+}`;

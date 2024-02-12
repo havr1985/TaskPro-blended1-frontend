@@ -1,73 +1,12 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const Heading = styled.p`
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 18px;
-
-	margin-bottom: 8px;
-
-	color: var(--sidebar-icon-edit-stroke-color);
-`;
-export const CreateBoardWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	height: 70px;
-
-	border-top: 1px solid var(--line-border-sidebar-color);
-	border-bottom: 1px solid var(--line-border-sidebar-color);
-
-	margin-bottom: 40px;
-
-	@media (max-width: 767px) {
-		width: 197px;
-	}
-
-	.createText {
-		font-weight: 500;
-		font-size: 14px;
-		line-height: 21px;
-		letter-spacing: -0.02em;
-
-		width: 84px;
-
-		color: var(--secondary-text-sidebar-color);
-	}
-`;
-
-export const ButtonCreateBoard = styled.button`
-	width: 40px;
-	height: 36px;
-	border: transparent;
-
-	cursor: pointer;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	background: var(--sidebar-button-create-background);
-	border-radius: 6px;
-
-	transition: 0.5s;
-
-	&:hover {
-		background: var(--plus-button-hover-color);
-	}
-
-	.iconCreateBoard {
-		stroke: var(--shared-plus-icon-dark-big);
-	}
-`;
-
 export const BoardList = styled.ul`
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 21px;
 	letter-spacing: -0.02em;
+	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 	color: var(--sidebar-icon-edit-stroke-color);
 
 	display: flex;
@@ -75,21 +14,23 @@ export const BoardList = styled.ul`
 	gap: 4px;
 
 	position: relative;
+	width: 260px;
 
 	margin: 0 -24px;
 
-	@media (max-width: 767px) {
+	scroll-snap-align: start;
+
+	@media screen and (max-width: 767px) {
+		width: 225px;
 		margin: 0 -14px;
 	}
 `;
 export const BoardItem = styled.li`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-
-	cursor: pointer;
 
 	height: 61px;
+	cursor: pointer;
 
 	&.active {
 		color: var(--secondary-text-sidebar-color);
@@ -104,24 +45,24 @@ export const BoardItem = styled.li`
 		content: "";
 		position: absolute;
 
-		right: 0px;
+		right: 4px;
 
 		height: 61px;
 		width: 4px;
 		border-radius: 4px 0 0 4px;
-
+		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 		background-color: var(--logout-button-color);
 	}
 
 	.iconBoard {
 		stroke: var(--sidebar-icon-edit-stroke-color);
-
+		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 		margin-right: 8px;
 	}
 `;
 export const Link = styled(NavLink)`
 	width: 100%;
-	height: 100%;
+	height: 61px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -136,8 +77,58 @@ export const BoardContainer = styled.div`
 	}
 `;
 
-export const BoardTitle = styled.div`
+export const Tooltip = styled.div`
+  position: relative;
+
+  @media screen and (min-width: 767px) {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-left: 4px;
+  }
+
+  @media screen and (min-width: 1439px) {
+    &::after {
+      transition: all 400ms linear;
+      content: attr(data-tooltip);
+      width: 100%;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      padding-left: 8px;
+
+      white-space: wrap;
+      z-index: 100;
+      background-color: var(--secondary-background-color);
+      border-radius: 6px;
+      opacity: 0;
+      visibility: hidden:
+    }
+
+    &.tooltip:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+`;
+
+export const TitleWrapper = styled.div`
+	width: 122px;
+	height: 21px;
+`;
+
+export const BoardTitle = styled.p`
 	color: inherit;
+
+	overflow: hidden;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 `;
 
 export const BoardIcon = styled.svg`
@@ -145,10 +136,11 @@ export const BoardIcon = styled.svg`
 `;
 export const ButtonContainer = styled.div`
 	display: flex;
+	align-items: center;
 
 	margin-right: 24px;
 
-	@media (max-width: 767px) {
+	@media screen and (max-width: 767px) {
 		margin-right: 14px;
 	}
 `;
@@ -164,9 +156,13 @@ export const ButtonEdit = styled.button`
 	cursor: pointer;
 
 	padding: 0;
+	&:not(:last-child) {
+		margin-right: 8px;
+	}
 
 	.iconBoard.iconEdit:hover {
 		stroke: var(--primary-button-color-sidebar);
+		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 		transform: scale(1.1);
 		animation: pulse 1s infinite alternate;
 	}

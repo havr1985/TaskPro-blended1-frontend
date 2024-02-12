@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={{}}>
-        <BrowserRouter basename="/TaskPro-blended1-frontend">
+        <BrowserRouter basename="/TaskPro-blended1-frontend/">
           <PersistGate loading={null} persistor={persistor}>
             <App />
           </PersistGate>

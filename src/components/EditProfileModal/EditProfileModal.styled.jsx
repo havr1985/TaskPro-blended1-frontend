@@ -20,7 +20,7 @@ export const UserAvatarLabel = styled.label`
   left: 50% -5px;
   padding-top: 3px;
   text-align: center;
-  transition: all 300ms;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     background-color: var(--user-edit-icon-plus-hover-color);
   }
@@ -63,6 +63,7 @@ export const ModalInput = styled.input`
   padding-left: 18px;
   background-color: transparent;
   outline: none;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   color: var(--shared-input-text-color);
   &:focus {
     border-color: var(--shared-input-border-hover-color);
@@ -76,6 +77,7 @@ export const UserIcon = styled.svg`
   height: 68px;
   width: 68px;
   border-radius: 8px;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--sidebar-help-backgound-color);
   fill: white;
 `;

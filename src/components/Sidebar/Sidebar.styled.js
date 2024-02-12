@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SidebarContainer = styled.div`
 	width: 260px;
+	height: 100vh;
 
 	top: 0;
 	left: 0;
@@ -14,17 +15,16 @@ export const SidebarContainer = styled.div`
 	justify-content: space-between;
 
 	padding: 24px;
-
+	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 	background-color: var(--primary-background-sidebar-color);
 
-	@media (max-width: 1439.9px) {
+	@media screen and (max-width: 1439.9px) {
 		position: absolute;
-		height: 100%;
 
 		left: -100%;
 	}
 
-	@media (max-width: 767px) {
+	@media screen and (max-width: 767px) {
 		width: 225px;
 
 		padding: 14px 14px 24px 14px;
@@ -33,4 +33,53 @@ export const SidebarContainer = styled.div`
 	&.active {
 		left: 0;
 	}
+`;
+
+export const WrapperContent = styled.div`
+	
+width: 260px;
+margin-left: -24px;
+margin-bottom: auto;
+
+padding: 0 24px;
+overflow-x: hidden;
+overflow-y: auto;
+
+
+scroll-snap-type: y mandatory;
+
+
+
+	@media screen and (max-width: 767px) {
+		width: 225px;
+		padding: 0 14px;
+
+		margin: 0 -14px
+	}
+
+
+
+	&::-webkit-scrollbar {
+		width:3px;
+	}
+
+	&::-webkit-scrollbar-track {
+	
+		background: var(--tracking-area-color);
+		border-radius: 12px;
+	}
+
+		&::-webkit-scrollbar-thumb {
+		
+		background-color: var(--scroll-bar-color);
+		border-radius: 12px;
+		border: 12px solid var(--scroll-bar-color);
+
+
+
+
+`;
+
+export const Wrapper = styled.div`
+	margin-top: 40px;
 `;

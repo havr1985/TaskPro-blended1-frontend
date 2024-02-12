@@ -38,7 +38,7 @@ export const FormTitle = styled.h3`
   font-family: "Poppins";
   font-weight: 500;
   letter-spacing: -0.28px;
-
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   margin-bottom: 14px;
 `;
 
@@ -57,7 +57,7 @@ export const TitleInput = styled.input`
   outline: none;
   border-radius: 8px;
   opacity: 0.4;
-  transition: all 250ms ease;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &::placeholder {
     font-size: 14px;
@@ -86,9 +86,13 @@ export const Icon = styled.svg`
   cursor: pointer;
   stroke: var(--radio-icons-color);
   fill: transparent;
-  transition: all 250ms linear;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.active {
+    scale: 1.3;
+    transform: rotate(360deg);
+  }
+  &:hover {
     scale: 1.3;
     transform: rotate(360deg);
   }
@@ -119,7 +123,7 @@ export const CustomRadioBtn = styled.div`
   background-size: cover;
 
   cursor: pointer;
-  transition: all 250ms linear;
+  transition: var(--hover-params);
 
   &.active {
     scale: 1.1;
@@ -137,7 +141,7 @@ export const BgcItem = styled.div`
   background-color: var(--radio-icons-color);
 
   cursor: pointer;
-  transition: all 250ms linear;
+  transition: var(--hover-params);
 
   &.active {
     scale: 1.1;
@@ -161,7 +165,7 @@ export const AuthFormSubmitButton = styled.button`
   color: rgb(22, 22, 22);
   background-color: var(--plus-button-color);
 
-  transition: all 250ms linear;
+  transition: var(--hover-params);
   cursor: pointer;
 
   &:hover {
@@ -180,12 +184,14 @@ export const ButtonPlus = styled.div`
   background-color: var(--shared-black-plus-button);
   margin-right: 8px;
   padding: 7px;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const PlusIcon = styled.svg`
   width: 14px;
   height: 14px;
   stroke: var(--shared-plus-icon-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const ErrorSection = styled(ErrorMessage)`

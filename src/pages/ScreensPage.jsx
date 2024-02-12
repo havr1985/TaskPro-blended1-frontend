@@ -36,7 +36,7 @@ const ScreensPage = () => {
       setLoading(true);
       const lastDashboard = allDashboards[allDashboards.length - 1];
       setCurrentPageName(lastDashboard.title);
-      navigate(`/home/${lastDashboard.title}`, {
+      navigate(`/home`, {
         replace: true,
         state: { id: lastDashboard._id },
       });
@@ -48,7 +48,9 @@ const ScreensPage = () => {
   return (
     <ScreensPageWrap>
       {loading ? (
-        <div><Loader/></div>
+        <div>
+          <Loader />
+        </div>
       ) : (
         (boardName === undefined && (
           <WelcomeMessageWrap>

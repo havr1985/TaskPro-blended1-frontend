@@ -21,8 +21,7 @@
   --loginform-text-color: rgba(255, 255, 255, 0.3);
   --loginform-border: rgba(190, 219, 176, 0.4);
   --secondary-login-button-color: #9dc888;
-
-  --hover-params: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --start-login-button-color: rgb(190, 219, 176);
 }
 
 /* dark theme */
