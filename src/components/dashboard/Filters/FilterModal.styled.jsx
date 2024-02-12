@@ -78,7 +78,7 @@ export const ShowAllBtn = styled.button`
 export const StyledInputContainer = styled.div`
   margin-top: 16px;
   display: flex;
-  width: 120px;
+  width: 130px;
   gap: 8px;
 `;
 
@@ -95,49 +95,44 @@ export const StyledRadioInput = styled.input`
   cursor: pointer;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  &:checked.blue {
+  border: 1px solid #8fa1d0; 
+  };
+
+  &:checked.pink {
+    border: 1px solid #e09cb5; 
+  };
+
+  &:checked.green {
+    border: 1px solid #bedbb0;
+  };
+
+  &:checked.gray {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  };
+`
+  
+export const StyledSpan = styled.span`
   content: "";
   display: block;
-
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
   background-color: transparent;
 
   &.blue {
-    background-color: var(--radio-label-background-color);
+    background-color: #8fa1d0; 
   }
-
   &.pink {
-    background-color: var(--radio-label-pink-color);
+    background-color: #e09cb5; 
   }
-
   &.green {
-    background-color: var(--radio-label-green-color);
+    background-color: #bedbb0; 
   }
-
   &.gray {
-    background-color: var(--radio-label-grey-color);
-  }
-
-  &:checked.blue {
-    border: 1px solid var(--card-title-color);
-    background-color: var(--radio-label-grey-color);
-    scale: 1.2;
-  }
-
-  &:checked.pink {
-    border: 1px solid var(--card-title-color);
-    background-color: var(--radio-label-grey-color);
-    scale: 1.2;
-  }
-
-  &:checked.green {
-    border: 1px solid var(--card-title-color);
-    scale: 1.2;
-  }
-
-  &:checked.gray {
-    border: 1px solid var(--card-title-color);
-    scale: 1.2;
-  }
+    background-color: #ffffff4d; 
 `;
+
 export const StyledColorText = styled.p`
   color: var(--screens-page-tutorial-text-color);
   font-size: 12px;
@@ -154,7 +149,7 @@ export const StyledColorText = styled.p`
     font-weight: 500;
   }
 
-  &:active {
+   &:active {
     color: var(--modal-filters-text);
     font-weight: 500;
   }
@@ -172,21 +167,21 @@ export const StyledLabel = styled.label`
   &:focus {
     color: var(--modal-filters-text);
     scale: 1.1;
-  }
+  };
 
   &:hover {
-    color: var(--modal-filters-text);
-    scale: 1.1;
-  }
-
+  color: var(--modal-filters-text);
+  scale: 1.1;
+  };
+  
   &:active {
-    color: var(--modal-filters-text);
-    font-weight: 500;
-    scale: 1.1;
-  }
+  scale: 1.1} + ${StyledColorText} {color: var(--modal-filters-text);
+  font-weight: 500;
+  }; 
 
-  input[type="radio"]:checked + ${StyledColorText} {
-    color: var(--modal-board-text);
-    font-weight: 500;
-  }
+  input[type="radio"]:checked + ${StyledSpan} {
+  scale: 0.5} + ${StyledColorText} {color: var(--modal-filters-text);
+  font-weight: 500;
+  };
 `;
+
