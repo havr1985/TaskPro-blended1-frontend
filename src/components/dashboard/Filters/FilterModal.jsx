@@ -1,6 +1,7 @@
 import { CloseModalBtn } from "../../../shared/SharedModal/SharedModal.styled";
 
 import {
+  StyledSpan,
   StyledColorText,
   StyledInputContainer,
   StyledLabel,
@@ -53,7 +54,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 checked={selectedPriority === "gray"}
                 onChange={handleLabelChange}
               />
-  
+               <StyledSpan className="gray"></StyledSpan>
               <StyledColorText>
                 Without priority
               </StyledColorText>
@@ -69,7 +70,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 checked={selectedPriority === "blue"}
                 onChange={handleLabelChange}
               />
-
+              <StyledSpan className="blue"></StyledSpan>
               <StyledColorText> Low </StyledColorText>
             </StyledLabel>
           </StyledInputContainer>
@@ -83,7 +84,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 checked={selectedPriority === "pink"}
                 onChange={handleLabelChange}
               />
-
+               <StyledSpan className="pink"></StyledSpan>
               <StyledColorText> Medium </StyledColorText>
             </StyledLabel>
           </StyledInputContainer>
@@ -97,7 +98,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 checked={selectedPriority === "green"}
                 onChange={handleLabelChange}
               />
-             {/*  <StyledColorBtn className="green"></StyledColorBtn> */}
+             <StyledSpan className="green"></StyledSpan>
 
               <StyledColorText> High </StyledColorText>
             </StyledLabel>
