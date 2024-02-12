@@ -57,7 +57,7 @@ const MainDashboard = () => {
 
   useEffect(() => {
     if (columns === undefined) {
-      dispatch(getDashboardByIDThunk(state.id));
+      if (state) dispatch(getDashboardByIDThunk(state.id));
     }
   }, [columns, dispatch, state?.id]);
 
