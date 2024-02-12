@@ -9,13 +9,12 @@ import {
 } from "./ScreensPage.styled";
 import { useSelector } from "react-redux";
 import { selectAllDashboards } from "../redux/Dashboard/dashboardsSelectors";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader } from "../shared/Loader/loader";
 
 const ScreensPage = () => {
   const [loading, setLoading] = useState(false);
   const [currentPageName, setCurrentPageName] = useState("");
-  const didMount = useRef(true);
   const { boardName } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,27 +27,25 @@ const ScreensPage = () => {
     // Logic here will depend on your application's requirements
   }, [location.pathname, boardName]); // Reacting to changes in navigation
 
-  useEffect(() => {
-    if (didMount.current !== true && boardName !== currentPageName) {
-      return;
-    }
-    if (allDashboards.length > 0 && !boardName) {
-      setLoading(true);
-      const lastDashboard = allDashboards[allDashboards.length - 1];
-      setCurrentPageName(lastDashboard.title);
-      navigate(`/home/${lastDashboard.title}`, {
-        replace: true,
-        state: { id: lastDashboard._id },
-      });
-      setLoading(false);
-    }
-    didMount.current = false;
-  }, [allDashboards, navigate, boardName, currentPageName]);
+  // useEffect(() => {
+  //   if (allDashboards.length > 0 && !boardName) {
+  //     setLoading(true);
+  //     const lastDashboard = allDashboards[allDashboards.length - 1];
+  //     setCurrentPageName(lastDashboard.title);
+  //     return navigate(`/home/${lastDashboard.title}`, {
+  //       replace: true,
+  //       state: { id: lastDashboard._id },
+  //     });
+  //   }
+  //   setLoading(false);
+  // }, [allDashboards, navigate, boardName, currentPageName]);
 
   return (
     <ScreensPageWrap>
       {loading ? (
-        <div><Loader/></div>
+        <div>
+          <Loader />
+        </div>
       ) : (
         (boardName === undefined && (
           <WelcomeMessageWrap>

@@ -50,16 +50,18 @@ const MainDashboard = () => {
   } = useModal();
 
   const { column: columns } = useSelector(selectCurrentDashboard);
-  const { state } = useLocation();
+  // const { state } = useLocation();
   const dispatch = useDispatch();
 
   const [selectedId, setSelectedId] = useState(null);
 
-  useEffect(() => {
-    if (columns === undefined) {
-      dispatch(getDashboardByIDThunk(state.id));
-    }
-  }, [columns, dispatch, state?.id]);
+  // console.log(columns);
+
+  // useEffect(() => {
+  //   if (columns === undefined) {
+  //     dispatch(getDashboardByIDThunk(state.id));
+  //   }
+  // }, [columns, dispatch, state?.id]);
 
   const onDeleteColumn = (id) => {
     dispatch(deleteColumnThunk(id));
