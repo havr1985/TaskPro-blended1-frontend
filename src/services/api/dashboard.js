@@ -17,7 +17,7 @@ export const requestDashboardById = async dashboardId => {
 
 export const requestEditDashboard = async (dashboardId, title, icon, backgroundURL) => {
 	console.log(dashboardId);
-	const { data } = await instance.put(`dashboard/${dashboardId}`, {title, icon, backgroundURL});
+	const { data } = await instance.put(`dashboard/${dashboardId}`, { title, icon, backgroundURL });
 	return data;
 };
 
@@ -54,7 +54,7 @@ export const requestDeleteCard = async cardId => {
 	return data;
 };
 
-export const requestUpdateCard = async ( cardId, title, description, color, deadline ) => {
+export const requestUpdateCard = async (cardId, title, description, color, deadline) => {
 	const { data } = await instance.put(`cards/${cardId}`, { title, description, color, deadline });
 	return data;
 };

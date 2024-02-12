@@ -22,6 +22,8 @@
   --loginform-border: rgba(190, 219, 176, 0.4);
   --secondary-login-button-color: #9dc888;
   --start-login-button-color: rgb(190, 219, 176);
+
+  --hover-params: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* dark theme */
@@ -66,6 +68,7 @@ html[data-theme="dark"] {
   --datepicker-current-day: #ffffff;
   --datepicker-disabled-day: rgba(255, 255, 255, 0.2);
   --datepicker-hover-disabled-day: rgba(255, 255, 255, 0.2);
+  --datepicker-title-active: #1f1f1f;
   --textarea-border-color: rgba(190, 219, 176, 0.4);
   --datepicker-dayname-color: rgba(255, 255, 255, 0.5);
   --modal-filters-text: #ffffff;
@@ -184,6 +187,7 @@ html[data-theme="light"] {
   --datepicker-hover-background-color: #bedbb0;
   --datepicker-disabled-day: rgba(22, 22, 22, 0.2);
   --datepicker-hover-disabled-day: rgba(22, 22, 22, 0.2);
+  --datepicker-title-active: #161616;
   --textarea-border-color: rgba(190, 219, 176, 0.4);
   --datepicker-dayname-color: rgba(22, 22, 22, 0.5);
   --modal-filters-text: #161616;
@@ -303,6 +307,7 @@ html[data-theme="violet"] {
   --datepicker-hover-background-color: #5255bc;
   --datepicker-disabled-day: rgba(22, 22, 22, 0.2);
   --datepicker-hover-disabled-day: rgba(22, 22, 22, 0.2);
+  --datepicker-title-active: #fcfcfc;
   --textarea-border-color: rgb(172, 192, 241);
   --datepicker-dayname-color: rgba(22, 22, 22, 0.5);
   --modal-filters-text: #161616;

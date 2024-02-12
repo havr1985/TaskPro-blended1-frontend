@@ -50,6 +50,8 @@ export default function FormEditCard({
 }) {
   const [dateFromCalendar, setDateFromCalendar] = useState(null);
 
+  console.log(dateFromCalendar);
+
   const dispatch = useDispatch();
 
   const {
@@ -78,7 +80,7 @@ export default function FormEditCard({
       title: values.title,
       description: values.description,
       color: values.color,
-      deadline: dateFromCalendar,
+      deadline: `${dateFromCalendar ? dateFromCalendar : cardDeadline}`,
     };
 
     dispatch(updateCardThunk(updateCard));
@@ -234,6 +236,8 @@ export default function FormEditCard({
             onChange={setDateFromCalendar}
             onClickDay={closeCalendarModal}
             minDate={new Date()}
+            prevLabel={"<"}
+            nextLabel={">"}
           />
         </Modal>
       </SharedModal>
