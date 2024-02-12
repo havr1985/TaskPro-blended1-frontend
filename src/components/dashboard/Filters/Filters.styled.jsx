@@ -12,6 +12,7 @@ export const FilterButton = styled.button`
   font-size: 14px;
   letter-spacing: -0.02em;
   color: var(--filter-text-and-icon-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -23,4 +24,5 @@ export const FilterIcon = styled.svg`
   fill: none;
   stroke-width: 1.5px;
   stroke: var(--filter-text-and-icon-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;

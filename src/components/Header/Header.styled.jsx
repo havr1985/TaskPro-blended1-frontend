@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const MainHeader = styled.header`
   height: 60px;
   background-color: var(--header-background-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -33,6 +34,7 @@ export const UserContainer = styled.div`
   display: flex;
   align-items: center;
   color: var(--primary-heading-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   column-gap: 8px;
   cursor: pointer;
 `;
@@ -49,12 +51,14 @@ export const MenuIcon = styled.svg`
   height: 24px;
   fill: transparent;
   stroke: var(--primary-icon-stroke-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const UserIcon = styled.svg`
   width: 32px;
   height: 32px;
   stroke: var(--primary-icon-stroke-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   fill: transparent;
 `;
 export const UserAvatar = styled.img`
@@ -63,6 +67,7 @@ export const UserAvatar = styled.img`
   border-radius: 8px;
 `;
 export const UsernameText = styled.p`
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     color: var(--secondary-button-color);
   }

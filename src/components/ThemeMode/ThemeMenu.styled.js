@@ -8,6 +8,7 @@ export const ThemeContainer = styled.div`
   /* min-height: 68px; */
   /* padding-right: 24px; */
   color: var(--primary-heading-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   /* background-color: var(--header-background-color); */
 
   /* @media (max-width: 767px) {
@@ -37,6 +38,7 @@ export const CustomOptionList = styled.ul`
   border-radius: 8px;
   background-color: var(--header-background-color);
   box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
 `;
 
@@ -44,7 +46,7 @@ export const CustomOption = styled.li`
   padding: 5px 10px;
   cursor: pointer;
   color: var(--theme-switcher-dropdown-text-color);
-
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     color: var(--theme-switcher-dropdown-hover-color);
   }
@@ -62,6 +64,7 @@ export const TheamBtn = styled.div`
   cursor: pointer;
   &:hover {
     color: var(--secondary-button-color);
+    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 
@@ -71,4 +74,5 @@ export const IconDown = styled.svg`
   margin-left: 4px;
   fill: transparent;
   stroke: var(--primary-icon-stroke-color);
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
