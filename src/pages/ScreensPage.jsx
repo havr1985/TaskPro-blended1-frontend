@@ -11,8 +11,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllDashboards } from "../redux/Dashboard/dashboardsSelectors";
 
-import { selectBackgroundUrl } from "../redux/Dashboard/dashboardsSelectors";
-
 import { useEffect, useRef, useState } from "react";
 import { Loader } from "../shared/Loader/loader";
 import { getDashboardByIDThunk } from "../redux/Dashboard/dashboardOperation";
@@ -28,7 +26,15 @@ const ScreensPage = () => {
   const dispatch = useDispatch();
   const [boards, setBoards] = useState(allDashboards);
 
-  const currentBg = useSelector(selectBackgroundUrl);
+  // console.log(location.pathname);
+
+  const lookForBg = () => {
+    const title = location.pathname.split("/")[2];
+
+    return allDashboards.filter((dashboard) => {
+      return dashboard.title === title;
+    });
+  };
 
   useEffect(() => {
     setCurrentPageName(boardName);
@@ -42,7 +48,8 @@ const ScreensPage = () => {
     if (didMount.current !== true && boardName !== currentPageName) {
       return;
     }
-    if (boards.length !== allDashboards.length) {
+    if (boards.length !== allDashboards.length && boardName) {
+      console.log(123123);
       dispatch(
         getDashboardByIDThunk(allDashboards[allDashboards.length - 1]._id)
       );
@@ -68,7 +75,7 @@ const ScreensPage = () => {
   ]);
 
   return (
-    <ScreensPageWrap $bcgurl={currentBg}>
+    <ScreensPageWrap $bcgurl={lookForBg()[0]?.backgroundURL}>
       {loading ? (
         <div>
           <Loader />
