@@ -7,6 +7,10 @@ export const ScreensPageWrap = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   background-color: var(--secondary-background-color);
+  background-image: url(${(props) => props.$bcgurl});
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 
   @media (min-width: 768px) {
     padding-top: 20px;
