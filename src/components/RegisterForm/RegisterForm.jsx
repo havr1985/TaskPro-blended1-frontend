@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/Auth/authOperation";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import { ErrorContainer} from '../LoginForm/LoginForm.styled';
 
 // import { Link } from "react-router-dom";
 
@@ -142,6 +143,10 @@ export const RegisterForm = () => {
 
           <RegisterBtn type="submit">Register Now</RegisterBtn>
         </form>
+        <ErrorContainer> 
+      <ToastContainer
+        />
+        </ErrorContainer>
       </FormContainer>
     </Container>
   );
