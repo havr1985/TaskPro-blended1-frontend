@@ -39,12 +39,13 @@ export const MyBoards = ({
     let resultId = "";
     boards.forEach((board, index) => {
       if (board._id === id) {
-        const board = boards[index - 1] ? boards[index - 1] : boards[index + 1];
+        const board = boards[index + 1] ? boards[index + 1] : boards[index - 1];
+        // console.log(board.title);
         if (board) {
           result = `/home/${board.title}`;
           resultId = board._id;
         } else {
-          result = "/home";
+          // result = "/home";
         }
       }
     });

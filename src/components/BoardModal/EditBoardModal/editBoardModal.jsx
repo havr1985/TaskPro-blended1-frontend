@@ -23,9 +23,13 @@ import {
 import data from "../background.json";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
-import { updateDashboardThunk } from "../../../redux/Dashboard/dashboardOperation";
+import {
+  getDashboardByIDThunk,
+  updateDashboardThunk,
+} from "../../../redux/Dashboard/dashboardOperation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 const options = [
   "#icon-board-square",
   "#icon-board-star",
@@ -45,6 +49,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
 
   const dates = useSelector(selectCurrentDashboard);
+  console.log(dates);
   const {
     _id,
     title: titleDates,
@@ -54,7 +59,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   console.log(titleDates);
   const [selectedBg, setSelectedBg] = useState(backgroundURLDates);
   const [setIcon, setSetIcon] = useState(iconDates);
-
+  const navigate = useNavigate();
   const initialValues = {
     title: titleDates,
     icon: iconDates,
@@ -62,6 +67,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newBoardTitle = e.target.elements[0].value;
     const boardTitle = e.target.elements[0].value;
     if (!boardTitle) {
@@ -77,6 +83,9 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     modalStateSwapper();
 
     dispatch(updateDashboardThunk(updatedData));
+    console.log(updatedData);
+    dispatch(getDashboardByIDThunk(_id));
+    navigate(`/home/${newBoardTitle}`);
   };
 
   const handleBgSelection = (url) => {
@@ -92,7 +101,8 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Edit board"}
-      maxWidth={"350px"}>
+      maxWidth={"350px"}
+    >
       <Section>
         <Formik
           initialValues={initialValues}
@@ -103,7 +113,7 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
             <FormWrapper>
               <ErrorSection name="title" component="div" />
               <TitleInput
-                onChange={(e) => e.target.elements[0].value(e)}
+                // onChange={(e) => e.target.elements[0].value(e)}
                 type="text"
                 id="title"
                 defaultValue={titleDates}
@@ -122,7 +132,8 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                       className={setIcon === el ? "active" : ""}
                       onClick={() => handleIconSelection(el)}
                       width={18}
-                      height={18}>
+                      height={18}
+                    >
                       <use href={icons + el} width={18} height={18} />
                     </Icon>
 
@@ -139,7 +150,8 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper }) => {
                   <label key={idx}>
                     <BgcItem
                       onClick={() => handleBgSelection(el.url)}
-                      className={selectedBg === el.url ? "active" : ""}>
+                      className={selectedBg === el.url ? "active" : ""}
+                    >
                       {el.url !== "" && (
                         <CustomRadioBtn
                           url={el.url}
