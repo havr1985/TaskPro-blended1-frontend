@@ -20,7 +20,9 @@ const ScreensPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const allDashboards = useSelector(selectAllDashboards);
-
+  const currentBg = useSelector((state) => state.dashboards.currentBg);
+  const currentName = useSelector((state) => state.dashboards.currentTitle);
+  console.log(currentName);
   useEffect(() => {
     setCurrentPageName(boardName);
     // This effect could be used to handle specific logic when the user navigates to a different dashboard
@@ -46,9 +48,11 @@ const ScreensPage = () => {
   }, [allDashboards, navigate, boardName, currentPageName]);
 
   return (
-    <ScreensPageWrap>
+    <ScreensPageWrap bgcUrl={currentBg}>
       {loading ? (
-        <div><Loader/></div>
+        <div>
+          <Loader />
+        </div>
       ) : (
         (boardName === undefined && (
           <WelcomeMessageWrap>
@@ -62,10 +66,11 @@ const ScreensPage = () => {
           </WelcomeMessageWrap>
         )) ||
         (boardName !== undefined && (
-          <>
-            <HeaderDashboard boardName={boardName} />
-            <MainDashboard />
-          </>
+          <div>
+            <HeaderDashboard title={currentName} />
+
+            <MainDashboard bgcUrl={currentBg} />
+          </div>
         ))
       )}
     </ScreensPageWrap>

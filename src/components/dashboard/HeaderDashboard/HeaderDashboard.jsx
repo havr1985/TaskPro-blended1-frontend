@@ -1,10 +1,10 @@
 import Filters from "../Filters/Filters";
 import { DashboardName, HeaderWrap } from "./HeaderDashboard.styled";
 
-const HeaderDashboard = ({ boardName }) => {
+const HeaderDashboard = ({ children }) => {
   return (
     <HeaderWrap>
-      <DashboardName>{boardName}</DashboardName>
+      <DashboardName>{children}</DashboardName>
       <Filters />
     </HeaderWrap>
   );

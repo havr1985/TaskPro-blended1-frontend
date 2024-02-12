@@ -75,20 +75,6 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper }) => {
     setSetIcon(el);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const boardTitle = e.target.elements[0].value;
-
-  //   const newBoardData = {
-  //     title: boardTitle,
-  //     icon: setIcon,
-  //     backgroundURL: selectedBg,
-  //   };
-
-  //   modalStateSwapper();
-  //   dispatch(addDashboardThunk(newBoardData));
-  // };
-
   return (
     <SharedModal
       modalIsOpen={isModalOpen}

@@ -82,8 +82,7 @@ const MainDashboard = () => {
                         onClick={() => {
                           openEditColumnModal();
                           setSelectedId(id);
-                        }}
-                      >
+                        }}>
                         <Icon>
                           <use href={icons + "#icon-pencil"} />
                         </Icon>
@@ -102,8 +101,7 @@ const MainDashboard = () => {
                     onClick={() => {
                       openAddCardModal();
                       setSelectedId(id);
-                    }}
-                  >
+                    }}>
                     <AddCardIconWrap>
                       <AddCardIconPlus>
                         <use href={icons + "#icon-plus"} />
@@ -127,16 +125,14 @@ const MainDashboard = () => {
       </AddColumnButton>
       <Overlay
         onClick={closeAddColumnModal}
-        className={isAddColumnModalOpen === true && "active"}
-      ></Overlay>
+        className={isAddColumnModalOpen === true && "active"}></Overlay>
       <AddColumnModal
         modalStateSwapper={closeAddColumnModal}
         isModalOpen={isAddColumnModalOpen}
       />
       <Overlay
         onClick={closeEditColumnModal}
-        className={isEditColumnModalOpen === true && "active"}
-      ></Overlay>
+        className={isEditColumnModalOpen === true && "active"}></Overlay>
       <EditColumnModal
         modalStateSwapper={closeEditColumnModal}
         isModalOpen={isEditColumnModalOpen}
