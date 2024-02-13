@@ -34,7 +34,7 @@ export const BoardItem = styled.li`
 
 	&.active {
 		color: var(--secondary-text-sidebar-color);
-		background-color: var(--secondary-background-color);
+		background-color: var(--sidebar-help-backgound-color);
 	}
 
 	&.active .iconActive {
