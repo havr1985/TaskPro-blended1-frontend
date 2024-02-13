@@ -23,6 +23,7 @@ import {
 import { selectAuthUserData } from "../../redux/Auth/authSelectors";
 
 import sprite from "../../shared/images/icons.svg";
+import { toast } from "react-toastify";
 
 export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
@@ -46,6 +47,20 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
     e.preventDefault();
     const editDataObj = {};
     const userEditData = [...e.target.elements].slice(0, 3);
+
+    if (userEditData[2].value !== "" && userEditData[2].value.length < 8) {
+      if (userEditData[2].value.split("").includes("")) {
+        return toast.error("Wrong password, it must be without spaces");
+      }
+
+      return toast.error("Wrong password, it must be at least 8 symbols!");
+    }
+    if (userEditData[2].value !== "" && userEditData[2].value.length > 8) {
+      if (userEditData[2].value.split("").includes(" ")) {
+        return toast.error("Wrong password, it must be without spaces");
+      }
+    }
+
     const filteredUserData = userEditData.filter(({ value }) => value);
     filteredUserData.forEach(({ name, value }) => (editDataObj[name] = value));
     dispatch(userUpdateThunk(editDataObj));
@@ -87,6 +102,8 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
           <ModalInput
             autoComplete="off"
             name="username"
+            minLength={2}
+            maxLength={32}
             placeholder="Fullname"
             defaultValue={username ? username : null}
             type="text"
