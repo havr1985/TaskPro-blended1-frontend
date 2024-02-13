@@ -44,7 +44,6 @@ const useSelectImage = () => {
 		setCurrentImage(selectedImage.deviceType);
 	};
 
-	console.log("HOOK", currentImage);
 	return { currentImage, selectImage };
 };
 

@@ -67,6 +67,12 @@ export const Link = styled(NavLink)`
 	align-items: center;
 	justify-content: space-between;
 `;
+export const EditLink = styled(NavLink)`
+	width: 100%;
+	height: 61px;
+	display: flex;
+	align-items: center;
+`;
 export const BoardContainer = styled.div`
 	display: flex;
 	align-items: center;
@@ -140,6 +146,13 @@ export const ButtonContainer = styled.div`
 
 	margin-right: 24px;
 
+	.iconBoard.iconEdit:hover {
+		stroke: var(--primary-button-color-sidebar);
+		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+		transform: scale(1.1);
+		animation: pulse 1s infinite alternate;
+	}
+
 	@media screen and (max-width: 767px) {
 		margin-right: 14px;
 	}
@@ -158,12 +171,5 @@ export const ButtonEdit = styled.button`
 	padding: 0;
 	&:not(:last-child) {
 		margin-right: 8px;
-	}
-
-	.iconBoard.iconEdit:hover {
-		stroke: var(--primary-button-color-sidebar);
-		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
-		transform: scale(1.1);
-		animation: pulse 1s infinite alternate;
 	}
 `;

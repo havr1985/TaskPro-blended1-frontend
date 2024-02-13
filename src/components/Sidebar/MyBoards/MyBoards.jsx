@@ -8,6 +8,7 @@ import {
 	BoardTitle,
 	ButtonContainer,
 	ButtonEdit,
+	EditLink,
 	Link,
 	TitleWrapper,
 	Tooltip,
@@ -86,32 +87,30 @@ export const MyBoards = ({
 										</TitleWrapper>
 									</Tooltip>
 								</BoardContainer>
-								{selectedItem._id === board._id && (
-									<ButtonContainer>
-										<ButtonEdit
-											onClick={() => modalStateSwapper()}
-											type='button'>
-											<BoardIcon
-												className='iconBoard iconEdit'
-												width='16px'
-												height='16px'>
-												<use href={`${icon}#icon-pencil`}></use>
-											</BoardIcon>
-										</ButtonEdit>
-										<Link
-											to={findPrevBoard(board._id).path}
-											onClick={() => deleteBoard(board._id)}
-											type='button'>
-											<BoardIcon
-												className='iconBoard iconEdit'
-												width='16px'
-												height='16px'>
-												<use href={`${icon}#icon-trash`}></use>
-											</BoardIcon>
-										</Link>
-									</ButtonContainer>
-								)}
 							</Link>
+							{selectedItem._id === board._id && (
+								<ButtonContainer>
+									<ButtonEdit onClick={() => modalStateSwapper()} type='button'>
+										<BoardIcon
+											className='iconBoard iconEdit'
+											width='16px'
+											height='16px'>
+											<use href={`${icon}#icon-pencil`}></use>
+										</BoardIcon>
+									</ButtonEdit>
+									<EditLink
+										to={findPrevBoard(board._id).path}
+										onClick={() => deleteBoard(board._id)}
+										type='button'>
+										<BoardIcon
+											className='iconBoard iconEdit'
+											width='16px'
+											height='16px'>
+											<use href={`${icon}#icon-trash`}></use>
+										</BoardIcon>
+									</EditLink>
+								</ButtonContainer>
+							)}
 						</BoardItem>
 					))}
 				</BoardList>
