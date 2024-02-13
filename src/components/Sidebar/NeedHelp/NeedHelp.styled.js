@@ -8,7 +8,7 @@ export const HelpWrapper = styled.div`
   margin-bottom: 24px;
 
   border-radius: 8px;
-  background-color: var(--secondary-background-color);
+  background-color: var(--sidebar-help-backgound-color);
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   @media (max-width: 767px) {
     width: 197px;

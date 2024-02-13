@@ -15,7 +15,7 @@ export const FilterButton = styled.button`
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   border-radius: 4px;
-  background-color: var(--primary-background-color);
+  background-color: var(--secondary-background-color);
   cursor: pointer;
 `;
 
