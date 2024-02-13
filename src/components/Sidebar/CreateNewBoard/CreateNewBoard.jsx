@@ -13,8 +13,8 @@ export const CreateNewBoard = ({ openModal, icon, viewport }) => {
 				<ButtonCreateBoard
 					onClick={() => {
 						viewport({
-							width: window.innerWidth,
-							height: window.innerHeight,
+							width: window.screen.width,
+							height: window.screen.height,
 						});
 						openModal();
 					}}

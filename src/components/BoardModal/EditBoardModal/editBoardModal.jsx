@@ -160,7 +160,6 @@ export const EditBoardModal = ({ isModalOpen, modalStateSwapper, gallery }) => {
 
 										<DefaultRadioBtn
 											type='radio'
-											// value={data[0]["url"]}
 											value={el[gallery]}
 											name='bg'
 										/>
