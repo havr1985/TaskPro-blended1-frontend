@@ -65,6 +65,10 @@ const MainDashboard = () => {
     dispatch(deleteColumnThunk(id));
   };
 
+  const toggleModal = flag => {
+    dispatch(columnsSlice.actions.setCreateModalOpen(flag));
+  };
+
   return (
     <MainDashboardWrap>
       <MainDashboardList>
