@@ -159,16 +159,19 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper, gallery }) => {
 											className={selectedBg === el[gallery] ? "active" : ""}>
 											{el[gallery] !== "" && (
 												<CustomRadioBtn
-													url={
-														el[gallery] === "no background" ? "" : el[gallery]
-													}
+													$bcgurl={el[gallery]}
 													onClick={() => handleBgSelection(el[gallery])}
 													className={selectedBg === el[gallery] ? "active" : ""}
 												/>
 											)}
 										</BgcItem>
 
-										<DefaultRadioBtn type='radio' value={el["url"]} name='bg' />
+										<DefaultRadioBtn
+											type='radio'
+											value={el[gallery]}
+											// value={data[0]["url"]}
+											name='bg'
+										/>
 									</label>
 								))}
 							</RadioBtnWrapper>

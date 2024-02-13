@@ -30,6 +30,7 @@ export const MyBoards = ({
 	closeModal,
 	setSelectedItemId,
 	gallery,
+	viewport,
 }) => {
 	const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false);
 
@@ -90,7 +91,15 @@ export const MyBoards = ({
 							</Link>
 							{selectedItem._id === board._id && (
 								<ButtonContainer>
-									<ButtonEdit onClick={() => modalStateSwapper()} type='button'>
+									<ButtonEdit
+										onClick={() => {
+											viewport({
+												width: window.innerWidth,
+												height: window.innerHeight,
+											});
+											modalStateSwapper();
+										}}
+										type='button'>
 										<BoardIcon
 											className='iconBoard iconEdit'
 											width='16px'
@@ -126,6 +135,7 @@ export const MyBoards = ({
 				<EditBoardModal
 					isModalOpen={isEditBoardModalOpen}
 					modalStateSwapper={modalStateSwapper}
+					gallery={gallery}
 				/>
 			)}
 		</>
