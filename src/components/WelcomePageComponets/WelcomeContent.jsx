@@ -1,6 +1,6 @@
 import iconImage from "../../shared/images/boy.png";
 import icons from "../../shared/images/icons.svg";
-import { ThemeComponent } from "../ThemeMode/ThemeMenu";
+
 import {
   WelcomeWrapper,
   WelcomeIcon,
@@ -18,7 +18,7 @@ export const WelcomeContent = () => {
     <WelcomeWrapper>
       <WelcomeContainer>
         <WelcomeIcon src={iconImage} alt="boy with laptop" />
-        <ThemeComponent></ThemeComponent>
+
         <WelcomeLogo>
           <WelcomeLogoIcon>
             <use href={icons + "#icon-logo"} />

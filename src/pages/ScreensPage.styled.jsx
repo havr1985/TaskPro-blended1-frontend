@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ScreensPageWrap = styled.div`
   flex-grow: 1;
   padding-top: 14px;
-  padding-bottom: 14px;
+  /* padding-bottom: 40px; */
   padding-left: 20px;
   padding-right: 20px;
   background-color: var(--secondary-background-color);
