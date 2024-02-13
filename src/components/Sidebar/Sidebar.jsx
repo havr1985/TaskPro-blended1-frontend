@@ -61,6 +61,7 @@ export const Sidebar = ({ isOpen }) => {
 						closeModal={closeModal}
 						setSelectedItemId={setSelectedItemId}
 						gallery={currentImage}
+						viewport={selectImage}
 						//   setUserBoards={setUserBoards}
 					/>
 				</WrapperContent>

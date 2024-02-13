@@ -27,11 +27,13 @@ const ScreensPage = () => {
 	const [boards, setBoards] = useState(allDashboards);
 
 	const lookForBg = () => {
-		const title = location.pathname.split("/")[2];
+		// const title = location.pathname.split("/")[2];
 
-		return allDashboards.filter(dashboard => {
-			return dashboard.title === title;
+		const all = allDashboards.filter(dashboard => {
+			return dashboard.title === boardName;
 		});
+
+		return all;
 	};
 
 	useEffect(() => {
