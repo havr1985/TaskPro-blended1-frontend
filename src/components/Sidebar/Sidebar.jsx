@@ -7,57 +7,61 @@ import { NeedHelp } from "./NeedHelp/NeedHelp";
 import { LogOut } from "./LogOut/LogOut";
 import { useDispatch, useSelector } from "react-redux";
 import {
-	selectAllDashboards,
-	selectCurrentDashboard,
+  selectAllDashboards,
+  selectCurrentDashboard,
 } from "../../redux/Dashboard/dashboardsSelectors";
 import { getDashboardByIDThunk } from "../../redux/Dashboard/dashboardOperation";
 import { CreateNewBoard } from "./CreateNewBoard/CreateNewBoard";
 import { useModal } from "../../hooks/useModal";
 
 export const Sidebar = ({ isOpen }) => {
-	const [selectedItem, setSelectedItem] = useState("");
-	const boards = useSelector(selectAllDashboards);
-	const { result } = useSelector(selectCurrentDashboard);
-	const [userBoards, setUserBoards] = useState([]);
-	const dispatch = useDispatch();
+  const [selectedItem, setSelectedItem] = useState("");
+  const [slectedItemId, setSelectedItemId] = useState("");
+  const boards = useSelector(selectAllDashboards);
+  const { result } = useSelector(selectCurrentDashboard);
+  const [userBoards, setUserBoards] = useState([]);
+  const dispatch = useDispatch();
 
-	const { isModalOpen, openModal, closeModal } = useModal();
+  const { isModalOpen, openModal, closeModal } = useModal();
 
-	useEffect(() => {
-		setUserBoards(boards);
-	}, [boards]);
+  useEffect(() => {
+    setUserBoards(boards);
+  }, [boards]);
 
-	useEffect(() => {
-		setSelectedItem(result ?? "");
-	}, [result]);
+  useEffect(() => {
+    setSelectedItem(result ?? "");
+  }, [result]);
 
-	const handleClick = item => {
-		// setSelectedItem(item);
-		dispatch(getDashboardByIDThunk(item._id));
-	};
+  const handleClick = (item) => {
+    if (selectedItem._id !== item._id && slectedItemId !== item._id) {
+      dispatch(getDashboardByIDThunk(item._id));
+      setSelectedItemId(item._id);
+    }
+  };
 
-	return (
-		<SidebarContainer className={isOpen === true && "active"}>
-			<>
-				<Logo icon={sprite} />
-				<CreateNewBoard openModal={openModal} icon={sprite} />
-				<WrapperContent>
-					<MyBoards
-						icon={sprite}
-						boards={userBoards}
-						choice={handleClick}
-						selectedItem={selectedItem}
-						isModalOpen={isModalOpen}
-						closeModal={closeModal}
-						//   setUserBoards={setUserBoards}
-					/>
-				</WrapperContent>
-			</>
+  return (
+    <SidebarContainer className={isOpen === true && "active"}>
+      <>
+        <Logo icon={sprite} />
+        <CreateNewBoard openModal={openModal} icon={sprite} />
+        <WrapperContent>
+          <MyBoards
+            icon={sprite}
+            boards={userBoards}
+            choice={handleClick}
+            selectedItem={selectedItem}
+            isModalOpen={isModalOpen}
+            closeModal={closeModal}
+            setSelectedItemId={setSelectedItemId}
+            //   setUserBoards={setUserBoards}
+          />
+        </WrapperContent>
+      </>
 
-			<Wrapper>
-				<NeedHelp icon={sprite} />
-				<LogOut icon={sprite} />
-			</Wrapper>
-		</SidebarContainer>
-	);
+      <Wrapper>
+        <NeedHelp icon={sprite} />
+        <LogOut icon={sprite} />
+      </Wrapper>
+    </SidebarContainer>
+  );
 };
