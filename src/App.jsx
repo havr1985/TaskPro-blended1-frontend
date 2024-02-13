@@ -7,7 +7,7 @@ import { currentThunk } from "./redux/Auth/authOperation";
 import { RestictedRoute } from "./components/RestictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { selectAuthIsLoading } from "./redux/Auth/authSelectors";
-
+import { Loader } from "./shared/Loader/loader";
 import { ToastContainer } from "react-toastify";
 
 import ErrorPage from "./pages/ErrorPage";
@@ -29,9 +29,9 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <> 
       {isRefreshing ? (
-        <div>Loadind...</div>
+        <Loader/>
       ) : (
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -86,7 +86,7 @@ function App() {
         pauseOnHover
         theme="light"
       />
-    </>
+ </>
   );
 }
 
