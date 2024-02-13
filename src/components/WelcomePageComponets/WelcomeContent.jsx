@@ -28,9 +28,10 @@ const loginByG = async (token) => {
       googleLoginThunk({
         username: userData.name,
         email: userData.email,
+        avatarUrl: userData.picture,
       })
     ).unwrap();
-    toast.success("You have registered successfully!");
+    toast.success("You have logged successfully!");
   } catch (error) {
     toast.error(
       "Oops, it's looks like something went wrong... Please, try again!"

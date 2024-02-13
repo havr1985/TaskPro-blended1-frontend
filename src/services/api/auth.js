@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://task-pro-backend-jm7o.onrender.com/api/",
-});
+baseURL: "https://task-pro-backend-jm7o.onrender.com/api/",
+  });
 
 export const setToken = token => {
 	return (instance.defaults.headers.common.Authorization = `Bearer ${token}`);
@@ -41,7 +41,7 @@ export const requestSignin = async values => {
 };
 
 export const requestSigninByGoogle = async values => {
-	const { data } = await instance.post("auth/signinbygoogle", values);
+	const { data } = await instance.post("auth/signin-by-google", values);
 	setToken(data.accessToken);
 	return data;
 };
