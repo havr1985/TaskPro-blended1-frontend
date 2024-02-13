@@ -112,7 +112,7 @@ export const Tooltip = styled.div`
       background-color: var(--secondary-background-color);
       border-radius: 6px;
       opacity: 0;
-      visibility: hidden:
+      visibility: hidden;
     }
 
     &.tooltip:hover::after {
