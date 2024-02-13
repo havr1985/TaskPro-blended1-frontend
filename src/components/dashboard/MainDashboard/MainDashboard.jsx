@@ -1,5 +1,21 @@
 import icons from "../../../shared/images/icons.svg";
 import Card from "../Card/Card";
+import { useModal } from "../../../hooks/useModal";
+import { Overlay } from "../../../pages/HomePage.styled";
+import { AddColumnModal } from "../AddColumnModal/AddColumnModal";
+import { EditColumnModal } from "../EditColumnModal/EditColumnModal";
+import FormAddCard from "../../FormAddCard/FormAddCard";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import {
+  deleteColumnThunk,
+  getDashboardByIDThunk,
+  updateCardStatus,
+  updateCardStatusLocalThunk,
+} from "../../../redux/Dashboard/dashboardOperation";
 import {
   AddCardButton,
   AddCardIconPlus,
@@ -16,21 +32,11 @@ import {
   MainDashboardWrap,
   Title,
 } from "./MainDashboard.styled";
-import { useModal } from "../../../hooks/useModal";
-import { Overlay } from "../../../pages/HomePage.styled";
-import { AddColumnModal } from "../AddColumnModal/AddColumnModal";
-import { EditColumnModal } from "../EditColumnModal/EditColumnModal";
-import FormAddCard from "../../FormAddCard/FormAddCard";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import {
-  deleteColumnThunk,
-  getDashboardByIDThunk,
-} from "../../../redux/Dashboard/dashboardOperation";
 
 const MainDashboard = () => {
+  const [selectedId, setSelectedId] = useState(null);
+  const [columnsBoard, setColumnsBoard] = useState(null);
+
   const {
     isModalOpen: isAddColumnModalOpen,
     openModal: openAddColumnModal,
@@ -50,10 +56,9 @@ const MainDashboard = () => {
   } = useModal();
 
   const { column: columns } = useSelector(selectCurrentDashboard);
+
   const { state } = useLocation();
   const dispatch = useDispatch();
-
-  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     if (columns === undefined) {
@@ -65,58 +70,134 @@ const MainDashboard = () => {
     dispatch(deleteColumnThunk(id));
   };
 
+  useEffect(() => {
+    if (columns) {
+      // Инициализация состояния столбцов при получении данных
+      const initializedColumns = {};
+      columns.forEach((column) => {
+        initializedColumns[column._id] = {
+          columnId: column._id,
+          items: column.card,
+        };
+      });
+      setColumnsBoard(initializedColumns);
+    }
+  }, [columns]);
+
+  const onDragEnd = (result, columnsBoard, setColumnsBoard) => {
+    if (!result.destination) return;
+    const { source, destination } = result;
+    if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columnsBoard[source.droppableId];
+      const movedItem = sourceColumn.items[source.index];
+      const destColumn = columnsBoard[destination.droppableId];
+
+      const data = {
+        card: movedItem,
+        currentColumnId: sourceColumn.columnId,
+        newColumnId: destColumn.columnId,
+      };
+
+      dispatch(updateCardStatusLocalThunk(data));
+
+      dispatch(
+        updateCardStatus({
+          columnId: destination.droppableId,
+          cardId: movedItem._id,
+          owner: movedItem.owner,
+        })
+      );
+    } else {
+      const column = columnsBoard[source.droppableId];
+      const movedItem = column.items[source.index];
+      const copiedItems = [...column.items];
+      const [removed] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removed);
+      setColumnsBoard({
+        ...columnsBoard,
+        [source.droppableId]: {
+          ...column,
+          items: copiedItems,
+        },
+      });
+      dispatch(
+        updateCardStatus({
+          columnId: destination.droppableId,
+          cardId: movedItem._id,
+          owner: movedItem.owner,
+        })
+      );
+    }
+  };
+
   return (
     <MainDashboardWrap>
-      <MainDashboardList>
-        {columns === undefined ? (
-          <></>
-        ) : (
-          columns.map(({ _id: id, title, card }) => {
-            return (
-              <MainDashboardColumn key={id}>
-                <div>
-                  <DashboardColumnTitle>
-                    <Title>{title}</Title>
-                    <IconsWrap>
-                      <IconButton
-                        onClick={() => {
-                          openEditColumnModal();
-                          setSelectedId(id);
-                        }}
-                      >
-                        <Icon>
-                          <use href={icons + "#icon-pencil"} />
-                        </Icon>
-                      </IconButton>
-                      <IconButton onClick={() => onDeleteColumn(id)}>
-                        <Icon>
-                          <use href={icons + "#icon-trash"} />
-                        </Icon>
-                      </IconButton>
-                    </IconsWrap>
-                  </DashboardColumnTitle>
-                </div>
-                <Card card={card} />
-                <div>
-                  <AddCardButton
-                    onClick={() => {
-                      openAddCardModal();
-                      setSelectedId(id);
-                    }}
-                  >
-                    <AddCardIconWrap>
-                      <AddCardIconPlus>
-                        <use href={icons + "#icon-plus"} />
-                      </AddCardIconPlus>
-                    </AddCardIconWrap>
-                    Add Card
-                  </AddCardButton>
-                </div>
-              </MainDashboardColumn>
-            );
-          })
-        )}
-      </MainDashboardList>
+      <DragDropContext
+        onDragEnd={(result) => {
+          onDragEnd(result, columnsBoard, setColumnsBoard);
+        }}
+      >
+        <MainDashboardList>
+          {columns === undefined ? (
+            <></>
+          ) : (
+            columns.map(({ _id: id, title, card }, index) => {
+              return (
+                <Droppable key={index} droppableId={id}>
+                  {(provided) => (
+                    <MainDashboardColumn
+                      key={id}
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                    >
+                      <div>
+                        <DashboardColumnTitle>
+                          <Title>{title}</Title>
+                          <IconsWrap>
+                            <IconButton
+                              onClick={() => {
+                                openEditColumnModal();
+                                setSelectedId(id);
+                              }}
+                            >
+                              <Icon>
+                                <use href={icons + "#icon-pencil"} />
+                              </Icon>
+                            </IconButton>
+                            <IconButton onClick={() => onDeleteColumn(id)}>
+                              <Icon>
+                                <use href={icons + "#icon-trash"} />
+                              </Icon>
+                            </IconButton>
+                          </IconsWrap>
+                        </DashboardColumnTitle>
+                      </div>
+                      <Card card={card} />
+                      <div>
+                        <AddCardButton
+                          onClick={() => {
+                            openAddCardModal();
+                            setSelectedId(id);
+                          }}
+                        >
+                          <AddCardIconWrap>
+                            <AddCardIconPlus>
+                              <use href={icons + "#icon-plus"} />
+                            </AddCardIconPlus>
+                          </AddCardIconWrap>
+                          Add Card
+                        </AddCardButton>
+                      </div>
+                      {provided.placeholder}
+                    </MainDashboardColumn>
+                  )}
+                </Droppable>
+              );
+            })
+          )}
+        </MainDashboardList>
+      </DragDropContext>
+
       <AddColumnButton onClick={openAddColumnModal}>
         <IconWrap>
           <IconPlus>

@@ -50,8 +50,6 @@ export default function FormEditCard({
 }) {
   const [dateFromCalendar, setDateFromCalendar] = useState(null);
 
-  console.log(dateFromCalendar);
-
   const dispatch = useDispatch();
 
   const {
