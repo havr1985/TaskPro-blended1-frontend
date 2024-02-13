@@ -53,7 +53,7 @@ html[data-theme="dark"] {
   --card-params-value-text-color: #ffffff;
   --card-title-color: #ffffff;
   --filter-text-and-icon-color: rgba(255, 255, 255, 0.8);
-  --filter-radio-gray-color: rgba(255,255,255,0.3);
+  --filter-radio-gray-color: rgba(255, 255, 255, 0.3);
   --background-add-column-btn-color: #121212;
   --welcome-message-text-color: rgba(255, 255, 255, 0.5);
   --welcome-message-text-accent-color: #bedbb0;
@@ -270,8 +270,8 @@ html[data-theme="light"] {
 
 /* purple theme */
 html[data-theme="violet"] {
-  --primary-background-color: #ecedfd;
-  --secondary-background-color: #ecedfd66;
+  --primary-background-color: #FCFCFC;
+  --secondary-background-color: #ecedfd;
   --header-background-color: #ffffff;
   --sidebar-help-backgound-color: rgba(236, 237, 253, 0.4);
   --needhelp-backdrop-background-color: #ffffff;
