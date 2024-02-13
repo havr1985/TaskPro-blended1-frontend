@@ -26,8 +26,6 @@ const ScreensPage = () => {
   const dispatch = useDispatch();
   const [boards, setBoards] = useState(allDashboards);
 
-  // console.log(location.pathname);
-
   const lookForBg = () => {
     const title = location.pathname.split("/")[2];
 
@@ -48,17 +46,25 @@ const ScreensPage = () => {
     if (didMount.current !== true && boardName !== currentPageName) {
       return;
     }
-    if (boards.length !== allDashboards.length && boardName) {
-      console.log(123123);
+    if (allDashboards.length === 0) {
+      navigate(`/home`, {
+        replace: true,
+      });
+    }
+    if (
+      boards.length !== allDashboards.length &&
+      boardName &&
+      allDashboards.length > 0
+    ) {
       dispatch(
-        getDashboardByIDThunk(allDashboards[allDashboards.length - 1]._id)
+        getDashboardByIDThunk(allDashboards[allDashboards.length - 1]?._id)
       );
     }
     if (allDashboards.length > 0 && !boardName) {
       setLoading(true);
-      const lastDashboard = allDashboards[allDashboards.length - 1];
+      const lastDashboard = allDashboards[allDashboards.length - 1] ?? "";
       setCurrentPageName(lastDashboard.title);
-      navigate(`/home`, {
+      navigate(`/home/${lastDashboard.title}`, {
         replace: true,
         state: { id: lastDashboard._id },
       });
