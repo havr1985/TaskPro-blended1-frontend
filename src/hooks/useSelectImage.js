@@ -17,6 +17,7 @@ const useSelectImage = () => {
 	const [currentImage, setCurrentImage] = useState(null);
 
 	const selectImage = viewport => {
+		console.log(viewport);
 		const dpr = window.devicePixelRatio;
 
 		let sizes = dpr === 1 ? imageSizes : imageSizesRetina;
@@ -40,7 +41,6 @@ const useSelectImage = () => {
 				selectedImage = size;
 			}
 		}
-
 		setCurrentImage(selectedImage.deviceType);
 	};
 
