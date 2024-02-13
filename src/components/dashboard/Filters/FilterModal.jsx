@@ -99,7 +99,6 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 onChange={handleLabelChange}
               />
              <StyledSpan className="green"></StyledSpan>
-
               <StyledColorText> High </StyledColorText>
             </StyledLabel>
           </StyledInputContainer>

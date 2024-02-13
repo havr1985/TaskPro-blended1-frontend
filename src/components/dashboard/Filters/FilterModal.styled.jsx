@@ -45,6 +45,7 @@ export const FilterLine = styled.div`
 export const LabelSchowAll = styled.div`
   display: flex;
   justify-content: space-between;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 export const StyledLabelTitle = styled.p`
   font-weight: 500;
@@ -85,17 +86,18 @@ export const StyledInputContainer = styled.div`
 export const StyledRadioInput = styled.input`
   position: absolute;
   appearance: none;
-  z-index: 5;
+  z-index: 5; 
   top: 0;
   left: 0;
   border-radius: 50%;
   margin: 0;
   width: 14px;
   height: 14px;
+  /* background-color:var(--welcome-title-color); */
   cursor: pointer;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:checked.blue {
+   &:checked.blue {
   border: 1px solid #8fa1d0; 
   };
 
@@ -108,52 +110,73 @@ export const StyledRadioInput = styled.input`
   };
 
   &:checked.gray {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  };
-`
+    border: 1px solid rgba(#ffffff4d);
+    
+  }; 
   
+  &:focus {  box-shadow: inset 0 0 0 2px var(--welcome-title-color);
+  transform:scale: 0.5}; 
+`
+    
 export const StyledSpan = styled.span`
   content: "";
   display: block;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: transparent;
+  z-index: 4; 
+  
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.blue {
     background-color: #8fa1d0; 
-  }
+  };
   &.pink {
     background-color: #e09cb5; 
-  }
+  };
   &.green {
     background-color: #bedbb0; 
-  }
+  };
   &.gray {
-    background-color: #ffffff4d; 
+    background-color: var(--filter-radio-gray-color);
+  }; 
+
+ 
+  &:hover {
+   transform:scale: 0.5;
+  };
+
+  &:focus {
+    transform:scale: 0.5;
+  };
+
+  &:active::after {
+    transform:scale: 0.5; 
+  }; 
 `;
 
-export const StyledColorText = styled.p`
+export const StyledColorText = styled.span`
   color: var(--screens-page-tutorial-text-color);
   font-size: 12px;
-  margin-left: 24px;
+  margin-left: 8px;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    color: var(--modal-filters-text);
-    font-weight: 500;
+    color: var(--primary-heading-color);
+    font-weight: bold;
   }
 
   &:focus {
-    color: var(--modal-filters-text);
-    font-weight: 500;
+    color: var(--primary-heading-color);
+    font-weight: bold;
   }
 
    &:active {
     color: var(--modal-filters-text);
-    font-weight: 500;
-  }
+    font-weight: bold;
+  } 
 `;
+
 export const StyledLabel = styled.label`
   position: relative;
   display: flex;
@@ -162,26 +185,25 @@ export const StyledLabel = styled.label`
   height: 18px;
   margin: 0;
   cursor: pointer;
-  transition: var(--hover-params);
 
   &:focus {
-    color: var(--modal-filters-text);
-    scale: 1.1;
+  transform:scale: 1.1;
   };
 
   &:hover {
-  color: var(--modal-filters-text);
-  scale: 1.1;
+  transform:scale: 1.1;
+  };
+
+  &:active {
+  transform:scale: 1.1;
+  };
+
+  ${StyledRadioInput}[type="radio"]:checked  + ${StyledColorText} {color: var(--modal-filters-text);
+  font-weight: 500;
+  };
+  ${StyledRadioInput}[type="radio"]:checked + ${StyledSpan} {
+  scale: 0.5} 
   };
   
-  &:active {
-  scale: 1.1} + ${StyledColorText} {color: var(--modal-filters-text);
-  font-weight: 500;
-  }; 
-
-  input[type="radio"]:checked + ${StyledSpan} {
-  scale: 0.5} + ${StyledColorText} {color: var(--modal-filters-text);
-  font-weight: 500;
-  };
 `;
 
