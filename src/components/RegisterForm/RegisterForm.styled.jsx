@@ -13,7 +13,7 @@ export const FormContainer = styled.div`
   text-align: center;
   background: var(--user-icon-plus-stroke-color);
   border-radius: 8px;
-  padding: 40px;
+  padding: 24px;
   @media (min-width: 375px) {
     width: 335px;
   }
@@ -34,9 +34,9 @@ export const LinkMenu = styled.div`
 export const RegisterLink = styled(Link)`
   margin-right: 14px;
   display: inline-block;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
+  // font-style: normal;
+  // font-weight: 500;
+  // font-size: 18px;
   line-height: 27px;
   letter-spacing: -0.02em;
   color: var(--color-white);
@@ -61,31 +61,41 @@ export const InputField = styled.div`
   margin-top: 40px;
   gap: 14px;
   position: relative;
+`;
 
-  input {
-    width: 344px;
-    height: 49px;
-    left: 40px;
-    top: 107px;
-    color: var(--welcome-hover-text-color);
-    background: var(--welcome-background-color);
-    // opacity: 0.4;
-    border: 1px solid var(--loginform-border);
-    padding-left: 18px;
-    box-shadow: 0px 4px 16px var(--color-shadow);
-    border-radius: 8px;
-    @media screen and (max-width: 767px) {
-      width: 287px;
-    }
+export const InputInput = styled.input`
+  outline: none;
+  overflow: hidden;
+  width: 344px;
+  height: 49px;
+  // left: 40px;
+  // top: 107px;
+  color: var(--welcome-hover-text-color);
+  background: var(--welcome-background-color);
+  // opacity: 0.4;
+  border: 1px solid var(--loginform-border);
+  padding-left: 18px;
+  box-shadow: 0px 4px 16px var(--color-shadow);
+  border-radius: 8px;
+  transition: var(--hover-params);
+  &:focus {
+    border: 1px solid var(--secondary-login-button-color);
+  }
+  &:active {
+    border: 1px solid var(--secondary-login-button-color);
+  }
+
+  @media (max-width: 767px) {
+    width: 287px;
   }
 `;
 
 export const RegisterBtn = styled.button`
-  font-style: normal;
-  font-family: Poppins;
+  // font-style: normal;
+  // font-family: Poppins;
   // font-weight: 500;
-  font-weight: bold;
-  font-size: 14px;
+  // font-weight: bold;
+  // font-size: 14px;
   line-height: 21px;
   text-align: center;
   letter-spacing: -0.02em;
@@ -116,6 +126,7 @@ export const PasswordInput = styled.div`
   gap: 14px;
 `;
 export const Passwordsvg = styled.svg`
+
   position: absolute;
   right: 18px;
   top: 19px;
@@ -127,7 +138,7 @@ export const Passwordsvg = styled.svg`
   opacity: 0.4;
   &:hover,
   &:focus {
-    stroke: #9dc888;
+    stroke: var(--user-icon-stroke-color);
   }
 `;
 

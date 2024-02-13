@@ -50,8 +50,8 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 type="radio"
                 name="radio"
                 value="without"
-                className="gray"
-                checked={selectedPriority === "gray"}
+                className="without"
+                checked={selectedPriority === "without"}
                 onChange={handleLabelChange}
               />
                <StyledSpan className="gray"></StyledSpan>
@@ -66,8 +66,8 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 type="radio"
                 name="radio"
                 value="low"
-                className="blue"
-                checked={selectedPriority === "blue"}
+                className="low"
+                checked={selectedPriority === "low"}
                 onChange={handleLabelChange}
               />
               <StyledSpan className="blue"></StyledSpan>
@@ -80,8 +80,8 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 type="radio"
                 name="radio"
                 value="medium"
-                className="pink"
-                checked={selectedPriority === "pink"}
+                className="medium"
+                checked={selectedPriority === "medium"}
                 onChange={handleLabelChange}
               />
                <StyledSpan className="pink"></StyledSpan>
@@ -94,8 +94,8 @@ export const FilterModal = ({ isOpen, onClose }) => {
                 type="radio"
                 name="radio"
                 value="high"
-                className="green"
-                checked={selectedPriority === "green"}
+                className="high"
+                checked={selectedPriority === "high"}
                 onChange={handleLabelChange}
               />
              <StyledSpan className="green"></StyledSpan>
