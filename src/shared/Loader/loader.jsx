@@ -2,7 +2,10 @@ import {ColorRing} from 'react-loader-spinner';
 
 export const Loader = () => {
   return (
-    <div>
+    <div style={{
+      display:'grid',
+      placeItems: 'center', height: '100vh'
+     }} >
      <ColorRing
   visible={true}
   height="80"
