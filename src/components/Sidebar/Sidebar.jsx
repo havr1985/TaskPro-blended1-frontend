@@ -17,6 +17,7 @@ import useSelectImage from "../../hooks/useSelectImage";
 
 export const Sidebar = ({ isOpen }) => {
 	const [selectedItem, setSelectedItem] = useState("");
+	const [slectedItemId, setSelectedItemId] = useState("");
 	const boards = useSelector(selectAllDashboards);
 	const { result } = useSelector(selectCurrentDashboard);
 	const [userBoards, setUserBoards] = useState([]);
@@ -33,8 +34,10 @@ export const Sidebar = ({ isOpen }) => {
 	}, [result]);
 
 	const handleClick = item => {
-		// setSelectedItem(item);
-		dispatch(getDashboardByIDThunk(item._id));
+		if (selectedItem._id !== item._id && slectedItemId !== item._id) {
+			dispatch(getDashboardByIDThunk(item._id));
+			setSelectedItemId(item._id);
+		}
 	};
 
 	const { selectImage, currentImage } = useSelectImage();
@@ -56,6 +59,7 @@ export const Sidebar = ({ isOpen }) => {
 						selectedItem={selectedItem}
 						isModalOpen={isModalOpen}
 						closeModal={closeModal}
+						setSelectedItemId={setSelectedItemId}
 						gallery={currentImage}
 						//   setUserBoards={setUserBoards}
 					/>

@@ -27,6 +27,7 @@ export const MyBoards = ({
 	setUserBoards,
 	isModalOpen,
 	closeModal,
+	setSelectedItemId,
 	gallery,
 }) => {
 	const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false);
@@ -41,12 +42,9 @@ export const MyBoards = ({
 		boards.forEach((board, index) => {
 			if (board._id === id) {
 				const board = boards[index + 1] ? boards[index + 1] : boards[index - 1];
-				
 				if (board) {
 					result = `/home/${board.title}`;
 					resultId = board._id;
-				} else {
-					// result = "/home";
 				}
 			}
 		});
@@ -56,7 +54,10 @@ export const MyBoards = ({
 	const dispatch = useDispatch();
 
 	const deleteBoard = id => {
-		if (id) dispatch(getDashboardByIDThunk(findPrevBoard(id).id));
+		if (id) {
+			const nextBoard = dispatch(getDashboardByIDThunk(findPrevBoard(id).id));
+			setSelectedItemId(nextBoard.arg);
+		}
 		dispatch(deleteDashboardThunk(id));
 	};
 
