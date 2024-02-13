@@ -5,7 +5,10 @@ export const HeaderWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px;
   margin-bottom: 40px;
+  background-color: var(--headerdashboard-background-color);
+  border-radius: 4px;
 
   @media (min-width: 768px) {
     margin-bottom: 26px;
@@ -22,8 +25,8 @@ export const DashboardName = styled.h2`
   font-size: 18px;
   letter-spacing: -0.02em;
   color: var(--card-title-color);
-   border-radius: 4px;
-  background-color: var(--secondary-background-color);
+  border-radius: 4px;
+  background-color: transparent;
   padding: 2px;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;

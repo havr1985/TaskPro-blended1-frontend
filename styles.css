@@ -12,6 +12,7 @@
   --user-icon-stroke-color: #ffffff;
   --user-icon-plus-fill-color: #bedbb0;
   --user-icon-plus-stroke-color: #121212;
+  --opacity-backgoorund-color: rgba(0, 0, 0, 0.3);
   --welcomeBgColor: linear-gradient(
     180deg,
     #ffffff 0%,
@@ -32,6 +33,7 @@ html[data-theme="dark"] {
   --primary-background-color: #121212;
   --secondary-background-color: #1f1f1f;
   --header-background-color: #161616;
+  --headerdashboard-background-color: rgba(22, 22, 22, 0.75);
   --sidebar-help-backgound-color: #1f1f1f;
   --needhelp-backdrop-background-color: rgba(0, 0, 0, 0.7);
   --primary-button-color: #bedbb0;
@@ -153,6 +155,7 @@ html[data-theme="light"] {
   --primary-background-color: #fdfdfd;
   --secondary-background-color: #f6f6f7;
   --header-background-color: #fcfcfc;
+  --headerdashboard-background-color: rgba(252, 252, 252, 0.75);
   --sidebar-help-backgound-color: #f6f6f7;
   --needhelp-backdrop-background-color: #ffffff;
   --primary-button-color: #bedbb0;
@@ -273,6 +276,7 @@ html[data-theme="violet"] {
   --primary-background-color: #FCFCFC;
   --secondary-background-color: #ecedfd;
   --header-background-color: #ffffff;
+  --headerdashboard-background-color: rgba(252, 252, 252, 0.75);
   --sidebar-help-backgound-color: rgba(236, 237, 253, 0.4);
   --needhelp-backdrop-background-color: #ffffff;
   --primary-button-color: #5255bc;

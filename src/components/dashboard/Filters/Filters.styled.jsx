@@ -7,7 +7,7 @@ export const FilterButton = styled.button`
   gap: 8px;
   width: 64px;
   height: 20px;
-  padding: 0;
+  padding: 0px;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
@@ -15,7 +15,7 @@ export const FilterButton = styled.button`
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   border-radius: 4px;
-  background-color: var(--secondary-background-color);
+  background-color: transparent;
   cursor: pointer;
 `;
 
