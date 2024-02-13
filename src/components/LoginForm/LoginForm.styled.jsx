@@ -33,7 +33,7 @@ position: relative;
 width: 287px;
 height: 49px;
 background: var(--welcome-background-color);
-margin-bottom: 14px;
+// margin-bottom: 14px;
 box-shadow: 0px 4px 16px var(--color-shadow);
 border-radius: 8px;
 
@@ -46,7 +46,7 @@ export const LoginInput = styled.input`
   outline: none;
   overflow: hidden;
   transition: all 250ms ease;
-  color: rgb(255, 255, 255);
+  color: var(--welcome-hover-text-color);
   width: 287px;
   height: 49px;
   border: 1px solid var(--loginform-border);
@@ -67,7 +67,7 @@ export const LoginInput = styled.input`
   @media (min-width: 767px) {
     width: 344px;
   }
-`;
+`
 
 export const NavContainer = styled.nav`
 display: flex;
@@ -114,18 +114,28 @@ export const LoginBtn = styled.button`
 
 export const ErrorText = styled.div`
 position: absolute;
-top: -15px;
-right: 10px;
-font-size: 14px;
-font-weight: 400;
-font-style: normal;
-letter-spacing: -1%;
-opacity: 0.9;
-color: red;`
+  bottom: -15px;
+  right: 0;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -1%;
+  opacity: 0.9;
+  color: #fff;`
 
 export const ErrorContainer = styled.div`
 position: fixed;
 top: 20px;
 right: 20px;
 width: 200px;
+`
+
+
+export const CorectDiv = styled.div`
+display: flex;
+flex-direction: column;
+margin-bottom: 24px;
+gap: 14px;
+position: relative;
+
 `

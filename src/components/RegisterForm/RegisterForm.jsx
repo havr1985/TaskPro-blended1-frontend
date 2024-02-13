@@ -20,6 +20,7 @@ import {
   Passwordsvg,
   ErrorText,
   StyledWrapInputAuth,
+  InputInput,
 } from "./RegisterForm.styled";
 import icons from "../../shared/images/icons.svg";
 
@@ -91,7 +92,7 @@ export const RegisterForm = () => {
           </LinkMenu>
           <InputField>
             <StyledWrapInputAuth>
-              <input
+              <InputInput
                 id="name"
                 name="name"
                 type="text"
@@ -106,7 +107,7 @@ export const RegisterForm = () => {
             </StyledWrapInputAuth>
 
             <StyledWrapInputAuth>
-              <input
+              <InputInput
                 id="email"
                 name="email"
                 type="email"
@@ -121,7 +122,7 @@ export const RegisterForm = () => {
             </StyledWrapInputAuth>
             <StyledWrapInputAuth>
               <PasswordInput>
-                <input
+                <InputInput
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
