@@ -15,9 +15,17 @@ export const requestDashboardById = async dashboardId => {
 	return data;
 };
 
-export const requestEditDashboard = async (dashboardId, title, icon, backgroundURL) => {
-	console.log(dashboardId);
-	const { data } = await instance.put(`dashboard/${dashboardId}`, { title, icon, backgroundURL });
+export const requestEditDashboard = async (
+	dashboardId,
+	title,
+	icon,
+	backgroundURL,
+) => {
+	const { data } = await instance.put(`dashboard/${dashboardId}`, {
+		title,
+		icon,
+		backgroundURL,
+	});
 	return data;
 };
 
@@ -44,8 +52,19 @@ export const requestUpdateColumn = async (columnId, title) => {
 	return data;
 };
 
-export const requestAddCard = async (columnId, title, description, color, deadline) => {
-	const { data } = await instance.post(`cards/${columnId}`, { title, description, color, deadline });
+export const requestAddCard = async (
+	columnId,
+	title,
+	description,
+	color,
+	deadline,
+) => {
+	const { data } = await instance.post(`cards/${columnId}`, {
+		title,
+		description,
+		color,
+		deadline,
+	});
 	return data;
 };
 
@@ -54,8 +73,19 @@ export const requestDeleteCard = async cardId => {
 	return data;
 };
 
-export const requestUpdateCard = async (cardId, title, description, color, deadline) => {
-	const { data } = await instance.put(`cards/${cardId}`, { title, description, color, deadline });
+export const requestUpdateCard = async (
+	cardId,
+	title,
+	description,
+	color,
+	deadline,
+) => {
+	const { data } = await instance.put(`cards/${cardId}`, {
+		title,
+		description,
+		color,
+		deadline,
+	});
 	return data;
 };
 
@@ -65,7 +95,8 @@ export const requestUserNeedHelp = async info => {
 };
 
 export const requestUpdateCardStatus = async (cardId, columnId, owner) => {
-	const { data } = await instance.patch(`cards/${cardId}/${owner}`, { columnId });
+	const { data } = await instance.patch(`cards/${cardId}/${owner}`, {
+		columnId,
+	});
 	return data;
 };
-

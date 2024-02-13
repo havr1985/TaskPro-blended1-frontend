@@ -118,7 +118,7 @@ export const CustomRadioBtn = styled.div`
 	width: 28px;
 	height: 28px;
 
-	background-image: url(${props => props.url});
+	background-image: url(${props => props.$bcgurl});
 	background-position: center;
 	background-size: cover;
 

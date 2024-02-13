@@ -1,5 +1,12 @@
 [
-	{ "url": "no background" },
+	{
+		"url-mob": "no background",
+		"url-mobx2": "no background",
+		"url-tab": "no background",
+		"url-tabx2": "no background",
+		"url-desk": "no background",
+		"url-deskx2": "no background"
+	},
 
 	{
 		"url-mob": "https://res.cloudinary.com/dfcp8j8nu/image/upload/v1707752160/bg-15-mobile-webp-375x812_repmix.webp",
