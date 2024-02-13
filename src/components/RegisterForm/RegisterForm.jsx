@@ -2,9 +2,10 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/Auth/authOperation";
-import { ToastContainer, toast } from 'react-toastify';
 import * as Yup from "yup";
-ErrorContainer
+
+import { ToastContainer, toast } from "react-toastify";
+
 // import { Link } from "react-router-dom";
 
 import {
@@ -36,7 +37,7 @@ const RegisterSchema = Yup.object().shape({
     .required("Password is required")
     .matches(
       /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]+$/,
-      'Password must contain at least one letter and at least one number'
+      "Password must contain at least one letter and at least one number"
     ),
 });
 
@@ -143,11 +144,11 @@ export const RegisterForm = () => {
 
           <RegisterBtn type="submit">Register Now</RegisterBtn>
         </form>
-      </FormContainer>
-       <ErrorContainer> 
+        <ErrorContainer> 
       <ToastContainer
         />
         </ErrorContainer>
+      </FormContainer>
     </Container>
   );
 };

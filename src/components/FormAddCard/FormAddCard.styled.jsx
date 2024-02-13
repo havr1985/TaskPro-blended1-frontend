@@ -53,7 +53,7 @@ export const StyledRadioInput = styled(Field)`
   }
 
   &:checked.gray {
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Сірий колір рамки при виборі */
+    border: 1px solid var(--radio-label-grey-color); /* Сірий колір рамки при виборі */
   }
 `;
 
@@ -67,7 +67,7 @@ export const StyledDeadlineWrapper = styled.div`
 `;
 
 export const StyledDeadlineTitle = styled.p`
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--datepicker-dayname-color);
   margin: 0;
   margin-top: 14px;
   margin-bottom: 4px;
@@ -76,13 +76,13 @@ export const StyledDeadlineTitle = styled.p`
   font-family: "Poppins", sans-serif;
 `;
 
-export const StyledLabelColor = styled.h2`
+export const StyledLabelColor = styled.p`
   margin: 0;
   margin-top: 14px;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--datepicker-dayname-color);
   font-family: "Poppins", sans-serif;
 `;
 
@@ -114,7 +114,7 @@ export const StyledSpan = styled.span`
   }
 
   &.gray {
-    background-color: #ffffff4d; /* Сірий колір */
+    background-color: var(--radio-label-grey-color); /* Сірий колір */
   }
 `;
 
@@ -155,7 +155,7 @@ export const TextDeadlain = styled.p`
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: #bedbb0;
+  color: var(--primary-button-color);
 `;
 
 export const ButtonPlus = styled.div`
@@ -166,7 +166,7 @@ export const ButtonPlus = styled.div`
 
   width: 28px;
   height: 28px;
-  background-color: rgb(22, 22, 22);
+  background-color: var(--shared-black-plus-button);
   margin-right: 8px;
   padding: 7px;
 `;
@@ -174,7 +174,7 @@ export const ButtonPlus = styled.div`
 export const PlusIcon = styled.svg`
   width: 28px;
   height: 28px;
-  stroke: rgb(255, 255, 255);
+  stroke: var(--add-card-icon-plus-color);
 `;
 
 export const AuthFormSubmitButton = styled.button`
@@ -192,8 +192,8 @@ export const AuthFormSubmitButton = styled.button`
   font-size: 14px;
   letter-spacing: -0.02em;
 
-  color: #161616;
-  background-color: rgb(190, 219, 176);
+  color: var(--shared-button-text-color);
+  background-color: var(--primary-button-color);
 
   transition: all 450ms linear;
   cursor: pointer;
@@ -236,5 +236,5 @@ export const IconChevron = styled.svg`
   width: 18px;
   height: 18px;
   fill: none;
-  stroke: #bedbb0;
+  stroke: var(--primary-button-color);
 `;

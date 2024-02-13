@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MainDashboardWrap = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 34px;
 
   width: 100%;
   height: 95%;
@@ -38,14 +37,13 @@ export const MainDashboardList = styled.ul`
   display: flex;
   gap: 34px;
   height: 100%;
+  padding-bottom: 10px;
 `;
 
 export const MainDashboardColumn = styled.li`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   width: 100%;
-  /* height: 100%; */
 
   @media screen and (min-width: 375px) {
     width: 335px;
@@ -61,6 +59,7 @@ export const AddColumnButton = styled.button`
   width: 100%;
   height: 56px;
   padding: 0;
+  margin-left: 34px;
   border: none;
   border-radius: 8px;
   font-weight: 500;
