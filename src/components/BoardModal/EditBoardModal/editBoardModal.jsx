@@ -45,6 +45,11 @@ const validationSchema = Yup.object().shape({
 	title: Yup.string().required("Title is required!"),
 });
 
+const closeModal = () => {
+	resetStatus();
+	// dispatch(boardsSlice.actions.openCreateEditBoardModal({ isOpen: false }));
+};
+
 export const EditBoardModal = ({ isModalOpen, modalStateSwapper, gallery }) => {
 	const dispatch = useDispatch();
 
