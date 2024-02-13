@@ -1,4 +1,4 @@
-import{u as r,a as u,r as g,j as e,N as c,Q as w,n as B,B as f,L as v,o as L,p as P}from"./index-fsQbx21j.js";import{i as b}from"./icons-iplVKqot.js";import{c as y,a as s,u as j}from"./index.esm-SJ-XDRrG.js";/* empty css                      */const S=r.div`
+import{u as r,b as g,r as w,j as e,N as h,Q as f,o as P,B as c,L as v,p as B,q as L}from"./index-u8G9WHG0.js";import{i as b}from"./icons-I0FOP6sp.js";import{c as y,a as s,u as j}from"./index.esm-D1Kqx4da.js";/* empty css                      */const S=r.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@ border-radius: 8px;
 width: 424px;
 padding: 40px;
 }     
-`,h=r.div`
+`,x=r.div`
 position: relative;
 width: 287px;
 height: 49px;
@@ -35,7 +35,7 @@ border-radius: 8px;
 @media (min-width: 767px) {
 width: 344px;
 } 
-`,x=r.input`
+`,m=r.input`
   outline: none;
   overflow: hidden;
   transition: all 250ms ease;
@@ -98,7 +98,7 @@ stroke-width: 1.3px;
  @media (min-width: 767px) {
       width: 344px;
 };
-`,m=r.div`
+`,u=r.div`
 position: absolute;
 top: -15px;
 right: 10px;
@@ -112,14 +112,14 @@ position: fixed;
 top: 20px;
 right: 20px;
 width: 200px;
-`,N=y({email:s().required("This field is required"),password:s().required("This field is required")}),R=()=>{const t=u(),[n,a]=g.useState(!1),o=j({initialValues:{email:"",password:""},validationSchema:N,onSubmit:async i=>{try{await t(B({email:i.email,password:i.password})).unwrap(),o.resetForm()}catch{f.error("Invalid email or password. Please verify your login details and try again",{position:"top-right"})}}}),l=()=>{a(i=>!i)};return e.jsxs(S,{children:[e.jsxs(q,{children:[e.jsxs(E,{children:[e.jsx(c,{to:"/auth/register",children:"Registration"}),e.jsx(c,{to:"/auth/login",style:{color:"#ffffff",fontWeight:"bold"},children:"Log in"})]}),e.jsxs("form",{onSubmit:o.handleSubmit,children:[e.jsxs(h,{children:[e.jsx("label",{htmlFor:"email"}),e.jsx(x,{type:"email",placeholder:"Enter your email:",id:"email",name:"email",onChange:o.handleChange,onBlur:o.handleBlur,value:o.values.email}),o.touched.email&&o.errors.email?e.jsx(m,{children:o.errors.email}):null]}),e.jsxs(h,{children:[e.jsx("label",{htmlFor:"password"}),e.jsx(x,{type:n?"text":"password",placeholder:"Confirm a password:",id:"password",name:"password",onChange:o.handleChange,onBlur:o.handleBlur,value:o.values.password}),e.jsx(F,{type:"button",onClick:l,className:"toggle-password-button",style:{stroke:"rgb(255,255,255)",strokeWidth:"1.3px"},children:e.jsx("use",{href:b+"#icon-password-eye"})}),o.touched.password&&o.errors.password?e.jsx(m,{children:o.errors.password}):null]}),e.jsx(I,{type:"submit",children:"Log in Now"})]})]}),e.jsx(k,{children:e.jsx(w,{})})]})},T=r.div`
+`,N=y({email:s().required("This field is required"),password:s().required("This field is required")}),R=()=>{const t=g(),[n,a]=w.useState(!1),o=j({initialValues:{email:"",password:""},validationSchema:N,onSubmit:async i=>{try{await t(P({email:i.email,password:i.password})).unwrap(),o.resetForm()}catch{c.error("Invalid email or password. Please verify your login details and try again",{position:"top-right"})}}}),l=()=>{a(i=>!i)};return e.jsxs(S,{children:[e.jsxs(q,{children:[e.jsxs(E,{children:[e.jsx(h,{to:"/auth/register",children:"Registration"}),e.jsx(h,{to:"/auth/login",style:{color:"#ffffff",fontWeight:"bold"},children:"Log in"})]}),e.jsxs("form",{onSubmit:o.handleSubmit,children:[e.jsxs(x,{children:[e.jsx("label",{htmlFor:"email"}),e.jsx(m,{type:"email",placeholder:"Enter your email:",id:"email",name:"email",onChange:o.handleChange,onBlur:o.handleBlur,value:o.values.email}),o.touched.email&&o.errors.email?e.jsx(u,{children:o.errors.email}):null]}),e.jsxs(x,{children:[e.jsx("label",{htmlFor:"password"}),e.jsx(m,{type:n?"text":"password",placeholder:"Confirm a password:",id:"password",name:"password",onChange:o.handleChange,onBlur:o.handleBlur,value:o.values.password}),e.jsx(F,{type:"button",onClick:l,className:"toggle-password-button",style:{stroke:"rgb(255,255,255)",strokeWidth:"1.3px"},children:e.jsx("use",{href:b+"#icon-password-eye"})}),o.touched.password&&o.errors.password?e.jsx(u,{children:o.errors.password}):null]}),e.jsx(I,{type:"submit",children:"Log in Now"})]})]}),e.jsx(k,{children:e.jsx(f,{})})]})},z=r.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100%;
   background: var(--welcomeBgColor);
-`,z=r.div`
+`,T=r.div`
   text-align: center;
   background: var(--user-icon-plus-stroke-color);
   border-radius: 8px;
@@ -138,7 +138,7 @@ width: 200px;
   @media (min-width: 767px) {
     width: 344px;
   }
-`,V=r(v)`
+`,$=r(v)`
   margin-right: 14px;
   display: inline-block;
   font-style: normal;
@@ -148,7 +148,7 @@ width: 200px;
   letter-spacing: -0.02em;
   color: var(--color-white);
   text-decoration: none;
-`,$=r(v)`
+`,A=r(v)`
   left: 160px;
   top: 40px;
   font-style: normal;
@@ -158,7 +158,7 @@ width: 200px;
   letter-spacing: -0.02em;
   color: var(--color-pale-white);
   text-decoration: none;
-`,A=r.div`
+`,V=r.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
@@ -181,7 +181,7 @@ width: 200px;
       width: 287px;
     }
   }
-`,D=r.button`
+`,Z=r.button`
   font-style: normal;
   font-family: Poppins;
   // font-weight: 500;
@@ -207,13 +207,13 @@ width: 200px;
   @media screen and (max-width: 375px) {
     width: 100%;
   }
-`,M=r.div`
+`,D=r.div`
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 14px;
-`,Q=r.svg`
+`,M=r.svg`
   position: absolute;
   right: 18px;
   top: 19px;
@@ -239,4 +239,4 @@ width: 200px;
   color: #fff;
 `,p=r.div`
   position: relative;
-`,G=y().shape({name:s().min(2,"Name must be at least 2 characters").max(32,"Name must be at most 32 characters").required("Name is required"),email:s().email("Invalid email").required("Email is required"),password:s().min(8,"Password must be at least 8 characters").max(64,"Password must be at most 64 characters").required("Password is required")}),H=()=>{const t=u(),[n,a]=g.useState(!1),o=j({initialValues:{name:"",email:"",password:""},validationSchema:G,onSubmit:async i=>{try{await t(L({username:i.name,email:i.email,password:i.password})).unwrap(),o.resetForm()}catch{f.error("The user with this email already exists",{position:"top-right"})}}}),l=()=>{a(i=>!i)};return e.jsxs(T,{children:[e.jsx(z,{children:e.jsxs("form",{onSubmit:o.handleSubmit,children:[e.jsxs(W,{children:[e.jsx(V,{to:"/auth/register",underline:"none",style:{color:"#ffffff",fontWeight:"bold"},children:"Registration"}),e.jsx($,{to:"/auth/login",underline:"none",children:"Log In"})]}),e.jsxs(A,{children:[e.jsxs(p,{children:[e.jsx("input",{id:"name",name:"name",type:"text",onChange:o.handleChange,value:o.values.name,onBlur:o.handleBlur,placeholder:"Enter your name"}),o.touched.name&&o.errors.name?e.jsx(d,{children:o.errors.name}):null]}),e.jsxs(p,{children:[e.jsx("input",{id:"email",name:"email",type:"email",onChange:o.handleChange,value:o.values.email,onBlur:o.handleBlur,placeholder:"Enter your email"}),o.touched.email&&o.errors.email?e.jsx(d,{children:o.errors.email}):null]}),e.jsx(p,{children:e.jsxs(M,{children:[e.jsx("input",{type:n?"text":"password",id:"password",name:"password",onChange:o.handleChange,onBlur:o.handleBlur,value:o.values.password,placeholder:"Create a password"}),e.jsxs(Q,{width:"18px",onClick:l,children:[" ",e.jsx("use",{href:b+"#icon-password-eye"})," "]}),o.touched.password&&o.errors.password?e.jsx(d,{children:o.errors.password}):null]})})]}),e.jsx(D,{type:"submit",children:"Register Now"})]})}),e.jsx(k,{children:e.jsx(w,{})})]})},X=()=>{const{id:t}=P();return e.jsx("div",{children:e.jsxs("div",{children:[t==="login"&&e.jsx(R,{}),t==="register"&&e.jsx(H,{})]})})};export{X as default};
+`,O=y().shape({name:s().min(2,"Name must be at least 2 characters").max(32,"Name must be at most 32 characters").required("Name is required"),email:s().email("Invalid email").required("Email is required"),password:s().trim().min(8,"Password must be at least 8 characters").max(64,"Password must be at most 64 characters").required("Password is required").matches(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]+$/,"Password must contain at least one letter and at least one number")}),Q=()=>{const t=g(),[n,a]=w.useState(!1),o=j({initialValues:{name:"",email:"",password:""},validationSchema:O,onSubmit:async i=>{try{await t(B({username:i.name,email:i.email,password:i.password})).unwrap(),c.success("You have registered successfully!"),o.resetForm()}catch{c.error("Oops, it's looks like something went wrong... Please, try again!")}}}),l=()=>{a(i=>!i)};return e.jsx(z,{children:e.jsxs(T,{children:[e.jsxs("form",{onSubmit:o.handleSubmit,children:[e.jsxs(W,{children:[e.jsx($,{to:"/auth/register",underline:"none",style:{color:"#ffffff",fontWeight:"bold"},children:"Registration"}),e.jsx(A,{to:"/auth/login",underline:"none",children:"Log In"})]}),e.jsxs(V,{children:[e.jsxs(p,{children:[e.jsx("input",{id:"name",name:"name",type:"text",onChange:o.handleChange,value:o.values.name,onBlur:o.handleBlur,placeholder:"Enter your name"}),o.touched.name&&o.errors.name?e.jsx(d,{children:o.errors.name}):null]}),e.jsxs(p,{children:[e.jsx("input",{id:"email",name:"email",type:"email",onChange:o.handleChange,value:o.values.email,onBlur:o.handleBlur,placeholder:"Enter your email"}),o.touched.email&&o.errors.email?e.jsx(d,{children:o.errors.email}):null]}),e.jsx(p,{children:e.jsxs(D,{children:[e.jsx("input",{type:n?"text":"password",id:"password",name:"password",onChange:o.handleChange,onBlur:o.handleBlur,value:o.values.password,placeholder:"Create a password"}),e.jsxs(M,{width:"18px",onClick:l,children:[" ",e.jsx("use",{href:b+"#icon-password-eye"})," "]}),o.touched.password&&o.errors.password?e.jsx(d,{children:o.errors.password}):null]})})]}),e.jsx(Z,{type:"submit",children:"Register Now"})]}),e.jsx(k,{children:e.jsx(f,{})})]})})},K=()=>{const{id:t}=L();return e.jsx("div",{children:e.jsxs("div",{children:[t==="login"&&e.jsx(R,{}),t==="register"&&e.jsx(Q,{})]})})};export{K as default};

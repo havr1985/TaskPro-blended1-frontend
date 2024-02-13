@@ -1,4 +1,4 @@
-import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons-iplVKqot.js";import{T as n}from"./ThemeMenu-zX3_f0Cf.js";const r="/TaskPro-blended1-frontend/assets/boy-zfFl38_I.png",p=e.div`
+import{u as i,N as e,j as t}from"./index-u8G9WHG0.js";import{i as o}from"./icons-I0FOP6sp.js";const n="/TaskPro-blended1-frontend/assets/boy-zfFl38_I.png",r=i.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@ import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons
     rgba(196, 196, 196, 0) 25%,
     #bedbb0 92.19%
   );
-`,a=e.div`
+`,p=i.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +22,7 @@ import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons
   @media (min-width: 768px) {
     width: 473px;
   }
-`,s=e.img`
+`,a=i.img`
   width: 124px;
   height: 124px;
 
@@ -30,7 +30,7 @@ import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons
     width: 162px;
     height: 162px;
   }
-`,c=e.div`
+`,s=i.div`
   display: flex;
   align-items: center;
   gap: 14px;
@@ -41,14 +41,14 @@ import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons
     margin-top: 24px;
     height: 60px;
   }
-`,x=e.svg`
+`,c=i.svg`
   width: 40px;
   height: 40px;
   @media (min-width: 768px) {
     width: 48px;
     height: 48px;
   }
-`,l=e.h1`
+`,l=i.h1`
   color: #161616;
   font-size: 28px;
   font-family: Poppins;
@@ -59,7 +59,7 @@ import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons
     font-size: 40px;
     letter-spacing: -1.6px;
   }
-`,d=e.p`
+`,x=i.p`
   margin-top: 24px;
   margin-bottom: 48px;
   text-align: center;
@@ -68,7 +68,7 @@ import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons
   font-family: "Poppins";
   line-height: 1.28;
   letter-spacing: -0.28px;
-`,g=e(i)`
+`,d=i(e)`
   width: calc(100% - 40px);
   padding: 14px;
   margin-bottom: 14px;
@@ -93,7 +93,7 @@ import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons
   @media (min-width: 768px) {
     width: 344px;
   }
-`,h=e(i)`
+`,g=i(e)`
   font-family: "Poppins";
   text-decoration: none;
   color: #161616;
@@ -113,4 +113,4 @@ import{u as e,N as i,j as t}from"./index-fsQbx21j.js";import{i as o}from"./icons
     background: #161616;
     color: #ffffff;
   }
-`,m=()=>t.jsx(p,{children:t.jsxs(a,{children:[t.jsx(s,{src:r,alt:"boy with laptop"}),t.jsx(n,{}),t.jsxs(c,{children:[t.jsx(x,{children:t.jsx("use",{href:o+"#icon-logo"})}),t.jsx(l,{children:"Task Pro"})]}),t.jsx(d,{children:"Supercharge your productivity and take control of your tasks with Task Pro - Don`t wait, start achieving your goals now!"}),t.jsx(g,{to:"/auth/register",children:"Registration"}),t.jsx(h,{to:"/auth/login",children:"Log In"})]})}),j=()=>t.jsx(t.Fragment,{children:t.jsx(m,{})});export{j as default};
+`,h=()=>t.jsx(r,{children:t.jsxs(p,{children:[t.jsx(a,{src:n,alt:"boy with laptop"}),t.jsxs(s,{children:[t.jsx(c,{children:t.jsx("use",{href:o+"#icon-logo"})}),t.jsx(l,{children:"Task Pro"})]}),t.jsx(x,{children:"Supercharge your productivity and take control of your tasks with Task Pro - Don`t wait, start achieving your goals now!"}),t.jsx(d,{to:"/auth/register",children:"Registration"}),t.jsx(g,{to:"/auth/login",children:"Log In"})]})}),u=()=>t.jsx(t.Fragment,{children:t.jsx(h,{})});export{u as default};
