@@ -23,7 +23,7 @@ export const DashboardName = styled.h2`
   letter-spacing: -0.02em;
   color: var(--card-title-color);
    border-radius: 4px;
-  background-color: var(--primary-background-color);
+  background-color: var(--secondary-background-color);
   padding: 2px;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
