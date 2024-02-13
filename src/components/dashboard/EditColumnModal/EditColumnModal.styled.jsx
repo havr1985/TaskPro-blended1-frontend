@@ -19,7 +19,8 @@ export const TitleInput = styled(Field)`
   border-radius: 8px;
 
   opacity: 0.4;
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--hover-params);
+
   color: rgb(255, 255, 255);
 
   &::placeholder {
@@ -49,7 +50,8 @@ export const EditColumnFormSubmitButton = styled.button`
   color: rgb(22, 22, 22);
   background-color: rgb(190, 219, 176);
 
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--hover-params);
+
   cursor: pointer;
 
   &:hover {

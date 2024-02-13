@@ -19,15 +19,16 @@ export const TitleInput = styled(Field)`
   border-radius: 8px;
 
   opacity: 0.4;
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--hover-params);
+ 
   color: rgb(255, 255, 255);
 
-  &::placeholder {
-    color: rgb(255, 255, 255);
-    font-size: 14px;
-    font-family: "Poppins";
-    letter-spacing: -0.28px;
-  }
+  // &::placeholder {
+  //   // color: rgb(255, 255, 255);
+  //   font-size: 14px;
+  //   font-family: "Poppins";
+  //   letter-spacing: -0.28px;
+  // }
 
   &:focus {
     opacity: 1;
@@ -51,7 +52,7 @@ export const AddColumnFormSubmitButton = styled.button`
   color: rgb(22, 22, 22);
   background-color: rgb(190, 219, 176);
 
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--hover-params);
   cursor: pointer;
 
   &:hover {

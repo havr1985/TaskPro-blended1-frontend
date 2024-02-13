@@ -13,7 +13,7 @@ export const StyledTextArea = styled.textarea`
   width: 100%;
   height: 154px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--shared-input-border-color);
   background: var(--primary-card-background-color);
   color: var(--card-title-color);
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -23,7 +23,7 @@ export const StyledTextArea = styled.textarea`
   box-shadow: none;
   cursor: pointer;
   &:focus {
-    border-color: #bedbb0;
+    border-color: var(--shared-input-border-hover-color);
   }
 `;
 
@@ -134,7 +134,7 @@ export const StyledInput = styled.input`
   width: 100%;
   border-radius: 6px;
   height: 49px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--shared-input-border-color);
   background: var(--primary-card-background-color);
   color: var(--card-title-color);
   transition: var(--hover-paramas);
@@ -146,7 +146,7 @@ export const StyledInput = styled.input`
   cursor: pointer;
 
   &:focus {
-    border-color: #bedbb0;
+    border-color: var(--shared-input-border-hover-color);
   }
 `;
 
@@ -203,14 +203,15 @@ export const AuthFormSubmitButton = styled.button`
   }
 `;
 export const Error = styled(ErrorMessage)`
-  position: absolute;
-  padding-left: 8px;
-  margin: 0;
-  color: red;
-  font-size: 12px;
-  font-family: Poppins;
-  font-weight: 500;
-  letter-spacing: -0.36px;
+position: absolute;
+// bottom: -15px;
+right: 0;
+font-size: 11px;
+font-weight: 400;
+font-style: normal;
+letter-spacing: -1%;
+opacity: 0.9;
+color: #fff;
 `;
 
 export const Container = styled.div`
@@ -221,15 +222,15 @@ export const Container = styled.div`
   margin-bottom: 0;
 `;
 export const ErrorText = styled(ErrorMessage)`
-  position: absolute;
-  bottom: -12px;
-  padding-left: 8px;
-  margin: 0;
-  color: red;
-  font-size: 12px;
-  font-family: Poppins;
-  font-weight: 500;
-  letter-spacing: -0.36px;
+position: absolute;
+bottom: -15px;
+right: 0;
+font-size: 11px;
+font-weight: 400;
+font-style: normal;
+letter-spacing: -1%;
+opacity: 0.9;
+color: #fff;
 `;
 
 export const IconChevron = styled.svg`
