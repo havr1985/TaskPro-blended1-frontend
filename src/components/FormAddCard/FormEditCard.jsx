@@ -144,7 +144,7 @@ export default function FormEditCard({
                   placeholder="Description"
                 />
                 <ErrorText
-                  name="Description"
+                  name="description"
                   component="div"
                   className="error"
                 />
