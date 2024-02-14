@@ -181,13 +181,17 @@ const dashboardSlice = createSlice({
 					];
 				}
 
+
+
 			})
 
 			.addCase(updateCardStatusLocalThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
 
-				const { card, currentColumnId, newColumnId } = action.payload;
+				const { card, newCardIdx, currentColumnId, newColumnId } = action.payload;
+
+				console.log(typeof newCardIdx === 'number');
 
 				const currentColumnIdx = state.currentDashboard.column.findIndex(
 					(item) => item._id === currentColumnId
@@ -206,10 +210,17 @@ const dashboardSlice = createSlice({
 					state.currentDashboard.column[newColumnIdx].card = [];
 				}
 
-				state.currentDashboard.column[newColumnIdx].card = [
-					...state.currentDashboard.column[newColumnIdx].card,
-					card,
-				];
+				if (typeof newCardIdx === 'number') {
+					state.currentDashboard.column[newColumnIdx].card.splice(newCardIdx, 0, card);
+				} else {
+					state.currentDashboard.column[newColumnIdx].card = [
+						...state.currentDashboard.column[newColumnIdx].card,
+						card,
+					];
+				}
+
+
+
 			})
 
 			.addMatcher(
