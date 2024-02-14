@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAllDashboards } from "../redux/Dashboard/dashboardsSelectors";
 
 import { useEffect, useRef, useState } from "react";
-import { Loader } from "../shared/Loader/loader";
+import { LoaderApp } from "../shared/Loader/loader";
 import { getDashboardByIDThunk } from "../redux/Dashboard/dashboardOperation";
 
 const ScreensPage = () => {
@@ -84,8 +84,8 @@ const ScreensPage = () => {
 
 	return (
 		<ScreensPageWrap $bcgurl={lookForBg()[0]?.backgroundURL}>
-			{loading ? (
-				<Loader />
+		{loading ? (	
+			<LoaderApp />
 			) : (
 				(boardName === undefined && (
 					<WelcomeMessageWrap>

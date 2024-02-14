@@ -24,9 +24,11 @@ import { selectAuthUserData } from "../../redux/Auth/authSelectors";
 
 import sprite from "../../shared/images/icons.svg";
 import { toast } from "react-toastify";
+import { Loader } from "../../shared/Loader/loader";
 
 export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [passwordType, setPasswordType] = useState("password");
   const { email, username, avatarURL } = useSelector(selectAuthUserData);
 
@@ -36,12 +38,18 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
     });
   };
 
-  const changeAvatar = (e) => {
-    const newAvatar = e.target.files[0];
-    const formData = new FormData();
-    formData.append("avatar", newAvatar);
-    dispatch(changeAvatarThunk(formData));
-  };
+const changeAvatar = async (e) => {
+  setLoading(true);
+  const newAvatar = e.target.files[0];
+  const formData = new FormData();
+  formData.append("avatar", newAvatar);
+  try {
+    await dispatch(changeAvatarThunk(formData));
+  } catch (error) {
+    console.error('Error changing avatar:', error);
+  }
+  setLoading(false);
+};
 
   const onSubmitHandle = (e) => {
     e.preventDefault();
@@ -75,7 +83,16 @@ export const EditProfileModal = ({ isModalOpen, modalStateSwapper }) => {
       maxWidth={"400px"}
     >
       <UserAvatarWrapper>
-        {avatarURL ? (
+        {loading ? (
+      /*    <div style={{
+           display: 'grid',
+           placeItems: 'center',
+           height: '100%',
+           transition: 'all 450ms cubic-bezier(0.4, 0, 0.2, 1)',
+        }} > */
+          <Loader setHeight="100 %"/>
+            
+			) : avatarURL ? (
           <UserAvatar
             src={
               avatarURL
