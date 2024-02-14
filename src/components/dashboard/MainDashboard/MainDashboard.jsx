@@ -84,50 +84,31 @@ const MainDashboard = () => {
     }
   }, [columns]);
 
-  const onDragEnd = (result, columnsBoard, setColumnsBoard) => {
+  const onDragEnd = (result, columnsBoard) => {
     if (!result.destination) return;
     const { source, destination } = result;
-    if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columnsBoard[source.droppableId];
-      const movedItem = sourceColumn.items[source.index];
-      const destColumn = columnsBoard[destination.droppableId];
 
-      const data = {
-        card: movedItem,
-        currentColumnId: sourceColumn.columnId,
-        newColumnId: destColumn.columnId,
-      };
+    const sourceColumn = columnsBoard[source.droppableId];
+    const movedItem = sourceColumn.items[source.index];
+    const destColumn = columnsBoard[destination.droppableId];
 
-      dispatch(updateCardStatusLocalThunk(data));
+    const data = {
+      card: movedItem,
+      currentColumnId: sourceColumn.columnId,
+      newColumnId: destColumn.columnId,
+      currentCardIdx: source.index,
+      newCardIdx: destination.index,
+    };
 
-      dispatch(
-        updateCardStatus({
-          columnId: destination.droppableId,
-          cardId: movedItem._id,
-          owner: movedItem.owner,
-        })
-      );
-    } else {
-      const column = columnsBoard[source.droppableId];
-      const movedItem = column.items[source.index];
-      const copiedItems = [...column.items];
-      const [removed] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removed);
-      setColumnsBoard({
-        ...columnsBoard,
-        [source.droppableId]: {
-          ...column,
-          items: copiedItems,
-        },
-      });
-      dispatch(
-        updateCardStatus({
-          columnId: destination.droppableId,
-          cardId: movedItem._id,
-          owner: movedItem.owner,
-        })
-      );
-    }
+    dispatch(updateCardStatusLocalThunk(data));
+
+    dispatch(
+      updateCardStatus({
+        columnId: destination.droppableId,
+        cardId: movedItem._id,
+        owner: movedItem.owner,
+      })
+    );
   };
 
   return (
