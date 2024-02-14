@@ -83,6 +83,7 @@ export const UserIcon = styled.svg`
 `;
 
 export const InputsWrapper = styled.div`
+
   width: 100%;
   display: flex;
   flex-direction: column;
