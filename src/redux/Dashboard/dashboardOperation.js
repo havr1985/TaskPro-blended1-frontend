@@ -166,9 +166,19 @@ export const updateCardThunk = createAsyncThunk(
 
 export const updateCardStatus = createAsyncThunk(
 	"dashboard/updateCardStatus",
-	async ({ cardId, columnId, owner }, thunkAPI) => {
+	async ({ cardId,
+        currentColumnId,
+        newColumnId,
+        currentCardIdx,
+        newCardIdx }, thunkAPI) => {
 		try {
-			const data = await requestUpdateCardStatus(cardId, columnId, owner);
+			const data = await requestUpdateCardStatus(
+				cardId,
+        currentColumnId,
+        newColumnId,
+        currentCardIdx,
+        newCardIdx
+      );
 			return data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error);

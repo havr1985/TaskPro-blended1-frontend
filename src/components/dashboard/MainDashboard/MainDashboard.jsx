@@ -103,12 +103,14 @@ const MainDashboard = () => {
 		dispatch(updateCardStatusLocalThunk(data));
 
 		dispatch(
-			updateCardStatus({
-				columnId: destination.droppableId,
-				cardId: movedItem._id,
-				owner: movedItem.owner,
-			}),
-		);
+      updateCardStatus({
+        cardId: movedItem._id,
+        currentColumnId: sourceColumn.columnId,
+        newColumnId: destColumn.columnId,
+        currentCardIdx: source.index,
+        newCardIdx: destination.index,
+      })
+    );
 	};
 
 	return (
