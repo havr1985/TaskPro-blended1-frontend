@@ -36,11 +36,10 @@ export const CardWrap = styled.li`
   height: 154px;
   padding: 14px 20px;
   margin-bottom: 8px;
-  /* border-left: 4px solid red; */
   border-radius: 8px;
   background-color: var(--primary-card-background-color);
-  transition: var(--hover-paramas);
-  /* cursor: pointer; */
+  /* transition: var(--hover-paramas); */
+  transition: transform 0.2s ease, opacity 0.2s ease;
 
   @media screen and (min-width: 375px) {
     width: 335px;
@@ -57,6 +56,12 @@ export const CardWrap = styled.li`
     border-radius: 4px 0 0 4px;
     background-color: ${(props) => props.$prioritycolor};
   }
+
+  ${({ $isdragging }) =>
+    $isdragging &&
+    `transform: rotate(4deg) translateY(-10px);
+		opacity: 0.8;
+    `};
 `;
 
 export const CardTitle = styled.h4`
