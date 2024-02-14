@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   CustomOption,
   CustomOptionList,
@@ -12,12 +12,18 @@ import useTheme from "../../hooks/useTheme";
 import { changeThemeThunk } from "../../redux/Auth/authOperation";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthUserData } from "../../redux/Auth/authSelectors";
+import useClickOutside from "../../hooks/useClickOutside";
 
 export const ThemeComponent = () => {
   const dispatch = useDispatch();
   const { theme, setTheme } = useTheme();
   const user = useSelector(selectAuthUserData);
   const [isThemeListOpen, setIsThemeListOpen] = useState(false);
+  const themeContainerRef = useRef(null);
+
+  useClickOutside(themeContainerRef, () => {
+    setIsThemeListOpen(false);
+  });
 
   const toggleCustomOptionList = () => {
     setIsThemeListOpen(!isThemeListOpen);
@@ -45,7 +51,7 @@ export const ThemeComponent = () => {
   };
 
   return (
-    <ThemeContainer>
+    <ThemeContainer ref={themeContainerRef}>
       <TheamBtn onClick={toggleCustomOptionList}>
         Theme
         <IconDown>
