@@ -36,12 +36,15 @@ export const EmailInput = styled.input`
 `;
 
 export const ErrorText = styled.div`
-  padding-left: 14px;
-  color: #c04d4d;
-  font-size: 18px;
-  font-family: Poppins;
-  font-weight: 500;
-  letter-spacing: -0.36px;
+position: absolute;
+bottom: -15px;
+right: 0;
+font-size: 11px;
+font-weight: 400;
+font-style: normal;
+letter-spacing: -1%;
+opacity: 0.9;
+color: var(--modal-need-help-text);
 `;
 
 export const ModalForm = styled.form`
@@ -101,10 +104,10 @@ export const HelpFormSubmitButton = styled.button`
   font-size: 14px;
   letter-spacing: -0.28px;
 
-  color: rgb(22, 22, 22);
-  background-color: rgb(190, 219, 176);
+  color: var(--shared-button-text-color);
+  background-color: var(--plus-button-color);
 
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--hover-params);
   cursor: pointer;
 
   &:hover {

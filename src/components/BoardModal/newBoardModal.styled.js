@@ -164,7 +164,8 @@ export const AuthFormSubmitButton = styled.button`
 	font-size: 14px;
 	letter-spacing: -0.28px;
 
-	color: rgb(22, 22, 22);
+	// color: rgb(22, 22, 22);
+	color: var(--shared-button-text-color);
 	background-color: var(--plus-button-color);
 
 	transition: var(--hover-params);
@@ -206,7 +207,7 @@ export const ErrorSection = styled(ErrorMessage)`
  font-weight: 400;
  font-style: normal; 
  letter-spacing: -0.36px; 
- color: #fff;
+ color: var(--modal-need-help-text);
  
 `;
 

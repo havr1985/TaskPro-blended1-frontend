@@ -195,7 +195,7 @@ export const AuthFormSubmitButton = styled.button`
   color: var(--shared-button-text-color);
   background-color: var(--primary-button-color);
 
-  transition: all 450ms linear;
+  transition: var(--hover-params);
   cursor: pointer;
 
   &:hover {
@@ -211,7 +211,7 @@ font-weight: 400;
 font-style: normal;
 letter-spacing: -1%;
 opacity: 0.9;
-color: #fff;
+color: var(--modal-need-help-text);
 `;
 
 export const Container = styled.div`
@@ -230,7 +230,7 @@ font-weight: 400;
 font-style: normal;
 letter-spacing: -1%;
 opacity: 0.9;
-color: #fff;
+color: var(--modal-need-help-text);
 `;
 
 export const IconChevron = styled.svg`

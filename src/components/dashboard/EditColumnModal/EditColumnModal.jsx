@@ -57,7 +57,7 @@ export const EditColumnModal = ({
                 type="text"
                 id="title"
                 name="title"
-                placeholder="title"
+                placeholder="Title"
                 autoComplete="off"
               />
             </FormWrapper>
