@@ -24,12 +24,13 @@ export const FormWrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: start;
+	position: relative;
 
 	margin-bottom: 24px;
 
-	&:last-of-type {
-		margin-bottom: 40px;
-	}
+	// &:last-of-type {
+	// 	margin-bottom: 40px;
+	// }
 `;
 
 export const FormTitle = styled.h3`
@@ -38,7 +39,7 @@ export const FormTitle = styled.h3`
 	font-family: "Poppins";
 	font-weight: 500;
 	letter-spacing: -0.28px;
-	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: var(--hover-params);
 	margin-bottom: 14px;
 `;
 
@@ -55,9 +56,10 @@ export const TitleInput = styled.input`
 	border: 1px solid;
 	border-color: var(--shared-input-border-color);
 	outline: none;
+	overflow: hidden;
 	border-radius: 8px;
 	opacity: 0.4;
-	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: var(--hover-params);
 
 	&::placeholder {
 		font-size: 14px;
@@ -86,7 +88,7 @@ export const Icon = styled.svg`
 	cursor: pointer;
 	stroke: var(--radio-icons-color);
 	fill: transparent;
-	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: var(--hover-params);
 
 	&.active {
 		scale: 1.3;
@@ -162,7 +164,8 @@ export const AuthFormSubmitButton = styled.button`
 	font-size: 14px;
 	letter-spacing: -0.28px;
 
-	color: rgb(22, 22, 22);
+	// color: rgb(22, 22, 22);
+	color: var(--shared-button-text-color);
 	background-color: var(--plus-button-color);
 
 	transition: var(--hover-params);
@@ -184,24 +187,31 @@ export const ButtonPlus = styled.div`
 	background-color: var(--shared-black-plus-button);
 	margin-right: 8px;
 	padding: 7px;
-	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: var(--hover-params);
 `;
 
 export const PlusIcon = styled.svg`
 	width: 14px;
 	height: 14px;
 	stroke: var(--shared-plus-icon-color);
-	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: var(--hover-params);
 `;
 
 export const ErrorSection = styled(ErrorMessage)`
-	padding-left: 14px;
-	color: #c04d4d;
-	font-size: 18px;
-	font-family: Poppins;
-	font-weight: 500;
-	letter-spacing: -0.36px;
+ position: absolute;
+ bottom: -15px;
+ right: 0;
+ letter-spacing: -1%;
+ opacity: 0.9;
+ font-size: 11px;
+ font-weight: 400;
+ font-style: normal; 
+ letter-spacing: -0.36px; 
+ color: var(--modal-need-help-text);
+ 
 `;
+
+
 
 export const ModalForm = styled(Form)`
 	margin: 0;

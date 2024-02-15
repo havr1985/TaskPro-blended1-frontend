@@ -50,14 +50,14 @@ export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
         >
           <ModalForm>
             <FormWrapper>
-              <ErrorSection name="title" component="div" />
               <TitleInput
                 type="text"
                 id="title"
                 name="title"
-                placeholder="title"
+                placeholder="Title"
                 autoComplete="off"
               />
+              <ErrorSection name="title" component="div" />
             </FormWrapper>
 
             <AddColumnFormSubmitButton type="submit">
