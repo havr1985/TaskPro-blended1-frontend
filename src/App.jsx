@@ -19,7 +19,7 @@ const ScreensPage = lazy(() => import("./pages/ScreensPage"));
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
-  const authKey = ''; //TODO need set OAuth 2.0 Client IDs
+  const authKey = "743892905110-qm2ddc1h2elommtmf2n9iidduj7kdh5o"; //TODO need set OAuth 2.0 Client IDs
   const isRefreshing = useSelector(selectAuthIsLoading);
 
   // const allDashboards = useSelector(selectAllDashboards);
