@@ -34,9 +34,9 @@ function App() {
     <>
     <GoogleOAuthProvider clientId={authKey}>
 
-      {isRefreshing ? (
+        {isRefreshing ? (
           <LoaderApp  />
-       
+     
 			) : (
         <Routes>
           <Route path="/" element={<Layout />}>
