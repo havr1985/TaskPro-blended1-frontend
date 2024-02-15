@@ -5,17 +5,19 @@ export const Loader = () => {
     <div style={{
       display: 'grid',
       placeItems: 'center',
-      height: '100%',
+      height: '68px',
+      width: '68px',
+      backgroundColor: 'var(--secondary-background-color)', 
       transition: 'all 450ms cubic-bezier(0.4, 0, 0.2, 1)',
     }}>
      <ColorRing
   visible={true}
-  height="68"
-  width="68"
+  height="48"
+  width="48"
   ariaLabel="color-ring-loading"
   wrapperStyle={{}}
   wrapperClass="color-ring-wrapper"
-  colors={[ 'var(--start-login-button-color)','var(--radio-label-background-color)','var(--radio-label-green-color)','var(--radio-label-pink-color)']}
+  colors={['var(--plus-button-color)', 'var(--plus-button-color)', 'var(--plus-button-color)', '--plus-button-color)']}
   />
     </div>
   );
@@ -27,6 +29,7 @@ export const LoaderApp = () => {
       display: 'grid',
       placeItems: 'center',
       height: '100vh',
+      background: 'transparent',
       transition: 'all 450ms cubic-bezier(0.4, 0, 0.2, 1)',
     }}>
      <ColorRing
@@ -36,7 +39,7 @@ export const LoaderApp = () => {
   ariaLabel="color-ring-loading"
   wrapperStyle={{}}
   wrapperClass="color-ring-wrapper"
-  colors={[ 'var(--start-login-button-color)','var(--radio-label-background-color)','var(--radio-label-green-color)','var(--radio-label-pink-color)']}
+  colors={[ 'var(--welcome-hover-text-color)','var(--start-login-button-color)', 'var(--radio-label-background-color)', 'var(--primary-background-color)',]}
   />
     </div>
   );
