@@ -202,7 +202,7 @@ const Card = ({ card }) => {
                         <IconsWrap>
                           {compareDate(deadline) && (
                             <li>
-                              <IconButton>
+                              <IconButton aria-label="Bell">
                                 <Icon className="bell">
                                   <use href={icons + "#icon-bell"} />
                                 </Icon>
@@ -217,6 +217,7 @@ const Card = ({ card }) => {
                                 setCardOwner(owner);
                                 handleOpenModal(event);
                               }}
+                              aria-label="Arrow circle broken right"
                             >
                               <Icon>
                                 <use
@@ -237,6 +238,7 @@ const Card = ({ card }) => {
                                 setCardDescription(description);
                                 setCardDeadline(deadline);
                               }}
+                              aria-label="Pencil"
                             >
                               <Icon>
                                 <use href={icons + "#icon-pencil"} />
@@ -244,7 +246,10 @@ const Card = ({ card }) => {
                             </IconButton>
                           </li>
                           <li>
-                            <IconButton onClick={() => onDeleteCard(id)}>
+                            <IconButton
+                              onClick={() => onDeleteCard(id)}
+                              aria-label="Trash"
+                            >
                               <Icon>
                                 <use href={icons + "#icon-trash"} />
                               </Icon>
