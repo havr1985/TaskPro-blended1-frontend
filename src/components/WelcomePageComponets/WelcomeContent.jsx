@@ -1,8 +1,12 @@
 import iconImage from "../../shared/images/boy.png";
 import icons from "../../shared/images/icons.svg";
+
 import { ThemeComponent } from "../ThemeMode/ThemeMenu";
 import { googleLoginThunk } from "../../redux/Auth/authOperation";
 import { useDispatch } from "react-redux";
+
+
+
 import {
   WelcomeWrapper,
   WelcomeIcon,
@@ -43,7 +47,7 @@ const loginByG = async (token) => {
     <WelcomeWrapper>
       <WelcomeContainer>
         <WelcomeIcon src={iconImage} alt="boy with laptop" />
-        <ThemeComponent></ThemeComponent>
+
         <WelcomeLogo>
           <WelcomeLogoIcon>
             <use href={icons + "#icon-logo"} />

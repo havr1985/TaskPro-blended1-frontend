@@ -1,6 +1,15 @@
 import icons from "../../../shared/images/icons.svg";
 import { useModal } from "../../../hooks/useModal";
 import FormEditCard from "../../FormAddCard/FormEditCard";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { ChangeStatusModal } from "../ChangeStatusModal/ChangeStatusModal";
+import { useSearchParams } from "react-router-dom";
+import { Draggable } from "react-beautiful-dnd";
+import {
+  deleteCardThunk,
+  updateCardStatus,
+} from "../../../redux/Dashboard/dashboardOperation";
 
 import {
   CardCommandSection,
@@ -16,14 +25,6 @@ import {
   IconButton,
   IconsWrap,
 } from "./Card.styled";
-import { useDispatch } from "react-redux";
-import {
-  deleteCardThunk,
-  updateCardStatus,
-} from "../../../redux/Dashboard/dashboardOperation";
-import { useState } from "react";
-import { ChangeStatusModal } from "../ChangeStatusModal/ChangeStatusModal";
-import { useSearchParams } from "react-router-dom";
 
 const formatDeadlineDate = (deadline) => {
   const date = new Date(deadline);
@@ -109,19 +110,6 @@ const Card = ({ card }) => {
     setModalPosition({ x, y });
   };
 
-  // useEffect(() => {
-  //   const handleKeyDown = (event) => {
-  //     if (event.key === "Escape") {
-  //       toggleModalVisibility();
-  //     }
-  //   };
-
-  //   document.addEventListener("keydown", handleKeyDown);
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
-
   const {
     isModalOpen: isEditCardModalOpen,
     openModal: openEditCardModal,
@@ -171,82 +159,103 @@ const Card = ({ card }) => {
       <CardList>
         {visibleCards &&
           visibleCards.map(
-            ({ _id: id, title, description, color, deadline, owner }) => (
-              <CardWrap key={id} $prioritycolor={priorityColor(color)}>
-                <CardTitle>{title}</CardTitle>
-                <CardDescriptionWrap>
-                  <CardDescription
-                    line={2}
-                    element="span"
-                    truncateText="…"
-                    text={description}
-                  />
-                </CardDescriptionWrap>
-                <CardCommandSection>
-                  <div>
-                    <CardParams>Priority</CardParams>
-                    <CardPriorityValue $prioritycolor={priorityColor(color)}>
-                      {priorityValue(color)}
-                    </CardPriorityValue>
+            (
+              { _id: id, title, description, color, deadline, owner },
+              index
+            ) => (
+              <Draggable key={id} draggableId={id} index={index}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <CardWrap
+                      key={id}
+                      $prioritycolor={priorityColor(color)}
+                      $isdragging={snapshot.isDragging}
+                    >
+                      <CardTitle>{title}</CardTitle>
+                      <CardDescriptionWrap>
+                        <CardDescription
+                          line={2}
+                          element="span"
+                          truncateText="…"
+                          text={description}
+                        />
+                      </CardDescriptionWrap>
+                      <CardCommandSection>
+                        <div>
+                          <CardParams>Priority</CardParams>
+                          <CardPriorityValue
+                            $prioritycolor={priorityColor(color)}
+                          >
+                            {priorityValue(color)}
+                          </CardPriorityValue>
+                        </div>
+                        <div>
+                          <CardParams>Deadline</CardParams>
+                          <CardDeadlineValue>
+                            {formatDeadlineDate(deadline)}
+                          </CardDeadlineValue>
+                        </div>
+                        <IconsWrap>
+                          {compareDate(deadline) && (
+                            <li>
+                              <IconButton>
+                                <Icon className="bell">
+                                  <use href={icons + "#icon-bell"} />
+                                </Icon>
+                              </IconButton>
+                            </li>
+                          )}
+                          <li>
+                            <IconButton
+                              onClick={() => {
+                                toggleModalVisibility();
+                                setCardId(id);
+                                setCardOwner(owner);
+                                handleOpenModal(event);
+                              }}
+                            >
+                              <Icon>
+                                <use
+                                  href={
+                                    icons + "#icon-arrow-circle-broken-right"
+                                  }
+                                />
+                              </Icon>
+                            </IconButton>
+                          </li>
+                          <li>
+                            <IconButton
+                              onClick={() => {
+                                openEditCardModal();
+                                setCardId(id);
+                                setTitle(title);
+                                setCardColor(color);
+                                setCardDescription(description);
+                                setCardDeadline(deadline);
+                              }}
+                            >
+                              <Icon>
+                                <use href={icons + "#icon-pencil"} />
+                              </Icon>
+                            </IconButton>
+                          </li>
+                          <li>
+                            <IconButton onClick={() => onDeleteCard(id)}>
+                              <Icon>
+                                <use href={icons + "#icon-trash"} />
+                              </Icon>
+                            </IconButton>
+                          </li>
+                        </IconsWrap>
+                      </CardCommandSection>
+                    </CardWrap>
                   </div>
-                  <div>
-                    <CardParams>Deadline</CardParams>
-                    <CardDeadlineValue>
-                      {formatDeadlineDate(deadline)}
-                    </CardDeadlineValue>
-                  </div>
-                  <IconsWrap>
-                    {compareDate(deadline) && (
-                      <li>
-                        <IconButton>
-                          <Icon className="bell">
-                            <use href={icons + "#icon-bell"} />
-                          </Icon>
-                        </IconButton>
-                      </li>
-                    )}
-                    <li>
-                      <IconButton
-                        onClick={() => {
-                          toggleModalVisibility();
-                          setCardId(id);
-                          setCardOwner(owner);
-                          handleOpenModal(event);
-                        }}
-                      >
-                        <Icon>
-                          <use
-                            href={icons + "#icon-arrow-circle-broken-right"}
-                          />
-                        </Icon>
-                      </IconButton>
-                    </li>
-                    <li>
-                      <IconButton
-                        onClick={() => {
-                          openEditCardModal();
-                          setCardId(id);
-                          setTitle(title);
-                          setCardColor(color);
-                          setCardDescription(description);
-                          setCardDeadline(deadline);
-                        }}
-                      >
-                        <Icon>
-                          <use href={icons + "#icon-pencil"} />
-                        </Icon>
-                      </IconButton>
-                    </li>
-                    <li>
-                      <IconButton onClick={() => onDeleteCard(id)}>
-                        <Icon>
-                          <use href={icons + "#icon-trash"} />
-                        </Icon>
-                      </IconButton>
-                    </li>
-                  </IconsWrap>
-                </CardCommandSection>
-              </CardWrap>
+                )}
+              </Draggable>
             )
           )}
         <ChangeStatusModal

@@ -93,7 +93,6 @@ export default function FormAddCard({
 
   const deadlineDate = (dateFromCalendar) => {
     const date = new Date(dateFromCalendar);
-
     const day = date.getDate();
 
     const monthName = date.toLocaleString("en", { month: "long" });
@@ -230,6 +229,8 @@ export default function FormAddCard({
             onChange={setDateFromCalendar}
             onClickDay={closeCalendarModal}
             minDate={new Date()}
+            prevLabel={"<"}
+            nextLabel={">"}
           />
         </Modal>
       </SharedModal>

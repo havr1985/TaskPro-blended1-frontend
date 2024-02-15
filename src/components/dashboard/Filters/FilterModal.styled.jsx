@@ -45,6 +45,7 @@ export const FilterLine = styled.div`
 export const LabelSchowAll = styled.div`
   display: flex;
   justify-content: space-between;
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 export const StyledLabelTitle = styled.p`
   font-weight: 500;
@@ -82,107 +83,101 @@ export const StyledInputContainer = styled.div`
   gap: 8px;
 `;
 
+export const StyledSpan = styled.span`
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 1000; 
+  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.blue {
+    background-color: var(--radio-label-color);
+  }
+  &.pink {
+    background-color: var(--radio-label-pink-color);
+  }
+  &.green {
+    background-color: var(--radio-label-green-color);
+  }
+  &.gray {
+    background-color: var(--filter-radio-gray-color);
+  }
+
+`;
+
 export const StyledRadioInput = styled.input`
   position: absolute;
   appearance: none;
-  z-index: 5;
+  z-index: 1000; 
   top: 0;
   left: 0;
   border-radius: 50%;
   margin: 0;
   width: 14px;
   height: 14px;
+  background-color:transparent; 
+  outline: none;
   cursor: pointer;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:checked.blue {
-  border: 1px solid #8fa1d0; 
-  };
-
-  &:checked.pink {
-    border: 1px solid #e09cb5; 
-  };
-
-  &:checked.green {
-    border: 1px solid #bedbb0;
-  };
-
-  &:checked.gray {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  };
-`
-  
-export const StyledSpan = styled.span`
-  content: "";
-  display: block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: transparent;
-
-  &.blue {
-    background-color: #8fa1d0; 
+  &:checked.low {
+    border: 1px solid var(--radio-label-color);
   }
-  &.pink {
-    background-color: #e09cb5; 
+
+  &:checked.medium {
+    border: 1px solid var(--radio-label-pink-color);;
   }
-  &.green {
-    background-color: #bedbb0; 
+
+  &:checked.high {
+    border: 1px solid var(--radio-label-green-color);;
   }
+
+  &:checked.without {
+    border: 1px solid var(--filter-radio-gray-color)}
+  }
+
   &.gray {
     background-color: #ffffff4d;
   }
+
 `;
 
-export const StyledColorText = styled.p`
+export const StyledColorText = styled.span`
   color: var(--screens-page-tutorial-text-color);
   font-size: 12px;
-  margin-left: 24px;
+  margin-left: 8px;
+  z-index: 1000;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     color: var(--modal-filters-text);
-    font-weight: 500;
+    font-weight: bold;
   }
 
   &:focus {
     color: var(--modal-filters-text);
-    font-weight: 500;
-  }
-
-   &:active {
-    color: var(--modal-filters-text);
-    font-weight: 500;
+    font-weight: bold;
   }
 `;
+
 export const StyledLabel = styled.label`
   position: relative;
   display: flex;
   flex-direction: row;
-
   height: 18px;
   margin: 0;
+  z-index: 999; 
   cursor: pointer;
-  transition: var(--hover-params);
 
-  &:focus {
+ input[type="radio"]:checked + ${StyledSpan} {
+   scale: 0.5;
+   }
+   
+  input[type="radio"]:checked + ${StyledSpan} + ${StyledColorText} {
     color: var(--modal-filters-text);
-    scale: 1.1;
-  };
-
-  &:hover {
-  color: var(--modal-filters-text);
-  scale: 1.1;
-  };
-  
-  &:active {
-  scale: 1.1} + ${StyledColorText} {color: var(--modal-filters-text);
-  font-weight: 500;
-  }; 
-
-  input[type="radio"]:checked + ${StyledSpan} {
-  scale: 0.5} + ${StyledColorText} {color: var(--modal-filters-text);
-  font-weight: 500;
-  };
+    font-weight: 500;
+  } ;
 `;
-

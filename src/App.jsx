@@ -7,9 +7,9 @@ import { currentThunk } from "./redux/Auth/authOperation";
 import { RestictedRoute } from "./components/RestictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { selectAuthIsLoading } from "./redux/Auth/authSelectors";
-
+import { LoaderApp } from "./shared/Loader/loader";
 import { ToastContainer } from "react-toastify";
-
+/* import LoaderBox from "./AppStyled"; */
 import ErrorPage from "./pages/ErrorPage";
 
 const WelcomePage = lazy(() => import("./pages/WelcomePage"));
@@ -33,9 +33,11 @@ function App() {
   return (
     <>
     <GoogleOAuthProvider clientId={authKey}>
+
       {isRefreshing ? (
-        <div>Loadind...</div>
-      ) : (
+          <LoaderApp  />
+       
+			) : (
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route
@@ -89,8 +91,10 @@ function App() {
         pauseOnHover
         theme="light"
       />
+
       </GoogleOAuthProvider>;
     </>
+
   );
 }
 

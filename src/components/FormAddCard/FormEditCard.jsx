@@ -78,7 +78,7 @@ export default function FormEditCard({
       title: values.title,
       description: values.description,
       color: values.color,
-      deadline: dateFromCalendar,
+      deadline: `${dateFromCalendar ? dateFromCalendar : cardDeadline}`,
     };
 
     dispatch(updateCardThunk(updateCard));
@@ -144,7 +144,7 @@ export default function FormEditCard({
                   placeholder="Description"
                 />
                 <ErrorText
-                  name="Description"
+                  name="description"
                   component="div"
                   className="error"
                 />
@@ -234,6 +234,8 @@ export default function FormEditCard({
             onChange={setDateFromCalendar}
             onClickDay={closeCalendarModal}
             minDate={new Date()}
+            prevLabel={"<"}
+            nextLabel={">"}
           />
         </Modal>
       </SharedModal>

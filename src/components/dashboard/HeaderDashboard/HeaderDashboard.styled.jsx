@@ -1,26 +1,43 @@
 import styled from "styled-components";
 
 export const HeaderWrap = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-  @media (min-width: 768px) {
-    margin-bottom: 26px;
-  }
+	margin-right: -16px;
+	margin-left: -16px;
+	padding: 0 16px;
+	min-width: 100%;
 
-  @media (min-width: 1440px) {
-    margin-bottom: 14px;
-  }
+	margin-bottom: 39px;
+	background-color: var(--headerdashboard-background-color);
+	border-radius: 4px;
+
+	@media screen and (max-width: 1439px) {
+		padding: 13px 16px;
+		margin-bottom: 13px;
+	}
+
+	@media screen and (min-width: 1440px) {
+		margin-bottom: 10px;
+	}
+
+	@media screen and (max-width: 767px) {
+		padding: 7px 20px;
+		margin-bottom: 39px;
+	}
 `;
 
 export const DashboardName = styled.h2`
-  margin: 0;
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: -0.02em;
-  color: var(--card-title-color);
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+	margin: 0;
+	font-weight: 500;
+	font-size: 18px;
+	letter-spacing: -0.02em;
+	color: var(--card-title-color);
+	border-radius: 4px;
+	background-color: transparent;
+	padding: 2px;
+	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 `;

@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/Auth/authOperation";
 import * as Yup from "yup";
+
 import { ToastContainer, toast } from "react-toastify";
-import { ErrorContainer} from '../LoginForm/LoginForm.styled';
 
 // import { Link } from "react-router-dom";
 
@@ -20,8 +20,10 @@ import {
   Passwordsvg,
   ErrorText,
   StyledWrapInputAuth,
+  InputInput,
 } from "./RegisterForm.styled";
 import icons from "../../shared/images/icons.svg";
+import { ErrorContainer } from "../LoginForm/LoginForm.styled";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string()
@@ -91,7 +93,7 @@ export const RegisterForm = () => {
           </LinkMenu>
           <InputField>
             <StyledWrapInputAuth>
-              <input
+              <InputInput
                 id="name"
                 name="name"
                 type="text"
@@ -106,7 +108,7 @@ export const RegisterForm = () => {
             </StyledWrapInputAuth>
 
             <StyledWrapInputAuth>
-              <input
+              <InputInput
                 id="email"
                 name="email"
                 type="email"
@@ -121,7 +123,7 @@ export const RegisterForm = () => {
             </StyledWrapInputAuth>
             <StyledWrapInputAuth>
               <PasswordInput>
-                <input
+                <InputInput
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"

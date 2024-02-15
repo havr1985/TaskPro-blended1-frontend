@@ -2,12 +2,12 @@ import Calendar from "react-calendar";
 import styled from "styled-components";
 
 export const StyledCalendar = styled(Calendar)`
-  border: 1px solid #bedbb0;
+  border: 1px solid var(--primary-button-color);
   border-radius: 8px;
   width: 233px;
   height: 254px;
 
-  background-color: #1f1f1f;
+  background-color: var(--datepicker-background-color);
 
   .react-calendar,
   .react-calendar *,
@@ -32,20 +32,20 @@ export const StyledCalendar = styled(Calendar)`
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 14px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--datepicker-disabled-day);
   }
 
   .react-calendar__navigation button {
     height: 56px;
     background: none;
-    color: #ffffff;
+    color: var(--datepicker-current-day);
     border: none;
-    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--hover-params);
   }
 
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
-    color: #bedbb0;
+    color: var(--primary-button-color);
   }
 
   .react-calendar__navigation__arrow.react-calendar__navigation__prev2-button {
@@ -85,7 +85,7 @@ export const StyledCalendar = styled(Calendar)`
     font-weight: 500;
     font-size: 14px;
     letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--screens-page-tutorial-text-color);
     text-align: center;
   }
 
@@ -101,33 +101,31 @@ export const StyledCalendar = styled(Calendar)`
   }
 
   .react-calendar__month-view__days__day {
-    /* width: 10px; */
-    /* height: 10px; */
     border: none;
     border-radius: 50%;
     background-color: transparent;
     letter-spacing: -0.02em;
-    color: #ffffff;
+    color: var(--datepicker-current-day);
     cursor: pointer;
-    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--hover-params);
 
     &:hover {
-      color: #9dc888;
+      color: var(--primary-button-color);
     }
   }
 
   .react-calendar__tile--active {
-    background-color: #9dc888; /* цвет выбранного фона */
-    color: #1f1f1f; /* цвет выбранного текста */
+    color: var(--datepicker-title-active);
+    background-color: var(--primary-button-color);
   }
 
   .react-calendar__tile--now {
-    color: #1f1f1f;
-    background-color: #bedbb0;
+    color: var(--datepicker-title-active);
+    background-color: var(--primary-button-color);
   }
 
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: rgba(255, 255, 255, 0.2);
+    color: var(--datepicker-disabled-day);
   }
 
   .react-calendar__year-view__months {
@@ -142,13 +140,13 @@ export const StyledCalendar = styled(Calendar)`
     font-weight: 500;
     font-size: 10px;
     letter-spacing: -0.02em;
-    color: #fff;
-    background-color: #1f1f1f;
-    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--datepicker-current-day);
+    background-color: var(--datepicker-background-color);
+    transition: all var(--hover-params);
 
     &:hover,
     &:focus {
-      color: #9dc888;
+      color: var(--primary-button-color);
     }
   }
 
@@ -164,13 +162,13 @@ export const StyledCalendar = styled(Calendar)`
     font-weight: 500;
     font-size: 12px;
     letter-spacing: -0.02em;
-    color: #fff;
-    background-color: #1f1f1f;
-    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--datepicker-current-day);
+    background-color: var(--datepicker-background-color);
+    transition: all var(--hover-params);
 
     &:hover,
     &:focus {
-      color: #9dc888;
+      color: var(--primary-button-color);
     }
   }
 
@@ -186,13 +184,13 @@ export const StyledCalendar = styled(Calendar)`
     font-weight: 500;
     font-size: 12px;
     letter-spacing: -0.02em;
-    color: #fff;
-    background-color: #1f1f1f;
-    transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--datepicker-current-day);
+    background-color: var(--datepicker-background-color);
+    transition: all var(--hover-params);
 
     &:hover,
     &:focus {
-      color: #9dc888;
+      color: var(--primary-button-color);
     }
   }
 `;

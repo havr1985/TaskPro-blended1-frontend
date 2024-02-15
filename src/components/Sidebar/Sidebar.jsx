@@ -13,9 +13,11 @@ import {
 import { getDashboardByIDThunk } from "../../redux/Dashboard/dashboardOperation";
 import { CreateNewBoard } from "./CreateNewBoard/CreateNewBoard";
 import { useModal } from "../../hooks/useModal";
+import useSelectImage from "../../hooks/useSelectImage";
 
 export const Sidebar = ({ isOpen }) => {
 	const [selectedItem, setSelectedItem] = useState("");
+	const [slectedItemId, setSelectedItemId] = useState("");
 	const boards = useSelector(selectAllDashboards);
 	const { result } = useSelector(selectCurrentDashboard);
 	const [userBoards, setUserBoards] = useState([]);
@@ -32,15 +34,23 @@ export const Sidebar = ({ isOpen }) => {
 	}, [result]);
 
 	const handleClick = item => {
-		// setSelectedItem(item);
-		dispatch(getDashboardByIDThunk(item._id));
+		if (selectedItem._id !== item._id && slectedItemId !== item._id) {
+			dispatch(getDashboardByIDThunk(item._id));
+			setSelectedItemId(item._id);
+		}
 	};
+
+	const { selectImage, currentImage } = useSelectImage();
 
 	return (
 		<SidebarContainer className={isOpen === true && "active"}>
 			<>
 				<Logo icon={sprite} />
-				<CreateNewBoard openModal={openModal} icon={sprite} />
+				<CreateNewBoard
+					openModal={openModal}
+					viewport={selectImage}
+					icon={sprite}
+				/>
 				<WrapperContent>
 					<MyBoards
 						icon={sprite}
@@ -49,6 +59,9 @@ export const Sidebar = ({ isOpen }) => {
 						selectedItem={selectedItem}
 						isModalOpen={isModalOpen}
 						closeModal={closeModal}
+						setSelectedItemId={setSelectedItemId}
+						gallery={currentImage}
+						viewport={selectImage}
 						//   setUserBoards={setUserBoards}
 					/>
 				</WrapperContent>

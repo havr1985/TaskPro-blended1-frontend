@@ -12,6 +12,7 @@
   --user-icon-stroke-color: #ffffff;
   --user-icon-plus-fill-color: #bedbb0;
   --user-icon-plus-stroke-color: #121212;
+  --opacity-backgoorund-color: rgba(0, 0, 0, 0.3);
   --welcomeBgColor: linear-gradient(
     180deg,
     #ffffff 0%,
@@ -22,6 +23,8 @@
   --loginform-border: rgba(190, 219, 176, 0.4);
   --secondary-login-button-color: #9dc888;
   --start-login-button-color: rgb(190, 219, 176);
+
+  --hover-params: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* dark theme */
@@ -30,6 +33,7 @@ html[data-theme="dark"] {
   --primary-background-color: #121212;
   --secondary-background-color: #1f1f1f;
   --header-background-color: #161616;
+  --headerdashboard-background-color: rgba(22, 22, 22, 0.75);
   --sidebar-help-backgound-color: #1f1f1f;
   --needhelp-backdrop-background-color: rgba(0, 0, 0, 0.7);
   --primary-button-color: #bedbb0;
@@ -51,6 +55,7 @@ html[data-theme="dark"] {
   --card-params-value-text-color: #ffffff;
   --card-title-color: #ffffff;
   --filter-text-and-icon-color: rgba(255, 255, 255, 0.8);
+  --filter-radio-gray-color: rgba(255, 255, 255, 0.3);
   --background-add-column-btn-color: #121212;
   --welcome-message-text-color: rgba(255, 255, 255, 0.5);
   --welcome-message-text-accent-color: #bedbb0;
@@ -66,6 +71,7 @@ html[data-theme="dark"] {
   --datepicker-current-day: #ffffff;
   --datepicker-disabled-day: rgba(255, 255, 255, 0.2);
   --datepicker-hover-disabled-day: rgba(255, 255, 255, 0.2);
+  --datepicker-title-active: #1f1f1f;
   --textarea-border-color: rgba(190, 219, 176, 0.4);
   --datepicker-dayname-color: rgba(255, 255, 255, 0.5);
   --modal-filters-text: #ffffff;
@@ -149,6 +155,7 @@ html[data-theme="light"] {
   --primary-background-color: #fdfdfd;
   --secondary-background-color: #f6f6f7;
   --header-background-color: #fcfcfc;
+  --headerdashboard-background-color: rgba(252, 252, 252, 0.75);
   --sidebar-help-backgound-color: #f6f6f7;
   --needhelp-backdrop-background-color: #ffffff;
   --primary-button-color: #bedbb0;
@@ -170,6 +177,7 @@ html[data-theme="light"] {
   --card-params-value-text-color: #161616;
   --card-title-color: #161616;
   --filter-text-and-icon-color: rgba(22, 22, 22, 0.8);
+  --filter-radio-gray-color: rgba(22, 22, 22, 0.3);
   --background-add-column-btn-color: #ffffff;
   --welcome-message-text-color: rgba(22, 22, 22, 0.7);
   --welcome-message-text-accent-color: #bedbb0;
@@ -184,6 +192,7 @@ html[data-theme="light"] {
   --datepicker-hover-background-color: #bedbb0;
   --datepicker-disabled-day: rgba(22, 22, 22, 0.2);
   --datepicker-hover-disabled-day: rgba(22, 22, 22, 0.2);
+  --datepicker-title-active: #161616;
   --textarea-border-color: rgba(190, 219, 176, 0.4);
   --datepicker-dayname-color: rgba(22, 22, 22, 0.5);
   --modal-filters-text: #161616;
@@ -264,9 +273,10 @@ html[data-theme="light"] {
 
 /* purple theme */
 html[data-theme="violet"] {
-  --primary-background-color: #ecedfd;
-  --secondary-background-color: #ecedfd66;
+  --primary-background-color: #FCFCFC;
+  --secondary-background-color: #ecedfd;
   --header-background-color: #ffffff;
+  --headerdashboard-background-color: rgba(252, 252, 252, 0.75);
   --sidebar-help-backgound-color: rgba(236, 237, 253, 0.4);
   --needhelp-backdrop-background-color: #ffffff;
   --primary-button-color: #5255bc;
@@ -289,6 +299,7 @@ html[data-theme="violet"] {
   --card-params-value-text-color: #161616;
   --card-title-color: #161616;
   --filter-text-and-icon-color: rgba(22, 22, 22, 0.8);
+  --filter-radio-gray-color: rgba(22, 22, 22, 0.3);
   --background-add-column-btn-color: #ffffff;
   --welcome-message-text-color: rgba(22, 22, 22, 0.7);
   --welcome-message-text-accent-color: #5255bc;
@@ -303,6 +314,7 @@ html[data-theme="violet"] {
   --datepicker-hover-background-color: #5255bc;
   --datepicker-disabled-day: rgba(22, 22, 22, 0.2);
   --datepicker-hover-disabled-day: rgba(22, 22, 22, 0.2);
+  --datepicker-title-active: #fcfcfc;
   --textarea-border-color: rgb(172, 192, 241);
   --datepicker-dayname-color: rgba(22, 22, 22, 0.5);
   --modal-filters-text: #161616;

@@ -12,18 +12,19 @@ export const TitleInput = styled(Field)`
   font-family: "Poppins";
   letter-spacing: -0.28px;
 
-  background-color: rgb(31, 31, 31);
-  border: 1px solid rgb(190, 219, 176);
+  background-color: var(--datepicker-background-color);
+  border: 1px solid var(--shared-input-border-color);
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   border-radius: 8px;
 
   opacity: 0.4;
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: rgb(255, 255, 255);
+  transition: var(--hover-params);
+
+  color: vat(--modal-title-color);
 
   &::placeholder {
-    color: rgb(255, 255, 255);
+    color: vat(--modal-title-color);
     letter-spacing: -0.28px;
   }
 
@@ -46,10 +47,11 @@ export const EditColumnFormSubmitButton = styled.button`
   font-size: 14px;
   letter-spacing: -0.28px;
 
-  color: rgb(22, 22, 22);
-  background-color: rgb(190, 219, 176);
+  color: var(--modal-window-color);
+  background-color: var(--plus-button-color);
 
-  transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--hover-params);
+
   cursor: pointer;
 
   &:hover {

@@ -17,7 +17,7 @@ import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelec
 import { addColumnThunk } from "../../../redux/Dashboard/dashboardOperation";
 
 const validationSchema = Yup.object().shape({
-  title: Yup.string().min("6").required("specify a column name"),
+  title: Yup.string().min("1").required("specify a column name"),
 });
 
 export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
@@ -40,22 +40,24 @@ export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Add column"}
-      maxWidth="335px">
+      maxWidth="335px"
+    >
       <Section>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}>
+          onSubmit={handleSubmit}
+        >
           <ModalForm>
             <FormWrapper>
-              <ErrorSection name="title" component="div" />
               <TitleInput
                 type="text"
                 id="title"
                 name="title"
-                placeholder="title"
+                placeholder="Title"
                 autoComplete="off"
               />
+              <ErrorSection name="title" component="div" />
             </FormWrapper>
 
             <AddColumnFormSubmitButton type="submit">

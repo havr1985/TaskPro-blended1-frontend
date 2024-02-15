@@ -1,21 +1,5 @@
 import icons from "../../../shared/images/icons.svg";
 import Card from "../Card/Card";
-import {
-  AddCardButton,
-  AddCardIconPlus,
-  AddCardIconWrap,
-  AddColumnButton,
-  DashboardColumnTitle,
-  Icon,
-  IconButton,
-  IconPlus,
-  IconWrap,
-  IconsWrap,
-  MainDashboardColumn,
-  MainDashboardList,
-  MainDashboardWrap,
-  Title,
-} from "./MainDashboard.styled";
 import { useModal } from "../../../hooks/useModal";
 import { Overlay } from "../../../pages/HomePage.styled";
 import { AddColumnModal } from "../AddColumnModal/AddColumnModal";
@@ -25,130 +9,203 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDashboard } from "../../../redux/Dashboard/dashboardsSelectors";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import {
-  deleteColumnThunk,
-  getDashboardByIDThunk,
+	deleteColumnThunk,
+	getDashboardByIDThunk,
+	updateCardStatus,
+	updateCardStatusLocalThunk,
 } from "../../../redux/Dashboard/dashboardOperation";
+import {
+	AddCardButton,
+	AddCardIconPlus,
+	AddCardIconWrap,
+	AddColumnButton,
+	DashboardColumnTitle,
+	Icon,
+	IconButton,
+	IconPlus,
+	IconWrap,
+	IconsWrap,
+	MainDashboardColumn,
+	MainDashboardList,
+	MainDashboardWrap,
+	Title,
+} from "./MainDashboard.styled";
 
 const MainDashboard = () => {
-  const {
-    isModalOpen: isAddColumnModalOpen,
-    openModal: openAddColumnModal,
-    closeModal: closeAddColumnModal,
-  } = useModal();
+	const [selectedId, setSelectedId] = useState(null);
+	const [columnsBoard, setColumnsBoard] = useState(null);
 
-  const {
-    isModalOpen: isEditColumnModalOpen,
-    openModal: openEditColumnModal,
-    closeModal: closeEditColumnModal,
-  } = useModal();
+	const {
+		isModalOpen: isAddColumnModalOpen,
+		openModal: openAddColumnModal,
+		closeModal: closeAddColumnModal,
+	} = useModal();
 
-  const {
-    isModalOpen: isAddCardModalOpen,
-    openModal: openAddCardModal,
-    closeModal: closeAddCardModal,
-  } = useModal();
+	const {
+		isModalOpen: isEditColumnModalOpen,
+		openModal: openEditColumnModal,
+		closeModal: closeEditColumnModal,
+	} = useModal();
 
-  const { column: columns } = useSelector(selectCurrentDashboard);
-  const { state } = useLocation();
-  const dispatch = useDispatch();
+	const {
+		isModalOpen: isAddCardModalOpen,
+		openModal: openAddCardModal,
+		closeModal: closeAddCardModal,
+	} = useModal();
 
-  const [selectedId, setSelectedId] = useState(null);
+	const { column: columns } = useSelector(selectCurrentDashboard);
 
-  useEffect(() => {
-    if (columns === undefined) {
-      if (state) dispatch(getDashboardByIDThunk(state.id));
-    }
-  }, [columns, dispatch, state?.id, state]);
+	const { state } = useLocation();
+	const dispatch = useDispatch();
 
-  const onDeleteColumn = (id) => {
-    dispatch(deleteColumnThunk(id));
-  };
+	useEffect(() => {
+		if (columns === undefined) {
+			if (state) dispatch(getDashboardByIDThunk(state.id));
+		}
+	}, [columns, dispatch, state?.id, state]);
 
-  return (
-    <MainDashboardWrap>
-      <MainDashboardList>
-        {columns === undefined ? (
-          <></>
-        ) : (
-          columns.map(({ _id: id, title, card }) => {
-            return (
-              <MainDashboardColumn key={id}>
-                <div>
-                  <DashboardColumnTitle>
-                    <Title>{title}</Title>
-                    <IconsWrap>
-                      <IconButton
-                        onClick={() => {
-                          openEditColumnModal();
-                          setSelectedId(id);
-                        }}
-                      >
-                        <Icon>
-                          <use href={icons + "#icon-pencil"} />
-                        </Icon>
-                      </IconButton>
-                      <IconButton onClick={() => onDeleteColumn(id)}>
-                        <Icon>
-                          <use href={icons + "#icon-trash"} />
-                        </Icon>
-                      </IconButton>
-                    </IconsWrap>
-                  </DashboardColumnTitle>
-                </div>
-                <Card card={card} />
-                <div>
-                  <AddCardButton
-                    onClick={() => {
-                      openAddCardModal();
-                      setSelectedId(id);
-                    }}
-                  >
-                    <AddCardIconWrap>
-                      <AddCardIconPlus>
-                        <use href={icons + "#icon-plus"} />
-                      </AddCardIconPlus>
-                    </AddCardIconWrap>
-                    Add Card
-                  </AddCardButton>
-                </div>
-              </MainDashboardColumn>
-            );
-          })
-        )}
-      </MainDashboardList>
-      <AddColumnButton onClick={openAddColumnModal}>
-        <IconWrap>
-          <IconPlus>
-            <use href={icons + "#icon-plus"} />
-          </IconPlus>
-        </IconWrap>
-        Add column
-      </AddColumnButton>
-      <Overlay
-        onClick={closeAddColumnModal}
-        className={isAddColumnModalOpen === true && "active"}
-      ></Overlay>
-      <AddColumnModal
-        modalStateSwapper={closeAddColumnModal}
-        isModalOpen={isAddColumnModalOpen}
-      />
-      <Overlay
-        onClick={closeEditColumnModal}
-        className={isEditColumnModalOpen === true && "active"}
-      ></Overlay>
-      <EditColumnModal
-        modalStateSwapper={closeEditColumnModal}
-        isModalOpen={isEditColumnModalOpen}
-        columnId={selectedId}
-      />
-      <FormAddCard
-        modalStateSwapper={closeAddCardModal}
-        isModalOpen={isAddCardModalOpen}
-        columnId={selectedId}
-      />
-    </MainDashboardWrap>
-  );
+	const onDeleteColumn = id => {
+		dispatch(deleteColumnThunk(id));
+	};
+
+	useEffect(() => {
+		if (columns) {
+			// Инициализация состояния столбцов при получении данных
+			const initializedColumns = {};
+			columns.forEach(column => {
+				initializedColumns[column._id] = {
+					columnId: column._id,
+					items: column.card,
+				};
+			});
+			setColumnsBoard(initializedColumns);
+		}
+	}, [columns]);
+
+	const onDragEnd = (result, columnsBoard) => {
+		if (!result.destination) return;
+		const { source, destination } = result;
+
+		const sourceColumn = columnsBoard[source.droppableId];
+		const movedItem = sourceColumn.items[source.index];
+		const destColumn = columnsBoard[destination.droppableId];
+
+		const data = {
+			card: movedItem,
+			currentColumnId: sourceColumn.columnId,
+			newColumnId: destColumn.columnId,
+			currentCardIdx: source.index,
+			newCardIdx: destination.index,
+		};
+
+		dispatch(updateCardStatusLocalThunk(data));
+
+		dispatch(
+			updateCardStatus({
+				columnId: destination.droppableId,
+				cardId: movedItem._id,
+				owner: movedItem.owner,
+			}),
+		);
+	};
+
+	return (
+		<MainDashboardWrap>
+			<DragDropContext
+				onDragEnd={result => {
+					onDragEnd(result, columnsBoard, setColumnsBoard);
+				}}>
+				<MainDashboardList>
+					{columns === undefined ? (
+						<></>
+					) : (
+						columns.map(({ _id: id, title, card }, index) => {
+							return (
+								<Droppable key={index} droppableId={id}>
+									{provided => (
+										<MainDashboardColumn
+											key={id}
+											ref={provided.innerRef}
+											{...provided.droppableProps}>
+											<div>
+												<DashboardColumnTitle>
+													<Title>{title}</Title>
+													<IconsWrap>
+														<IconButton
+															onClick={() => {
+																openEditColumnModal();
+																setSelectedId(id);
+															}}>
+															<Icon>
+																<use href={icons + "#icon-pencil"} />
+															</Icon>
+														</IconButton>
+														<IconButton onClick={() => onDeleteColumn(id)}>
+															<Icon>
+																<use href={icons + "#icon-trash"} />
+															</Icon>
+														</IconButton>
+													</IconsWrap>
+												</DashboardColumnTitle>
+											</div>
+											<div>
+												<Card card={card} />
+
+												<AddCardButton
+													onClick={() => {
+														openAddCardModal();
+														setSelectedId(id);
+													}}>
+													<AddCardIconWrap>
+														<AddCardIconPlus>
+															<use href={icons + "#icon-plus"} />
+														</AddCardIconPlus>
+													</AddCardIconWrap>
+													Add Card
+												</AddCardButton>
+											</div>
+											{provided.placeholder}
+										</MainDashboardColumn>
+									)}
+								</Droppable>
+							);
+						})
+					)}
+				</MainDashboardList>
+			</DragDropContext>
+
+			<AddColumnButton onClick={openAddColumnModal}>
+				<IconWrap>
+					<IconPlus>
+						<use href={icons + "#icon-plus"} />
+					</IconPlus>
+				</IconWrap>
+				Add column
+			</AddColumnButton>
+			<Overlay
+				onClick={closeAddColumnModal}
+				className={isAddColumnModalOpen === true && "active"}></Overlay>
+			<AddColumnModal
+				modalStateSwapper={closeAddColumnModal}
+				isModalOpen={isAddColumnModalOpen}
+			/>
+			<Overlay
+				onClick={closeEditColumnModal}
+				className={isEditColumnModalOpen === true && "active"}></Overlay>
+			<EditColumnModal
+				modalStateSwapper={closeEditColumnModal}
+				isModalOpen={isEditColumnModalOpen}
+				columnId={selectedId}
+			/>
+			<FormAddCard
+				modalStateSwapper={closeAddCardModal}
+				isModalOpen={isAddCardModalOpen}
+				columnId={selectedId}
+			/>
+		</MainDashboardWrap>
+	);
 };
 
 export default MainDashboard;

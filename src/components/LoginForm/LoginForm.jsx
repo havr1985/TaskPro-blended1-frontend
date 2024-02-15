@@ -4,7 +4,7 @@ import icons from "../../shared/images/icons.svg";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { loginThunk } from '../../redux/Auth/authOperation';
-import { LoginWrapper, LoginContainer,  InputContainer, InputBthEye, NavContainer,  LoginBtn, ErrorText,  LoginInput, ErrorContainer} from './LoginForm.styled';
+import { LoginWrapper, LoginContainer,  InputContainer, InputBthEye, NavContainer,  LoginBtn, ErrorText,  LoginInput, ErrorContainer, CorectDiv} from './LoginForm.styled';
 import { NavLink } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -57,6 +57,7 @@ export const LoginForm = () => {
         </NavContainer>
 
         <form onSubmit={formik.handleSubmit}>
+          <CorectDiv>
           <InputContainer>
             <label htmlFor="email"></label>
             <LoginInput
@@ -100,6 +101,9 @@ export const LoginForm = () => {
               <ErrorText>{formik.errors.password}</ErrorText>
             ) : null}
           </InputContainer>
+
+          </CorectDiv>
+          
           <LoginBtn type="submit">Log in Now</LoginBtn>
         </form>
 
