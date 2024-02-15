@@ -56,6 +56,7 @@ export const AddColumnModal = ({ isModalOpen, modalStateSwapper }) => {
                 name="title"
                 placeholder="Title"
                 autoComplete="off"
+                autoFocus
               />
               <ErrorSection name="title" component="div" />
             </FormWrapper>

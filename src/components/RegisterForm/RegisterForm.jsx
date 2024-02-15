@@ -83,7 +83,7 @@ export const RegisterForm = () => {
             <RegisterLink
               to="/auth/register"
               underline="none"
-              style={{ color: "#ffffff", fontWeight: "bold" }}
+              style={{ color: "#ffffff" }}
             >
               Registration
             </RegisterLink>
@@ -101,6 +101,7 @@ export const RegisterForm = () => {
                 value={formik.values.name}
                 onBlur={formik.handleBlur}
                 placeholder="Enter your name"
+                autoFocus
               />
               {formik.touched.name && formik.errors.name ? (
                 <ErrorText>{formik.errors.name}</ErrorText>
@@ -132,7 +133,7 @@ export const RegisterForm = () => {
                   value={formik.values.password}
                   placeholder="Create a password"
                 />
-                <Passwordsvg width="18px" onClick={togglePasswordVisiblity}>
+                <Passwordsvg onClick={togglePasswordVisiblity}>
                   {" "}
                   <use href={icons + "#icon-password-eye"}></use>{" "}
                 </Passwordsvg>
@@ -145,9 +146,8 @@ export const RegisterForm = () => {
 
           <RegisterBtn type="submit">Register Now</RegisterBtn>
         </form>
-        <ErrorContainer> 
-      <ToastContainer
-        />
+        <ErrorContainer>
+          <ToastContainer />
         </ErrorContainer>
       </FormContainer>
     </Container>

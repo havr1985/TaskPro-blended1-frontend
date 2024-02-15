@@ -128,6 +128,7 @@ export default function FormAddCard({
                   onChange={handleChange}
                   value={values.title}
                   placeholder="Title"
+                  autoFocus
                 />
                 <Error name="title" component="div" className="error" />
               </Container>

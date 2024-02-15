@@ -21,7 +21,7 @@ export const TitleInput = styled(Field)`
   opacity: 0.4;
   transition: var(--hover-params);
 
-  color: vat(--modal-title-color);
+  color: var(--modal-title-color);
 
   &::placeholder {
     color: vat(--modal-title-color);
