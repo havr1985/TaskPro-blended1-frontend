@@ -44,12 +44,14 @@ export const EditColumnModal = ({
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Edit column"}
-      maxWidth="335px">
+      maxWidth="335px"
+    >
       <Section>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}>
+          onSubmit={handleSubmit}
+        >
           <ModalForm>
             <FormWrapper>
               <ErrorSection name="title" component="div" />
@@ -59,6 +61,7 @@ export const EditColumnModal = ({
                 name="title"
                 placeholder="Title"
                 autoComplete="off"
+                autoFocus
               />
             </FormWrapper>
 

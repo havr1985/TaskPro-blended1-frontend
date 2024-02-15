@@ -200,8 +200,8 @@ export default function FormEditCard({
               </StyledContainerRadioBtn>
 
               <StyledDeadlineTitle>Deadline</StyledDeadlineTitle>
-              <StyledDeadlineWrapper>
-                <TextDeadlain onClick={openCalendarModal}>
+              <StyledDeadlineWrapper onClick={openCalendarModal}>
+                <TextDeadlain>
                   {dateFromCalendar === null
                     ? deadlineDate(cardDeadline)
                     : deadlineDate(dateFromCalendar)}

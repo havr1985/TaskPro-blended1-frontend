@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginWrapper = styled.div`
@@ -6,41 +7,65 @@ export const LoginWrapper = styled.div`
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background: var(--welcomeBgColor);`
+  background: var(--welcomeBgColor);
+`;
 
 export const LoginContainer = styled.div`
-display: flex;
-min-width: 320px;
+  display: flex;
+  min-width: 320px;
 
-flex-direction: column;
-align-items: start;
-background: var(--user-icon-plus-stroke-color);
-padding: 24px;
- border: 1px solid var(--loginform-border);
-border-radius: 8px;
+  flex-direction: column;
+  align-items: start;
+  background: var(--user-icon-plus-stroke-color);
+  padding: 24px;
+  border: 1px solid var(--loginform-border);
+  border-radius: 8px;
 
-@media (min-width: 375px) {
-    width: 335px
-  };
+  @media (min-width: 375px) {
+    width: 335px;
+  }
 
-@media (min-width: 768px) {
-width: 424px;
-padding: 40px;
-}     
-`
+  @media (min-width: 768px) {
+    width: 424px;
+    padding: 40px;
+  }
+`;
+
+export const RegisterLink = styled(Link)`
+  margin-right: 14px;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  text-decoration: none;
+`;
+
+export const LoginLink = styled(Link)`
+  left: 160px;
+  top: 40px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--color-pale-white);
+  text-decoration: none;
+`;
+
 export const InputContainer = styled.div`
-position: relative;
-width: 287px;
-height: 49px;
-background: var(--welcome-background-color);
-// margin-bottom: 14px;
-box-shadow: 0px 4px 16px var(--color-shadow);
-border-radius: 8px;
+  position: relative;
+  width: 287px;
+  height: 49px;
+  background: var(--welcome-background-color);
+  // margin-bottom: 14px;
+  box-shadow: 0px 4px 16px var(--color-shadow);
+  border-radius: 8px;
 
-@media (min-width: 767px) {
-width: 344px;
-} 
-`
+  @media (min-width: 767px) {
+    width: 344px;
+  }
+`;
 
 export const LoginInput = styled.input`
   outline: none;
@@ -54,12 +79,9 @@ export const LoginInput = styled.input`
   padding-left: 18px;
   background-color: var(--welcome-background-color);
   border-radius: 8px;
-   transition: var(--hover-params);
- 
-  &:focus {
-    border: 1px solid var(--secondary-login-button-color);
-  }
+  transition: var(--hover-params);
 
+  &:focus,
   &:active {
     border: 1px solid var(--secondary-login-button-color);
   }
@@ -67,30 +89,34 @@ export const LoginInput = styled.input`
   @media (min-width: 767px) {
     width: 344px;
   }
-`
+`;
 
 export const NavContainer = styled.nav`
-display: flex;
-width: 287px;
-gap: 14px;
-align-items: start;
-padding: 0;
-margin-bottom: 40px;
-color: var(--loginform-text-color);
-`
+  display: flex;
+  width: 287px;
+  align-items: start;
+  padding: 0;
+  margin-bottom: 40px;
+  color: var(--loginform-text-color);
+`;
 
-export const InputBthEye = styled.svg`       
-position: absolute;
-top: 16px;
-right: 15px;
-width:18px;
-height:18px;
-background: transparent;
+export const InputBthEye = styled.svg`
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  width: 18px;
+  height: 18px;
+  stroke: var(--user-icon-stroke-color);
+  stroke-width: 1.3px;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity var(--hover-params);
 
-cursor: pointer;
-stroke: var(--user-icon-stroke-color);
-stroke-width: 1.3px; 
-`
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+`;
 export const LoginBtn = styled.button`
   cursor: pointer;
   width: 287px;
@@ -101,19 +127,19 @@ export const LoginBtn = styled.button`
   transition: var(--hover-params);
   &:hover {
     background: var(--secondary-login-button-color);
-    
+
     font-weight: bold;
-  };
+  }
   &:focus {
-      background: var(--secondary-login-button-color);
-  };
- @media (min-width: 767px) {
-      width: 344px;
-};
-`
+    background: var(--secondary-login-button-color);
+  }
+  @media (min-width: 767px) {
+    width: 344px;
+  }
+`;
 
 export const ErrorText = styled.div`
-position: absolute;
+  position: absolute;
   bottom: -15px;
   right: 0;
   font-size: 11px;
@@ -121,21 +147,20 @@ position: absolute;
   font-style: normal;
   letter-spacing: -1%;
   opacity: 0.9;
-  color: #fff;`
+  color: #fff;
+`;
 
 export const ErrorContainer = styled.div`
-position: fixed;
-top: 20px;
-right: 20px;
-width: 200px;
-`
-
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+`;
 
 export const CorectDiv = styled.div`
-display: flex;
-flex-direction: column;
-margin-bottom: 24px;
-gap: 14px;
-position: relative;
-
-`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  gap: 14px;
+  position: relative;
+`;
