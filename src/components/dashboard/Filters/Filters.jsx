@@ -6,19 +6,22 @@ import { FilterButton, FilterIcon } from "./Filters.styled";
 const Filters = () => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
-    const openFilterModal = () => {
-     setIsFilterModalOpen(true);
-  }
+  const openFilterModal = () => {
+    setIsFilterModalOpen(true);
+  };
   const closeFilterModal = () => {
     setIsFilterModalOpen(false);
   };
 
-/*   const toggleModalVisibility = () => {
+  /*   const toggleModalVisibility = () => {
     setIsFilterModalOpen((prevState) => !prevState);
   }; */
   return (
     <>
-      <FilterButton onClick={() => openFilterModal()}>
+      <FilterButton
+        onClick={() => openFilterModal()}
+        aria-label="Filters button"
+      >
         <FilterIcon>
           <use href={icons + "#icon-filter"} />
         </FilterIcon>
