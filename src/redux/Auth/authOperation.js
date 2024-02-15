@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { requestAvatar, requestCurrentUser, requestSignin, requestSignout, requestSignup, requestTheme, requestUserUpdate, setToken } from "../../services/api/auth";
+import { requestAvatar, requestCurrentUser, requestSignin, requestSigninByGoogle, requestSignout, requestSignup, requestTheme, requestUserUpdate, setToken } from "../../services/api/auth";
 
 
 export const registerThunk = createAsyncThunk(
@@ -32,6 +32,20 @@ export const loginThunk = createAsyncThunk(
         }
     }
 );
+
+export const googleLoginThunk = createAsyncThunk(
+    'auth/signinbygoogle',
+    async (values, thunkAPI) => {
+        try {
+          const response = await requestSigninByGoogle(values);
+          return response;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error.message)
+        }
+    }
+);
+
 
 export const currentThunk = createAsyncThunk(
   'auth/current',

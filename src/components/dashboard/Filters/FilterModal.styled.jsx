@@ -138,6 +138,11 @@ export const StyledRadioInput = styled.input`
   &:checked.without {
     border: 1px solid var(--filter-radio-gray-color)}
   }
+
+  &.gray {
+    background-color: #ffffff4d;
+  }
+
 `;
 
 export const StyledColorText = styled.span`

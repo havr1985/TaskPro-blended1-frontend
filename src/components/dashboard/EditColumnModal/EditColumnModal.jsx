@@ -19,7 +19,7 @@ import { updateColumnThunk } from "../../../redux/Dashboard/dashboardOperation";
 import { useDispatch } from "react-redux";
 
 const validationSchema = Yup.object().shape({
-  title: Yup.string().min("6").required("specify a column name"),
+  title: Yup.string().min("1").required("specify a column name"),
 });
 
 export const EditColumnModal = ({
@@ -57,7 +57,7 @@ export const EditColumnModal = ({
                 type="text"
                 id="title"
                 name="title"
-                placeholder="title"
+                placeholder="Title"
                 autoComplete="off"
               />
             </FormWrapper>

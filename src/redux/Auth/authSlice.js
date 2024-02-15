@@ -4,6 +4,7 @@ import {
   changeThemeThunk,
   currentThunk,
   loginThunk,
+  googleLoginThunk,
   logoutThunk,
   registerThunk,
   userUpdateThunk,
@@ -46,6 +47,14 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.authenticated = true;
       })
+      .addCase(googleLoginThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.register = true;
+        state.token = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.user = action.payload.user;
+        state.authenticated = true;
+      })
       .addCase(currentThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.authenticated = true;
@@ -71,6 +80,7 @@ const authSlice = createSlice({
         isAnyOf(
           registerThunk.pending,
           loginThunk.pending,
+          googleLoginThunk.pending,
           currentThunk.pending,
           logoutThunk.pending,
         ),
@@ -83,6 +93,7 @@ const authSlice = createSlice({
         isAnyOf(
           registerThunk.rejected,
           loginThunk.rejected,
+          googleLoginThunk.rejected,
           currentThunk.rejected,
           logoutThunk.rejected,
           changeAvatarThunk.rejected,

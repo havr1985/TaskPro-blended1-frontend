@@ -1,6 +1,12 @@
 import iconImage from "../../shared/images/boy.png";
 import icons from "../../shared/images/icons.svg";
 
+import { ThemeComponent } from "../ThemeMode/ThemeMenu";
+import { googleLoginThunk } from "../../redux/Auth/authOperation";
+import { useDispatch } from "react-redux";
+
+
+
 import {
   WelcomeWrapper,
   WelcomeIcon,
@@ -12,8 +18,31 @@ import {
   WelcomeRegisterButton,
   WelcomeLogoTitle,
 } from "./WelcomeContent.styled";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
 
 export const WelcomeContent = () => {
+  const dispatch = useDispatch();
+  
+const loginByG = async (token) => {
+  const userData = jwtDecode(token);
+  try {
+    await dispatch(
+      googleLoginThunk({
+        username: userData.name,
+        email: userData.email,
+        avatarUrl: userData.picture,
+      })
+    ).unwrap();
+    toast.success("You have logged successfully!");
+  } catch (error) {
+    toast.error(
+      "Oops, it's looks like something went wrong... Please, try again!"
+    );
+  }
+}
+
   return (
     <WelcomeWrapper>
       <WelcomeContainer>
@@ -36,6 +65,14 @@ export const WelcomeContent = () => {
           Registration
         </WelcomeRegisterButton>
         <WelcomeLoginButton to="/auth/login">Log In</WelcomeLoginButton>
+        <GoogleLogin
+          onSuccess={credentialResponse => {
+            loginByG(credentialResponse.credential);
+          }}
+          onError={() => {
+            console.log('Login Failed');
+          }}
+        />
       </WelcomeContainer>
     </WelcomeWrapper>
   );
