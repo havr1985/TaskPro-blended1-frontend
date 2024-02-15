@@ -4,8 +4,6 @@ import icons from "../../shared/images/icons.svg";
 import { googleLoginThunk } from "../../redux/Auth/authOperation";
 import { useDispatch } from "react-redux";
 
-
-
 import {
   WelcomeWrapper,
   WelcomeIcon,
@@ -16,32 +14,33 @@ import {
   WelcomeLoginButton,
   WelcomeRegisterButton,
   WelcomeLogoTitle,
+  CustomGoogleButton,
 } from "./WelcomeContent.styled";
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const WelcomeContent = () => {
   const dispatch = useDispatch();
-  
-const loginByG = async (token) => {
-  const userData = jwtDecode(token);
-  try {
-    await dispatch(
-      googleLoginThunk({
-        username: userData.name,
-        email: userData.email,
-        avatarUrl: userData.picture,
-      })
-    ).unwrap();
-    toast.success("You have logged successfully!");
-  } catch (error) {
-    toast.error(
-      "Oops, it's looks like something went wrong... Please, try again!"
-    );
-  }
-}
+
+  const loginByG = async (token) => {
+    const userData = jwtDecode(token);
+    try {
+      await dispatch(
+        googleLoginThunk({
+          username: userData.name,
+          email: userData.email,
+          avatarUrl: userData.picture,
+        })
+      ).unwrap();
+      toast.success("You have logged successfully!");
+    } catch (error) {
+      toast.error(
+        "Oops, it's looks like something went wrong... Please, try again!"
+      );
+    }
+  };
 
   return (
     <WelcomeWrapper>
@@ -65,14 +64,16 @@ const loginByG = async (token) => {
           Registration
         </WelcomeRegisterButton>
         <WelcomeLoginButton to="/auth/login">Log In</WelcomeLoginButton>
-        <GoogleLogin
-          onSuccess={credentialResponse => {
-            loginByG(credentialResponse.credential);
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        />
+        <CustomGoogleButton>
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              loginByG(credentialResponse.credential);
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
+        </CustomGoogleButton>
       </WelcomeContainer>
     </WelcomeWrapper>
   );

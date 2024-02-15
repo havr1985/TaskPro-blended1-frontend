@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
+
 export const WelcomeWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -120,6 +121,7 @@ export const WelcomeLoginButton = styled(NavLink)`
   font-weight: 500;
   letter-spacing: -0.28px;
   padding: 6px 12px;
+	margin-bottom: 14px;
 
   cursor: pointer;
 
@@ -131,5 +133,21 @@ export const WelcomeLoginButton = styled(NavLink)`
 
     background: #161616;
     color: #ffffff;
+  }
+`;
+
+
+export const CustomGoogleButton = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+width: 344px;
+height: 50px;
+border-radius: 8px;
+background-color: #161616;
+ transition: all 150ms linear;
+
+&:hover {
+    opacity: 0.8;
   }
 `;
