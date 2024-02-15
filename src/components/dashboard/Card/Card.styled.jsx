@@ -5,19 +5,14 @@ export const CardList = styled.ul`
 	overflow-y: auto;
 	overflow-x: hidden;
 
-	height: calc(100vh - 292px);
+	margin-right: -12px;
+
+	height: calc(100vh - 348px);
 
 	margin-bottom: 14px;
-
-	@media screen and (max-width: 1439px) {
-		margin-right: -16px;
-		height: calc(100vh - 370px);
-	}
-
 	&::-webkit-scrollbar {
 		width: 8px; /* ширина всей полосы прокрутки */
 	}
-
 	&::-webkit-scrollbar-track {
 		background: var(--tracking-area-color); /* цвет зоны отслеживания */
 		border-radius: 12px;
@@ -27,6 +22,16 @@ export const CardList = styled.ul`
 		background-color: var(--scroll-bar-color); /* цвет бегунка */
 		border-radius: 12px; /* округлось бегунка */
 		border: 8px solid var(--scroll-bar-color); /* отступ вокруг бегунка */
+	}
+
+	@media screen and (min-width: 767px) and (max-width: 1439px) {
+		margin-right: -16px;
+		height: calc(100vh - 370px);
+	}
+
+	@media screen and (min-width: 1439px) {
+		margin-right: -16px;
+		height: calc(100vh - 286px);
 	}
 `;
 

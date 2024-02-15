@@ -15,7 +15,7 @@ import { CreateNewBoard } from "./CreateNewBoard/CreateNewBoard";
 import { useModal } from "../../hooks/useModal";
 import useSelectImage from "../../hooks/useSelectImage";
 
-export const Sidebar = ({ isOpen }) => {
+export const Sidebar = ({ isOpen, close }) => {
 	const [selectedItem, setSelectedItem] = useState("");
 	const [slectedItemId, setSelectedItemId] = useState("");
 	const boards = useSelector(selectAllDashboards);
@@ -37,6 +37,8 @@ export const Sidebar = ({ isOpen }) => {
 		if (selectedItem._id !== item._id && slectedItemId !== item._id) {
 			dispatch(getDashboardByIDThunk(item._id));
 			setSelectedItemId(item._id);
+
+			close();
 		}
 	};
 

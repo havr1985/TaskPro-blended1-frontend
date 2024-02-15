@@ -10,7 +10,7 @@ export const ScreensPageWrap = styled.div`
 	background-image: url(${props => props.$bcgurl});
 	background-repeat: no-repeat;
 
-	// background-position-y: center;
+	background-position-y: center;
 
 	background-size: cover;
 
@@ -19,9 +19,8 @@ export const ScreensPageWrap = styled.div`
 		height: calc(100vh - 180px);
 	}
 
-	@media screen and (min-width: 1440px) {
+	@media screen and (min-width: 1439px) {
 		padding: 10px 24px 8px 24px;
-
 		height: calc(100vh - 116px);
 	}
 

@@ -9,18 +9,6 @@ export const MainDashboardWrap = styled.div`
 	overflow-x: auto;
 	overflow-y: hidden;
 
-	@media screen and (max-width: 1439px) {
-		width: 736px;
-		height: calc(100vh - 180px);
-	}
-
-	@media screen and (min-width: 1440px) {
-		width: calc(100vw - 308px);
-		height: calc(100vh - 118px);
-
-		padding-bottom: 10px;
-	}
-
 	&::-webkit-scrollbar {
 		width: 8px; /* ширина всей полосы прокрутки */
 	}
@@ -35,6 +23,25 @@ export const MainDashboardWrap = styled.div`
 		border-radius: 12px; /* округлось бегунка */
 		border: 12px solid var(--scroll-bar-color); /* отступ вокруг бегунка */
 	}
+
+	@media screen and (max-width: 767px) {
+		width: 347px;
+		// padding-bottom: 13px;
+	}
+
+	@media screen and (min-width: 767px) and (max-width: 1439px) {
+		width: 704px;
+		width: calc(100vw - 50px);
+		height: calc(100vh - 168px);
+	}
+
+	@media screen and (min-width: 1440px) {
+		width: calc(100vw - 308px);
+		height: calc(100vh - 140px);
+
+		padding-bottom: 10px;
+
+
 `;
 
 export const MainDashboardList = styled.ul`
@@ -42,6 +49,13 @@ export const MainDashboardList = styled.ul`
 	gap: 34px;
 	height: 100%;
 	padding-bottom: 10px;
+
+	@media screen and (max-width: 767px) {
+		padding-bottom: 23px;
+	}
+	@media screen and (min-width: 767px) and (max-width: 1439px) {
+		padding-bottom: 52px;
+	}
 `;
 
 export const MainDashboardColumn = styled.li`
@@ -50,8 +64,8 @@ export const MainDashboardColumn = styled.li`
 	width: 100%;
 
 	@media screen and (min-width: 375px) {
-		width: 335px;
-		min-width: 335px;
+		width: 334px;
+		min-width: 334px;
 	}
 `;
 
@@ -61,6 +75,7 @@ export const AddColumnButton = styled.button`
 	align-items: center;
 	gap: 8px;
 	width: 100%;
+	max-width: 334px;
 	height: 56px;
 	padding: 0;
 	margin-left: 34px;
@@ -74,9 +89,13 @@ export const AddColumnButton = styled.button`
 	background-color: var(--background-add-column-btn-color);
 	cursor: pointer;
 
-	@media screen and (min-width: 375px) {
+	@media screen and (max-width: 768px) {
 		width: 335px;
 		min-width: 335px;
+		margin-left: 12px;
+	}
+	@media screen and (min-width: 1439px) {
+		min-width: 334px;
 	}
 `;
 
