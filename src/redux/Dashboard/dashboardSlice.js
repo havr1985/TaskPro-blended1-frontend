@@ -26,7 +26,7 @@ const INITIAL_STATE = {
 const dashboardSlice = createSlice({
 	name: "dashboards",
 	initialState: INITIAL_STATE,
-	extraReducers: (builder) =>
+	extraReducers: builder =>
 		builder
 			.addCase(allDashboardsThunk.fulfilled, (state, action) => {
 				state.error = null;
@@ -48,7 +48,7 @@ const dashboardSlice = createSlice({
 				state.error = null;
 				const { _id, title, icon, backgroundURL } = action.payload;
 				const dashboardIdx = state.dashboards.findIndex(
-					(item) => item._id === _id
+					item => item._id === _id,
 				);
 				state.dashboards[dashboardIdx] = {
 					...state.dashboards[dashboardIdx],
@@ -61,7 +61,7 @@ const dashboardSlice = createSlice({
 				state.isLoading = false;
 				state.error = null;
 				state.dashboards = state.dashboards.filter(
-					(item) => item._id !== action.payload._id
+					item => item._id !== action.payload._id,
 				);
 				// if (!state.dashboards.length) {
 				// 	state.currentDashboard = {}
@@ -71,7 +71,7 @@ const dashboardSlice = createSlice({
 				// 	console.log(state.currentDashboard)
 				// }
 			})
-			.addCase(sendNeedHelpThunk.fulfilled, (state) => {
+			.addCase(sendNeedHelpThunk.fulfilled, state => {
 				state.isLoading = false;
 				state.error = null;
 			})
@@ -87,16 +87,15 @@ const dashboardSlice = createSlice({
 				state.isLoading = false;
 				state.error = null;
 				state.currentDashboard.column = state.currentDashboard.column.filter(
-					(item) => item._id !== action.payload._id
+					item => item._id !== action.payload._id,
 				);
-				console.log(state.currentDashboard.column);
 			})
 			.addCase(updateColumnThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
 				const { _id, title } = action.payload;
 				const columnIdx = state.currentDashboard.column.findIndex(
-					(item) => item._id === _id
+					item => item._id === _id,
 				);
 				state.currentDashboard.column[columnIdx].title = title;
 			})
@@ -104,7 +103,7 @@ const dashboardSlice = createSlice({
 				state.isLoading = false;
 				state.error = null;
 				const idx = state.currentDashboard.column.findIndex(
-					(item) => item._id === action.payload.owner
+					item => item._id === action.payload.owner,
 				);
 				if (!state.currentDashboard.column[idx].card) {
 					state.currentDashboard.column[idx].card = [];
@@ -120,12 +119,12 @@ const dashboardSlice = createSlice({
 				state.error = null;
 				const { owner, _id } = action.payload;
 				const columnIdx = state.currentDashboard.column.findIndex(
-					(item) => item._id === owner
+					item => item._id === owner,
 				);
 				if (columnIdx !== -1) {
 					state.currentDashboard.column[columnIdx].card =
 						state.currentDashboard.column[columnIdx].card.filter(
-							(item) => item._id !== _id
+							item => item._id !== _id,
 						);
 				}
 			})
@@ -135,10 +134,10 @@ const dashboardSlice = createSlice({
 				const { _id, title, description, color, deadline, owner } =
 					action.payload;
 				const idxCol = state.currentDashboard.column.findIndex(
-					(item) => item._id === owner
+					item => item._id === owner,
 				);
 				const idxCard = state.currentDashboard.column[idxCol].card.findIndex(
-					(item) => item._id === _id
+					item => item._id === _id,
 				);
 				state.currentDashboard.column[idxCol].card[idxCard] = {
 					...state.currentDashboard.column[idxCol].card[idxCard],
@@ -154,25 +153,25 @@ const dashboardSlice = createSlice({
 				const { oldOwner } = action.payload;
 
 				const currentColumnIdx = state.currentDashboard.column.findIndex(
-					(item) => item._id === oldOwner
+					item => item._id === oldOwner,
 				);
 
 				state.currentDashboard.column[currentColumnIdx].card =
 					state.currentDashboard.column[currentColumnIdx].card.filter(
-						({ _id: obj }) => obj !== action.payload.result._id
+						({ _id: obj }) => obj !== action.payload.result._id,
 					);
 
 				const newColumnIdx = state.currentDashboard.column.findIndex(
-					(item) => item._id === action.payload.result.owner
+					item => item._id === action.payload.result.owner,
 				);
 
 				if (!state.currentDashboard.column[newColumnIdx].card) {
 					state.currentDashboard.column[newColumnIdx].card = [];
 				}
 
-				const isCardInNewColumn = state.currentDashboard.column[newColumnIdx].card.some(
-					({ _id }) => _id === action.payload.result._id
-				);
+				const isCardInNewColumn = state.currentDashboard.column[
+					newColumnIdx
+				].card.some(({ _id }) => _id === action.payload.result._id);
 
 				if (!isCardInNewColumn) {
 					state.currentDashboard.column[newColumnIdx].card = [
@@ -180,47 +179,44 @@ const dashboardSlice = createSlice({
 						action.payload.result,
 					];
 				}
-
-
-
 			})
 
 			.addCase(updateCardStatusLocalThunk.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
 
-				const { card, newCardIdx, currentColumnId, newColumnId } = action.payload;
-
-				console.log(typeof newCardIdx === 'number');
+				const { card, newCardIdx, currentColumnId, newColumnId } =
+					action.payload;
 
 				const currentColumnIdx = state.currentDashboard.column.findIndex(
-					(item) => item._id === currentColumnId
+					item => item._id === currentColumnId,
 				);
 
 				state.currentDashboard.column[currentColumnIdx].card =
 					state.currentDashboard.column[currentColumnIdx].card.filter(
-						({ _id: obj }) => obj !== card._id
+						({ _id: obj }) => obj !== card._id,
 					);
 
 				const newColumnIdx = state.currentDashboard.column.findIndex(
-					(item) => item._id === newColumnId
+					item => item._id === newColumnId,
 				);
 
 				if (!state.currentDashboard.column[newColumnIdx].card) {
 					state.currentDashboard.column[newColumnIdx].card = [];
 				}
 
-				if (typeof newCardIdx === 'number') {
-					state.currentDashboard.column[newColumnIdx].card.splice(newCardIdx, 0, card);
+				if (typeof newCardIdx === "number") {
+					state.currentDashboard.column[newColumnIdx].card.splice(
+						newCardIdx,
+						0,
+						card,
+					);
 				} else {
 					state.currentDashboard.column[newColumnIdx].card = [
 						...state.currentDashboard.column[newColumnIdx].card,
 						card,
 					];
 				}
-
-
-
 			})
 
 			.addMatcher(
@@ -235,12 +231,12 @@ const dashboardSlice = createSlice({
 					updateCardThunk.pending,
 					addCardThunk.pending,
 					deleteCardThunk.pending,
-					sendNeedHelpThunk.pending
+					sendNeedHelpThunk.pending,
 				),
-				(state) => {
+				state => {
 					state.isLoading = true;
 					state.error = null;
-				}
+				},
 			)
 			.addMatcher(
 				isAnyOf(
@@ -257,12 +253,12 @@ const dashboardSlice = createSlice({
 					updateCardThunk.rejected,
 					sendNeedHelpThunk.rejected,
 					updateCardStatus.rejected,
-					updateCardStatusLocalThunk.rejected
+					updateCardStatusLocalThunk.rejected,
 				),
 				(state, action) => {
 					state.isLoading = false;
 					state.error = action.payload;
-				}
+				},
 			),
 });
 

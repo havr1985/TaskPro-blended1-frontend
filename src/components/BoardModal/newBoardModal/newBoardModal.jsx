@@ -169,7 +169,6 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper, gallery }) => {
 										<DefaultRadioBtn
 											type='radio'
 											value={el[gallery]}
-											// value={data[0]["url"]}
 											name='bg'
 										/>
 									</label>

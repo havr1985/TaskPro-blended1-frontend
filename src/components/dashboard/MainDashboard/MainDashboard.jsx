@@ -150,22 +150,22 @@ const MainDashboard = () => {
 													</IconsWrap>
 												</DashboardColumnTitle>
 											</div>
-											<div>
-												<Card card={card} />
 
-												<AddCardButton
-													onClick={() => {
-														openAddCardModal();
-														setSelectedId(id);
-													}}>
-													<AddCardIconWrap>
-														<AddCardIconPlus>
-															<use href={icons + "#icon-plus"} />
-														</AddCardIconPlus>
-													</AddCardIconWrap>
-													Add Card
-												</AddCardButton>
-											</div>
+											<Card card={card} />
+
+											<AddCardButton
+												onClick={() => {
+													openAddCardModal();
+													setSelectedId(id);
+												}}>
+												<AddCardIconWrap>
+													<AddCardIconPlus>
+														<use href={icons + "#icon-plus"} />
+													</AddCardIconPlus>
+												</AddCardIconWrap>
+												Add Card
+											</AddCardButton>
+
 											{provided.placeholder}
 										</MainDashboardColumn>
 									)}

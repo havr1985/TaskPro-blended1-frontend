@@ -84,8 +84,8 @@ const ScreensPage = () => {
 
 	return (
 		<ScreensPageWrap $bcgurl={lookForBg()[0]?.backgroundURL}>
-		{loading ? (	
-			<LoaderApp />
+			{loading ? (
+				<LoaderApp />
 			) : (
 				(boardName === undefined && (
 					<WelcomeMessageWrap>

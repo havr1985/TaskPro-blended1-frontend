@@ -11,7 +11,6 @@ import {
 	EditLink,
 	Link,
 	TitleWrapper,
-	Tooltip,
 } from "./MyBoards.styled";
 import {
 	deleteDashboardThunk,
@@ -80,13 +79,10 @@ export const MyBoards = ({
 										height='18px'>
 										<use href={`${icon}${board.icon}`}></use>
 									</BoardIcon>
-									<Tooltip
-										className={board.title.length > 20 && "tooltip"}
-										data-tooltip={`${board.title}`}>
-										<TitleWrapper>
-											<BoardTitle>{board.title}</BoardTitle>
-										</TitleWrapper>
-									</Tooltip>
+
+									<TitleWrapper>
+										<BoardTitle>{board.title}</BoardTitle>
+									</TitleWrapper>
 								</BoardContainer>
 							</Link>
 							{selectedItem._id === board._id && (
