@@ -34,10 +34,9 @@ export const LinkMenu = styled.div`
 export const RegisterLink = styled(Link)`
   margin-right: 14px;
   display: inline-block;
-  // font-style: normal;
-  // font-weight: 500;
-  // font-size: 18px;
-  line-height: 27px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
   letter-spacing: -0.02em;
   color: var(--color-white);
   text-decoration: none;
@@ -46,10 +45,9 @@ export const RegisterLink = styled(Link)`
 export const LoginLink = styled(Link)`
   left: 160px;
   top: 40px;
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
-  line-height: 27px;
+  line-height: 1.5;
   letter-spacing: -0.02em;
   color: var(--color-pale-white);
   text-decoration: none;
@@ -68,19 +66,20 @@ export const InputInput = styled.input`
   overflow: hidden;
   width: 344px;
   height: 49px;
-  // left: 40px;
-  // top: 107px;
   color: var(--welcome-hover-text-color);
   background: var(--welcome-background-color);
-  // opacity: 0.4;
   border: 1px solid var(--loginform-border);
   padding-left: 18px;
   box-shadow: 0px 4px 16px var(--color-shadow);
   border-radius: 8px;
   transition: var(--hover-params);
-  &:focus {
-    border: 1px solid var(--secondary-login-button-color);
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0 50px white; /* цвет вашего фона */
+    -webkit-text-fill-color: black; /* цвет текста */
   }
+
+  &:focus,
   &:active {
     border: 1px solid var(--secondary-login-button-color);
   }
@@ -126,19 +125,20 @@ export const PasswordInput = styled.div`
   gap: 14px;
 `;
 export const Passwordsvg = styled.svg`
-
   position: absolute;
-  right: 18px;
-  top: 19px;
-  cursor: pointer;
-  stroke: #fff;
-  width: 16.5px;
-  height: 16px;
+  top: 16px;
   right: 15px;
+  width: 18px;
+  height: 18px;
+  stroke: var(--user-icon-stroke-color);
+  stroke-width: 1.3px;
   opacity: 0.4;
+  cursor: pointer;
+  transition: opacity var(--hover-params);
+
   &:hover,
   &:focus {
-    stroke: var(--user-icon-stroke-color);
+    opacity: 1;
   }
 `;
 

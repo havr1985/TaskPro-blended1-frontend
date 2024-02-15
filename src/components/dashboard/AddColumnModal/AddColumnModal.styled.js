@@ -23,13 +23,6 @@ export const TitleInput = styled(Field)`
  
   color: var(--modal-title-color);
 
-  // &::placeholder {
-  //   // color: rgb(255, 255, 255);
-  //   font-size: 14px;
-  //   font-family: "Poppins";
-  //   letter-spacing: -0.28px;
-  // }
-
   &:focus {
     opacity: 1;
   }

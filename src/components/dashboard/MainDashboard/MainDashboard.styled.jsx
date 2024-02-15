@@ -37,7 +37,7 @@ export const MainDashboardWrap = styled.div`
 
 	@media screen and (min-width: 1440px) {
 		width: calc(100vw - 308px);
-		height: calc(100vh - 118px);
+		height: calc(100vh - 140px);
 
 		padding-bottom: 10px;
 

@@ -127,6 +127,7 @@ export const AddBoardModal = ({ isModalOpen, modalStateSwapper, gallery }) => {
 								name='title'
 								placeholder='Title'
 								autoComplete='off'
+								autoFocus
 							/>
 						</FormWrapper>
 
