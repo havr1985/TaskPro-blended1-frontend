@@ -30,6 +30,7 @@ export const LoaderApp = () => {
       placeItems: 'center',
       height: '100vh',
       background: 'transparent',
+      zIndex: '1100',
       transition: 'all 450ms cubic-bezier(0.4, 0, 0.2, 1)',
     }}>
      <ColorRing
