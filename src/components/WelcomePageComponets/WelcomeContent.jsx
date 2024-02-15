@@ -1,7 +1,6 @@
 import iconImage from "../../shared/images/boy.png";
 import icons from "../../shared/images/icons.svg";
 
-import { ThemeComponent } from "../ThemeMode/ThemeMenu";
 import { googleLoginThunk } from "../../redux/Auth/authOperation";
 import { useDispatch } from "react-redux";
 
@@ -21,6 +20,7 @@ import {
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const WelcomeContent = () => {
   const dispatch = useDispatch();
