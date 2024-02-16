@@ -11,6 +11,7 @@ import { Outlet } from "react-router-dom";
 import { Suspense, useEffect } from "react";
 import { allDashboardsThunk } from "../redux/Dashboard/dashboardOperation";
 import { useDispatch } from "react-redux";
+import { LoaderApp } from "../shared/Loader/loader";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const HomePage = () => {
 				<Sidebar close={closeModal} isOpen={isModalOpen} />
 				<HeaderAndScreensWrapper>
 					<Header openSideBar={openModal} />
-					<Suspense fallback={<div>Loading</div>}>
+					<Suspense fallback={<LoaderApp/>}>
 						<Outlet />
 					</Suspense>
 				</HeaderAndScreensWrapper>

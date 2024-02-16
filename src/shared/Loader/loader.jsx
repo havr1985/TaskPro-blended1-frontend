@@ -7,7 +7,7 @@ export const Loader = () => {
       placeItems: 'center',
       height: '68px',
       width: '68px',
-      backgroundColor: 'var(--secondary-background-color)', 
+      backgroundColor: 'transparent', 
       transition: 'all 450ms cubic-bezier(0.4, 0, 0.2, 1)',
     }}>
      <ColorRing
@@ -16,9 +16,9 @@ export const Loader = () => {
   width="48"
   ariaLabel="color-ring-loading"
   wrapperStyle={{}}
-  wrapperClass="color-ring-wrapper"
-  colors={['var(--plus-button-color)', 'var(--plus-button-color)', 'var(--plus-button-color)', '--plus-button-color)']}
-  />
+        wrapperClass="color-ring-wrapper"
+        colors={['#999999', '#999999', '#999999', '#999999', '#999999',]}
+      />
     </div>
   );
 };
@@ -30,7 +30,7 @@ export const LoaderApp = () => {
       placeItems: 'center',
       height: '100vh',
       background: 'transparent',
-      zIndex: '1100',
+      zIndex: '1001',
       transition: 'all 450ms cubic-bezier(0.4, 0, 0.2, 1)',
     }}>
      <ColorRing
@@ -40,7 +40,8 @@ export const LoaderApp = () => {
   ariaLabel="color-ring-loading"
   wrapperStyle={{}}
   wrapperClass="color-ring-wrapper"
-  colors={[ 'var(--welcome-hover-text-color)','var(--start-login-button-color)', 'var(--radio-label-background-color)', 'var(--primary-background-color)',]}
+  
+        colors={['#999999', '#999999', '#999999', '#999999', '#999999',]}
   />
     </div>
   );

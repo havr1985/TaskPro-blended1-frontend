@@ -39,9 +39,6 @@ export const UserAvatarInput = styled.input`
   visibility: hidden;
   position: absolute;
 `;
-// export const UserAvatarInputWrapper = styled.div`
-// display: ;
-// `;
 
 export const ModalContentWrapper = styled.form`
   display: flex;

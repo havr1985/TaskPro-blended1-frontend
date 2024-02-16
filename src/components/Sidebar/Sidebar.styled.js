@@ -5,7 +5,7 @@ export const SidebarContainer = styled.div`
 	height: 100vh;
 	top: 0;
 	left: 0;
-
+    transition: all 0ms cubic-bezier(0.4, 0, 0.2, 1); 
 	z-index: 1;
 
 	display: flex;
@@ -13,7 +13,7 @@ export const SidebarContainer = styled.div`
 	justify-content: space-between;
 
 	padding: 24px;
-	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+
 	background-color: var(--primary-background-sidebar-color);
 
 	@media screen and (max-width: 1439.9px) {
@@ -26,6 +26,7 @@ export const SidebarContainer = styled.div`
 		width: 225px;
 		height: 100vh;
 		padding: 14px 14px 24px 14px;
+		transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1); 
 	}
 
 	&.active {

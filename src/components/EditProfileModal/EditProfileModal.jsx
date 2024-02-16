@@ -84,13 +84,8 @@ const changeAvatar = async (e) => {
     >
       <UserAvatarWrapper>
         {loading ? (
-      /*    <div style={{
-           display: 'grid',
-           placeItems: 'center',
-           height: '100%',
-           transition: 'all 450ms cubic-bezier(0.4, 0, 0.2, 1)',
-        }} > */
-          <Loader setHeight="100 %"/>
+     
+          <Loader />
             
 			) : avatarURL ? (
           <UserAvatar

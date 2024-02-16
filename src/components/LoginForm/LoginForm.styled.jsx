@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginWrapper = styled.div`
@@ -31,7 +31,7 @@ export const LoginContainer = styled.div`
   }
 `;
 
-export const RegisterLink = styled(Link)`
+export const RegisterLink = styled(NavLink)`
   margin-right: 14px;
   display: inline-block;
   font-weight: 500;
@@ -42,7 +42,7 @@ export const RegisterLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const LoginLink = styled(Link)`
+export const LoginLink = styled(NavLink)`
   left: 160px;
   top: 40px;
   font-weight: 500;
@@ -55,14 +55,17 @@ export const LoginLink = styled(Link)`
 
 export const InputContainer = styled.div`
   position: relative;
-  width: 287px;
+  min-width: 272px;
   height: 49px;
   background: var(--welcome-background-color);
   // margin-bottom: 14px;
   box-shadow: 0px 4px 16px var(--color-shadow);
   border-radius: 8px;
-
-  @media (min-width: 767px) {
+ 
+   @media (min-width: 375px) {
+    width: 287px;
+  }
+  @media (min-width: 768px) {
     width: 344px;
   }
 `;
@@ -72,7 +75,7 @@ export const LoginInput = styled.input`
   overflow: hidden;
   transition: all 250ms ease;
   color: var(--welcome-hover-text-color);
-  width: 287px;
+  min-width: 272px;
   height: 49px;
   border: 1px solid var(--loginform-border);
   margin: 0;
@@ -85,15 +88,18 @@ export const LoginInput = styled.input`
   &:active {
     border: 1px solid var(--secondary-login-button-color);
   }
-
-  @media (min-width: 767px) {
+   @media (min-width: 375px) {
+    width: 287px;
+  }
+  @media (min-width: 768px) {
     width: 344px;
   }
 `;
 
 export const NavContainer = styled.nav`
   display: flex;
-  width: 287px;
+  min-width: 272px;
+  max-width: 287px;
   align-items: start;
   padding: 0;
   margin-bottom: 40px;
@@ -119,7 +125,7 @@ export const InputBthEye = styled.svg`
 `;
 export const LoginBtn = styled.button`
   cursor: pointer;
-  width: 287px;
+  min-width: 272px;
   height: 49px;
   border-radius: 8px;
   font-weight: 500;
@@ -133,7 +139,10 @@ export const LoginBtn = styled.button`
   &:focus {
     background: var(--secondary-login-button-color);
   }
-  @media (min-width: 767px) {
+  @media (min-width: 375px) {
+    width: 287px;
+  }
+    @media screen and (min-width: 768px) {
     width: 344px;
   }
 `;

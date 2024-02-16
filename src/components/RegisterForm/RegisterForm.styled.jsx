@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   background: var(--welcomeBgColor);
 `;
 export const FormContainer = styled.div`
@@ -14,6 +14,8 @@ export const FormContainer = styled.div`
   background: var(--user-icon-plus-stroke-color);
   border-radius: 8px;
   padding: 24px;
+  min-width: 320px;
+
   @media (min-width: 375px) {
     width: 335px;
   }
@@ -25,9 +27,13 @@ export const FormContainer = styled.div`
 `;
 export const LinkMenu = styled.div`
   display: flex;
+  min-width:272px;
   color: var(--loginform-text-color);
-  @media (min-width: 767px) {
-    width: 344px;
+   @media (min-width: 375px) {
+    width: 287px; 
+  }
+    @media (min-width: 768px) {
+    width: 344px; 
   }
 `;
 
@@ -56,6 +62,7 @@ export const LoginLink = styled(Link)`
 export const InputField = styled.div`
   display: flex;
   flex-direction: column;
+
   margin-top: 40px;
   gap: 14px;
   position: relative;
@@ -64,7 +71,7 @@ export const InputField = styled.div`
 export const InputInput = styled.input`
   outline: none;
   overflow: hidden;
-  width: 344px;
+  width: 100%;
   height: 49px;
   color: var(--welcome-hover-text-color);
   background: var(--welcome-background-color);
@@ -84,9 +91,9 @@ export const InputInput = styled.input`
     border: 1px solid var(--secondary-login-button-color);
   }
 
-  @media (max-width: 767px) {
+ /*  @media (max-width: 767px) {
     width: 287px;
-  }
+  } */
 `;
 
 export const RegisterBtn = styled.button`
@@ -98,7 +105,7 @@ export const RegisterBtn = styled.button`
   line-height: 21px;
   text-align: center;
   letter-spacing: -0.02em;
-  width: 100%;
+  min-width:272px;
   height: 49px;
   margin-top: 24px;
   background: var(--user-icon-plus-fill-color);
@@ -109,17 +116,22 @@ export const RegisterBtn = styled.button`
   &:hover {
     background: var(--secondary-login-button-color);
   }
-  @media screen and (max-width: 767px) {
-    width: 287px;
+
+    @media (min-width: 375px) {
+    width: 287px; 
   }
-  @media screen and (max-width: 375px) {
-    width: 100%;
+    @media (min-width: 768px) {
+    width: 344px; 
   }
+  
 `;
 
 export const PasswordInput = styled.div`
   position: relative;
   display: flex;
+
+ /*  min-width:272px;
+  max-width:287px; */
   align-items: center;
   flex-direction: column;
   gap: 14px;
@@ -156,4 +168,12 @@ export const ErrorText = styled.div`
 
 export const StyledWrapInputAuth = styled.div`
   position: relative;
+  min-width:272px;
+    @media (min-width: 375px) {
+    width: 287px; 
+  }
+    @media (min-width: 768px) {
+    width: 344px; 
+  }
+ 
 `;
