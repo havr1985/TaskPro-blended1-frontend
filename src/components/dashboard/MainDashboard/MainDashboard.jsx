@@ -66,9 +66,21 @@ const MainDashboard = () => {
     }
   }, [columns, dispatch, state?.id, state]);
 
-  const onDeleteColumn = (id) => {
-    dispatch(deleteColumnThunk(id));
-  };
+  <BoardContainer>
+      <Columns board={board}>
+        <BtnAddColumn type="button" onClick={handleOpenModal}>
+          <StyledIconAdd>
+            <SvagAddColumn name="plus" />
+          </StyledIconAdd>
+          <span>Add {allColumns.length ? 'another' : null} column</span>
+        </BtnAddColumn>
+      </Columns>
+      <AddColumnModal
+        board={board}
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+      />
+    </BoardContainer>
 
   useEffect(() => {
     if (columns) {
