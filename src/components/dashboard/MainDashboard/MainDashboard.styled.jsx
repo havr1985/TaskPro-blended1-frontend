@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const MainDashboardWrap = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   min-width: 320px;
   /* padding-bottom: 10px; */
   overflow-x: auto;
@@ -25,6 +26,7 @@ export const MainDashboardWrap = styled.div`
 
   @media screen and (min-width: 375px) {
     width: 335px;
+    justify-content: flex-start;
     // padding-bottom: 13px;
   }
 
@@ -91,9 +93,7 @@ export const AddColumnButton = styled.button`
    
    @media screen and (min-width: 767px) { 
     width: 334px;
-
   } 
-
 `;
 
 export const AddCardButton = styled.button`
