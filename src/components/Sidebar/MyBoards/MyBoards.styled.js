@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 export const BoardList = styled.ul`
 	font-weight: 500;
 	font-size: 14px;
+    width: 225px; 
 	line-height: 21px;
 	letter-spacing: -0.02em;
 	transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -14,19 +15,19 @@ export const BoardList = styled.ul`
 	gap: 4px;
 
 	position: relative;
-	width: 260px;
+	width: 100%;
 
-	margin: 0 -24px;
+	/* margin: 0 -14px; */
 
-	@media screen and (max-width: 767px) {
-		width: 225px;
-		margin: 0 -14px;
+	@media screen and (min-width: 767px) {
+		width: 260px; 
+		/* margin: 0 -24px; */
 	}
 `;
 export const BoardItem = styled.li`
 	display: flex;
 	align-items: center;
-
+    position: relative;
 	height: 61px;
 	cursor: pointer;
 
@@ -42,8 +43,8 @@ export const BoardItem = styled.li`
 	&.active::after {
 		content: "";
 		position: absolute;
-
-		right: -1px;
+        top: 0;
+		right: 1px;
 
 		height: 61px;
 		width: 4px;

@@ -20,7 +20,7 @@ export const EmailInput = styled.input`
   outline: none;
   border-radius: 8px;
 
-  opacity: 0.4;
+  /* opacity: 0.4; */
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &::placeholder {
@@ -30,7 +30,7 @@ export const EmailInput = styled.input`
   }
 
   &:focus {
-    opacity: 1;
+   /*  opacity: 1; */
     border-color: var(--shared-input-border-hover-color);
   }
 `;
@@ -75,7 +75,7 @@ export const QuestionTextarea = styled.textarea`
   outline: none;
   border-radius: 8px;
 
-  opacity: 0.4;
+ /*  opacity: 0.4; */
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &::placeholder {
@@ -85,7 +85,7 @@ export const QuestionTextarea = styled.textarea`
   }
 
   &:focus {
-    opacity: 1;
+    /* opacity: 1; */
     border-color: var(--shared-input-border-hover-color);
   }
 `;

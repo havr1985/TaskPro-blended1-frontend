@@ -4,7 +4,7 @@ import TextTruncate from "react-text-truncate";
 export const CardList = styled.ul`
   overflow-y: auto;
   overflow-x: hidden;
-
+  min-width: 320px
   margin-right: -12px;
 
   height: calc(100vh - 348px);
@@ -24,7 +24,12 @@ export const CardList = styled.ul`
     border: 8px solid var(--scroll-bar-color); /* отступ вокруг бегунка */
   }
 
+  @media screen and (min-width: 375px) {
+    width: 335px;
+  }
+
   @media screen and (min-width: 767px) and (max-width: 1439px) {
+    width: 334px;
     margin-right: -16px;
     height: calc(100vh - 370px);
   }
@@ -39,7 +44,7 @@ export const CardWrap = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-width: 320px;
   height: 154px;
   padding: 14px 20px;
   margin-bottom: 8px;
@@ -50,7 +55,7 @@ export const CardWrap = styled.li`
 
   @media screen and (min-width: 375px) {
     width: 335px;
-    min-width: 335px;
+   /*  min-width: 335px; */
   }
 
   &::before {
