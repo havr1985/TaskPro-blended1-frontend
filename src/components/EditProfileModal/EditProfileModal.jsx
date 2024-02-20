@@ -80,7 +80,7 @@ const changeAvatar = async (e) => {
       modalIsOpen={isModalOpen}
       closeModal={modalStateSwapper}
       title={"Edit profile"}
-       maxWidth={"400px"}
+      maxWidth={"400px"}
  
     >
       <UserAvatarWrapper>

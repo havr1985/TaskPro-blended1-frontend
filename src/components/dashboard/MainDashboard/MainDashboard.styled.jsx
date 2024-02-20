@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainDashboardWrap = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   min-width: 320px;
   /* padding-bottom: 10px; */
   overflow-x: auto;
@@ -26,7 +26,6 @@ export const MainDashboardWrap = styled.div`
 
   @media screen and (min-width: 375px) {
     width: 335px;
-    justify-content: flex-start;
     // padding-bottom: 13px;
   }
 
