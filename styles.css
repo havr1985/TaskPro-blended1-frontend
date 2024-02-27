@@ -124,7 +124,7 @@ html[data-theme="dark"] {
   --radio-icons-color: rgba(255, 255, 255, 0.5);
   --radio-icons-checked: #fff;
 
-  --user-icon-fill-color: 1f1f1f;
+  --user-icon-fill-color: #1f1f1f;
   --user-icon-stroke-color: rgba(21, 21, 21, 1);
 
   --column-background-color: #121212;
@@ -382,7 +382,7 @@ html[data-theme="violet"] {
   --input-need-help-background-focus: #fff;
   --radio-button-text-color: rgba(22, 22, 22, 0.5);
   --avatar-border-color: #7b7ede;
-  --user-edit-icon-plus-fill-color: #ecedfd;
+  --user-edit-icon-plus-fill-color: #b8bcfd;
   --user-edit-icon-plus-hover-color: #7b7ede;
 
   --modal-progress-text-color: rgba(22, 22, 22, 1);

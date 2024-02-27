@@ -6,8 +6,6 @@ import * as Yup from "yup";
 
 import { ToastContainer, toast } from "react-toastify";
 
-// import { Link } from "react-router-dom";
-
 import {
   Container,
   FormContainer,

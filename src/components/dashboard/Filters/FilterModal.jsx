@@ -16,7 +16,7 @@ import {
 } from "./FilterModal.styled";
 import { useSearchParams } from "react-router-dom";
 
-export const FilterModal = ({ isOpen, onClose }) => {
+export const FilterModal = ({ isOpen, onClose, onBtnClose }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const selectedPriority = searchParams.get("priority");
@@ -36,7 +36,7 @@ export const FilterModal = ({ isOpen, onClose }) => {
   return (
     <Overlay onClick={onClose}>
       <ModalFilter onClick={(e) => e.stopPropagation()}>
-        <CloseModalBtn onClick={onClose}>✕</CloseModalBtn>
+        <CloseModalBtn onClick={onBtnClose}>✕</CloseModalBtn>
 
         <ModalTitle>Filters</ModalTitle>
         <FilterLine />

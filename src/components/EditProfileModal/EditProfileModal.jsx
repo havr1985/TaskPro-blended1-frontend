@@ -81,16 +81,12 @@ const changeAvatar = async (e) => {
       closeModal={modalStateSwapper}
       title={"Edit profile"}
       maxWidth={"400px"}
+ 
     >
       <UserAvatarWrapper>
         {loading ? (
-      /*    <div style={{
-           display: 'grid',
-           placeItems: 'center',
-           height: '100%',
-           transition: 'all 450ms cubic-bezier(0.4, 0, 0.2, 1)',
-        }} > */
-          <Loader setHeight="100 %"/>
+     
+          <Loader />
             
 			) : avatarURL ? (
           <UserAvatar

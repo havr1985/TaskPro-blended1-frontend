@@ -4,17 +4,22 @@ export const Heading = styled.p`
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 18px;
-
+    margin-left: 14px;
 	margin-bottom: 8px;
 
 	color: var(--sidebar-icon-edit-stroke-color);
+	@media screen and (min-width: 767px) {
+		margin-left: 24px;
+		
+	}
 `;
 
 export const CreateBoardWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-
+    margin-left: 14px;
+	margin-right: 14px;
 	height: 70px;
 
 	border-top: 1px solid var(--line-border-sidebar-color);
@@ -24,6 +29,10 @@ export const CreateBoardWrapper = styled.div`
 
 	@media screen and (max-width: 767px) {
 		width: 197px;
+	}
+	@media screen and (min-width: 767px) {
+		margin-left: 24px;
+		margin-right: 24px;
 	}
 
 	.createText {

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
+  top: 0px;
+  right: 0px;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -12,7 +12,7 @@ export const Overlay = styled.div`
 export const ModalFilter = styled.div`
   position: absolute;
   top: 60px;
-  right: 24px;
+  right: 0px;
   height: auto;
   padding: 24px;
   border: 1px solid var(--shared-input-border-color);
@@ -21,6 +21,10 @@ export const ModalFilter = styled.div`
   background-color: var(--primary-background-color);
   z-index: 1000;
   transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (min-width: 375px) {
+    right: 24px;
+  }
 `;
 export const ModalTitle = styled.h2`
   color: var(--modal-title-color);

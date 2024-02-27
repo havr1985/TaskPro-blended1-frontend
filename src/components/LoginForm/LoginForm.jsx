@@ -62,9 +62,17 @@ export const LoginForm = () => {
     <LoginWrapper>
       <LoginContainer>
         <NavContainer>
-          <RegisterLink to="/auth/register">Registration</RegisterLink>
+          <RegisterLink to="/auth/register"  style={({ isActive, }) => {
+    return {
+      color: isActive ? "#ffffff" : "var(--color-pale-white)" ,
+     };
+  }}>Registration</RegisterLink>
 
-          <LoginLink to="/auth/login" style={{ color: "#ffffff" }}>
+          <LoginLink to="/auth/login" style={({ isActive, }) => {
+    return {
+      color: isActive ? "#ffffff" : "var(--color-pale-white)" ,
+     };
+  }} >
             Log in
           </LoginLink>
         </NavContainer>

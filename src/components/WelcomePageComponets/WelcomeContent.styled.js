@@ -7,7 +7,7 @@ export const WelcomeWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-
+  width: 100vw;
   background: linear-gradient(
     180deg,
     rgba(196, 196, 196, 0) 25%,
@@ -20,7 +20,7 @@ export const WelcomeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 20px;
-
+  min-width: 320px;
   @media (min-width: 375px) {
     width: 335px;
   }
@@ -84,10 +84,19 @@ export const WelcomeDescription = styled.p`
   font-family: "Poppins";
   line-height: 1.28;
   letter-spacing: -0.28px;
+  min-width: 320px;
+
+  @media (min-width: 375px) {
+    width: 335px;
+  }
+
+  @media (min-width: 768px) {
+    width: 473px;
+  }
 `;
 
 export const WelcomeRegisterButton = styled(NavLink)`
-  width: calc(100% - 40px);
+ /*  width: calc(100% - 40px); */
   padding: 14px;
   margin-bottom: 14px;
   text-decoration: none;
@@ -97,7 +106,7 @@ export const WelcomeRegisterButton = styled(NavLink)`
   font-family: "Poppins";
   font-weight: 500;
   letter-spacing: -0.28px;
-
+  min-width: 320px;
   border-radius: 8px;
   background: #161616;
 
@@ -108,8 +117,12 @@ export const WelcomeRegisterButton = styled(NavLink)`
     opacity: 0.8;
   }
 
+  @media (min-width: 375px) {
+    width: 335px;
+  }
+
   @media (min-width: 768px) {
-    width: 344px;
+    width: 473px;
   }
 `;
 
@@ -141,7 +154,7 @@ export const CustomGoogleButton = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-width: 344px;
+min-width: 320px;
 height: 50px;
 border-radius: 8px;
 background-color: #161616;
@@ -149,5 +162,12 @@ background-color: #161616;
 
 &:hover {
     opacity: 0.8;
+  }
+    @media (min-width: 375px) {
+    width: 335px;
+  }
+
+  @media (min-width: 768px) {
+    width: 473px;
   }
 `;

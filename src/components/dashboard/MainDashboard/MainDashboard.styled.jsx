@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const MainDashboardWrap = styled.div`
   display: flex;
   align-items: flex-start;
-
-  /* width: 100%; */
-
+  justify-content: flex-start;
+  min-width: 320px;
+  /* padding-bottom: 10px; */
   overflow-x: auto;
   overflow-y: hidden;
-
+  height: calc(100vh - 132px);
   &::-webkit-scrollbar {
     width: 8px; /* ширина всей полосы прокрутки */
   }
@@ -24,47 +24,47 @@ export const MainDashboardWrap = styled.div`
     border: 12px solid var(--scroll-bar-color); /* отступ вокруг бегунка */
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 375px) {
     width: 335px;
     // padding-bottom: 13px;
+  }
+
+  
+  @media screen and (min-width: 375px) and (max-width: 766px) {
+    width: 335px;
   }
 
   @media screen and (min-width: 767px) and (max-width: 1439px) {
     width: 704px;
     /* width: calc(100vw - 50px); */
-    height: calc(100vh - 168px);
+    height: calc(100vh - 166px);
   }
 
   @media screen and (min-width: 1440px) {
     width: calc(100vw - 308px);
     height: calc(100vh - 140px);
 
-    padding-bottom: 10px;
+   /*  padding-bottom: 10px; */
   }
 `;
 
 export const MainDashboardList = styled.ul`
   display: flex;
-  gap: 34px;
   height: 100%;
   padding-bottom: 10px;
 
-  @media screen and (max-width: 767px) {
-    padding-bottom: 23px;
-  }
-  @media screen and (min-width: 767px) and (max-width: 1439px) {
-    padding-bottom: 52px;
-  }
 `;
 
 export const MainDashboardColumn = styled.li`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
+  min-width: 320px;
+  margin-right: 34px;
 
   @media screen and (min-width: 375px) {
-    width: 334px;
-    min-width: 334px;
+    width: 335px;
+   /*  min-width: 334px; */
   }
 `;
 
@@ -73,11 +73,10 @@ export const AddColumnButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  width: 100%;
-  max-width: 334px;
+  min-width: 320px;
   height: 56px;
   padding: 0;
-  margin-left: 34px;
+  
   border: none;
   border-radius: 8px;
   font-weight: 500;
@@ -88,14 +87,12 @@ export const AddColumnButton = styled.button`
   background-color: var(--background-add-column-btn-color);
   cursor: pointer;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 375px) {
     width: 335px;
-    min-width: 335px;
-    margin-left: 12px;
-  }
-  @media screen and (min-width: 1439px) {
-    min-width: 334px;
-  }
+   
+   @media screen and (min-width: 767px) { 
+    width: 334px;
+  } 
 `;
 
 export const AddCardButton = styled.button`
@@ -103,7 +100,8 @@ export const AddCardButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  width: 100%;
+ /*  width: 100%; */
+  min-width: 320px;
   height: 56px;
   padding: 0;
   border: none;
@@ -118,7 +116,6 @@ export const AddCardButton = styled.button`
 
   @media screen and (min-width: 375px) {
     width: 335px;
-    min-width: 335px;
   }
 
   &:hover {
@@ -167,7 +164,7 @@ export const DashboardColumnTitle = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  width: 100%;
+  min-width: 320px;
   height: 56px;
   padding-left: 20px;
   padding-right: 20px;
@@ -180,7 +177,7 @@ export const DashboardColumnTitle = styled.div`
 
   @media screen and (min-width: 375px) {
     width: 335px;
-    min-width: 335px;
+   /*  min-width: 335px; */
   }
 `;
 

@@ -33,15 +33,13 @@ export const UserAvatarWrapper = styled.form`
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  
 `;
 export const UserAvatarInput = styled.input`
   opacity: 0;
   visibility: hidden;
   position: absolute;
 `;
-// export const UserAvatarInputWrapper = styled.div`
-// display: ;
-// `;
 
 export const ModalContentWrapper = styled.form`
   display: flex;

@@ -5,6 +5,7 @@ export const LogoContainer = styled.div`
   align-items: center;
 
   margin-bottom: 60px;
+  margin-left: 14px;
 
   @media (max-width: 767px) {
     margin-bottom: 70px;
@@ -38,4 +39,9 @@ export const LogoContainer = styled.div`
     color: var(--secondary-text-sidebar-color);
     transition: all 450ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  
+	@media screen and (mim-width: 767px) {
+		padding: 24px;
+	}
 `;

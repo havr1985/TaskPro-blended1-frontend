@@ -13,9 +13,9 @@ const Filters = () => {
     setIsFilterModalOpen(false);
   };
 
-  /*   const toggleModalVisibility = () => {
+  const toggleModalVisibility = () => {
     setIsFilterModalOpen((prevState) => !prevState);
-  }; */
+  }; 
   return (
     <>
       <FilterButton
@@ -27,7 +27,11 @@ const Filters = () => {
         </FilterIcon>
         Filters
       </FilterButton>
-      <FilterModal isOpen={isFilterModalOpen} onClose={closeFilterModal} />
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onBtnClose={closeFilterModal}
+        onClose={toggleModalVisibility}
+      />
     </>
   );
 };

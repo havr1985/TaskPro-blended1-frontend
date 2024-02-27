@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
 export const HeaderWrap = styled.div`
-  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 13px;
   min-width: 100%;
-
   margin-bottom: 39px;
   background-color: var(--headerdashboard-background-color);
   border-radius: 8px;
+
+   @media screen and (max-width: 767px) {
+   padding: 7px 20px;
+  }
 
   @media screen and (max-width: 1439px) {
     padding: 13px 16px;
@@ -22,10 +24,7 @@ export const HeaderWrap = styled.div`
     margin-bottom: 10px;
   }
 
-  @media screen and (max-width: 767px) {
-    padding: 7px 20px;
-    margin-bottom: 39px;
-  }
+
 `;
 
 export const DashboardName = styled.h2`
